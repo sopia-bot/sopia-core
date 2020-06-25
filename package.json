@@ -1,0 +1,35 @@
+{
+	"name": "sopia-core",
+	"version": "1.0.0",
+	"description": "Spoon radio core API",
+	"main": "dist/index.js",
+	"scripts": {
+		"test": "./node_modules/.bin/mocha -r ts-node/register ./tests/*.test.ts",
+		"build": "./node_modules/.bin/tsc",
+		"prepublishOnly": "npm run test && npm run build"
+	},
+	"keywords": [],
+	"author": {
+		"name": "tree-some",
+		"email": "youn@tree-some.dev"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Tree-Some/sopia-core.git"
+	},
+	"devDependencies": {
+		"@types/axios": "^0.14.0",
+		"@types/chai": "^4.2.3",
+		"@types/mocha": "^5.2.7",
+		"@types/node": "^12.7.11",
+		"@types/node-forge": "^0.8.6",
+		"chai": "^4.2.0",
+		"mocha": "^6.2.1",
+		"ts-node": "^8.4.1",
+		"typescript": "^3.6.3"
+	},
+	"license": "ISC",
+	"dependencies": {
+		"axios": "^0.19.2"
+	}
+}
