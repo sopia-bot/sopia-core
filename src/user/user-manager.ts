@@ -11,6 +11,7 @@ import { Grants } from '../spoon/grants';
 import { PushSettings } from '../spoon/push-settings';
 import { ServiceAgreement } from '../spoon/service-agreement';
 import { FanboardInfo } from '../fanboard/fanboard-info';
+import { Live } from '../live/live-manager';
 
 namespace User {
 	export interface User {
@@ -35,6 +36,7 @@ namespace User {
 		token?: string;
 		topFans?: User[];
 		fanboardInfo?: FanboardInfo;
+		currentLive: Live;
 	}
 }
 
@@ -52,10 +54,11 @@ export class User extends SOPIA {
 	public isStaff!: boolean;
 	public isVip!: boolean;
 	public topFans?: User[];
-	public dateJoined?: string;
+	public dateJoined?: Date;
 	public isChoice?: boolean;
 	public isExist?: boolean;
 	public fanboardInfo?: FanboardInfo;
+	public currentLive?: Live = new Live();
 
 	constructor() {
 		super();
@@ -116,7 +119,7 @@ export class User extends SOPIA {
 		}
 
 		if ( data['date_joined'] ) {
-			this.dateJoined = data['date_joined'];
+			this.dateJoined = new Date(data['date_joined']);
 		}
 
 		if ( data['is_choice'] ) {
@@ -134,6 +137,10 @@ export class User extends SOPIA {
 		if ( data['fanboard_info'] ) {
 			this.fanboardInfo = FanboardInfo.deserialize(data['fanboard_info']);
 
+		}
+		
+		if ( data['current_live'] ) {
+			this.currentLive = Live.deserialize(data['current_live']);
 		}
 	}
 
