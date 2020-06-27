@@ -6,39 +6,13 @@
  */
 
 import { SOPIA } from '../sopia';
-import { Budget } from '../spoon/budget';
-import { Grants } from '../spoon/grants';
-import { PushSettings } from '../spoon/push-settings';
-import { ServiceAgreement } from '../spoon/service-agreement';
 import { FanboardInfo } from '../fanboard/fanboard-info';
-import { Live } from '../live/live-manager';
-
-namespace User {
-	export interface User {
-		tag: string;
-		country: string;
-		dateJoined: string;
-		dateOfBirth?: string;
-		description: string;
-		followerCount: number;
-		followingCount: number;
-		gender: number;
-		id: number;
-		isActive: boolean;
-		isStaff: boolean;
-		isVip: boolean;
-		nickname: string;
-		profileUrl: string;
-		snsType?: (string | null);
-		isChoice?: boolean;
-		isExist?: boolean;
-		tier?: any;
-		token?: string;
-		topFans?: User[];
-		fanboardInfo?: FanboardInfo;
-		currentLive: Live;
-	}
-}
+import { Live } from './live-struct';
+import { ApiRequest } from '../api/api-request';
+import { ApiUserFollow } from '../api/api-user-follow';
+import { ApiUserUnfollow } from '../api/api-user-unfollow';
+import { ApiUserFollowings } from '../api/api-user-followings';
+import { ApiUserFollowers } from '../api/api-user-followers';
 
 export class User extends SOPIA {
 	public id!: number;
@@ -59,6 +33,10 @@ export class User extends SOPIA {
 	public isExist?: boolean;
 	public fanboardInfo?: FanboardInfo;
 	public currentLive?: Live = new Live();
+
+	private followingsApi!: ApiRequest;
+	private followersApi!: ApiRequest;
+
 
 	constructor() {
 		super();
@@ -148,5 +126,61 @@ export class User extends SOPIA {
 		const user = new User();
 		user.readRawData(data);
 		return user;
+	}
+
+	async follow() {
+		const api = new ApiUserFollow(this.id) as ApiRequest;
+		const res = await api.send();
+
+		this.readRawData(res.results[0]);
+	}
+
+	async unfollow() {
+		const api = new ApiUserUnfollow(this.id) as ApiRequest;
+		const res = await api.send();
+
+		this.readRawData(res.results[0]);
+	}
+
+	async followings(): Promise<User[]> {
+		const users: User[] = [];
+		let res = null;
+		if ( this.followingsApi ) {
+			res = await this.followingsApi.next();
+		} else {
+			const api = new ApiUserFollowings(this.id) as ApiRequest;
+			res = await api.send();
+
+			this.followingsApi = api;
+		}
+
+		if ( res && res.results ) {
+			for ( const u of res.results ){
+				const user = User.deserialize(u);
+				users.push(user);
+			}
+		}
+		return users;
+	}
+
+	async followers(): Promise<User[]> {
+		const users: User[] = [];
+		let res = null;
+		if ( this.followersApi ) {
+			res = await this.followersApi.next();
+		} else {
+			const api = new ApiUserFollowers(this.id) as ApiRequest;
+			res = await api.send();
+
+			this.followersApi = api;
+		}
+
+		if ( res && res.results ) {
+			for ( const u of res.results ){
+				const user = User.deserialize(u);
+				users.push(user);
+			}
+		}
+		return users;
 	}
 }

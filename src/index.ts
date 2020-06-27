@@ -15,4 +15,5 @@ export * from './spoon/grants';
 export * from './spoon/push-settings';
 export * from './spoon/service-agreement';
 
-export * from './user/user-manager';
+export * from './struct/user-struct';
+export * from './struct/live-struct';

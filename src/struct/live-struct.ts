@@ -1,12 +1,12 @@
 /*
- * live-manager.ts
+ * live-struct.ts
  * Created on Fri Jun 26 2020
  *
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 
 import { SOPIA } from '../sopia';
-import { User } from '../user/user-manager';
+import { User } from './user-struct';
 
 export class Live extends SOPIA {
 	public liveId: number = 0;

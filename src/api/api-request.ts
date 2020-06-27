@@ -6,12 +6,15 @@
  */
 
 import axios, { AxiosRequestConfig } from 'axios';
+import { ApiResult } from '../struct/api-struct';
 
 export class ApiRequest {
 	private spoonUrl = 'spooncast.net';
 	private country = ApiRequest.Country_Code.KOREA;
 	private subUrl: string[] = [];
 	private Option: AxiosRequestConfig = { method: 'get' };
+	private prevUrl: (string | null) = null;
+	private nextUrl: (string | null) = null;
 
 	constructor(
 		private Url: string,
@@ -67,12 +70,38 @@ export class ApiRequest {
 		this.subUrl.push(url);
 	}
 
-	async send(): Promise<any[]> {
-		this.Option.url = this.reqUrl;
+	async send(url?: string): Promise<ApiResult> {
+		this.Option.url = url || this.reqUrl;
 		const res = await axios(this.Option);
-		const data = res.data;
+		const data: ApiResult = res.data;
 
-		return data.results;
+		if ( data['previous'] ) {
+			this.prevUrl = data['previous'];
+		}
+
+		if ( data['next'] ) {
+			this.nextUrl = data['next'];
+		}
+
+		if ( typeof data['status_code'] === 'string' ) {
+			data['status_code'] = Number(data['status_code']);
+		}
+
+		return data;
+	}
+
+	async prev(): Promise<ApiResult|null> {
+		if ( this.prevUrl && this.prevUrl.length > 0 ) {
+			return await this.send(this.prevUrl);
+		}
+		return null;
+	}
+
+	async next(): Promise<ApiResult|null> {
+		if ( this.nextUrl && this.nextUrl.length > 0 ) {
+			return await this.send(this.nextUrl);
+		}
+		return null;
 	}
 }
 
