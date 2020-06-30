@@ -7,7 +7,7 @@
 
 import { SOPIA } from '../../sopia';
 import { FanboardInfo } from '../fanboard/fanboard-info-struct';
-import { Live } from '../live-struct';
+import { Play } from '../play-struct';
 
 export class User extends SOPIA {
 	public id!: number;
@@ -27,7 +27,7 @@ export class User extends SOPIA {
 	public isChoice?: boolean;
 	public isExist?: boolean;
 	public fanboardInfo?: FanboardInfo;
-	public currentLive?: Live = new Live();
+	public currentLive?: Play = new Play();
 
 
 	constructor() {
@@ -110,7 +110,7 @@ export class User extends SOPIA {
 		}
 		
 		if ( data['current_live'] ) {
-			this.currentLive = Live.deserialize(data['current_live']);
+			this.currentLive = Play.deserialize(data['current_live']);
 		}
 	}
 

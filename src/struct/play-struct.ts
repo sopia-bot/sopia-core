@@ -1,5 +1,5 @@
 /*
- * live-struct.ts
+ * play-struct.ts
  * Created on Fri Jun 26 2020
  *
  * Copyright (c) Tree-Some. Licensed under the MIT License.
@@ -8,7 +8,7 @@
 import { SOPIA } from '../sopia';
 import { User } from './user/user-struct';
 
-export class Live extends SOPIA {
+export class Play extends SOPIA {
 	public liveId: number = 0;
 	public author?: User;
 	public title?: string = '';
@@ -20,7 +20,7 @@ export class Live extends SOPIA {
 	public likeCount?: number;
 	public playCount?: number;
 	public spoonCount?: number;
-	public reporters?: any[];
+	public reporters?: number[];
 	public isDonated?: boolean;
 	public created?: Date;
 
@@ -88,8 +88,8 @@ export class Live extends SOPIA {
 	}
 
 	static deserialize(data: any) {
-		const live = new Live();
-		live.readRawData(data);
-		return live;
+		const play = new Play();
+		play.readRawData(data);
+		return play;
 	}
 }
