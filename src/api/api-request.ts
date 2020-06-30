@@ -5,12 +5,13 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 
+import { SOPIA } from '../sopia';
 import axios, { AxiosRequestConfig } from 'axios';
 import { ApiResult } from '../struct/api-struct';
+import { Country } from '../enum/country';
 
-export class ApiRequest {
+export class ApiRequest extends SOPIA {
 	private spoonUrl = 'spooncast.net';
-	private country = ApiRequest.Country_Code.KOREA;
 	private subUrl: string[] = [];
 	private Option: AxiosRequestConfig = { method: 'get' };
 	private prevUrl: (string | null) = null;
@@ -20,6 +21,7 @@ export class ApiRequest {
 		private Url: string,
 		Option?: AxiosRequestConfig
 	) {
+		super();
 		if ( Option) {
 			this.Option = Option;
 		}
@@ -103,15 +105,4 @@ export class ApiRequest {
 		}
 		return null;
 	}
-}
-
-export namespace ApiRequest {
-	export enum Country_Code {
-		KOREA     = 'kr',
-		INDONESIA = 'id',
-		JAPAN     = 'jp',
-		VIETNAM   = 'vn',
-		ARAB      = 'ar',
-		USA       = 'us'
-	};
 }
