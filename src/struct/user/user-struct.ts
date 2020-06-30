@@ -6,7 +6,7 @@
  */
 
 import { SOPIA } from '../../sopia';
-import { FanboardInfo } from '../fanboard/fanboard-info-struct';
+import { FanboardInfo } from '../fanboard-info-struct';
 import { Play } from '../play-struct';
 
 export class User extends SOPIA {

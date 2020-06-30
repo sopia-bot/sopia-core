@@ -28,6 +28,6 @@ export * from './struct/user/user-struct';
 export * from './struct/user/user-voice-struct';
 export * from './struct/user/user-fanmessages';
 export * from './struct/play-struct';
-export * from './struct/fanboard/fanboard-info-struct';
+export * from './struct/fanboard-info-struct';
 
 export * from './enum/cast-type';

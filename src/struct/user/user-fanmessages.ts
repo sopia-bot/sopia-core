@@ -16,7 +16,7 @@ export class UserFanmessages extends SOPIA {
 	private contents!: string;
 	private messageCount!: number;
 	private isBlind!: boolean;
-	private created: Date;
+	private created!: Date;
 
 	constructor() {
 		super();

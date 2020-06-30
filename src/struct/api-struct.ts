@@ -6,9 +6,9 @@
  */
 
 export interface ApiResult {
-	detail: string;
+	detail?: string;
 	next?: string;
 	previous?: string;
 	results: any[];
-	status_code: (string | number);
+	status_code?: (string | number);
 }

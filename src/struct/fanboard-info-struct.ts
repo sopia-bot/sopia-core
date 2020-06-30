@@ -4,8 +4,8 @@
  *
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
-import { SOPIA } from '../../sopia';
-import { User } from '../user/user-struct';
+import { SOPIA } from '../sopia';
+import { User } from './user/user-struct';
 
 export class FanboardInfo extends SOPIA {
 	public totalCommentAuthorCount: number = 0;

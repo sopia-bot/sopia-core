@@ -32,7 +32,7 @@ export class UserVoice extends SOPIA {
 	}
 
 	static deserialize(data: any) {
-		const voice = new Voice();
+		const voice = new UserVoice();
 		voice.readRawData(data);
 		return voice;
 	}
