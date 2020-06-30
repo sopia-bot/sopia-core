@@ -5,8 +5,7 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 
-import { ApiRequest } from './api-request';
-import { User } from '../struct/user-struct';
+import { ApiRequest } from '../api-request';
 
 export class ApiUser extends ApiRequest {
 	constructor(

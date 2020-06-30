@@ -8,12 +8,19 @@
 export * from './sopia';
 
 export * from './api/api-request';
-export * from './api/api-user';
+
+export * from './api/user/api-user';
+export * from './api/user/api-user-follow';
+export * from './api/user/api-user-followers';
+export * from './api/user/api-user-followings';
+export * from './api/user/api-user-unfollow';
 
 export * from './spoon/budget';
 export * from './spoon/grants';
 export * from './spoon/push-settings';
 export * from './spoon/service-agreement';
 
-export * from './struct/user-struct';
+export * from './struct/api-struct';
+export * from './struct/user/user-struct';
+export * from './struct/user/user-voice-struct';
 export * from './struct/live-struct';

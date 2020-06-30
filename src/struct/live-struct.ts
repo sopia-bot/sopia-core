@@ -6,7 +6,7 @@
  */
 
 import { SOPIA } from '../sopia';
-import { User } from './user-struct';
+import { User } from './user/user-struct';
 
 export class Live extends SOPIA {
 	public liveId: number = 0;
