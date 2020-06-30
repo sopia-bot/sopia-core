@@ -7,9 +7,9 @@
 
 export enum LoginType {
 
-	PHONE = 0,
-	EMAIL = 1,
-	FACEBOOK = 2,
-	GOOGLE = 3,
+	PHONE = 'phone',
+	EMAIL = 'email',
+	FACEBOOK = 'facebook',
+	GOOGLE = 'google',
 
 }

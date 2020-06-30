@@ -22,7 +22,7 @@ export class ApiRequest extends SOPIA {
 		Option?: AxiosRequestConfig
 	) {
 		super();
-		if ( Option) {
+		if ( Option ) {
 			this.Option = Option;
 		}
 	}

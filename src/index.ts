@@ -6,6 +6,7 @@
  */
 
 export * from './sopia';
+export * from './client';
 
 export * from './api/api-request';
 export * from './api/api-fancomments';
@@ -31,3 +32,5 @@ export * from './struct/play-struct';
 export * from './struct/fanboard-info-struct';
 
 export * from './enum/cast-type';
+export * from './enum/login-type';
+export * from './enum/country';

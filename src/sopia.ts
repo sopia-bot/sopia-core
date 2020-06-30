@@ -6,14 +6,23 @@
  */
 
 import { Country } from './enum/country';
+import { LoginType } from './enum/login-type';
+import { ApiLogin } from './api/api-login';
+import { User } from './struct/user/user-struct';
 
-export namespace SOPIA {
-	interface SOPIA {
-		new(data?: any): any;
-	}
-}
 export class SOPIA {
 	protected country: Country = Country.KOREA;
+	protected token?: string;
 
-	constructor(data?: any) {}
+	constructor(country?: Country) {
+		if ( country ) {
+			this.country = country;
+		}
+	}
+}
+
+export namespace SOPIA {
+	export enum S {
+		H = 0,
+	}
 }

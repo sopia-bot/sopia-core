@@ -28,6 +28,8 @@ export class User extends SOPIA {
 	public isExist?: boolean;
 	public fanboardInfo?: FanboardInfo;
 	public currentLive?: Play = new Play();
+	public token?: string;
+	public dateOfBirth?: string;
 
 
 	constructor() {
@@ -111,6 +113,14 @@ export class User extends SOPIA {
 		
 		if ( data['current_live'] ) {
 			this.currentLive = Play.deserialize(data['current_live']);
+		}
+
+		if ( data['token'] ) {
+			this.token = data['token'];
+		}
+
+		if ( data['date_of_birth'] ) {
+			this.dateOfBirth = data['date_of_birth'];
 		}
 	}
 
