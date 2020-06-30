@@ -8,7 +8,7 @@
 import { SOPIA } from '../../sopia';
 
 
-export class Voice extends SOPIA {
+export class UserVoice extends SOPIA {
 	private url: (string | null) = null;
 	private likeCount: number = 0;
 	private isLike: boolean = false;
