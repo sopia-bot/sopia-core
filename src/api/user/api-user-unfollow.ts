@@ -5,12 +5,11 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 
-import { ApiRequest } from '../api-request';
+import { ApiUserInfo } from './api-user-info';
 
-export class ApiUserUnfollow extends ApiRequest {
+export class ApiUserUnfollow extends ApiUserInfo {
 	constructor(UserId: number) {
-		super('users');
-		this.addSubUrl(UserId.toString());
+		super(UserId);
 		this.addSubUrl('unfollow');
 		this.method = 'post';
 	}

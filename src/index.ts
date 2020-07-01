@@ -10,14 +10,17 @@ export * from './client';
 
 export * from './api/api-request';
 export * from './api/api-fancomments';
+export * from './api/api-lives';
+export * from './api/api-users';
 
-export * from './api/user/api-user';
+export * from './api/user/api-user-info';
 export * from './api/user/api-user-follow';
 export * from './api/user/api-user-followers';
 export * from './api/user/api-user-followings';
 export * from './api/user/api-user-unfollow';
 export * from './api/user/api-user-voice';
 export * from './api/user/api-user-fanmessages';
+export * from './api/user/api-user-cast';
 
 export * from './spoon/budget';
 export * from './spoon/grants';
@@ -34,3 +37,5 @@ export * from './struct/fanboard-info-struct';
 export * from './enum/cast-type';
 export * from './enum/login-type';
 export * from './enum/country';
+
+export * from './manager/user-manager';

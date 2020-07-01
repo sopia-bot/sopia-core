@@ -5,14 +5,13 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 
-import { ApiRequest } from '../api-request';
+import { ApiUserInfo } from './api-user-info';
 import { CastType } from '../../enum/cast-type';
 
-export class ApiUserCast extends ApiRequest {
+export class ApiUserCast extends ApiUserInfo {
 	constructor(UserId: number, type: CastType = CastType.UPLOAD_CAST) {
-		super('users');
-		this.addSubUrl(UserId.toString());
+		super(UserId);
 		this.addSubUrl('casts');
-		this.params = { type, };
+		this.params = { type };
 	}
 }

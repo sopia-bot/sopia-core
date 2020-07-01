@@ -10,10 +10,15 @@ import { Country } from './enum/country';
 import { LoginType } from './enum/login-type';
 import { User } from './struct/user/user-struct';
 import { ApiLogin } from './api/api-login';
+import { UserManager } from './manager/user-manager';
 
 export class Client extends SOPIA {
+	public userManager: UserManager;
+
 	constructor(country?: Country) {
 		super(country);
+
+		this.userManager = new UserManager(this);
 	}
 
 	async login(sns_id: (number|string), password: string, sns_type: LoginType): Promise<User> {

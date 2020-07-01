@@ -11,8 +11,8 @@ import { ApiLogin } from './api/api-login';
 import { User } from './struct/user/user-struct';
 
 export class SOPIA {
-	protected country: Country = Country.KOREA;
-	protected token?: string;
+	public country: Country = Country.KOREA;
+	public token?: string;
 
 	constructor(country?: Country) {
 		if ( country ) {

@@ -5,12 +5,11 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 
-import { ApiRequest } from '../api-request';
+import { ApiUserInfo } from './api-user-info';
 
-export class ApiUserVoice extends ApiRequest {
+export class ApiUserVoice extends ApiUserInfo {
 	constructor(UserId: number) {
-		super('users');
-		this.addSubUrl(UserId.toString());
+		super(UserId);
 		this.addSubUrl('voice');
 	}
 }

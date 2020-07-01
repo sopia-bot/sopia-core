@@ -5,12 +5,11 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 
-import { ApiRequest } from '../api-request';
+import { ApiUserInfo } from './api-user-info';
 
-export class ApiUserFanmessage extends ApiRequest {
+export class ApiUserFanmessage extends ApiUserInfo {
 	constructor(UserId: number, contents?: string) {
-		super('users');
-		this.addSubUrl(UserId.toString());
+		super(UserId);
 		this.addSubUrl('fanmessages');
 
 		if ( typeof contents === 'string' ) {

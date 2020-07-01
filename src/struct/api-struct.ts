@@ -11,4 +11,5 @@ export interface ApiResult {
 	previous?: string;
 	results: any[];
 	status_code?: (string | number);
+	data?: (any|any[]);
 }

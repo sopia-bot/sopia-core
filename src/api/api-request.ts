@@ -16,6 +16,7 @@ export class ApiRequest extends SOPIA {
 	private Option: AxiosRequestConfig = { method: 'get' };
 	private prevUrl: (string | null) = null;
 	private nextUrl: (string | null) = null;
+	protected apiResult!: ApiResult;
 
 	constructor(
 		private Url: string,
@@ -67,6 +68,16 @@ export class ApiRequest extends SOPIA {
 		return `https://${this.country}-api.${this.spoonUrl}/${this.Url}/${this.subUrl.length ? this.subUrl.join('/') + '/' : ''}`
 	}
 
+	get token() {
+		return this.Option?.headers?.authorization;
+	}
+
+	set token(t: string) {
+		if ( typeof this.Option.headers !== 'object' ) {
+			this.Option.headers = {}
+		}
+		this.Option.headers.authorization = `Token ${t}`;
+	}
 
 	addSubUrl(url: string) {
 		this.subUrl.push(url);
@@ -94,6 +105,7 @@ export class ApiRequest extends SOPIA {
 
 	async prev(): Promise<ApiResult|null> {
 		if ( this.prevUrl && this.prevUrl.length > 0 ) {
+			this.Option.params = {};
 			return await this.send(this.prevUrl);
 		}
 		return null;
@@ -101,6 +113,7 @@ export class ApiRequest extends SOPIA {
 
 	async next(): Promise<ApiResult|null> {
 		if ( this.nextUrl && this.nextUrl.length > 0 ) {
+			this.Option.params = {};
 			return await this.send(this.nextUrl);
 		}
 		return null;
