@@ -15,7 +15,19 @@ export class ApiManager {
 	constructor(
 		private request: ApiRequest,
 		private deserialize: Function,
+		token?: string,
 	) {
+		if ( token ) {
+			this.request.token = token;
+		}
+	}
+
+	set token(t: string) {
+		this.request.token = t;
+	}
+
+	get token() {
+		return this.request.token;
 	}
 
 	async send() {

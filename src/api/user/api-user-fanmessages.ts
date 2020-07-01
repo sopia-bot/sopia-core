@@ -7,7 +7,7 @@
 
 import { ApiUserInfo } from './api-user-info';
 
-export class ApiUserFanmessage extends ApiUserInfo {
+export class ApiUserFanmessages extends ApiUserInfo {
 	constructor(UserId: number, contents?: string) {
 		super(UserId);
 		this.addSubUrl('fanmessages');
