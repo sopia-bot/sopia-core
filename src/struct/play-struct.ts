@@ -5,10 +5,9 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 
-import { SOPIA } from '../sopia';
 import { User } from './user/user-struct';
 
-export class Play extends SOPIA {
+export class Play {
 	public liveId: number = 0;
 	public author?: User;
 	public title?: string = '';
@@ -26,7 +25,63 @@ export class Play extends SOPIA {
 
 
 	constructor() {
-		super();
+	}
+
+	toJSON() {
+		const obj: any = {};
+		if ( this.liveId ) {
+			obj['id'] = this.liveId;
+		}
+
+		if ( this.author ) {
+			obj['author'] = this.author.toJSON();
+		}
+
+		if ( this.title ) {
+			obj['title'] = this.title;
+		}
+
+		if ( this.voiceUrl ) {
+			obj['voice_url'] = this.voiceUrl;
+		}
+		
+		if ( this.tags ) {
+			obj['tags'] = this.tags;
+		}
+
+		if ( this.type ) {
+			obj['type'] = this.type;
+		}
+
+		if( this.duration ) {
+			obj['duration'] = this.duration;
+		}
+
+		if ( this.likeCount ) {
+			obj['like_count'] = this.likeCount;
+		}
+
+		if ( this.playCount ) {
+			obj['play_count'] = this.playCount;
+		}
+
+		if ( this.spoonCount ) {
+			obj['spoon_count'] = this.spoonCount;
+		}
+
+		if ( this.reporters ) {
+			obj['reporters'] = this.reporters;
+		}
+
+		if ( typeof this.isDonated !== 'undefined' ) {
+			obj['is_donated'] = this.isDonated;
+		}
+
+		if ( this.created ) {
+			obj['created'] = this.created.toJSON();
+		}
+
+		return obj;
 	}
 
 	readRawData(data: any) {

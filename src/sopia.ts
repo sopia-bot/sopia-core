@@ -19,6 +19,18 @@ export class SOPIA {
 			this.country = country;
 		}
 	}
+
+	get Token() {
+		return this.token;
+	}
+
+	get appVersion() {
+		return '5.1.2';
+	}
+
+	get userAgent() {
+		return 'Web';
+	}
 }
 
 export namespace SOPIA {

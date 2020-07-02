@@ -4,16 +4,24 @@
  *
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
-import { SOPIA } from '../sopia';
 import { User } from './user/user-struct';
 
-export class FanboardInfo extends SOPIA {
+export class FanboardInfo {
 	public totalCommentAuthorCount: number = 0;
 	public isNewComment: boolean = false;
 	public latestCommentAuthors: User[] = [];
 
 	constructor() {
-		super();
+	}
+
+	toJSON() {
+		const obj: any = {};
+
+		obj['total_comment_author_count'] = this.totalCommentAuthorCount;
+		obj['is_new_comment'] = this.isNewComment;
+		obj['latest_comment_authors'] = this.latestCommentAuthors;
+
+		return obj;
 	}
 
 	readRawData(data: any) {

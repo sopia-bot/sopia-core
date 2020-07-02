@@ -5,16 +5,22 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 
-import { SOPIA } from '../../sopia';
-
-
-export class UserVoice extends SOPIA {
+export class UserVoice {
 	private url: (string | null) = null;
 	private likeCount: number = 0;
 	private isLike: boolean = false;
 
 	constructor() {
-		super();
+	}
+
+	toJSON() {
+		const obj: any = {};
+
+		obj['url'] = this.url;
+		obj['like_count'] = this.likeCount;
+		obj['is_like'] = this.isLike;
+
+		return obj;
 	}
 
 	readRawData(data: any) {

@@ -31,6 +31,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"axios": "^0.19.2",
-		"json-proxy-mapper": "^1.1.1"
+		"json-proxy-mapper": "^1.1.1",
+		"ws": "^7.3.0"
 	}
 }

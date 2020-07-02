@@ -5,11 +5,10 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 
-import { SOPIA } from '../../sopia';
 import { FanboardInfo } from '../fanboard-info-struct';
 import { Play } from '../play-struct';
 
-export class User extends SOPIA {
+export class User {
 	public id!: number;
 	public tag!: string;
 	public nickname!: string;
@@ -33,7 +32,92 @@ export class User extends SOPIA {
 
 
 	constructor() {
-		super();
+	}
+
+	toJSON() {
+		const obj: any = {};
+
+		if ( this.id ) {
+			obj['id'] = this.id;
+		}
+
+		if ( this.tag ) {
+			obj['tag'] = this.tag;
+		}
+
+		if ( this.nickname ) {
+			obj['nickname'] = this.nickname;
+		}
+
+		if ( this.description ) {
+			obj['description'] = this.description;
+		}
+
+		if ( this.profileUrl ) {
+			obj['profile_url'] = this.profileUrl;
+		}
+
+		if ( this.topFans ) {
+			obj['top_fans'] = this.topFans;
+		}
+
+		if ( this.followerCount ) {
+			obj['follower_count'] = this.followerCount;
+		}
+
+		if ( this.followingCount ) {
+			obj['following_count'] = this.followingCount;
+		}
+
+		if ( this.gender ) {
+			obj['gender'] = this.gender;
+		}
+
+		if ( typeof this.isActive !== 'undefined' ) {
+			obj['is_active'] = this.isActive;
+		}
+
+		if ( typeof this.isStaff !== 'undefined' ) {
+			obj['is_staff'] = this.isStaff;
+		}
+
+		if ( typeof this.isVip !== 'undefined' ) {
+			obj['is_vip'] = this.isVip;
+		}
+
+		if ( this.dateJoined ) {
+			obj['date_joined'] = this.dateJoined.toJSON();
+		}
+
+		if ( typeof this.isChoice !== 'undefined' ) {
+			obj['is_choice'] = this.isChoice;
+		}
+
+		if ( typeof this.isExist !== 'undefined' ) {
+			obj['is_exist'] = this.isExist;
+		}
+
+		if ( this.tier ) {
+			obj['tier'] = this.tier;
+		}
+
+		if ( this.fanboardInfo ) {
+			obj['fanboard_info'] = this.fanboardInfo;
+		}
+
+		if ( this.currentLive ) {
+			obj['current_live'] = this.currentLive.toJSON();
+		}
+
+		if ( this.token ) {
+			obj['token'] = this.token;
+		}
+
+		if ( this.dateOfBirth ) {
+			obj['date_of_birth'] = this.dateOfBirth;
+		}
+
+		return obj;
 	}
 
 	readRawData(data: any) {

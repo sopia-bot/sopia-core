@@ -5,11 +5,10 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 
-import { SOPIA } from '../../sopia';
 import { User } from './user-struct';
 
 
-export class UserFanmessages extends SOPIA {
+export class UserFanmessages {
 	private messageId: number = 0;
 	private author!: User;
 	private toUser!: null;
@@ -19,7 +18,38 @@ export class UserFanmessages extends SOPIA {
 	private created!: Date;
 
 	constructor() {
-		super();
+	}
+
+	toJSON() {
+		const obj: any = {};
+
+		obj['id'] = this.messageId;
+
+		if ( this.author ) {
+			obj['author'] = this.author.toJSON();
+		}
+
+		if ( typeof this.toUser !== 'undefined' ) {
+			obj['to_user'] = this.toUser;
+		}
+
+		if ( this.contents ){
+			obj['contents'] = this.contents;
+		}
+
+		if ( this.messageCount ) {
+			obj['message_count'] = this.messageCount;
+		}
+
+		if ( typeof this.isBlind !== 'undefined' ) {
+			obj['is_blind'] = this.isBlind;
+		}
+
+		if ( this.created ) {
+			obj['created'] = this.created.toJSON();
+		}
+
+		return obj;
 	}
 
 	readRawData(data: any) {
