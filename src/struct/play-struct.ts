@@ -8,7 +8,7 @@
 import { User } from './user/user-struct';
 
 export class Play {
-	public liveId: number = 0;
+	public id: number = 0;
 	public author?: User;
 	public title?: string = '';
 	public imgUrl?: string = '';
@@ -22,6 +22,7 @@ export class Play {
 	public reporters?: number[];
 	public isDonated?: boolean;
 	public created?: Date;
+	public urlHls?: string;
 
 
 	constructor() {
@@ -29,8 +30,8 @@ export class Play {
 
 	toJSON() {
 		const obj: any = {};
-		if ( this.liveId ) {
-			obj['id'] = this.liveId;
+		if ( this.id ) {
+			obj['id'] = this.id;
 		}
 
 		if ( this.author ) {
@@ -81,12 +82,16 @@ export class Play {
 			obj['created'] = this.created.toJSON();
 		}
 
+		if ( this.urlHls ) {
+			obj['url_hls'] = this.urlHls;
+		}
+
 		return obj;
 	}
 
 	readRawData(data: any) {
 		if ( data['id'] ) {
-			this.liveId = data['id'];
+			this.id = data['id'];
 		}
 
 		if ( data['author'] ) {
@@ -139,6 +144,10 @@ export class Play {
 
 		if ( data['created'] ) {
 			this.created = new Date(data['created']);
+		}
+
+		if ( data['url_hls'] ) { 
+			this.urlHls = data['url_hls'];
 		}
 	}
 

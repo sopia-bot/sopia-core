@@ -60,12 +60,20 @@ export class ApiRequest extends SOPIA {
 		this.Option.headers = headers;
 	}
 
-	get url() {
-		return this.Url;
+	get reqUrl() {
+		if ( this.Option.url ) {
+			return this.Option?.url;
+		}
+
+		if ( this.api ) {
+			return `${this.api.api}${this.Url}/${this.subUrl.length ? this.subUrl.join('/') + '/' : ''}`;
+		}
+
+		return `https://${this.country}-api.${this.spoonUrl}/${this.Url}/${this.subUrl.length ? this.subUrl.join('/') + '/' : ''}`
 	}
 
-	get reqUrl() {
-		return `https://${this.country}-api.${this.spoonUrl}/${this.Url}/${this.subUrl.length ? this.subUrl.join('/') + '/' : ''}`
+	set reqUrl(url: string) {
+		this.Option.url = url;
 	}
 
 	get token() {
@@ -84,7 +92,14 @@ export class ApiRequest extends SOPIA {
 	}
 
 	async send(url?: string): Promise<ApiResult> {
-		this.Option.url = url || this.reqUrl;
+		if ( url ) {
+			this.Option.url = url;
+		}
+
+		if ( !this.Option.url ) {
+			this.Option.url = this.reqUrl;
+		}
+
 		const res = await axios(this.Option);
 		const data: ApiResult = res.data;
 

@@ -7,33 +7,24 @@
 
 import { SpoonSocketEvent } from './struct/socket-event-struct';
 import { WebSocketEvent } from './struct/websocket-struct';
+import { EventManager } from './manager/event-manager';
 
-export class WsClientBrowser extends WebSocket {
-	private _events: WebSocketEvent = {};
+export class WsClientBrowser extends EventManager {
+	private ws!: WebSocket;
 
 	constructor(url: string, option?: any) {
-		super(url, option);
-		this.onmessage = (data: MessageEvent) => this.emit('message', data);
-		this.onopen = () => this.emit('open');
-		this.onclose = () => this.emit('close');
-		this.onerror = (data: Event) => this.emit('error', data);
+		this.ws = new WebSocket(url, option);
+		this.ws.onmessage = (data: MessageEvent) => this.emit('message', data);
+		this.ws.onopen = () => this.emit('open');
+		this.ws.onclose = () => this.emit('close');
+		this.ws.onerror = (data: Event) => this.emit('error', data);
 	}
 
-	on (key: string, callback: (data?: (MessageEvent|Event|SpoonSocketEvent)) => void) {
-		if ( this._events[key] ) {
-			this._events[key].push(callback);
-		} else {
-			this._events[key] = [
-				callback,
-			];
-		}
+	send (data: any) {
+		this.ws.send(data);
 	}
 
-	emit (key: string, data?: (MessageEvent|Event|SpoonSocketEvent)) {
-		if ( this._events[key] ) {
-			for ( const evt of this._events[key] ) {
-				evt(data);
-			}
-		}
+	close () {
+		this.ws.close();
 	}
 }

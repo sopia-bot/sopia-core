@@ -14,6 +14,7 @@ import { UserManager } from './manager/user-manager';
 
 export class Client extends SOPIA {
 	public userManager: UserManager;
+	public user!: User;
 
 	constructor(country?: Country) {
 		super(country);
@@ -26,6 +27,7 @@ export class Client extends SOPIA {
 		const res = await api.send();
 		const user = User.deserialize(res.results[0]);
 
+		this.user = user;
 		this.token = user.token;
 		return user;
 	}

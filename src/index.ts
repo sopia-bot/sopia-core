@@ -48,3 +48,4 @@ export * from './manager/live-manager';
 export * from './manager/api-manager';
 export * from './manager/ws-manager';
 export * from './manager/socket-manager';
+export * from './manager/event-manager';
