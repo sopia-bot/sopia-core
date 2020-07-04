@@ -9,8 +9,6 @@ import { Country } from './enum/country';
 import { LoginType } from './enum/login-type';
 import { User } from './struct/user/user-struct';
 
-import axios from 'axios';
-
 export interface SpoonAPI {
 	api: string;
 	commonsApi: string;
@@ -29,11 +27,6 @@ export class SOPIA {
 		if ( country ) {
 			this.country = country;
 		}
-
-		axios.get(`https://www.spooncast.net/config/api/${this.country}.json?ts=${Date.now()}`)
-			.then(res => {
-				this.api = res.data;
-			});
 	}
 
 	get Token() {
@@ -41,7 +34,7 @@ export class SOPIA {
 	}
 
 	get appVersion() {
-		return '5.1.2';
+		return '5.1.4';
 	}
 
 	get userAgent() {

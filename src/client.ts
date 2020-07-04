@@ -11,15 +11,26 @@ import { LoginType } from './enum/login-type';
 import { User } from './struct/user/user-struct';
 import { ApiLogin } from './api/api-login';
 import { UserManager } from './manager/user-manager';
+import { LiveManager } from './manager/live-manager';
+
+import axios from 'axios';
 
 export class Client extends SOPIA {
 	public userManager: UserManager;
+	public liveManager: LiveManager;
 	public user!: User;
 
 	constructor(country?: Country) {
 		super(country);
 
 		this.userManager = new UserManager(this);
+		this.liveManager = new LiveManager(this);
+	}
+
+	async getApiInfo() {
+		const res = await axios.get(`https://www.spooncast.net/config/api/${this.country}.json?ts=${Date.now()}`);
+		this.api = res.data;
+		return this.api;
 	}
 
 	async login(sns_id: (number|string), password: string, sns_type: LoginType): Promise<User> {

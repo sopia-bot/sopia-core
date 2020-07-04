@@ -8,9 +8,9 @@
 import { SpoonSocketEvent } from './struct/socket-event-struct';
 import { WebSocketEvent } from './struct/websocket-struct';
 
-const WS = require('ws');
-export class WsClientNode extends WS {
-	constructor(url: string, option?: any) {
-		super(url, option);
+const WebSocket = require('ws');
+export class WsClientNode extends WebSocket {
+	constructor(url: string) {
+		super(url);
 	}
 }

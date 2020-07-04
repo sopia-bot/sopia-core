@@ -34,31 +34,40 @@ export class SocketManager extends WsManager {
 		this.send(msg);
 	}
 
-	handshake () {
-		this.connect(this.client.api.socket + this.live.id);
-		this.ws.once('open', () => {
+	async join () {
+		await this.connect(this.client.api.socket + this.live.id);
+
+		if ( this.client.user ) {
 			this.send({
+				live_id: this.live.id.toString(),
 				appversion: this.client.appVersion,
+				user_id: this.client.user.id,
 				event: LiveEvent.LIVE_STATE,
-				live_id: this.live.id,
 				type: LiveType.LIVE_REQ,
 				useragent: this.client.userAgent,
 			});
-
-			this.health();
-		});
-	}
-
-	join () {
-		this.send({
-			appversion: this.client.appVersion,
-			retry: 0,
-			live_id: this.live.id,
-			reconnect: false,
-			token: this.client.token,
-			event: LiveEvent.LIVE_JOIN,
-			type: LiveType.LIVE_REQ,
-			useragent: this.client.userAgent,
-		});
+			this.once('live_state', (d: any) => {
+				this.send({
+					live_id: this.live.id.toString(),
+					appversion: this.client.appVersion,
+					retry: 0,
+					reconnect: false,
+					token: this.client.token,
+					event: LiveEvent.LIVE_JOIN,
+					type: LiveType.LIVE_REQ,
+					useragent: this.client.userAgent,
+				});
+			});
+		} else {
+			this.send({
+				live_id: this.live.id.toString(),
+				appversion: this.client.appVersion,
+				retry: 0,
+				reconnect: false,
+				event: LiveEvent.LIVE_JOIN,
+				type: LiveType.LIVE_REQ,
+				useragent: this.client.userAgent,
+			});
+		}
 	}
 }

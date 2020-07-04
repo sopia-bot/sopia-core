@@ -21,15 +21,30 @@ export class WsManager extends EventManager {
 		super();
 	}
 
-	connect ( url: string, option?: any ) {
-		if ( typeof window !== 'undefined' ) {
-			const { WsClientBrowser } = require('../websocket-browser');
-			this.ws = new WsClientBrowser(url, option);
-		} else {
-			const { WsClientNode } = require('../websocket-node');
-			this.ws = new WsClientNode(url, option);
-		}
-		this.ws.on('message', this.receiver);
+	async connect ( url: string, option?: any ) {
+		return new Promise((resolve, reject) => {
+			try {
+				if ( typeof window !== 'undefined' ) {
+					const { WsClientBrowser } = require('../websocket-browser');
+					this.ws = new WsClientBrowser(url, option);
+				} else {
+					const { WsClientNode } = require('../websocket-node');
+					this.ws = new WsClientNode(url);
+				}
+				this.ws.onmessage = (msg: MessageEvent) => {
+					this.receiver(msg);
+				}
+				this.ws.onerror = console.error;
+				this.ws.onclose = () => {
+					console.log('Socket close');
+				};
+				this.ws.once('open', () => {
+					resolve(true);
+				});
+			} catch(err) {
+				reject(err);
+			}
+		});
 	}
 
 	send ( data: any ) {

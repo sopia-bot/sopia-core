@@ -6,6 +6,7 @@
  */
 import { Client } from '../client';
 
+import { SocketManager } from './socket-manager';
 import { Play } from '../struct/play-struct';
 
 import { ApiManager } from './api-manager';
@@ -35,5 +36,10 @@ export class LiveManager {
 		const apiLiveDiscovered = new ApiManager(new ApiLiveDiscovered(LiveId), Play.deserialize);
 		const res = await apiLiveDiscovered.send();
 		return res;
+	}
+
+	liveSocket(Live: Play) {
+		const socket = new SocketManager(Live, this.client);
+		return socket;
 	}
 }
