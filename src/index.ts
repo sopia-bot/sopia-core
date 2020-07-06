@@ -25,6 +25,10 @@ export * from './api/user/api-user-cast';
 
 export * from './api/live/api-live-info';
 export * from './api/live/api-live-discovered';
+export * from './api/live/api-live-subscribed';
+export * from './api/live/api-live-like';
+export * from './api/live/api-live-manager';
+export * from './api/live/api-live-block';
 
 export * from './spoon/budget';
 export * from './spoon/grants';
