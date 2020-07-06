@@ -13,6 +13,7 @@ export class WsClientBrowser extends EventManager {
 	private ws!: WebSocket;
 
 	constructor(url: string, option?: any) {
+		super();
 		this.ws = new WebSocket(url, option);
 		this.ws.onmessage = (data: MessageEvent) => this.emit('message', data);
 		this.ws.onopen = () => this.emit('open');
