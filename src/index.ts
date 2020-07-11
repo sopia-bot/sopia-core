@@ -29,6 +29,8 @@ export * from './api/live/api-live-subscribed';
 export * from './api/live/api-live-like';
 export * from './api/live/api-live-manager';
 export * from './api/live/api-live-block';
+export * from './api/live/api-live-popular';
+export * from './api/live/api-live-banner';
 
 export * from './spoon/budget';
 export * from './spoon/grants';
