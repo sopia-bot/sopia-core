@@ -31,6 +31,9 @@ export * from './api/live/api-live-manager';
 export * from './api/live/api-live-block';
 export * from './api/live/api-live-popular';
 export * from './api/live/api-live-banner';
+export * from './api/live/api-live-sponsor';
+export * from './api/live/api-live-accept';
+export * from './api/live/api-live-categories';
 
 export * from './spoon/budget';
 export * from './spoon/grants';
