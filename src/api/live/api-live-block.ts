@@ -15,6 +15,7 @@ export class ApiLiveBlock extends ApiLives {
 		private UserInfo: User,
 	) {
 		super(Live.id.toString());
+		this.addSubUrl('block');
 		this.data = {
 			block_user_id: UserInfo.id,
 		};

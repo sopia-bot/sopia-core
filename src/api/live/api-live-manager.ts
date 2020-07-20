@@ -15,6 +15,7 @@ export class ApiLiveManager extends ApiLives {
 		private Managers: User[],
 	) {
 		super(Live.id.toString());
+		this.addSubUrl('manager');
 		this.data = {
 			manager_ids: Managers.map(m => m.id),
 		};
