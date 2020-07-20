@@ -18,7 +18,6 @@
 		"url": "https://github.com/Tree-Some/sopia-core.git"
 	},
 	"devDependencies": {
-		"@types/axios": "^0.14.0",
 		"@types/chai": "^4.2.3",
 		"@types/mocha": "^5.2.7",
 		"@types/node": "^12.7.11",
