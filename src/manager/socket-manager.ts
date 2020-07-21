@@ -46,7 +46,7 @@ export class SocketManager extends WsManager {
 				type: LiveType.LIVE_REQ,
 				useragent: this.client.userAgent,
 			});
-			this.once('live_state', (d: any) => {
+			this.once(LiveEvent.LIVE_STATE, (d: any) => {
 				this.send({
 					live_id: this.live.id.toString(),
 					appversion: this.client.appVersion,
