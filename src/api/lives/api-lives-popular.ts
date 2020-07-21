@@ -6,9 +6,10 @@
  */
 
 import { ApiLives } from '../api-lives';
+import { Category } from '../../enum/category';
 
-export class ApiLivePopular extends ApiLives {
-	constructor(page_size: number = 12, is_adult: boolean = false, category?: string) {
+export class ApiLivesPopular extends ApiLives {
+	constructor(page_size: number = 12, is_adult: boolean = false, category?: Category) {
 		super('popular');
 		this.params = {
 			page_size,

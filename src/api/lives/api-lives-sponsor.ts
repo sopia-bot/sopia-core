@@ -8,7 +8,7 @@
 import { ApiLivesInfo } from './api-lives-info';
 import { Play } from '../../struct/play-struct';
 
-export class ApiLiveSponsor extends ApiLivesInfo {
+export class ApiLivesSponsor extends ApiLivesInfo {
 	constructor(live: (Play|number)) {
 		super(live);
 		this.addSubUrl('sponsor');

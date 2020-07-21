@@ -52,6 +52,7 @@ export * from './struct/socket-event-struct';
 export * from './enum/cast-type';
 export * from './enum/login-type';
 export * from './enum/country';
+export * from './enum/category';
 
 export * from './manager/user-manager';
 export * from './manager/live-manager';

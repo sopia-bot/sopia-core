@@ -7,7 +7,7 @@
 
 import { ApiLives } from '../api-lives';
 
-export class ApiLiveSubscribed extends ApiLives {
+export class ApiLivesSubscribed extends ApiLives {
 	constructor(page_size: number = 6, is_adult: boolean = false) {
 		super('subscribed');
 		this.params = {

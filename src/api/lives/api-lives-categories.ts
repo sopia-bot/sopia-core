@@ -8,7 +8,10 @@
 import { ApiLives } from '../api-lives';
 
 export class ApiLivesCategories extends ApiLives {
-	constructor() {
+	constructor(is_new?: number) {
 		super('categories');
+		this.params = {
+			is_new,
+		};
 	}
 }

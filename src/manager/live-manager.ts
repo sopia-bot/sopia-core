@@ -8,10 +8,25 @@ import { Client } from '../client';
 
 import { SocketManager } from './socket-manager';
 import { Play } from '../struct/play-struct';
+import { User } from '../struct/user/user-struct';
+
+import { Category } from '../enum/category';
 
 import { ApiManager } from './api-manager';
 import { ApiLivesInfo } from '../api/lives/api-lives-info';
 import { ApiLivesDiscovered } from '../api/lives/api-lives-discovered';
+import { ApiLivesAccept } from '../api/lives/api-lives-accept';
+import { ApiLivesBanner } from '../api/lives/api-lives-banner';
+import { ApiLivesBlock } from '../api/lives/api-lives-block';
+import { ApiLivesCall } from '../api/lives/api-lives-call';
+import { ApiLivesCategories } from '../api/lives/api-lives-categories';
+import { ApiLivesLike } from '../api/lives/api-lives-like';
+import { ApiLivesManager } from '../api/lives/api-lives-manager';
+import { ApiLivesNewDJ } from '../api/lives/api-lives-new-dj';
+import { ApiLivesPopular } from '../api/lives/api-lives-popular';
+import { ApiLivesSponsor } from '../api/lives/api-lives-sponsor';
+import { ApiLivesSubscribed } from '../api/lives/api-lives-subscribed';
+
 
 export class LiveManager {
 	constructor(
@@ -32,9 +47,75 @@ export class LiveManager {
 		return res;
 	}
 
+	async liveAccept(live: (Play|number)) {
+		const apiLivesAccept = new ApiManager(new ApiLivesAccept(live), Play.deserialize);
+		const res = await apiLivesAccept.send();
+		return res;
+	}
+
+	async liveBlock(live: (Play|number), user: User) {
+		const apiLivesBlock = new ApiManager(new ApiLivesBlock(live, user), Play.deserialize);
+		const res = await apiLivesBlock.send();
+		return res;
+	}
+
+	async liveCall(live: (Play|number)) {
+		const apiLivesCall = new ApiManager(new ApiLivesCall(live), Play.deserialize);
+		const res = await apiLivesCall.send();
+		return res;
+	}
+
+	async liveLike(live: (Play|number)) {
+		const apiLivesLike = new ApiManager(new ApiLivesLike(live), Play.deserialize);
+		const res = await apiLivesLike.send();
+		return res;
+	}
+
+	async liveManager(live: (Play|number), users: User[]) {
+		const apiLivesManager = new ApiManager(new ApiLivesManager(live, users), Play.deserialize);
+		const res = await apiLivesManager.send();
+		return res;
+	}
+
+	async liveSponsor(live: (Play|number)) {
+		const apiLivesSponsor = new ApiManager(new ApiLivesSponsor(live), Play.deserialize);
+		const res = await apiLivesSponsor.send();
+		return res;
+	}
+
 	async liveDiscovered(page_size: number = 6, is_adult: boolean = false) {
 		const apiLivesDiscovered = new ApiManager(new ApiLivesDiscovered(page_size, is_adult), Play.deserialize);
 		const res = await apiLivesDiscovered.send();
+		return res;
+	}
+
+	async liveSubscribed(page_size: number = 6, is_adult: boolean = false) {
+		const apiLivesSubscribed = new ApiManager(new ApiLivesSubscribed(page_size, is_adult), Play.deserialize);
+		const res = await apiLivesSubscribed.send();
+		return res;
+	}
+
+	async livePopular(page_size: number = 6, is_adult: boolean = false, category?: Category) {
+		const apiLivesPopular = new ApiManager(new ApiLivesPopular(page_size, is_adult, category), Play.deserialize);
+		const res = await apiLivesPopular.send();
+		return res;
+	}
+
+	async liveNewDJ() {
+		const apiLivesNewDJ = new ApiManager(new ApiLivesNewDJ(), Play.deserialize);
+		const res = await apiLivesNewDJ.send();
+		return res;
+	}
+
+	async liveCategories() {
+		const apiLivesCategories = new ApiManager(new ApiLivesCategories(), Play.deserialize);
+		const res = await apiLivesCategories.send();
+		return res;
+	}
+
+	async liveBanner() {
+		const apiLivesBanner = new ApiManager(new ApiLivesDiscovered(), Play.deserialize);
+		const res = await apiLivesBanner.send();
 		return res;
 	}
 
