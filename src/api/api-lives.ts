@@ -6,6 +6,7 @@
  */
 
 import { ApiRequest } from './api-request';
+import { Play } from '../struct/play-struct';
 
 export class ApiLives extends ApiRequest {
 	constructor(api: string) {

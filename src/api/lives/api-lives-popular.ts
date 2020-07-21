@@ -8,11 +8,7 @@
 import { ApiLives } from '../api-lives';
 
 export class ApiLivePopular extends ApiLives {
-	constructor(
-		private page_size: number = 12,
-		private is_adult: boolean = false,
-		private category?: string
-	) {
+	constructor(page_size: number = 12, is_adult: boolean = false, category?: string) {
 		super('popular');
 		this.params = {
 			page_size,

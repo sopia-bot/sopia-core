@@ -5,14 +5,12 @@
  * Copyright (c) TreeSome. Licensed under the MIT License.
  */
 
-import { ApiLives } from '../api-lives';
+import { ApiLivesInfo } from './api-lives-info';
 import { Play } from '../../struct/play-struct';
 
-export class ApiLiveSponsor extends ApiLives {
-	constructor(
-		private Live: Play
-	) {
-		super(Live.id.toString());
+export class ApiLiveSponsor extends ApiLivesInfo {
+	constructor(live: (Play|number)) {
+		super(live);
 		this.addSubUrl('sponsor');
 	}
 }

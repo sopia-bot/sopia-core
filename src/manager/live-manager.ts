@@ -10,8 +10,8 @@ import { SocketManager } from './socket-manager';
 import { Play } from '../struct/play-struct';
 
 import { ApiManager } from './api-manager';
-import { ApiLiveInfo } from '../api/live/api-live-info';
-import { ApiLiveDiscovered } from '../api/live/api-live-discovered';
+import { ApiLivesInfo } from '../api/lives/api-lives-info';
+import { ApiLivesDiscovered } from '../api/lives/api-lives-discovered';
 
 export class LiveManager {
 	constructor(
@@ -26,20 +26,20 @@ export class LiveManager {
 		return this.client.token;
 	}
 
-	async liveInfo(LiveId: number) {
-		const apiLiveInfo = new ApiManager(new ApiLiveInfo(LiveId), Play.deserialize);
-		const res = await apiLiveInfo.send();
+	async liveInfo(live: (Play|number)) {
+		const apiLivesInfo = new ApiManager(new ApiLivesInfo(live), Play.deserialize);
+		const res = await apiLivesInfo.send();
 		return res;
 	}
 
-	async liveDiscovered(LiveId: number) {
-		const apiLiveDiscovered = new ApiManager(new ApiLiveDiscovered(LiveId), Play.deserialize);
-		const res = await apiLiveDiscovered.send();
+	async liveDiscovered(page_size: number = 6, is_adult: boolean = false) {
+		const apiLivesDiscovered = new ApiManager(new ApiLivesDiscovered(page_size, is_adult), Play.deserialize);
+		const res = await apiLivesDiscovered.send();
 		return res;
 	}
 
-	liveSocket(Live: Play) {
-		const socket = new SocketManager(Live, this.client);
+	liveSocket(live: Play) {
+		const socket = new SocketManager(live, this.client);
 		return socket;
 	}
 }

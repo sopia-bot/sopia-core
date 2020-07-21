@@ -15,14 +15,14 @@ import { UserVoice } from '../struct/user/user-voice-struct';
 
 import { ApiManager } from './api-manager';
 import { ApiRequest } from '../api/api-request';
-import { ApiUserCast } from '../api/user/api-user-cast';
-import { ApiUserFanmessages } from '../api/user/api-user-fanmessages';
-import { ApiUserFollow } from '../api/user/api-user-follow';
-import { ApiUserFollowers } from '../api/user/api-user-followers';
-import { ApiUserFollowings } from '../api/user/api-user-followings';
-import { ApiUserUnfollow } from '../api/user/api-user-unfollow';
-import { ApiUserInfo } from '../api/user/api-user-info';
-import { ApiUserVoice } from '../api/user/api-user-voice';
+import { ApiUsersCast } from '../api/users/api-users-cast';
+import { ApiUsersFanmessages } from '../api/users/api-users-fanmessages';
+import { ApiUsersFollow } from '../api/users/api-users-follow';
+import { ApiUsersFollowers } from '../api/users/api-users-followers';
+import { ApiUsersFollowings } from '../api/users/api-users-followings';
+import { ApiUsersUnfollow } from '../api/users/api-users-unfollow';
+import { ApiUsersInfo } from '../api/users/api-users-info';
+import { ApiUsersVoice } from '../api/users/api-users-voice';
 
 export class UserManager {
 	constructor(
@@ -37,50 +37,50 @@ export class UserManager {
 		return this.client.token;
 	}
 
-	async userCast(UserId: number, type: CastType = CastType.UPLOAD_CAST) {
-		const apiUserCast = new ApiManager(new ApiUserCast(UserId, type), Play.deserialize);
+	async userCast(user: (User|number), type: CastType = CastType.UPLOAD_CAST) {
+		const apiUserCast = new ApiManager(new ApiUsersCast(user, type), Play.deserialize);
 		const res = await apiUserCast.send();
 		return res;
 	}
 
-	async userFanmessages(UserId: number, contents?: string) {
-		const apiUserFanmessages = new ApiManager(new ApiUserFanmessages(UserId, contents), UserFanmessages.deserialize);
+	async userFanmessages(user: (User|number), contents?: string) {
+		const apiUserFanmessages = new ApiManager(new ApiUsersFanmessages(user, contents), UserFanmessages.deserialize);
 		const res = await apiUserFanmessages.send();
 		return res;
 	}
 
-	async userFollow(UserId: number) {
-		const apiUserFollow = new ApiManager(new ApiUserFollow(UserId), User.deserialize, this.Token);
+	async userFollow(user: (User|number)) {
+		const apiUserFollow = new ApiManager(new ApiUsersFollow(user), User.deserialize, this.Token);
 		const res = await apiUserFollow.send();
 		return res;
 	}
 
-	async userFollowers(UserId: number) {
-		const apiUserFollowers = new ApiManager(new ApiUserFollowers(UserId), User.deserialize);
+	async userFollowers(user: (User|number)) {
+		const apiUserFollowers = new ApiManager(new ApiUsersFollowers(user), User.deserialize);
 		const res = await apiUserFollowers.send();
 		return res;
 	}
 
-	async userFollowings(UserId: number) {
-		const apiUserFollowings = new ApiManager(new ApiUserFollowings(UserId), User.deserialize);
+	async userFollowings(user: (User|number)) {
+		const apiUserFollowings = new ApiManager(new ApiUsersFollowings(user), User.deserialize);
 		const res = await apiUserFollowings.send();
 		return res;
 	}
 
-	async userUnfollow(UserId: number) {
-		const apiUserUnfollow = new ApiManager(new ApiUserUnfollow(UserId), User.deserialize, this.Token);
+	async userUnfollow(user: (User|number)) {
+		const apiUserUnfollow = new ApiManager(new ApiUsersUnfollow(user), User.deserialize, this.Token);
 		const res = await apiUserUnfollow.send();
 		return res;
 	}
 
-	async userInfo(UserId: number) {
-		const apiUserInfo = new ApiManager(new ApiUserInfo(UserId), User.deserialize);
+	async userInfo(user: (User|number)) {
+		const apiUserInfo = new ApiManager(new ApiUsersInfo(user), User.deserialize);
 		const res = await apiUserInfo.send();
 		return res;
 	}
 
-	async userVoice(UserId: number) {
-		const apiUserVoice = new ApiManager(new ApiUserVoice(UserId), UserVoice.deserialize);
+	async userVoice(user: (User|number)) {
+		const apiUserVoice = new ApiManager(new ApiUsersVoice(user), UserVoice.deserialize);
 		const res = await apiUserVoice.send();
 		return res;
 	}

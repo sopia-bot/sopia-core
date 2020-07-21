@@ -6,6 +6,7 @@
  */
 
 import { ApiRequest } from './api-request';
+import { User } from '../struct/user/user-struct';
 
 export class ApiUsers extends ApiRequest {
 	constructor(api: string) {
