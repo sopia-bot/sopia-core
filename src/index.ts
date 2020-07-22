@@ -13,6 +13,7 @@ export * from './api/api-fancomments';
 export * from './api/api-lives';
 export * from './api/api-users';
 export * from './api/api-login';
+export * from './api/api-ranks';
 
 export * from './api/users/api-users-info';
 export * from './api/users/api-users-follow';
@@ -36,6 +37,10 @@ export * from './api/lives/api-lives-accept';
 export * from './api/lives/api-lives-categories';
 export * from './api/lives/api-lives-new-dj';
 
+export * from './api/ranks/api-ranks-fan';
+export * from './api/ranks/api-ranks-livebj';
+export * from './api/ranks/api-ranks-castbj';
+
 export * from './spoon/budget';
 export * from './spoon/grants';
 export * from './spoon/push-settings';
@@ -46,6 +51,7 @@ export * from './struct/user/user-struct';
 export * from './struct/user/user-voice-struct';
 export * from './struct/user/user-fanmessages';
 export * from './struct/play-struct';
+export * from './struct/rank-struct';
 export * from './struct/fanboard-info-struct';
 export * from './struct/socket-event-struct';
 
@@ -53,9 +59,11 @@ export * from './enum/cast-type';
 export * from './enum/login-type';
 export * from './enum/country';
 export * from './enum/category';
+export * from './enum/rank-type';
 
 export * from './manager/user-manager';
 export * from './manager/live-manager';
+export * from './manager/rank-manager';
 export * from './manager/api-manager';
 export * from './manager/ws-manager';
 export * from './manager/socket-manager';
