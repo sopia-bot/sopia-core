@@ -18,6 +18,7 @@ import { UserManager } from './manager/user-manager';
 import { LiveManager } from './manager/live-manager';
 import { RankManager } from './manager/rank-manager';
 import { SearchManager } from './manager/search-manager';
+import { NotiManager } from './manager/noti-manager';
 
 import axios from 'axios';
 
@@ -26,6 +27,7 @@ export class Client extends SOPIA {
 	public liveManager: LiveManager;
 	public rankManager: RankManager;
 	public searchManager: SearchManager;
+	public notiManager: NotiManager;
 	public user!: User;
 
 	constructor(country?: Country) {
@@ -35,6 +37,7 @@ export class Client extends SOPIA {
 		this.liveManager = new LiveManager(this);
 		this.rankManager = new RankManager(this);
 		this.searchManager = new SearchManager(this);
+		this.notiManager = new NotiManager(this);
 	}
 
 	async getApiInfo() {
