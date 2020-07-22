@@ -23,6 +23,7 @@ export * from './api/users/api-users-unfollow';
 export * from './api/users/api-users-voice';
 export * from './api/users/api-users-fanmessages';
 export * from './api/users/api-users-cast';
+export * from './api/users/api-users-mini-profile';
 
 export * from './api/lives/api-lives-info';
 export * from './api/lives/api-lives-discovered';

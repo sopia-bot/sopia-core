@@ -23,6 +23,7 @@ import { ApiUsersFollowings } from '../api/users/api-users-followings';
 import { ApiUsersUnfollow } from '../api/users/api-users-unfollow';
 import { ApiUsersInfo } from '../api/users/api-users-info';
 import { ApiUsersVoice } from '../api/users/api-users-voice';
+import { ApiUsersMiniProfile } from '../api/users/api-users-mini-profile';
 
 export class UserManager {
 	constructor(
@@ -82,6 +83,12 @@ export class UserManager {
 	async userVoice(user: (User|number)) {
 		const apiUserVoice = new ApiManager(new ApiUsersVoice(user), UserVoice.deserialize);
 		const res = await apiUserVoice.send();
+		return res;
+	}
+
+	async userMiniProfile(user: (User|number)) {
+		const apiUserMiniProfile = new ApiManager(new ApiUsersMiniProfile(user), User.deserialize);
+		const res = await apiUserMiniProfile.send();
 		return res;
 	}
 }

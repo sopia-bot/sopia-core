@@ -5,8 +5,15 @@
  * Copyright (c) Tree Some. Licensed under the MIT License.
  */
 
+/*
 export abstract class Struct<C> {
 	abstract toJSON(): any;
 	abstract readRawData(data: any): void;
-	//static deserialize(data: any): any;
+	static deserialize(data: any): any;
+}
+*/
+export interface Struct<C> {
+	toJSON(): any;
+	readRawData(data: any): void;
+	static deserialize(data: any): C;
 }
