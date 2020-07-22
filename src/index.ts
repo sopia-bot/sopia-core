@@ -15,7 +15,7 @@ export * from './api/api-users';
 export * from './api/api-login';
 export * from './api/api-ranks';
 export * from './api/api-search';
-export * from './api/api-notification';
+export * from './api/api-notifications';
 
 export * from './api/users/api-users-info';
 export * from './api/users/api-users-follow';
@@ -49,7 +49,7 @@ export * from './api/search/api-search-user';
 export * from './api/search/api-search-content';
 
 export * from './api/noti/api-noti-all';
-export * from './api/noti/api-noti-confirm';
+export * from './api/noti/api-noti-all-confirm';
 export * from './api/noti/api-noti-unconfirmed';
 
 export * from './spoon/budget';
