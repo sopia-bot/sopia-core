@@ -4,7 +4,7 @@
 	"description": "Spoon radio core API",
 	"main": "dist/index.js",
 	"scripts": {
-		"test": "./node_modules/.bin/mocha -r ts-node/register ./tests/*.test.ts",
+		"test": "./node_modules/.bin/mocha -r ts-node/register ./tests/*.test.ts  --trace-warnings",
 		"build": "./node_modules/.bin/tsc",
 		"prepublishOnly": "npm run test && npm run build"
 	},

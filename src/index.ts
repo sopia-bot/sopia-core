@@ -14,6 +14,7 @@ export * from './api/api-lives';
 export * from './api/api-users';
 export * from './api/api-login';
 export * from './api/api-ranks';
+export * from './api/api-search';
 
 export * from './api/users/api-users-info';
 export * from './api/users/api-users-follow';
@@ -43,6 +44,9 @@ export * from './api/ranks/api-ranks-fan';
 export * from './api/ranks/api-ranks-livebj';
 export * from './api/ranks/api-ranks-castbj';
 
+export * from './api/search/api-search-user';
+export * from './api/search/api-search-content';
+
 export * from './spoon/budget';
 export * from './spoon/grants';
 export * from './spoon/push-settings';
@@ -65,6 +69,7 @@ export * from './enum/country';
 export * from './enum/category';
 export * from './enum/rank-type';
 export * from './enum/socket-live';
+export * from './enum/search';
 
 export * from './manager/user-manager';
 export * from './manager/live-manager';
@@ -73,3 +78,4 @@ export * from './manager/api-manager';
 export * from './manager/ws-manager';
 export * from './manager/socket-manager';
 export * from './manager/event-manager';
+export * from './manager/search-manager';
