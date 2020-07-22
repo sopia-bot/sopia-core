@@ -4,12 +4,13 @@
  *
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
-import { Play } from '../struct/play-struct';
-import { User } from '../struct/user/user-struct';
+import { Play } from './play-struct';
+import { User } from './user/user-struct';
 import { WebSocketEvent, WebSocketEventData, WebSocketRankOrder, WebSocketResult } from '../struct/websocket-struct';
+import { Struct } from './struct';
 
 
-export class SpoonSocketEvent {
+export class SpoonSocketEvent implements Struct<SpoonSocketEvent> {
 	public event!: string;
 	public type!: string;
 	public data?: WebSocketEventData;
@@ -26,7 +27,7 @@ export class SpoonSocketEvent {
 	constructor() {
 	}
 
-	toJSON() {
+	toJSON(): any {
 		const obj: any = {};
 		if ( this.event ) {
 			obj['event'] = this.event;
@@ -75,7 +76,7 @@ export class SpoonSocketEvent {
 		return obj;
 	}
 
-	readRawData(data: any) {
+	readRawData(data: any): void {
 		if ( data['event'] ) {
 			this.event = data['event'];
 		}
@@ -136,7 +137,7 @@ export class SpoonSocketEvent {
 		}
 	}
 
-	static deserialize(data: any) {
+	static deserialize(data: any): SpoonSocketEvent {
 		const spoonSocketEvent = new SpoonSocketEvent();
 		spoonSocketEvent.readRawData(data);
 		return spoonSocketEvent;

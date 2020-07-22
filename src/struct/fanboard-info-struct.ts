@@ -5,8 +5,9 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 import { User } from './user/user-struct';
+import { Struct } from './struct';
 
-export class FanboardInfo {
+export class FanboardInfo implements Struct<FanboardInfo> {
 	public totalCommentAuthorCount: number = 0;
 	public isNewComment: boolean = false;
 	public latestCommentAuthors: User[] = [];
@@ -14,7 +15,7 @@ export class FanboardInfo {
 	constructor() {
 	}
 
-	toJSON() {
+	toJSON(): any {
 		const obj: any = {};
 
 		obj['total_comment_author_count'] = this.totalCommentAuthorCount;
@@ -24,7 +25,7 @@ export class FanboardInfo {
 		return obj;
 	}
 
-	readRawData(data: any) {
+	readRawData(data: any): void {
 		if ( data['total_comment_author_count'] ) {
 			this.totalCommentAuthorCount = data['total_comment_author_count'];
 		}
@@ -41,7 +42,7 @@ export class FanboardInfo {
 		}
 	}
 
-	static deserialize(data: any) {
+	static deserialize(data: any): FanboardInfo {
 		const info = new FanboardInfo();
 		info.readRawData(data);
 		return info;

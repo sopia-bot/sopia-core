@@ -6,9 +6,9 @@
  */
 
 import { User } from './user-struct';
+import { Struct } from '../struct';
 
-
-export class UserFanmessages {
+export class UserFanmessages implements Struct<UserFanmessages> {
 	private messageId: number = 0;
 	private author!: User;
 	private toUser!: null;
@@ -20,7 +20,7 @@ export class UserFanmessages {
 	constructor() {
 	}
 
-	toJSON() {
+	toJSON(): any {
 		const obj: any = {};
 
 		obj['id'] = this.messageId;
@@ -52,7 +52,7 @@ export class UserFanmessages {
 		return obj;
 	}
 
-	readRawData(data: any) {
+	readRawData(data: any): void {
 		if ( data['id'] ) {
 			this.messageId = data['id'];
 		}
@@ -82,7 +82,7 @@ export class UserFanmessages {
 		}
 	}
 
-	static deserialize(data: any) {
+	static deserialize(data: any): UserFanmessages {
 		const fanmessages = new UserFanmessages();
 		fanmessages.readRawData(data);
 		return fanmessages;

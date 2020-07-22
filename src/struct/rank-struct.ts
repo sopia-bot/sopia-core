@@ -6,8 +6,9 @@
  */
 
 import { User } from './user/user-struct';
+import { Struct } from './struct';
 
-export class Rank {
+export class Rank implements Struct<Rank> {
 	public statDate: string = '';
 	public score: number = 0;
 	public updown: string = '-';
@@ -16,7 +17,7 @@ export class Rank {
 	constructor() {
 	}
 
-	toJSON() {
+	toJSON(): any {
 		const obj: any = {};
 
 		obj['stat_date'] = this.statDate;
@@ -27,7 +28,7 @@ export class Rank {
 		return obj;
 	}
 
-	readRawData(data: any) {
+	readRawData(data: any): void {
 		if ( data['stat_date'] ) {
 			this.statDate = data['stat_date'];
 		}
@@ -45,7 +46,7 @@ export class Rank {
 		}
 	}
 
-	static deserialize(data: any) {
+	static deserialize(data: any): Rank {
 		const rank = new Rank();
 		rank.readRawData(data);
 		return rank;

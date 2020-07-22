@@ -4,8 +4,9 @@
  *
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
+import { Struct } from '../struct';
 
-export class UserVoice {
+export class UserVoice implements Struct<UserVoice> {
 	private url: (string | null) = null;
 	private likeCount: number = 0;
 	private isLike: boolean = false;
@@ -13,7 +14,7 @@ export class UserVoice {
 	constructor() {
 	}
 
-	toJSON() {
+	toJSON(): any {
 		const obj: any = {};
 
 		obj['url'] = this.url;
@@ -23,7 +24,7 @@ export class UserVoice {
 		return obj;
 	}
 
-	readRawData(data: any) {
+	readRawData(data: any): void {
 		if ( data['url'] ) {
 			this.url = data['url'];
 		}
@@ -37,7 +38,7 @@ export class UserVoice {
 		}
 	}
 
-	static deserialize(data: any) {
+	static deserialize(data: any): UserVoice {
 		const voice = new UserVoice();
 		voice.readRawData(data);
 		return voice;

@@ -7,8 +7,9 @@
 
 import { FanboardInfo } from '../fanboard-info-struct';
 import { Play } from '../play-struct';
+import { Struct } from '../struct';
 
-export class User {
+export class User implements Struct<User> {
 	public id!: number;
 	public tag!: string;
 	public nickname!: string;
@@ -34,7 +35,7 @@ export class User {
 	constructor() {
 	}
 
-	toJSON() {
+	toJSON(): any {
 		const obj: any = {};
 
 		if ( this.id ) {
@@ -120,7 +121,7 @@ export class User {
 		return obj;
 	}
 
-	readRawData(data: any) {
+	readRawData(data: any): void {
 		if ( data['id'] ) {
 			this.id = data['id'];
 		}
@@ -194,7 +195,7 @@ export class User {
 			this.fanboardInfo = FanboardInfo.deserialize(data['fanboard_info']);
 
 		}
-		
+
 		if ( data['current_live'] ) {
 			this.currentLive = Play.deserialize(data['current_live']);
 		}
@@ -208,7 +209,7 @@ export class User {
 		}
 	}
 
-	static deserialize(data: any) {
+	static deserialize(data: any): User {
 		const user = new User();
 		user.readRawData(data);
 		return user;

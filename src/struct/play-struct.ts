@@ -6,8 +6,9 @@
  */
 
 import { User } from './user/user-struct';
+import { Struct } from './struct';
 
-export class Play {
+export class Play implements Struct<Play> {
 	public id: number = 0;
 	public author?: User;
 	public title?: string = '';
@@ -28,7 +29,7 @@ export class Play {
 	constructor() {
 	}
 
-	toJSON() {
+	toJSON(): any {
 		const obj: any = {};
 		if ( this.id ) {
 			obj['id'] = this.id;
@@ -45,7 +46,7 @@ export class Play {
 		if ( this.voiceUrl ) {
 			obj['voice_url'] = this.voiceUrl;
 		}
-		
+
 		if ( this.tags ) {
 			obj['tags'] = this.tags;
 		}
@@ -89,7 +90,7 @@ export class Play {
 		return obj;
 	}
 
-	readRawData(data: any) {
+	readRawData(data: any): void {
 		if ( data['id'] ) {
 			this.id = data['id'];
 		}
@@ -146,12 +147,12 @@ export class Play {
 			this.created = new Date(data['created']);
 		}
 
-		if ( data['url_hls'] ) { 
+		if ( data['url_hls'] ) {
 			this.urlHls = data['url_hls'];
 		}
 	}
 
-	static deserialize(data: any) {
+	static deserialize(data: any): Play {
 		const play = new Play();
 		play.readRawData(data);
 		return play;
