@@ -27,7 +27,7 @@ export class SearchManager {
 	}
 
 	async searchUser(keyword: string) {
-		const apiSearchUser = new ApiManager(new ApiSearchContent(keyword), User.deserialize);
+		const apiSearchUser = new ApiManager(new ApiSearchUser(keyword), User.deserialize);
 		const res = await apiSearchUser.send();
 		return res;
 	}
