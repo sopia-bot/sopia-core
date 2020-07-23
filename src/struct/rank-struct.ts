@@ -7,12 +7,14 @@
 
 import { User } from './user/user-struct';
 import { Struct } from './struct';
+import { Play } from './play-struct';
 
 export class Rank implements Struct<Rank> {
 	public statDate: string = '';
 	public score: number = 0;
 	public updown: string = '-';
 	public author!: User;
+	public cast!: Play;
 
 	constructor() {
 	}
@@ -23,7 +25,14 @@ export class Rank implements Struct<Rank> {
 		obj['stat_date'] = this.statDate;
 		obj['score'] = this.score;
 		obj['updown'] = this.updown;
-		obj['author'] = this.author;
+
+		if ( this.author ) {
+			obj['author'] = this.author;
+		}
+
+		if ( this.cast ) {
+			obj['cast'] = this.cast;
+		}
 
 		return obj;
 	}
@@ -43,6 +52,10 @@ export class Rank implements Struct<Rank> {
 
 		if ( data['author'] ) {
 			this.author = User.deserialize(data['author']);
+		}
+
+		if ( data['cast'] ) {
+			this.cast = Play.deserialize(data['cast']);
 		}
 	}
 
