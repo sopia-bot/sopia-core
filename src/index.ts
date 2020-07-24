@@ -37,6 +37,7 @@ export * from './api/lives/api-lives-popular';
 export * from './api/lives/api-lives-banner';
 export * from './api/lives/api-lives-sponsor';
 export * from './api/lives/api-lives-accept';
+export * from './api/lives/api-lives-access';
 export * from './api/lives/api-lives-categories';
 export * from './api/lives/api-lives-new-dj';
 export * from './api/lives/api-lives-call';

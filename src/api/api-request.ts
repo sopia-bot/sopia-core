@@ -84,7 +84,7 @@ export class ApiRequest extends SOPIA {
 		if ( typeof this.Option.headers !== 'object' ) {
 			this.Option.headers = {}
 		}
-		this.Option.headers.authorization = `Token ${t}`;
+		this.Option.headers.authorization = `Bearer ${t}`;
 	}
 
 	addSubUrl(url: string) {

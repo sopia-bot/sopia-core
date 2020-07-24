@@ -16,6 +16,7 @@ export interface SpoonAPI {
 	cdn: string;
 	socket: string;
 	sticerApiUrl: string;
+	auth?: string;
 };
 
 export class SOPIA {
@@ -34,7 +35,7 @@ export class SOPIA {
 	}
 
 	get appVersion() {
-		return '5.1.4';
+		return '5.2.6';
 	}
 
 	get userAgent() {

@@ -16,6 +16,7 @@ import { ApiManager } from './api-manager';
 import { ApiLivesInfo } from '../api/lives/api-lives-info';
 import { ApiLivesDiscovered } from '../api/lives/api-lives-discovered';
 import { ApiLivesAccept } from '../api/lives/api-lives-accept';
+import { ApiLivesAccess } from '../api/lives/api-lives-access';
 import { ApiLivesBanner } from '../api/lives/api-lives-banner';
 import { ApiLivesBlock } from '../api/lives/api-lives-block';
 import { ApiLivesCall } from '../api/lives/api-lives-call';
@@ -48,8 +49,14 @@ export class LiveManager {
 	}
 
 	async liveAccept(live: (Play|number)) {
-		const apiLivesAccept = new ApiManager(new ApiLivesAccept(live), Play.deserialize);
+		const apiLivesAccept = new ApiManager(new ApiLivesAccept(live), Play.deserialize, this.Token);
 		const res = await apiLivesAccept.send();
+		return res;
+	}
+
+	async liveAccess(live: (Play|number)) {
+		const apiLivesAccess = new ApiManager(new ApiLivesAccess(live), Play.deserialize, this.Token);
+		const res = await apiLivesAccess.send();
 		return res;
 	}
 
