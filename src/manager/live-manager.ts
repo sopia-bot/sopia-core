@@ -30,6 +30,7 @@ import { ApiLivesSubscribed } from '../api/lives/api-lives-subscribed';
 import { ApiLivesPlay } from '../api/lives/api-lives-play';
 import { ApiLivesCheck } from '../api/lives/api-lives-check';
 import { ApiLivesMembers } from '../api/lives/api-lives-members';
+import { ApiLivesShared } from '../api/lives/api-lives-shared';
 
 
 export class LiveManager {
@@ -108,6 +109,12 @@ export class LiveManager {
 	async liveMembers(live: (Play|number)) {
 		const apiLivesMembers = new ApiManager(new ApiLivesMembers(live), Play.deserialize);
 		const res = await apiLivesMembers.send();
+		return res;
+	}
+
+	async liveShared(live: (Play|number)) {
+		const apiLivesShared = new ApiManager(new ApiLivesShared(live), Play.deserialize);
+		const res = await apiLivesShared.send();
 		return res;
 	}
 
