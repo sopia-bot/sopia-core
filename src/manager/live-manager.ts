@@ -28,6 +28,8 @@ import { ApiLivesPopular } from '../api/lives/api-lives-popular';
 import { ApiLivesSponsor } from '../api/lives/api-lives-sponsor';
 import { ApiLivesSubscribed } from '../api/lives/api-lives-subscribed';
 import { ApiLivesPlay } from '../api/lives/api-lives-play';
+import { ApiLivesCheck } from '../api/lives/api-lives-check';
+import { ApiLivesMembers } from '../api/lives/api-lives-members';
 
 
 export class LiveManager {
@@ -100,6 +102,12 @@ export class LiveManager {
 	async liveCheck(live: (Play|number)) {
 		const apiLivesCheck = new ApiManager(new ApiLivesCheck(live), Play.deserialize);
 		const res = await apiLivesCheck.send();
+		return res;
+	}
+
+	async liveMembers(live: (Play|number)) {
+		const apiLivesMembers = new ApiManager(new ApiLivesMembers(live), Play.deserialize);
+		const res = await apiLivesMembers.send();
 		return res;
 	}
 
