@@ -27,6 +27,7 @@ import { ApiLivesNewDJ } from '../api/lives/api-lives-new-dj';
 import { ApiLivesPopular } from '../api/lives/api-lives-popular';
 import { ApiLivesSponsor } from '../api/lives/api-lives-sponsor';
 import { ApiLivesSubscribed } from '../api/lives/api-lives-subscribed';
+import { ApiLivesPlay } from '../api/lives/api-lives-play';
 
 
 export class LiveManager {
@@ -87,6 +88,18 @@ export class LiveManager {
 	async liveSponsor(live: (Play|number)) {
 		const apiLivesSponsor = new ApiManager(new ApiLivesSponsor(live), Play.deserialize);
 		const res = await apiLivesSponsor.send();
+		return res;
+	}
+
+	async livePlay(live: (Play|number)) {
+		const apiLivesPlay = new ApiManager(new ApiLivesPlay(live), Play.deserialize);
+		const res = await apiLivesPlay.send();
+		return res;
+	}
+
+	async liveCheck(live: (Play|number)) {
+		const apiLivesCheck = new ApiManager(new ApiLivesCheck(live), Play.deserialize);
+		const res = await apiLivesCheck.send();
 		return res;
 	}
 

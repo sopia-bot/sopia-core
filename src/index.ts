@@ -41,6 +41,8 @@ export * from './api/lives/api-lives-access';
 export * from './api/lives/api-lives-categories';
 export * from './api/lives/api-lives-new-dj';
 export * from './api/lives/api-lives-call';
+export * from './api/lives/api-lives-play';
+export * from './api/lives/api-lives-check';
 
 export * from './api/ranks/api-ranks-fan';
 export * from './api/ranks/api-ranks-livebj';
