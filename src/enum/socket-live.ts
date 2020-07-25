@@ -19,6 +19,10 @@ export enum LiveEvent {
 	LIVE_PRESENT = 'live_present',
 	LIVE_CALL = 'live_call',
 	LIVE_CALL_REQUEST = 'live_call_request',
+	LIVE_CLOSED = 'live_closed',
+	LIVE_FAILOVER = 'live_failover',
+	LIVE_RANK = 'live_rank',
+	LIVE_RANKLIST = 'live_ranklist',
 
 }
 
