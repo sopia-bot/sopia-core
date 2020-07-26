@@ -9,6 +9,7 @@ import { Client } from '../client';
 import { CastType } from '../enum/cast-type';
 
 import { Play } from '../struct/play-struct';
+import { Budget } from '../struct/budget-struct';
 import { User } from '../struct/user/user-struct';
 import { UserFanmessages } from '../struct/user/user-fanmessages';
 import { UserVoice } from '../struct/user/user-voice-struct';
@@ -24,6 +25,7 @@ import { ApiUsersUnfollow } from '../api/users/api-users-unfollow';
 import { ApiUsersInfo } from '../api/users/api-users-info';
 import { ApiUsersVoice } from '../api/users/api-users-voice';
 import { ApiUsersMiniProfile } from '../api/users/api-users-mini-profile';
+import { ApiUsersBudget } from '../api/users/api-users-budget';
 
 export class UserManager {
 	constructor(
@@ -89,6 +91,12 @@ export class UserManager {
 	async userMiniProfile(user: (User|number)) {
 		const apiUserMiniProfile = new ApiManager(new ApiUsersMiniProfile(user), User.deserialize);
 		const res = await apiUserMiniProfile.send();
+		return res;
+	}
+
+	async userBudget() {
+		const apiUserBudget = new ApiManager(new ApiUsersBudget(), Budget.deserialize, this.Token);
+		const res = await apiUserBudget.send();
 		return res;
 	}
 }
