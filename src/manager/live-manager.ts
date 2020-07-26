@@ -65,7 +65,7 @@ export class LiveManager {
 	}
 
 	async liveBlock(live: (Play|number), user: User) {
-		const apiLivesBlock = new ApiManager(new ApiLivesBlock(live, user), Play.deserialize);
+		const apiLivesBlock = new ApiManager(new ApiLivesBlock(live, user), Play.deserialize, this.Token);
 		const res = await apiLivesBlock.send();
 		return res;
 	}
@@ -77,13 +77,13 @@ export class LiveManager {
 	}
 
 	async liveLike(live: (Play|number)) {
-		const apiLivesLike = new ApiManager(new ApiLivesLike(live), Play.deserialize);
+		const apiLivesLike = new ApiManager(new ApiLivesLike(live), Play.deserialize, this.Token);
 		const res = await apiLivesLike.send();
 		return res;
 	}
 
 	async liveManager(live: (Play|number), users: User[]) {
-		const apiLivesManager = new ApiManager(new ApiLivesManager(live, users), Play.deserialize);
+		const apiLivesManager = new ApiManager(new ApiLivesManager(live, users), Play.deserialize, this.Token);
 		const res = await apiLivesManager.send();
 		return res;
 	}
