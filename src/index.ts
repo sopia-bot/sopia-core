@@ -59,11 +59,6 @@ export * from './api/noti/api-noti-all';
 export * from './api/noti/api-noti-all-confirm';
 export * from './api/noti/api-noti-unconfirmed';
 
-export * from './spoon/budget';
-export * from './spoon/grants';
-export * from './spoon/push-settings';
-export * from './spoon/service-agreement';
-
 export * from './struct/struct';
 export * from './struct/api-struct';
 export * from './struct/user/user-struct';
