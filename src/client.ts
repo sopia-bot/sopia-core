@@ -83,4 +83,9 @@ export class Client extends SOPIA {
 		this.token = user.token;
 		return user;
 	}
+
+	snsLoginURL(sns_type: string): string {
+		// parse the localStorage.getItem('SPOONCAST_requestBySnsLogin')
+		return `https://www.spooncast.net/${this.country}/oauth/authorize?sns_type=${sns_type}&is_jwt=true&is_agree=0&ts=${new Date().getTime()}`;
+	}
 }
