@@ -7,6 +7,10 @@
 
 import { FanboardInfo } from '../fanboard-info-struct';
 import { Play } from '../play-struct';
+import { Budget } from '../budget-struct';
+import { Grants } from '../grants-struct';
+import { PushSettings } from '../push-settings-struct';
+import { ServiceAgreement } from '../service-agreement-struct';
 import { Struct } from '../struct';
 
 export class User implements Struct<User> {
@@ -30,6 +34,11 @@ export class User implements Struct<User> {
 	public currentLive?: Play = new Play();
 	public token?: string;
 	public dateOfBirth?: string;
+	public budget?: Budget;
+	public grants?: Grants;
+	public pushSettings?: PushSettings;
+	public serviceAgreement?: ServiceAgreement;
+	public isPasswordNotice?: boolean;
 
 
 	constructor() {
@@ -116,6 +125,26 @@ export class User implements Struct<User> {
 
 		if ( this.dateOfBirth ) {
 			obj['date_of_birth'] = this.dateOfBirth;
+		}
+
+		if ( this.budget ) {
+			obj['budget'] = this.budget.toJSON();
+		}
+
+		if ( this.grants ) {
+			obj['grants'] = this.grants.toJSON();
+		}
+
+		if ( this.pushSettings ) {
+			obj['push_settings'] = this.pushSettings.toJSON();
+		}
+
+		if ( this.serviceAgreement ) {
+			obj['service_agreement'] = this.serviceAgreement.toJSON();
+		}
+
+		if ( typeof this.isPasswordNotice !== 'undefined' ) {
+			obj['is_password_notice'] = this.isPasswordNotice;
 		}
 
 		return obj;
@@ -206,6 +235,26 @@ export class User implements Struct<User> {
 
 		if ( data['date_of_birth'] ) {
 			this.dateOfBirth = data['date_of_birth'];
+		}
+
+		if ( data['budget'] ) {
+			this.budget = Budget.deserialize(data['budget']);
+		}
+
+		if ( data['grants'] ) {
+			this.grants = Grants.deserialize(data['grants']);
+		}
+
+		if ( data['push_settings'] ) {
+			this.pushSettings = data['push_settings'];
+		}
+
+		if ( data['service_agreement'] ) {
+			this.serviceAgreement = data['service_agreement'];
+		}
+
+		if ( typeof data['is_password_notice'] !== 'undefined' ) {
+			this.isPasswordNotice = data['is_password_notice'];
 		}
 	}
 

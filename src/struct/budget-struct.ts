@@ -17,7 +17,7 @@ export class Budget implements Struct<Budget> {
 	constructor() {}
 
 	toJSON(): any {
-		const obj: any;
+		const obj: any = {};
 
 		obj['present_spoon'] = this.presentSpoon;
 		obj['purchase_spoon'] = this.purchaseSpoon;
