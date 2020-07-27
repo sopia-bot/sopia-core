@@ -28,6 +28,7 @@ export * from './api/users/api-users-cast';
 export * from './api/users/api-users-mini-profile';
 export * from './api/users/api-users-budget';
 export * from './api/users/api-users-today';
+export * from './api/users/api-users-topfan';
 
 export * from './api/lives/api-lives-info';
 export * from './api/lives/api-lives-discovered';
@@ -65,6 +66,7 @@ export * from './struct/api-struct';
 export * from './struct/user/user-struct';
 export * from './struct/user/user-voice-struct';
 export * from './struct/user/user-fanmessages';
+export * from './struct/user/user-topfan-struct';
 export * from './struct/play-struct';
 export * from './struct/rank-struct';
 export * from './struct/fanboard-info-struct';

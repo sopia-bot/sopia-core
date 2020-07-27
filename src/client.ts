@@ -80,7 +80,7 @@ export class Client extends SOPIA {
 		const user = User.deserialize(res.results[0]);
 
 		this.user = user;
-		this.token = user.token;
+		this.user.token = this.token;
 		return user;
 	}
 

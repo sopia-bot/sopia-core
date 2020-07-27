@@ -13,6 +13,7 @@ import { Budget } from '../struct/budget-struct';
 import { User } from '../struct/user/user-struct';
 import { UserFanmessages } from '../struct/user/user-fanmessages';
 import { UserVoice } from '../struct/user/user-voice-struct';
+import { UserTopfan } from '../struct/user/user-topfan-struct';
 
 import { ApiManager } from './api-manager';
 import { ApiRequest } from '../api/api-request';
@@ -27,6 +28,7 @@ import { ApiUsersVoice } from '../api/users/api-users-voice';
 import { ApiUsersMiniProfile } from '../api/users/api-users-mini-profile';
 import { ApiUsersBudget } from '../api/users/api-users-budget';
 import { ApiUsersToday } from '../api/users/api-users-today';
+import { ApiUsersTopfan } from '../api/users/api-users-topfan';
 
 export class UserManager {
 	constructor(
@@ -92,6 +94,12 @@ export class UserManager {
 	async userMiniProfile(user: (User|number)) {
 		const apiUserMiniProfile = new ApiManager(new ApiUsersMiniProfile(user), User.deserialize);
 		const res = await apiUserMiniProfile.send();
+		return res;
+	}
+
+	async userTopfan(user: (User|number)) {
+		const apiUserTopfan = new ApiManager(new ApiUsersTopfan(user), UserTopfan.deserialize, this.Token);
+		const res = await apiUserTopfan.send();
 		return res;
 	}
 
