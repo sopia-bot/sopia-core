@@ -26,6 +26,7 @@ import { ApiUsersInfo } from '../api/users/api-users-info';
 import { ApiUsersVoice } from '../api/users/api-users-voice';
 import { ApiUsersMiniProfile } from '../api/users/api-users-mini-profile';
 import { ApiUsersBudget } from '../api/users/api-users-budget';
+import { ApiUsersToday } from '../api/users/api-users-today';
 
 export class UserManager {
 	constructor(
@@ -97,6 +98,12 @@ export class UserManager {
 	async userBudget() {
 		const apiUserBudget = new ApiManager(new ApiUsersBudget(), Budget.deserialize, this.Token);
 		const res = await apiUserBudget.send();
+		return res;
+	}
+
+	async userToday() {
+		const apiUserToday = new ApiManager(new ApiUsersToday(), User.deserialize);
+		const res = await apiUserToday.send();
 		return res;
 	}
 }

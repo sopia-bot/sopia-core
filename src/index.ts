@@ -27,6 +27,7 @@ export * from './api/users/api-users-fanmessages';
 export * from './api/users/api-users-cast';
 export * from './api/users/api-users-mini-profile';
 export * from './api/users/api-users-budget';
+export * from './api/users/api-users-today';
 
 export * from './api/lives/api-lives-info';
 export * from './api/lives/api-lives-discovered';
@@ -71,6 +72,9 @@ export * from './struct/socket-event-struct';
 export * from './struct/websocket-struct';
 export * from './struct/notification-struct';
 export * from './struct/budget-struct';
+export * from './struct/grants-struct';
+export * from './struct/push-settings-struct';
+export * from './struct/service-agreement-struct';
 
 export * from './enum/cast-type';
 export * from './enum/login-type';
