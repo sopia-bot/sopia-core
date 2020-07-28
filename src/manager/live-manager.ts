@@ -8,7 +8,9 @@ import { Client } from '../client';
 
 import { SocketManager } from './socket-manager';
 import { Play } from '../struct/play-struct';
+import { Budget } from '../struct/budget-struct';
 import { User } from '../struct/user/user-struct';
+import { Sticker } from '../struct/sticker/sticker-struct';
 
 import { Category } from '../enum/category';
 
@@ -31,6 +33,7 @@ import { ApiLivesPlay } from '../api/lives/api-lives-play';
 import { ApiLivesCheck } from '../api/lives/api-lives-check';
 import { ApiLivesMembers } from '../api/lives/api-lives-members';
 import { ApiLivesShared } from '../api/lives/api-lives-shared';
+import { ApiLivesPresent } from '../api/lives/api-lives-present';
 
 
 export class LiveManager {
@@ -85,6 +88,12 @@ export class LiveManager {
 	async liveManager(live: (Play|number), users: User[]) {
 		const apiLivesManager = new ApiManager(new ApiLivesManager(live, users), Play.deserialize, this.Token);
 		const res = await apiLivesManager.send();
+		return res;
+	}
+
+	async livePresent(live: (Play|number), sticker: Sticker) {
+		const apiLivesPresent = new ApiManager(new ApiLivesPresent(live, sticker), Budget.deserialize, this.Token);
+		const res = await apiLivesPresent.send();
 		return res;
 	}
 

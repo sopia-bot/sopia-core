@@ -49,6 +49,7 @@ export class WsManager extends EventManager {
 
 	send ( data: any ) {
 		const sendData: any = data;
+		console.log(data);
 		this.ws.send(JSON.stringify(sendData));
 	}
 }
