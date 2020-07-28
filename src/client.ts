@@ -11,6 +11,7 @@ import { Country, CountryNumber  } from './enum/country';
 import { LoginType } from './enum/login-type';
 
 import { User } from './struct/user/user-struct';
+import { StaticStickers } from './struct/sticker/static-stickers-struct';
 
 import { ApiLogin } from './api/api-login';
 
@@ -28,6 +29,7 @@ export class Client extends SOPIA {
 	public rankManager: RankManager;
 	public searchManager: SearchManager;
 	public notiManager: NotiManager;
+	public stickers!: StaticStickers;
 	public user!: User;
 
 	constructor(public deviceUUID: string, country?: Country) {
@@ -69,6 +71,14 @@ export class Client extends SOPIA {
 		}
 
 		return this.token;
+	}
+
+	async initSticker() {
+		const res = await axios.get(`https://static.spooncast.net/${this.country}/stickers/index.json`);
+		if ( res.data ) {
+			this.stickers = StaticStickers.deserialize(res.data);
+		}
+		return this.stickers;
 	}
 
 	async login(sns_id: (number|string), password: string, sns_type: LoginType): Promise<User> {
