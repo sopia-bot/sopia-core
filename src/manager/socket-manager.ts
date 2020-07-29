@@ -11,11 +11,18 @@ import { LiveEvent, LiveType } from '../enum/socket-live';
 import { Play } from '../struct/play-struct';
 
 export class SocketManager extends WsManager {
-	constructor(
-		private live: Play,
-		private client: Client
-	) {
+	private live!: Play;
+	private client!: Client;
+	private healthInterval!: any;
+
+	constructor(live: (Play|number), client: Client) {
 		super();
+		if ( typeof live === 'number' ) {
+			live = Play.deserialize({ id: live });
+		}
+
+		this.live = live;
+		this.client = client;
 	}
 
 	health(): void {
@@ -69,5 +76,9 @@ export class SocketManager extends WsManager {
 				useragent: this.client.userAgent,
 			});
 		}
+
+		this.healthInterval = <any>setInterval(() => {
+			this.health();
+		}, 10 * 1000 /* 10sec */);
 	}
 }

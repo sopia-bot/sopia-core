@@ -189,7 +189,15 @@ export class LiveManager {
 		return res.data;
 	}
 
-	liveSocket(live: Play): SocketManager {
+	async liveJoin(live: (Play|number)): Promise<SocketManager> {
+		const socket = this.liveSocket(live);
+		await this.liveAccess(live);
+		await socket.join();
+
+		return socket;
+	}
+
+	liveSocket(live: (Play|number)): SocketManager {
 		const socket = new SocketManager(live, this.client);
 		return socket;
 	}
