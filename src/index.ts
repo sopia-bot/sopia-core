@@ -11,6 +11,7 @@ export * from './client';
 export * from './api/api-request';
 export * from './api/api-fancomments';
 export * from './api/api-lives';
+export * from './api/api-casts';
 export * from './api/api-users';
 export * from './api/api-login';
 export * from './api/api-ranks';
@@ -51,6 +52,8 @@ export * from './api/lives/api-lives-members';
 export * from './api/lives/api-lives-shared';
 export * from './api/lives/api-lives-present';
 export * from './api/lives/api-lives-report';
+
+export * from './api/casts/api-casts-main';
 
 export * from './api/ranks/api-ranks-fan';
 export * from './api/ranks/api-ranks-livebj';
@@ -96,6 +99,7 @@ export * from './enum/report';
 
 export * from './manager/user-manager';
 export * from './manager/live-manager';
+export * from './manager/cast-manager';
 export * from './manager/rank-manager';
 export * from './manager/api-manager';
 export * from './manager/ws-manager';

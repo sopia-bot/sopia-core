@@ -17,6 +17,7 @@ import { ApiLogin } from './api/api-login';
 
 import { UserManager } from './manager/user-manager';
 import { LiveManager } from './manager/live-manager';
+import { CastManager } from './manager/cast-manager';
 import { RankManager } from './manager/rank-manager';
 import { SearchManager } from './manager/search-manager';
 import { NotiManager } from './manager/noti-manager';
@@ -26,6 +27,7 @@ import axios from 'axios';
 export class Client extends SOPIA {
 	public userManager: UserManager;
 	public liveManager: LiveManager;
+	public castManager: CastManager;
 	public rankManager: RankManager;
 	public searchManager: SearchManager;
 	public notiManager: NotiManager;
@@ -37,6 +39,7 @@ export class Client extends SOPIA {
 
 		this.userManager = new UserManager(this);
 		this.liveManager = new LiveManager(this);
+		this.castManager = new CastManager(this);
 		this.rankManager = new RankManager(this);
 		this.searchManager = new SearchManager(this);
 		this.notiManager = new NotiManager(this);
