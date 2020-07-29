@@ -142,7 +142,7 @@ export class LiveManager {
 		return res.data;
 	}
 
-	async liveMembers(live: (Play|number)): Promise<User[]> {
+	async liveMembers(live: (Play|number)): Promise<ApiManager> /* for next, previous request */ {
 		const apiLivesMembers = new ApiManager(new ApiLivesMembers(live), User.deserialize);
 		const res = await apiLivesMembers.send();
 
@@ -156,28 +156,28 @@ export class LiveManager {
 		return res.data[0];
 	}
 
-	async liveDiscovered(page_size: number = 6, is_adult: boolean = false): Promise<Play[]> {
+	async liveDiscovered(page_size: number = 6, is_adult: boolean = false): Promise<ApiManager> /* for next, previous request */ {
 		const apiLivesDiscovered = new ApiManager(new ApiLivesDiscovered(page_size, is_adult), Play.deserialize);
 		const res = await apiLivesDiscovered.send();
 
 		return res.data;
 	}
 
-	async liveSubscribed(page_size: number = 6, is_adult: boolean = false): Promise<Play[]> {
+	async liveSubscribed(page_size: number = 6, is_adult: boolean = false): Promise<ApiManager> /* for next, previous request */ {
 		const apiLivesSubscribed = new ApiManager(new ApiLivesSubscribed(page_size, is_adult), Play.deserialize);
 		const res = await apiLivesSubscribed.send();
 
 		return res.data;
 	}
 
-	async livePopular(page_size: number = 6, is_adult: boolean = false, category?: Category): Promise<Play[]> {
+	async livePopular(page_size: number = 6, is_adult: boolean = false, category?: Category): Promise<ApiManager> /* for next, previous request */ {
 		const apiLivesPopular = new ApiManager(new ApiLivesPopular(page_size, is_adult, category), Play.deserialize);
 		const res = await apiLivesPopular.send();
 
 		return res.data;
 	}
 
-	async liveNewDJ(): Promise<Play[]> {
+	async liveNewDJ(): Promise<ApiManager> /* for next, previous request */ {
 		const apiLivesNewDJ = new ApiManager(new ApiLivesNewDJ(), Play.deserialize);
 		const res = await apiLivesNewDJ.send();
 
