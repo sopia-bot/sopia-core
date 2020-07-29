@@ -20,7 +20,7 @@ export class EventManager {
 	constructor() {
 	}
 
-	private pushEvent(key: string, evt: EventObject) {
+	private pushEvent(key: string, evt: EventObject): void {
 		if ( !this._events[key] ) {
 			this._events[key] = [];
 		}
@@ -28,7 +28,7 @@ export class EventManager {
 		this._events[key].push(evt);
 	}
 
-	private unshiftEvent(key: string, evt: EventObject) {
+	private unshiftEvent(key: string, evt: EventObject): void {
 		if ( !this._events[key] ) {
 			this._events[key] = [];
 		}
@@ -36,7 +36,7 @@ export class EventManager {
 		this._events[key].unshift(evt);
 	}
 
-	on (key: string, func: (data?: any[]) => void) {
+	on (key: string, func: (data?: any[]) => void): void {
 		this.pushEvent(
 			key,
 			{
@@ -46,7 +46,7 @@ export class EventManager {
 		);
 	}
 
-	once (key: string, func: (data?: any[]) => void) {
+	once (key: string, func: (data?: any[]) => void): void {
 		this.pushEvent(
 			key,
 			{
@@ -56,11 +56,11 @@ export class EventManager {
 		);
 	}
 
-	addEventListener(key: string, func: (data?: any[]) => void) {
+	addEventListener(key: string, func: (data?: any[]) => void): void {
 		this.on(key, func);
 	}
 
-	emit (key: string, ...argv: any[]) {
+	emit (key: string, ...argv: any[]): void {
 		if ( this._events[key] ) {
 			const once: number[] = [];
 			this._events[key].forEach((evt) => {
@@ -71,15 +71,15 @@ export class EventManager {
 		}
 	}
 
-	eventNames() {
+	eventNames(): string[] {
 		return Object.keys(this._events);
 	}
 
-	listenerCount(key: string) {
+	listenerCount(key: string): number {
 		return this._events[key]?.length || 0;
 	}
 
-	prependListener(key: string, func: (data?: any[]) => void) {
+	prependListener(key: string, func: (data?: any[]) => void): void {
 		this.unshiftEvent(
 			key,
 			{
@@ -89,7 +89,7 @@ export class EventManager {
 		);
 	}
 
-	prependOnceListener(key: string, func: (data?: any[]) => void) {
+	prependOnceListener(key: string, func: (data?: any[]) => void): void {
 		this.unshiftEvent(
 			key,
 			{
@@ -99,18 +99,18 @@ export class EventManager {
 		);
 	}
 
-	removeAllListeners(key: string) {
+	removeAllListeners(key: string): void {
 		this._events[key] = [];
 	}
 
-	removeListener(key: string, func: (data?: any[]) => void) {
+	removeListener(key: string, func: (data?: any[]) => void): (EventObject|void) {
 		if ( this._events[key] ) {
 			const idx = this._events[key].findIndex(evt => evt.func === func);
-			return this._events[key].splice(idx, 1);
+			return this._events[key].splice(idx, 1)[0];
 		}
 	}
 
-	off(key: string, func: (data?: any[]) => void) {
+	off(key: string, func: (data?: any[]) => void): void {
 		this.removeListener(key, func);
 	}
 }

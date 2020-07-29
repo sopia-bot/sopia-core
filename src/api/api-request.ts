@@ -92,27 +92,33 @@ export class ApiRequest extends SOPIA {
 	}
 
 	async send(url?: string): Promise<ApiResult> {
-		if ( url ) {
-			this.Option.url = url;
-		}
+		let data: ApiResult = { results: [] };
 
-		if ( !this.Option.url ) {
-			this.Option.url = this.reqUrl;
-		}
+		try {
+			if ( url ) {
+				this.Option.url = url;
+			}
 
-		const res = await axios(this.Option);
-		const data: ApiResult = res.data;
+			if ( !this.Option.url ) {
+				this.Option.url = this.reqUrl;
+			}
 
-		if ( data['previous'] ) {
-			this.prevUrl = data['previous'];
-		}
+			const res = await axios(this.Option);
+			data = res.data;
 
-		if ( data['next'] ) {
-			this.nextUrl = data['next'];
-		}
+			if ( data['previous'] ) {
+				this.prevUrl = data['previous'];
+			}
 
-		if ( typeof data['status_code'] === 'string' ) {
-			data['status_code'] = Number(data['status_code']);
+			if ( data['next'] ) {
+				this.nextUrl = data['next'];
+			}
+
+			if ( typeof data['status_code'] === 'string' ) {
+				data['status_code'] = Number(data['status_code']);
+			}
+		} catch (err) {
+			data = err.response.data;
 		}
 
 		return data;

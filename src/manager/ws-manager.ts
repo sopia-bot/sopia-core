@@ -11,7 +11,7 @@ import { EventManager } from './event-manager';
 export class WsManager extends EventManager {
 	protected ws!: any;
 
-	private receiver( msg: MessageEvent ) {
+	private receiver( msg: MessageEvent ): void {
 		const data = SpoonSocketEvent.deserialize(JSON.parse(msg.data));
 		this.emit(data.event, data);
 	}
@@ -21,7 +21,7 @@ export class WsManager extends EventManager {
 		super();
 	}
 
-	async connect ( url: string, option?: any ) {
+	async connect ( url: string, option?: any ): Promise<boolean> {
 		return new Promise((resolve, reject) => {
 			try {
 				if ( typeof window !== 'undefined' ) {
@@ -47,9 +47,8 @@ export class WsManager extends EventManager {
 		});
 	}
 
-	send ( data: any ) {
+	send ( data: any ): void {
 		const sendData: any = data;
-		console.log(data);
 		this.ws.send(JSON.stringify(sendData));
 	}
 }

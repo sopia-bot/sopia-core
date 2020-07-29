@@ -43,75 +43,87 @@ export class UserManager {
 		return this.client.token;
 	}
 
-	async userCast(user: (User|number), type: CastType = CastType.UPLOAD_CAST) {
+	async userCast(user: (User|number), type: CastType = CastType.UPLOAD_CAST): Promise<Play[]> {
 		const apiUserCast = new ApiManager(new ApiUsersCast(user, type), Play.deserialize);
 		const res = await apiUserCast.send();
-		return res;
+
+		return res.data;
 	}
 
-	async userFanmessages(user: (User|number), contents?: string) {
+	async userFanmessages(user: (User|number), contents?: string): Promise<UserFanmessages[]> {
 		const apiUserFanmessages = new ApiManager(new ApiUsersFanmessages(user, contents), UserFanmessages.deserialize);
 		const res = await apiUserFanmessages.send();
-		return res;
+
+		return res.data;
 	}
 
-	async userFollow(user: (User|number)) {
+	async userFollow(user: (User|number)): Promise<User> {
 		const apiUserFollow = new ApiManager(new ApiUsersFollow(user), User.deserialize, this.Token);
 		const res = await apiUserFollow.send();
-		return res;
+
+		return res.data[0];
 	}
 
-	async userFollowers(user: (User|number)) {
+	async userFollowers(user: (User|number)): Promise<User[]> {
 		const apiUserFollowers = new ApiManager(new ApiUsersFollowers(user), User.deserialize);
 		const res = await apiUserFollowers.send();
-		return res;
+
+		return res.data;
 	}
 
-	async userFollowings(user: (User|number)) {
+	async userFollowings(user: (User|number)): Promise<User[]> {
 		const apiUserFollowings = new ApiManager(new ApiUsersFollowings(user), User.deserialize);
 		const res = await apiUserFollowings.send();
-		return res;
+
+		return res.data;
 	}
 
-	async userUnfollow(user: (User|number)) {
+	async userUnfollow(user: (User|number)): Promise<User> {
 		const apiUserUnfollow = new ApiManager(new ApiUsersUnfollow(user), User.deserialize, this.Token);
 		const res = await apiUserUnfollow.send();
-		return res;
+
+		return res.data[0];
 	}
 
-	async userInfo(user: (User|number)) {
+	async userInfo(user: (User|number)): Promise<User> {
 		const apiUserInfo = new ApiManager(new ApiUsersInfo(user), User.deserialize);
 		const res = await apiUserInfo.send();
-		return res;
+
+		return res.data[0];
 	}
 
-	async userVoice(user: (User|number)) {
+	async userVoice(user: (User|number)): Promise<UserVoice> {
 		const apiUserVoice = new ApiManager(new ApiUsersVoice(user), UserVoice.deserialize);
 		const res = await apiUserVoice.send();
-		return res;
+
+		return res.data[0];
 	}
 
-	async userMiniProfile(user: (User|number)) {
+	async userMiniProfile(user: (User|number)): Promise<User> {
 		const apiUserMiniProfile = new ApiManager(new ApiUsersMiniProfile(user), User.deserialize);
 		const res = await apiUserMiniProfile.send();
-		return res;
+
+		return res.data[0];
 	}
 
-	async userTopfan(user: (User|number)) {
+	async userTopfan(user: (User|number)): Promise<UserTopfan[]> {
 		const apiUserTopfan = new ApiManager(new ApiUsersTopfan(user), UserTopfan.deserialize, this.Token);
 		const res = await apiUserTopfan.send();
-		return res;
+
+		return res.data;
 	}
 
-	async userBudget() {
+	async userBudget(): Promise<Budget> {
 		const apiUserBudget = new ApiManager(new ApiUsersBudget(), Budget.deserialize, this.Token);
 		const res = await apiUserBudget.send();
-		return res;
+
+		return res.data[0];
 	}
 
-	async userToday() {
+	async userToday(): Promise<User[]> {
 		const apiUserToday = new ApiManager(new ApiUsersToday(), User.deserialize);
 		const res = await apiUserToday.send();
-		return res;
+
+		return res.data;
 	}
 }

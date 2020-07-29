@@ -95,8 +95,7 @@ export class Client extends SOPIA {
 	}
 
 	async loginToken(user: (User|number), token: string): Promise<User> {
-		const res = await this.userManager.userInfo(user);
-		const u = res.data[0];
+		const u = await this.userManager.userInfo(user);
 		this.user = u;
 		this.user.token = this.token;
 		this.token = token;

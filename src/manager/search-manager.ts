@@ -26,15 +26,17 @@ export class SearchManager {
 		return this.client.token;
 	}
 
-	async searchUser(keyword: string) {
+	async searchUser(keyword: string): Promise<User[]> {
 		const apiSearchUser = new ApiManager(new ApiSearchUser(keyword), User.deserialize);
 		const res = await apiSearchUser.send();
-		return res;
+
+		return res.data;
 	}
 
-	async searchContent(keyword: string, content_type: ContentType = ContentType.LIVE) {
+	async searchContent(keyword: string, content_type: ContentType = ContentType.LIVE): Promise<Play[]> {
 		const apiSearchContent = new ApiManager(new ApiSearchContent(keyword, content_type), Play.deserialize);
 		const res = await apiSearchContent.send();
-		return res;
+
+		return res.data;
 	}
 }

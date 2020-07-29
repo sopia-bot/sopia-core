@@ -18,7 +18,7 @@ export class SocketManager extends WsManager {
 		super();
 	}
 
-	health() {
+	health(): void {
 		const msg: any = {
 			appversion: this.client.appVersion,
 			event: LiveEvent.LIVE_HEALTH,
@@ -34,7 +34,7 @@ export class SocketManager extends WsManager {
 		this.send(msg);
 	}
 
-	async join () {
+	async join (): Promise<void> {
 		await this.connect(this.client.api.socket + this.live.id);
 
 		if ( this.client.user ) {

@@ -14,7 +14,7 @@ export class ApiManager {
 
 	constructor(
 		private request: ApiRequest,
-		private deserialize: Function,
+		private deserialize?: Function,
 		token?: string,
 	) {
 		if ( token ) {
@@ -30,44 +30,62 @@ export class ApiManager {
 		return this.request.token;
 	}
 
-	async send() {
+	async send(): Promise<ApiManager> {
 		const res = await this.request.send();
 		if ( res !== null ) {
 			this.response = res;
 
-			const d = [];
-			for ( const result of this.response.results ) {
-				d.push(this.deserialize(result));
+			if ( this.response.results ) {
+				if ( typeof this.deserialize === 'function' ) {
+					const d = [];
+					for ( const result of this.response.results ) {
+						d.push(this.deserialize(result));
+					}
+					this.data = d;
+				} else {
+					this.data = this.response.results;
+				}
 			}
-			this.data = d;
 		}
 		return this;
 	}
 
-	async next() {
+	async next(): Promise<ApiManager> {
 		const res = await this.request.next();
 		if ( res !== null ) {
 			this.response = res;
 
-			const d = [];
-			for ( const result of this.response.results ) {
-				d.push(this.deserialize(result));
+			if ( this.response.results ) {
+				if ( typeof this.deserialize === 'function' ) {
+					const d = [];
+					for ( const result of this.response.results ) {
+						d.push(this.deserialize(result));
+					}
+					this.data = d;
+				} else {
+					this.data = this.response.results;
+				}
 			}
-			this.data = d;
 		}
 		return this;
 	}
 
-	async prev() {
+	async prev(): Promise<ApiManager> {
 		const res = await this.request.prev();
 		if ( res !== null ) {
 			this.response = res;
 
-			const d = [];
-			for ( const result of this.response.results ) {
-				d.push(this.deserialize(result));
+			if ( this.response.results ) {
+				if ( typeof this.deserialize === 'function' ) {
+					const d = [];
+					for ( const result of this.response.results ) {
+						d.push(this.deserialize(result));
+					}
+					this.data = d;
+				} else {
+					this.data = this.response.results;
+				}
 			}
-			this.data = d;
 		}
 		return this;
 	}
