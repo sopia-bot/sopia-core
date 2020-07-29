@@ -7,6 +7,7 @@
 
 import { Client } from '../client';
 import { CastType } from '../enum/cast-type';
+import { ReportType } from '../enum/report';
 
 import { Play } from '../struct/play-struct';
 import { Budget } from '../struct/budget-struct';
@@ -29,6 +30,7 @@ import { ApiUsersMiniProfile } from '../api/users/api-users-mini-profile';
 import { ApiUsersBudget } from '../api/users/api-users-budget';
 import { ApiUsersToday } from '../api/users/api-users-today';
 import { ApiUsersTopfan } from '../api/users/api-users-topfan';
+import { ApiUsersReport } from '../api/users/api-users-report';
 
 export class UserManager {
 	constructor(
@@ -111,6 +113,13 @@ export class UserManager {
 		const res = await apiUserTopfan.send();
 
 		return res.data;
+	}
+
+	async userReport(user: (User|number), type: ReportType): Promise<ApiManager> {
+		const apiUserReport = new ApiManager(new ApiUsersReport(user, type), undefined, this.Token);
+		const res = await apiUserReport.send();
+
+		return res;
 	}
 
 	async userBudget(): Promise<Budget> {

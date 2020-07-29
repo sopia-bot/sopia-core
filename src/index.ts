@@ -29,6 +29,7 @@ export * from './api/users/api-users-mini-profile';
 export * from './api/users/api-users-budget';
 export * from './api/users/api-users-today';
 export * from './api/users/api-users-topfan';
+export * from './api/users/api-users-report';
 
 export * from './api/lives/api-lives-info';
 export * from './api/lives/api-lives-discovered';
@@ -90,6 +91,7 @@ export * from './enum/rank-type';
 export * from './enum/socket-live';
 export * from './enum/search';
 export * from './enum/notification';
+export * from './enum/report';
 
 export * from './manager/user-manager';
 export * from './manager/live-manager';
