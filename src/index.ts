@@ -50,6 +50,7 @@ export * from './api/lives/api-lives-check';
 export * from './api/lives/api-lives-members';
 export * from './api/lives/api-lives-shared';
 export * from './api/lives/api-lives-present';
+export * from './api/lives/api-lives-report';
 
 export * from './api/ranks/api-ranks-fan';
 export * from './api/ranks/api-ranks-livebj';

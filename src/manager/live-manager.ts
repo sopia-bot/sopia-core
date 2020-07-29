@@ -13,6 +13,7 @@ import { User } from '../struct/user/user-struct';
 import { Sticker } from '../struct/sticker/sticker-struct';
 
 import { Category } from '../enum/category';
+import { ReportType } from '../enum/report';
 
 import { ApiManager } from './api-manager';
 import { ApiLivesInfo } from '../api/lives/api-lives-info';
@@ -34,6 +35,7 @@ import { ApiLivesCheck } from '../api/lives/api-lives-check';
 import { ApiLivesMembers } from '../api/lives/api-lives-members';
 import { ApiLivesShared } from '../api/lives/api-lives-shared';
 import { ApiLivesPresent } from '../api/lives/api-lives-present';
+import { ApiLivesReport } from '../api/lives/api-lives-report';
 
 
 export class LiveManager {
@@ -111,6 +113,13 @@ export class LiveManager {
 		const res = await apiLivesPresent.send();
 
 		return res.data[0];
+	}
+
+	async liveReport(live: (Play|number), type: ReportType): Promise<ApiManager> {
+		const apiLivesReport = new ApiManager(new ApiLivesReport(live, type), undefined, this.Token);
+		const res = await apiLivesReport.send();
+
+		return res;
 	}
 
 	async liveSponsor(live: (Play|number)): Promise<Play> {

@@ -40,6 +40,9 @@ export class Client extends SOPIA {
 		this.rankManager = new RankManager(this);
 		this.searchManager = new SearchManager(this);
 		this.notiManager = new NotiManager(this);
+
+		this.initSticker();
+		this.initApiInfo();
 	}
 
 	async initApiInfo() {
@@ -82,7 +85,6 @@ export class Client extends SOPIA {
 	}
 
 	async login(sns_id: (number|string), password: string, sns_type: LoginType): Promise<User> {
-		await this.initApiInfo();
 		await this.initToken(sns_id, password, sns_type);
 
 		const api = new ApiLogin(sns_type, sns_id, password, this.country || Country.KOREA);
