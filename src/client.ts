@@ -85,6 +85,8 @@ export class Client extends SOPIA {
 	}
 
 	async login(sns_id: (number|string), password: string, sns_type: LoginType): Promise<User> {
+		await this.initSticker();
+		await this.initApiInfo();
 		await this.initToken(sns_id, password, sns_type);
 
 		const api = new ApiLogin(sns_type, sns_id, password, this.country || Country.KOREA);
