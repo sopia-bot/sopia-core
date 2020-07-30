@@ -56,6 +56,7 @@ export * from './api/lives/api-lives-report';
 export * from './api/casts/api-casts-main';
 export * from './api/casts/api-casts-today';
 export * from './api/casts/api-casts-popular';
+export * from './api/casts/api-casts-info';
 
 export * from './api/ranks/api-ranks-fan';
 export * from './api/ranks/api-ranks-livebj';

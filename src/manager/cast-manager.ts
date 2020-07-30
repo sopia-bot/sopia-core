@@ -11,6 +11,7 @@ import { Play } from '../struct/play-struct';
 
 import { ApiManager } from './api-manager';
 import { ApiCasts } from '../api/api-casts';
+import { ApiCastsInfo } from '../api/casts/api-casts-info';
 import { ApiCastsMain } from '../api/casts/api-casts-main';
 import { ApiCastsToday } from '../api/casts/api-casts-today';
 import { ApiCastsPopular } from '../api/casts/api-casts-popular';
@@ -26,6 +27,13 @@ export class CastManager {
 
 	get Token() {
 		return this.client.token;
+	}
+
+	async castInfo(cast: (Play|number)): Promise<Play> {
+		const apiCastsInfo = new ApiManager(new ApiCastsInfo(cast), Play.deserialize);
+		const res = await apiCastsInfo.send();
+
+		return res.data[0];
 	}
 
 	async castMain(page_size: number = 6): Promise<ApiManager> /* for next, previous request */ {
