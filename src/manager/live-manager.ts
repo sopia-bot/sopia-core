@@ -10,6 +10,7 @@ import { SocketManager } from './socket-manager';
 import { Play } from '../struct/play-struct';
 import { Budget } from '../struct/budget-struct';
 import { User } from '../struct/user/user-struct';
+import { UserSponsor } from '../struct/user/user-sponsor';
 import { Sticker } from '../struct/sticker/sticker-struct';
 
 import { Category } from '../enum/category';
@@ -122,11 +123,11 @@ export class LiveManager {
 		return res;
 	}
 
-	async liveSponsor(live: (Play|number)): Promise<Play> {
-		const apiLivesSponsor = new ApiManager(new ApiLivesSponsor(live), Play.deserialize);
+	async liveSponsor(live: (Play|number)): Promise<ApiManager> /* for next, previous request */ {
+		const apiLivesSponsor = new ApiManager(new ApiLivesSponsor(live), UserSponsor.deserialize);
 		const res = await apiLivesSponsor.send();
 
-		return res.data[0];
+		return res;
 	}
 
 	async livePlay(live: (Play|number)): Promise<Play> {

@@ -57,6 +57,7 @@ export * from './api/casts/api-casts-main';
 export * from './api/casts/api-casts-today';
 export * from './api/casts/api-casts-popular';
 export * from './api/casts/api-casts-info';
+export * from './api/casts/api-casts-sponsor';
 
 export * from './api/ranks/api-ranks-fan';
 export * from './api/ranks/api-ranks-livebj';
@@ -76,6 +77,7 @@ export * from './struct/user/user-struct';
 export * from './struct/user/user-voice-struct';
 export * from './struct/user/user-fanmessages';
 export * from './struct/user/user-topfan-struct';
+export * from './struct/user/user-sponsor';
 export * from './struct/sticker/static-stickers-struct';
 export * from './struct/sticker/sticker-struct';
 export * from './struct/sticker/sticker-category-struct';
