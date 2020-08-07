@@ -161,28 +161,28 @@ export class LiveManager {
 		const apiLivesDiscovered = new ApiManager(new ApiLivesDiscovered(page_size, is_adult), Play.deserialize);
 		const res = await apiLivesDiscovered.send();
 
-		return res.data;
+		return res;
 	}
 
 	async liveSubscribed(page_size: number = 6, is_adult: boolean = false): Promise<ApiManager> /* for next, previous request */ {
 		const apiLivesSubscribed = new ApiManager(new ApiLivesSubscribed(page_size, is_adult), Play.deserialize);
 		const res = await apiLivesSubscribed.send();
 
-		return res.data;
+		return res;
 	}
 
 	async livePopular(page_size: number = 6, is_adult: boolean = false, category?: Category): Promise<ApiManager> /* for next, previous request */ {
 		const apiLivesPopular = new ApiManager(new ApiLivesPopular(page_size, is_adult, category), Play.deserialize);
 		const res = await apiLivesPopular.send();
 
-		return res.data;
+		return res;
 	}
 
 	async liveNewDJ(): Promise<ApiManager> /* for next, previous request */ {
 		const apiLivesNewDJ = new ApiManager(new ApiLivesNewDJ(), Play.deserialize);
 		const res = await apiLivesNewDJ.send();
 
-		return res.data;
+		return res;
 	}
 
 	async liveCategories(): Promise<any[]> /* No have class for data deserialize */ {
@@ -192,7 +192,7 @@ export class LiveManager {
 		return res.data;
 	}
 
-	async liveBanner(): Promise<Play[]> {
+	async liveBanner(): Promise<Play[]> /* fixed 5 live items */ {
 		const apiLivesBanner = new ApiManager(new ApiLivesBanner(), Play.deserialize);
 		const res = await apiLivesBanner.send();
 
