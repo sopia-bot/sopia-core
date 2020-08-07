@@ -17,7 +17,7 @@ yarn add sopia-core
 ```javascript
 import * as spoon from 'sopia-core';
 
-(() => {
+(async () => {
     const sopia = spoon.Client('DeviceUUID');
     await sopia.login('Your ID', 'Password', spoon.LoginType.PHONE);
     
@@ -28,6 +28,10 @@ import * as spoon from 'sopia-core';
         // do something.
         ...
         socket.message('Message');
+    });
+    
+    socket.on(spoon.LiveEvent.LIVE_MESSAGE, (e) => {
+        // sender = e.author
     });
 });
 ```
