@@ -8,6 +8,45 @@
 import { User } from './user/user-struct';
 import { Struct } from './struct';
 
+export class Tier implements Struct<Tier> {
+	public name!: string;
+	public title!: string;
+
+	constructor() {}
+
+	toJSON(): any {
+		const obj: any = {};
+
+		if ( this.name ) {
+			obj['name'] = this.name;
+		}
+
+		if ( this.title ) {
+			obj['title'] = this.title;
+		}
+
+		return obj;
+	}
+
+	readRawData(data: any): void {
+		
+		if ( data['name'] ) {
+			this.name = data['name'];
+		}
+
+		if ( data['title'] ) {
+			this.title = data['title'];
+		}
+
+	}
+
+	static deserialize(data: any): Tier {
+		const tier = new Tier();
+		tier.readRawData(data);
+		return tier;
+	}
+}
+
 export class Play implements Struct<Play> {
 	public id: number = 0;
 	public author?: User;
@@ -19,11 +58,15 @@ export class Play implements Struct<Play> {
 	public duration?: number;
 	public likeCount?: number;
 	public playCount?: number;
+	public memberCount?: number;
 	public spoonCount?: number;
 	public reporters?: number[];
 	public isDonated?: boolean;
 	public created?: Date;
 	public urlHls?: string;
+	public engineName?: string;
+	public tier: (Tier|null) = null;
+	public isLiveCall?: boolean;
 
 
 	constructor() {
@@ -87,6 +130,12 @@ export class Play implements Struct<Play> {
 			obj['url_hls'] = this.urlHls;
 		}
 
+		if ( typeof this.isLiveCall === 'boolean' ) {
+			obj['is_live_call'] = this.isLiveCall;
+		}
+
+		obj['tier'] = this.tier;
+
 		return obj;
 	}
 
@@ -123,15 +172,31 @@ export class Play implements Struct<Play> {
 			this.duration = data['duration'];
 		}
 
-		if ( data['like_count'] ) {
+		if ( typeof data['is_live_call'] === 'boolean' ) {
+			this.isLiveCall = data['is_live_call'];
+		}
+
+		if ( data['engine_name'] ) {
+			this.engineName = data['engine_name'];
+		}
+
+		if ( data['tier'] ) {
+			this.tier = Tier.deserialize(data['tier']);
+		}
+
+		if ( typeof data['like_count'] === 'number' ) {
 			this.likeCount = data['like_count'];
 		}
 
-		if ( data['play_count'] ) {
+		if ( typeof data['member_count'] === 'number' ) {
+			this.memberCount = data['member_count'];
+		}
+
+		if ( typeof data['play_count'] === 'number' ) {
 			this.playCount = data['play_count'];
 		}
 
-		if ( data['spoon_count'] ) {
+		if ( typeof data['spoon_count'] === 'number' ) {
 			this.spoonCount = data['spoon_count'];
 		}
 
@@ -139,7 +204,7 @@ export class Play implements Struct<Play> {
 			this.reporters = data['reporters'];
 		}
 
-		if ( data['is_donated'] ) {
+		if ( typeof data['is_donated'] === 'boolean' ) {
 			this.isDonated = data['is_donated'];
 		}
 
