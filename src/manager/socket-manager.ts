@@ -25,7 +25,7 @@ export class SocketManager extends WsManager {
 		this.client = client;
 	}
 
-	health(): void {
+	private health(): void {
 		const msg: any = {
 			appversion: this.client.appVersion,
 			event: LiveEvent.LIVE_HEALTH,
@@ -111,5 +111,19 @@ export class SocketManager extends WsManager {
 				});
 			}
 		});
+	}
+
+	public destroy(): void {
+		this.send({
+			live_id: this.live.id.toString(),
+			appversion: this.client.appVersion,
+			event: LiveEvent.LIVE_HEALTH,
+			type: LiveType.LIVE_RPT,
+			useragent: this.client.userAgent,
+		});
+		clearInterval(this.healthInterval);
+		this.ws.close();
+		this.destoryAllListener();
+		this.client.liveSocketMap.delete(this.live.id);
 	}
 }

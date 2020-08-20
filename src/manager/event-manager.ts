@@ -113,4 +113,11 @@ export class EventManager {
 	off(key: string, func: (data?: any[]) => void): void {
 		this.removeListener(key, func);
 	}
+
+	destoryAllListener(): void {
+		const keys = Object.keys(this._events);
+		keys.forEach((key) => {
+			this.removeAllListeners(key);
+		});
+	}
 }

@@ -13,4 +13,8 @@ export class WsClientNode extends WebSocket {
 	constructor(url: string) {
 		super(url);
 	}
+
+	close() {
+		this.terminate();
+	}
 }
