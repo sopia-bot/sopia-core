@@ -21,6 +21,7 @@ import { CastManager } from './manager/cast-manager';
 import { RankManager } from './manager/rank-manager';
 import { SearchManager } from './manager/search-manager';
 import { NotiManager } from './manager/noti-manager';
+import { SocketManager } from './manager/socket-manager';
 
 import axios from 'axios';
 
@@ -33,6 +34,7 @@ export class Client extends SOPIA {
 	public notiManager: NotiManager;
 	public stickers!: StaticStickers;
 	public user!: User;
+	public liveSocketMap: Map<number, SocketManager>;
 
 	constructor(public deviceUUID: string, country?: Country) {
 		super(country);
@@ -43,6 +45,8 @@ export class Client extends SOPIA {
 		this.rankManager = new RankManager(this);
 		this.searchManager = new SearchManager(this);
 		this.notiManager = new NotiManager(this);
+
+		this.liveSocketMap = new Map();
 
 		this.initSticker();
 		this.initApiInfo();

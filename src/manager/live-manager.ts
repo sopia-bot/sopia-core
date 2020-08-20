@@ -204,10 +204,15 @@ export class LiveManager {
 		await this.liveAccess(live);
 		await socket.join();
 
+		this.client.liveSocketMap.set(
+			(live instanceof Play) ? live.id : live,
+			socket
+		);
+
 		return socket;
 	}
 
-	liveSocket(live: (Play|number)): SocketManager {
+	private liveSocket(live: (Play|number)): SocketManager {
 		const socket = new SocketManager(live, this.client);
 		return socket;
 	}
