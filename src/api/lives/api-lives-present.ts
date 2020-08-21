@@ -7,7 +7,7 @@
 
 import { ApiLivesInfo } from './api-lives-info';
 import { Play } from '../../struct/play-struct';
-import { Sticker } from '../../struct/sticker/sticker-struct';
+import { Sticker } from '../../struct/sticker-struct';
 
 export class ApiLivesPresent extends ApiLivesInfo {
 	constructor(live: (Play|number), sticker: (Sticker)) {

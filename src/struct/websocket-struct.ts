@@ -5,8 +5,8 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 
-import { Play } from '../struct/play-struct';
-import { User } from '../struct/user/user-struct';
+import { Play } from './play-struct';
+import { User } from './user-struct';
 import { SpoonSocketEvent } from './socket-event-struct';
 
 export interface WebSocketResult {

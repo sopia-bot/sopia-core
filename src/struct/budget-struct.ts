@@ -5,56 +5,28 @@
  * Copyright (c) Tree Some. Licensed under the MIT License.
  */
 
-import { Struct } from './struct';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export class Budget implements Struct<Budget> {
-	public presentSpoon: number = 0;
-	public purchaseSpoon: number = 0;
-	public totalExchangeSpoon: number = 0;
-	public exchangePricePerSpoon: number = 0;
-	public monthlyPayAmount: number = 0;
+@Serializable()
+export class Budget {
 
-	constructor() {}
+	constructor(
 
-	toJSON(): any {
-		const obj: any = {};
+		@JsonProperty('present_spoon')
+		public presentSpoon: number,
 
-		obj['present_spoon'] = this.presentSpoon;
-		obj['purchase_spoon'] = this.purchaseSpoon;
-		obj['total_exchange_spoon'] = this.totalExchangeSpoon;
-		obj['exchange_price_per_spoon'] = this.exchangePricePerSpoon;
-		obj['monthly_pay_amount'] = this.monthlyPayAmount;
+		@JsonProperty('purchase_spoon')
+		public purchaseSpoon: number,
 
-		return obj;
-	}
+		@JsonProperty('total_exchange_spoon')
+		public totalExchangeSpoon: number,
 
-	readRawData(data: any): void {
-		
-		if ( data['present_spoon'] ) {
-			this.presentSpoon = data['present_spoon'];
-		}
+		@JsonProperty('exchange_price_per_spoon')
+		public exchangePricePerSpoon: number,
 
-		if ( data['purchase_spoon'] ) {
-			this.purchaseSpoon = data['purchase_spoon'];
-		}
+		@JsonProperty('monthly_pay_amount')
+		public monthlyPayAmount: number
 
-		if ( data['total_exchange_spoon'] ) {
-			this.totalExchangeSpoon = data['total_exchange_spoon'];
-		}
+	) {}
 
-		if ( data['exchange_price_per_spoon'] ) {
-			this.exchangePricePerSpoon = data['exchange_price_per_spoon'];
-		}
-
-		if ( data['monthly_pay_amount'] ) {
-			this.monthlyPayAmount = data['monthly_pay_amount'];
-		}
-
-	}
-
-	static deserialize(data: any): Budget {
-		const budget = new Budget();
-		budget.readRawData(data);
-		return budget;
-	}
 }

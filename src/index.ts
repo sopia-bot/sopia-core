@@ -71,17 +71,10 @@ export * from './api/noti/api-noti-all';
 export * from './api/noti/api-noti-all-confirm';
 export * from './api/noti/api-noti-unconfirmed';
 
-export * from './struct/struct';
 export * from './struct/api-struct';
-export * from './struct/user/user-struct';
-export * from './struct/user/user-voice-struct';
-export * from './struct/user/user-fanmessages';
-export * from './struct/user/user-topfan-struct';
-export * from './struct/user/user-sponsor';
-export * from './struct/sticker/static-stickers-struct';
-export * from './struct/sticker/sticker-struct';
-export * from './struct/sticker/sticker-category-struct';
+export * from './struct/sticker-struct';
 export * from './struct/play-struct';
+export * from './struct/user-struct';
 export * from './struct/rank-struct';
 export * from './struct/fanboard-info-struct';
 export * from './struct/socket-event-struct';
@@ -91,6 +84,7 @@ export * from './struct/budget-struct';
 export * from './struct/grants-struct';
 export * from './struct/push-settings-struct';
 export * from './struct/service-agreement-struct';
+export * from './struct/tier-struct';
 
 export * from './enum/cast-type';
 export * from './enum/login-type';

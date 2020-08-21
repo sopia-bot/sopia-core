@@ -27,21 +27,21 @@ export class NotiManager  {
 		return this.client.token;
 	}
 
-	async getNotifications() {
-		const notifications = new ApiManager(new ApiNotifications(), Notification.deserialize);
+	async getNotifications(): Promise<Notification> {
+		const notifications = new ApiManager<Notification>(new ApiNotifications(), Notification);
 		const res = await notifications.send();
-		return res;
+		return res.data;
 	}
 
-	async notiUnconfirmed() {
-		const unconfirmed = new ApiManager(new ApiNotiUnconfirmed(), NotiUnconfirmed.deserialize);
+	async notiUnconfirmed(): Promise<NotiUnconfirmed> {
+		const unconfirmed = new ApiManager<NotiUnconfirmed>(new ApiNotiUnconfirmed(), NotiUnconfirmed);
 		const res = await unconfirmed.send();
-		return res;
+		return res.data;
 	}
 
-	async notiAllConfirm() {
-		const confirm = new ApiManager(new ApiNotiAllConfirm(), Notification.deserialize);
+	async notiAllConfirm(): Promise<Notification> {
+		const confirm = new ApiManager<Notification>(new ApiNotiAllConfirm(), Notification);
 		const res = await confirm.send();
-		return res;
+		return res.data;
 	}
 }

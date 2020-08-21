@@ -5,123 +5,66 @@
  * Copyright (c) Tree Some. Licensed under the MIT License.
  */
 
-import { Struct } from './struct';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 import { NotiType } from '../enum/notification';
-import { User } from './user/user-struct';
-import { UserFanmessages } from './user/user-fanmessages';
+import { User, UserFanmessages } from './user-struct';
 
-export class NotiData implements Struct<NotiData> {
-	public bj?: User;
-	public user?: User;
-	public fancomment?: UserFanmessages;
+@Serializable()
+export class NotiData {
 
-	constructor() {}
+	constructor(
 
-	toJSON(): any {
-		const obj: any = {};
+		@JsonProperty('bj')
+		public bj: User,
 
-		if ( this.bj ) {
-			obj['bj'] = this.bj.toJSON();
-		}
+		@JsonProperty('user')
+		public user: User,
 
-		if ( this.user ) {
-			obj['user'] = this.user.toJSON();
-		}
+		@JsonProperty('fancomment')
+		public fancomment: UserFanmessages
 
-		if ( this.fancomment ) {
-			obj['fancomment'] = this.fancomment.toJSON();
-		}
+	) {}
 
-		return obj;
-	}
-
-	readRawData(data: any): void {
-		if ( data['bj'] ) {
-			this.bj = User.deserialize(data['bj']);
-		}
-
-		if ( data['user'] ) {
-			this.user = User.deserialize(data['user']);
-		}
-
-		if ( data['fancomment'] ) {
-			this.fancomment = UserFanmessages.deserialize(data['fancomment']);
-		}
-	}
-
-	static deserialize(data: any): NotiData {
-		const notiData = new NotiData();
-		notiData.readRawData(data);
-		return notiData;
-	}
 }
 
-export class NotiUnconfirmed implements Struct<NotiUnconfirmed> {
-	public count!: boolean;
+@Serializable()
+export class NotiUnconfirmed {
 
-	constructor() {}
+	constructor(
 
-	toJSON(): any {
-		const obj: any = {};
+		@JsonProperty('count')
+		public count: boolean
 
-		obj['count'] = this.count;
+	) {}
 
-		return obj;
-	}
-
-	readRawData(data: any): void {
-
-		this.count = data['count'];
-
-	}
-
-	static deserialize(data: any): NotiUnconfirmed {
-		const notiUnconfirmed = new NotiUnconfirmed();
-		notiUnconfirmed.readRawData(data);
-		return notiUnconfirmed;
-	}
 }
 
-export class Notification implements Struct<Notification> {
-	public id!: string;
-	public type!: NotiType;
-	public userId!: number;
-	public fromUser!: User;
-	public data!: NotiData;
-	public status!: number;
-	public created!: Date;
+@Serializable()
+export class Notification {
 
-	constructor() {}
+	constructor(
 
-	toJSON(): any {
-		const obj: any = {};
+		@JsonProperty('id')
+		public id: string,
 
-		obj['_id'] = this.id;
-		obj['type'] = this.type;
-		obj['user_id'] = this.userId;
-		obj['from_user'] = this.fromUser.toJSON();
-		obj['data'] = this.data.toJSON();
-		obj['status'] = this.status;
-		obj['created'] = this.created.toJSON();
+		@JsonProperty('type')
+		public type: NotiType,
 
-		return obj;
-	}
+		@JsonProperty('user_id')
+		public userId: number,
 
-	readRawData(data: any): void {
+		@JsonProperty('from_user')
+		public fromUser: User,
 
-		this.id = data['_id'];
-		this.type = data['type'];
-		this.userId = data['user_id'];
-		this.fromUser = User.deserialize(data['from_user']);
-		this.data = NotiData.deserialize(data['data']);
-		this.status = data['status'];
-		this.created = new Date(data['created']);
+		@JsonProperty('data')
+		public data: NotiData,
 
-	}
+		@JsonProperty('status')
+		public status: number,
 
-	static deserialize(data: any): Notification {
-		const notification = new Notification();
-		notification.readRawData(data);
-		return notification;
-	}
+		@JsonProperty('created')
+		public created: Date
+
+	) {}
+
 }

@@ -3,6 +3,8 @@
 		"module": "commonjs",
 		"noImplicitAny": true,
 		"removeComments": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
 		"pretty": true,
 		"strict": true,
 		"outDir": "dist",

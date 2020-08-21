@@ -6,7 +6,7 @@
  */
 
 import { ApiUsers } from '../api-users';
-import { User } from '../../struct/user/user-struct';
+import { User } from '../../struct/user-struct';
 
 export class ApiUsersInfo extends ApiUsers {
 	constructor(user: (User|number)) {

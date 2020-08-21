@@ -11,10 +11,7 @@ import { ReportType } from '../enum/report';
 
 import { Play } from '../struct/play-struct';
 import { Budget } from '../struct/budget-struct';
-import { User } from '../struct/user/user-struct';
-import { UserFanmessages } from '../struct/user/user-fanmessages';
-import { UserVoice } from '../struct/user/user-voice-struct';
-import { UserTopfan } from '../struct/user/user-topfan-struct';
+import { User, UserFanmessages, UserVoice, UserTopfan } from '../struct/user-struct';
 
 import { ApiManager } from './api-manager';
 import { ApiRequest } from '../api/api-request';
@@ -46,91 +43,93 @@ export class UserManager {
 	}
 
 	async userCast(user: (User|number), type: CastType = CastType.UPLOAD_CAST): Promise<Play[]> {
-		const apiUserCast = new ApiManager(new ApiUsersCast(user, type), Play.deserialize);
+		const apiUserCast = new ApiManager<Play>(new ApiUsersCast(user, type), Play);
 		const res = await apiUserCast.send();
 
 		return res.data;
 	}
 
 	async userFanmessages(user: (User|number), contents?: string): Promise<UserFanmessages[]> {
-		const apiUserFanmessages = new ApiManager(new ApiUsersFanmessages(user, contents), UserFanmessages.deserialize);
+		const apiUserFanmessages = new ApiManager<UserFanmessages>(new ApiUsersFanmessages(user, contents), UserFanmessages);
 		const res = await apiUserFanmessages.send();
 
 		return res.data;
 	}
 
 	async userFollow(user: (User|number)): Promise<User> {
-		const apiUserFollow = new ApiManager(new ApiUsersFollow(user), User.deserialize, this.Token);
+		const apiUserFollow = new ApiManager<User>(new ApiUsersFollow(user), User, this.Token);
 		const res = await apiUserFollow.send();
+
+		console.log(res);
 
 		return res.data[0];
 	}
 
 	async userFollowers(user: (User|number)): Promise<User[]> {
-		const apiUserFollowers = new ApiManager(new ApiUsersFollowers(user), User.deserialize);
+		const apiUserFollowers = new ApiManager<User>(new ApiUsersFollowers(user), User);
 		const res = await apiUserFollowers.send();
 
 		return res.data;
 	}
 
 	async userFollowings(user: (User|number)): Promise<User[]> {
-		const apiUserFollowings = new ApiManager(new ApiUsersFollowings(user), User.deserialize);
+		const apiUserFollowings = new ApiManager<User>(new ApiUsersFollowings(user), User);
 		const res = await apiUserFollowings.send();
 
 		return res.data;
 	}
 
 	async userUnfollow(user: (User|number)): Promise<User> {
-		const apiUserUnfollow = new ApiManager(new ApiUsersUnfollow(user), User.deserialize, this.Token);
+		const apiUserUnfollow = new ApiManager<User>(new ApiUsersUnfollow(user), User);
 		const res = await apiUserUnfollow.send();
 
 		return res.data[0];
 	}
 
 	async userInfo(user: (User|number)): Promise<User> {
-		const apiUserInfo = new ApiManager(new ApiUsersInfo(user), User.deserialize, this.Token);
+		const apiUserInfo = new ApiManager<User>(new ApiUsersInfo(user), User);
 		const res = await apiUserInfo.send();
 
 		return res.data[0];
 	}
 
 	async userVoice(user: (User|number)): Promise<UserVoice> {
-		const apiUserVoice = new ApiManager(new ApiUsersVoice(user), UserVoice.deserialize);
+		const apiUserVoice = new ApiManager<UserVoice>(new ApiUsersVoice(user), UserVoice);
 		const res = await apiUserVoice.send();
 
 		return res.data[0];
 	}
 
 	async userMiniProfile(user: (User|number)): Promise<User> {
-		const apiUserMiniProfile = new ApiManager(new ApiUsersMiniProfile(user), User.deserialize);
+		const apiUserMiniProfile = new ApiManager<User>(new ApiUsersMiniProfile(user), User);
 		const res = await apiUserMiniProfile.send();
 
 		return res.data[0];
 	}
 
-	async userTopfan(user: (User|number)): Promise<UserTopfan[]> {
-		const apiUserTopfan = new ApiManager(new ApiUsersTopfan(user), UserTopfan.deserialize, this.Token);
+	async userTopfan(user: (User|number)): Promise<ApiManager<UserTopfan>> /* for next, prev */ {
+		const apiUserTopfan = new ApiManager<UserTopfan>(new ApiUsersTopfan(user), UserTopfan);
 		const res = await apiUserTopfan.send();
 
-		return res.data;
+		return res;
 	}
 
-	async userReport(user: (User|number), type: ReportType): Promise<ApiManager> {
-		const apiUserReport = new ApiManager(new ApiUsersReport(user, type), undefined, this.Token);
+	async userReport(user: (User|number), type: ReportType): Promise<ApiManager<void>> {
+		const apiUserReport = new ApiManager<void>(new ApiUsersReport(user, type));
 		const res = await apiUserReport.send();
 
 		return res;
 	}
 
 	async userBudget(): Promise<Budget> {
-		const apiUserBudget = new ApiManager(new ApiUsersBudget(), Budget.deserialize, this.Token);
+		const apiUserBudget = new ApiManager<Budget>(new ApiUsersBudget(), Budget);
 		const res = await apiUserBudget.send();
 
 		return res.data[0];
 	}
 
 	async userToday(): Promise<User[]> {
-		const apiUserToday = new ApiManager(new ApiUsersToday(), User.deserialize);
+		const apiUserToday = new ApiManager<User>(new ApiUsersToday(), User);
 		const res = await apiUserToday.send();
 
 		return res.data;

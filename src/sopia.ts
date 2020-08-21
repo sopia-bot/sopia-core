@@ -7,7 +7,7 @@
 
 import { Country } from './enum/country';
 import { LoginType } from './enum/login-type';
-import { User } from './struct/user/user-struct';
+import { User } from './struct/user-struct';
 
 export interface SpoonAPI {
 	api: string;

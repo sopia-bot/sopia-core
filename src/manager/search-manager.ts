@@ -6,7 +6,7 @@
  */
 import { Client } from '../client';
 import { ContentType } from '../enum/search';
-import { User } from '../struct/user/user-struct';
+import { User } from '../struct/user-struct';
 import { Play } from '../struct/play-struct';
 
 import { ApiManager } from './api-manager';
@@ -27,14 +27,14 @@ export class SearchManager {
 	}
 
 	async searchUser(keyword: string): Promise<User[]> {
-		const apiSearchUser = new ApiManager(new ApiSearchUser(keyword), User.deserialize);
+		const apiSearchUser = new ApiManager<User>(new ApiSearchUser(keyword), User);
 		const res = await apiSearchUser.send();
 
 		return res.data;
 	}
 
 	async searchContent(keyword: string, content_type: ContentType = ContentType.LIVE): Promise<Play[]> {
-		const apiSearchContent = new ApiManager(new ApiSearchContent(keyword, content_type), Play.deserialize);
+		const apiSearchContent = new ApiManager<Play>(new ApiSearchContent(keyword, content_type), Play);
 		const res = await apiSearchContent.send();
 
 		return res.data;

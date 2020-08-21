@@ -5,48 +5,34 @@
  * Copyright (c) Tree Some. Licensed under the MIT License.
  */
 
-import { Struct } from './struct';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export class Grants implements Struct<Grants> {
-	public login: number = 0;
-	public cast: number = 0;
-	public talk: number = 0;
-	public adult: number = 0;
-	public auth: number = 0;
-	public phone: number = 0;
-	public payment: number = 0;
+@Serializable()
+export class Grants {
 
-	constructor() {}
+	constructor(
 
-	toJSON(): any {
-		const obj: any = {};
+		@JsonProperty('login')
+		public login: number,
 
-		obj['login'] = this.login;
-		obj['cast'] = this.cast;
-		obj['talk'] = this.talk;
-		obj['adult'] = this.adult;
-		obj['auth'] = this.auth;
-		obj['phone'] = this.phone;
-		obj['payment'] = this.payment;
+		@JsonProperty('cast')
+		public cast: number,
 
-		return obj;
-	}
+		@JsonProperty('talk')
+		public talk: number,
 
-	readRawData(data: any): void {
-		
-		this.login = data['login'];
-		this.cast = data['cast'];
-		this.talk = data['talk'];
-		this.adult = data['adult'];
-		this.auth = data['auth'];
-		this.phone = data['phone'];
-		this.payment = data['payment'];
+		@JsonProperty('adult')
+		public adult: number,
 
-	}
+		@JsonProperty('auth')
+		public auth: number,
 
-	static deserialize(data: any): Grants {
-		const grants = new Grants();
-		grants.readRawData(data);
-		return grants;
-	}
+		@JsonProperty('phone')
+		public phone: number,
+
+		@JsonProperty('payment')
+		public payment: number
+
+	) {}
+
 }

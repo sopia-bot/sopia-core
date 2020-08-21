@@ -6,7 +6,7 @@
  */
 
 import { ApiUsersInfo } from './api-users-info';
-import { User } from '../../struct/user/user-struct';
+import { User } from '../../struct/user-struct';
 
 export class ApiUsersFanmessages extends ApiUsersInfo {
 	constructor(user: (User|number), contents?: string) {

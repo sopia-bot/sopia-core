@@ -7,7 +7,7 @@
 
 import { ApiUsersInfo } from './api-users-info';
 import { CastType } from '../../enum/cast-type';
-import { User } from '../../struct/user/user-struct';
+import { User } from '../../struct/user-struct';
 
 export class ApiUsersCast extends ApiUsersInfo {
 	constructor(user: (User|number), type: CastType = CastType.UPLOAD_CAST) {

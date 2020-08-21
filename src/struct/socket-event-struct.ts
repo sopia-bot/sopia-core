@@ -5,142 +5,51 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 import { Play } from './play-struct';
-import { User } from './user/user-struct';
-import { WebSocketEvent, WebSocketEventData, WebSocketRankOrder, WebSocketResult } from '../struct/websocket-struct';
-import { Struct } from './struct';
+import { User } from './user-struct';
+import { WebSocketEvent, WebSocketEventData, WebSocketRankOrder, WebSocketResult } from './websocket-struct';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
+@Serializable()
+export class SpoonSocketEvent {
 
-export class SpoonSocketEvent implements Struct<SpoonSocketEvent> {
-	public event!: string;
-	public type!: string;
-	public data?: WebSocketEventData;
-	public rooms?: number;
-	public liveId?: number;
-	public userAgent?: string;
-	public appVersion?: string;
-	public reconnect?: boolean;
-	public order?: WebSocketRankOrder;
-	public result?: WebSocketResult;
-	public token?: string;
-	public userId?: number;
+	constructor(
 
-	constructor() {
-	}
+		@JsonProperty('event')
+		public event: string,
 
-	toJSON(): any {
-		const obj: any = {};
-		if ( this.event ) {
-			obj['event'] = this.event;
-		}
+		@JsonProperty('type')
+		public type: string,
 
-		if ( this.type ) {
-			obj['type'] = this.type;
-		}
+		@JsonProperty('data')
+		public data: WebSocketEventData,
 
-		if ( this.rooms ) {
-			obj['rooms'] = this.rooms;
-		}
+		@JsonProperty('rooms')
+		public rooms: number,
 
-		if ( this.liveId ) {
-			obj['live_id'] = this.liveId;
-		}
+		@JsonProperty('live_id')
+		public liveId: number,
 
-		if ( this.userAgent ) {
-			obj['useragent'] = this.userAgent;
-		}
+		@JsonProperty('useragent')
+		public userAgent: string,
 
-		if ( this.appVersion ) {
-			obj['appversion'] = this.appVersion;
-		}
+		@JsonProperty('appversion')
+		public appVersion: string,
 
-		if ( typeof this.reconnect !== 'object' ) {
-			obj['reconnect'] = this.reconnect;
-		}
+		@JsonProperty('reconnect')
+		public reconnect: boolean,
 
-		if ( this.order ) {
-			obj['order'] = this.order;
-		}
+		@JsonProperty('order')
+		public order: WebSocketRankOrder,
 
-		if ( this.result ) {
-			obj['result'] = this.result;
-		}
+		@JsonProperty('result')
+		public result: WebSocketResult,
 
-		if ( this.token ) {
-			obj['token'] = this.token;
-		}
+		@JsonProperty('token')
+		public token: string,
 
-		if ( this.userId ) {
-			obj['user_id'] = this.userId;
-		}
+		@JsonProperty('user_id')
+		public userId: number
 
-		return obj;
-	}
+	) {}
 
-	readRawData(data: any): void {
-		if ( data['event'] ) {
-			this.event = data['event'];
-		}
-
-		if ( data['type'] ) {
-			this.type = data['type'];
-		}
-
-		if ( data['rooms'] ) {
-			this.rooms = Number(data['rooms']);
-		}
-
-		if ( data['live_id'] ) {
-			this.liveId = Number(data['live_id']);
-		}
-
-		if ( data['useragent'] ) {
-			this.userAgent = data['useragent'];
-		}
-
-		if ( data['appversion'] ) {
-			this.appVersion = data['appversion'];
-		}
-
-		if ( typeof data['reconnect'] !== 'undefined' ) {
-			this.reconnect = data['reconnect'];
-		}
-
-		if ( data['order'] ) {
-			this.order = data['order'];
-		}
-
-		if ( data['result'] ) {
-			this.result = data['result'];
-		}
-
-		if ( data['user_id'] ) {
-			this.userId = data['user_id'];
-		}
-
-		if ( data['token'] ) {
-			this.token = data['token'];
-		}
-
-		if ( data['data'] ) {
-			this.data = {};
-			if ( data['data']['live'] ) {
-				this.data['live'] = Play.deserialize(data['data']['live']);
-			}
-
-			if ( data['data']['author'] ) {
-				this.data['author'] = User.deserialize(data['data']['author']);
-			}
-
-			if ( data['data']['message'] ) {
-				this.data['message'] = data['data']['message'];
-			}
-		}
-	}
-
-	static deserialize(data: any): SpoonSocketEvent {
-		const spoonSocketEvent = new SpoonSocketEvent();
-		spoonSocketEvent.readRawData(data);
-		return spoonSocketEvent;
-	}
 }
-

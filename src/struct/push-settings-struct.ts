@@ -5,62 +5,31 @@
  * Copyright (c) Tree Some. Licensed under the MIT License.
  */
 
-import { Struct } from './struct';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export class PushSettings implements Struct<PushSettings> {
-	public bj: boolean = false;
-	public likeOrPresent: boolean = false;
-	public commentOrMentionCast: boolean = false;
-	public commentOrMentionTalk: boolean = false;
-	public commentOrMentionBoard: boolean = false;
-	public eventOrMarketing: boolean = false;
+@Serializable()
+export class PushSettings {
 
-	constructor() {}
+	constructor(
 
-	toJSON(): any {
-		const obj: any = {};
+		@JsonProperty('bj')
+		public bj: boolean,
 
-		obj['bj'] = this.bj;
-		obj['like_or_present'] = this.likeOrPresent;
-		obj['comment_or_mention_cast'] = this.commentOrMentionCast;
-		obj['comment_or_mention_talk'] = this.commentOrMentionTalk;
-		obj['comment_or_mention_board'] = this.commentOrMentionBoard;
-		obj['event_or_marketing'] = this.eventOrMarketing;
+		@JsonProperty('like_or_present')
+		public likeOrPresent: boolean,
 
-		return obj;
-	}
+		@JsonProperty('comment_or_mention_cast')
+		public commentOrMentionCast: boolean,
 
-	readRawData(data: any): void {
-		
-		if ( data['bj'] ) {
-			this.bj = data['bj'];
-		}
+		@JsonProperty('comment_or_mention_talk')
+		public commentOrMentionTalk: boolean,
 
-		if ( data['like_or_present'] ) {
-			this.likeOrPresent = data['like_or_present'];
-		}
+		@JsonProperty('comment_or_mention_board')
+		public commentOrMentionBoard: boolean,
 
-		if ( data['comment_or_mention_cast'] ) {
-			this.commentOrMentionCast = data['comment_or_mention_cast'];
-		}
+		@JsonProperty('event_or_marketing')
+		public eventOrMarketing: boolean,
 
-		if ( data['comment_or_mention_talk'] ) {
-			this.commentOrMentionTalk = data['comment_or_mention_talk'];
-		}
+	) {}
 
-		if ( data['comment_or_mention_board'] ) {
-			this.commentOrMentionBoard = data['comment_or_mention_board'];
-		}
-
-		if ( data['event_or_marketing'] ) {
-			this.eventOrMarketing = data['event_or_marketing'];
-		}
-
-	}
-
-	static deserialize(data: any): PushSettings {
-		const pushSettings = new PushSettings();
-		pushSettings.readRawData(data);
-		return pushSettings;
-	}
 }

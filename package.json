@@ -30,6 +30,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"axios": "^0.19.2",
+		"typescript-json-serializer": "^2.3.3",
 		"ws": "^7.3.0"
 	}
 }

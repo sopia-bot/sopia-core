@@ -9,6 +9,7 @@ import { WsManager } from './ws-manager';
 import { Client } from '../client';
 import { LiveEvent, LiveType } from '../enum/socket-live';
 import { Play } from '../struct/play-struct';
+import { deserialize } from 'typescript-json-serializer';
 
 export class SocketManager extends WsManager {
 	private live!: Play;
@@ -18,10 +19,10 @@ export class SocketManager extends WsManager {
 	constructor(live: (Play|number), client: Client) {
 		super();
 		if ( typeof live === 'number' ) {
-			live = Play.deserialize({ id: live });
+			live = deserialize<Play>({ id: live }, Play);
+		} else {
+			this.live = live;
 		}
-
-		this.live = live;
 		this.client = client;
 	}
 

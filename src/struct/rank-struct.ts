@@ -5,63 +5,30 @@
  * Copyright (c) Tree Some. Licensed under the MIT License.
  */
 
-import { User } from './user/user-struct';
-import { Struct } from './struct';
+import { User } from './user-struct';
 import { Play } from './play-struct';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export class Rank implements Struct<Rank> {
-	public statDate: string = '';
-	public score: number = 0;
-	public updown: string = '-';
-	public author!: User;
-	public cast!: Play;
+@Serializable()
+export class Rank {
 
-	constructor() {
-	}
+	constructor(
 
-	toJSON(): any {
-		const obj: any = {};
+		@JsonProperty('stat_date')
+		public statDate: string,
 
-		obj['stat_date'] = this.statDate;
-		obj['score'] = this.score;
-		obj['updown'] = this.updown;
+		@JsonProperty('score')
+		public score: number,
 
-		if ( this.author ) {
-			obj['author'] = this.author;
-		}
+		@JsonProperty('updown')
+		public updown: string,
 
-		if ( this.cast ) {
-			obj['cast'] = this.cast;
-		}
+		@JsonProperty('author')
+		public author: User,
 
-		return obj;
-	}
+		@JsonProperty('cast')
+		public cast: Play
 
-	readRawData(data: any): void {
-		if ( data['stat_date'] ) {
-			this.statDate = data['stat_date'];
-		}
+	) {}
 
-		if ( data['score'] ) {
-			this.score = data['score'];
-		}
-
-		if ( data['updown'] ) {
-			this.updown = data['updown'];
-		}
-
-		if ( data['author'] ) {
-			this.author = User.deserialize(data['author']);
-		}
-
-		if ( data['cast'] ) {
-			this.cast = Play.deserialize(data['cast']);
-		}
-	}
-
-	static deserialize(data: any): Rank {
-		const rank = new Rank();
-		rank.readRawData(data);
-		return rank;
-	}
 }

@@ -6,7 +6,7 @@
  */
 
 import { ApiUsersInfo } from './api-users-info';
-import { User } from '../../struct/user/user-struct';
+import { User } from '../../struct/user-struct';
 import { ReportType } from '../../enum/report';
 
 export class ApiUsersReport extends ApiUsersInfo {

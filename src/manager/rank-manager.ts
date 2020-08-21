@@ -28,28 +28,28 @@ export class RankManager {
 	}
 
 	async fanRank(date_type?: DateType): Promise<Rank[]> {
-		const apiRanksFan = new ApiManager(new ApiRanksFan(date_type), Rank.deserialize);
+		const apiRanksFan = new ApiManager<Rank>(new ApiRanksFan(date_type), Rank);
 		const res = await apiRanksFan.send();
 
 		return res.data;
 	}
 
 	async liveBJRank(date_type?: DateType): Promise<Rank[]> {
-		const apiRanksLiveBJ = new ApiManager(new ApiRanksLiveBJ(date_type), Rank.deserialize);
+		const apiRanksLiveBJ = new ApiManager<Rank>(new ApiRanksLiveBJ(date_type), Rank);
 		const res = await apiRanksLiveBJ.send();
 
 		return res.data;
 	}
 
 	async castBJRank(date_type?: DateType): Promise<Rank[]> {
-		const apiRanksCastBJ = new ApiManager(new ApiRanksCastBJ(date_type), Rank.deserialize);
+		const apiRanksCastBJ = new ApiManager<Rank>(new ApiRanksCastBJ(date_type), Rank);
 		const res = await apiRanksCastBJ.send();
 
 		return res.data;
 	}
 
 	async castRank(date_type?: DateType): Promise<Rank[]> {
-		const apiRanksCast = new ApiManager(new ApiRanksCast(date_type), Rank.deserialize);
+		const apiRanksCast = new ApiManager<Rank>(new ApiRanksCast(date_type), Rank);
 		const res = await apiRanksCast.send();
 
 		return res.data;

@@ -7,7 +7,7 @@
 
 import { ApiLivesInfo } from './api-lives-info';
 import { Play } from '../../struct/play-struct';
-import { User } from '../../struct/user/user-struct';
+import { User } from '../../struct/user-struct';
 
 export class ApiLivesBlock extends ApiLivesInfo {
 	constructor(live: (Play|number), userInfo: User) {

@@ -7,86 +7,56 @@
 
 import { ApiRequest } from '../api/api-request';
 import { ApiResult } from '../struct/api-struct';
+import { Serializer, ObjectMapper } from 'json-proxy-mapper';
+import { deserialize } from 'typescript-json-serializer';
 
-export class ApiManager {
+export class ApiManager<T extends (object|void)> {
 	public response!: ApiResult;
 	public data!: any;
 
 	constructor(
 		private request: ApiRequest,
-		private deserialize?: Function,
-		token?: string,
+		private Data?: new (...args: any[]) => T,
+		private token?: string
 	) {
-		if ( token ) {
-			this.request.token = token;
+			console.log('Token', this.token);
+		if ( this.token ) {
+			this.request.token = this.token;
 		}
 	}
 
-	set token(t: string) {
-		this.request.token = t;
+	private deserializeResult(res: ApiResult) {
+		this.response = res;
+
+		if ( this.response.results ) {
+			if ( this.Data ) {
+				const d = [];
+				for ( const result of this.response.results ) {
+					console.log(result, this.Data);
+					d.push(deserialize<T>(result, this.Data));
+				}
+				this.data = d;
+			} else {
+				this.data = this.response.results;
+			}
+		}
 	}
 
-	get token() {
-		return this.request.token;
-	}
-
-	async send(): Promise<ApiManager> {
+	async send(): Promise<ApiManager<T>> {
 		const res = await this.request.send();
-		if ( res !== null ) {
-			this.response = res;
-
-			if ( this.response.results ) {
-				if ( typeof this.deserialize === 'function' ) {
-					const d = [];
-					for ( const result of this.response.results ) {
-						d.push(this.deserialize(result));
-					}
-					this.data = d;
-				} else {
-					this.data = this.response.results;
-				}
-			}
-		}
+		res !== null && this.deserializeResult(res);
 		return this;
 	}
 
-	async next(): Promise<ApiManager> {
+	async next(): Promise<ApiManager<T>> {
 		const res = await this.request.next();
-		if ( res !== null ) {
-			this.response = res;
-
-			if ( this.response.results ) {
-				if ( typeof this.deserialize === 'function' ) {
-					const d = [];
-					for ( const result of this.response.results ) {
-						d.push(this.deserialize(result));
-					}
-					this.data = d;
-				} else {
-					this.data = this.response.results;
-				}
-			}
-		}
+		res !== null && this.deserializeResult(res);
 		return this;
 	}
 
-	async prev(): Promise<ApiManager> {
+	async prev(): Promise<ApiManager<T>> {
 		const res = await this.request.prev();
-		if ( res !== null ) {
-			this.response = res;
-
-			if ( this.response.results ) {
-				if ( typeof this.deserialize === 'function' ) {
-					const d = [];
-					for ( const result of this.response.results ) {
-						d.push(this.deserialize(result));
-					}
-					this.data = d;
-				} else {
-					this.data = this.response.results;
-				}
-			}
-		}
+		res !== null && this.deserializeResult(res);
 		return this;
 	}
 }

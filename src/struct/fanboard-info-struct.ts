@@ -4,47 +4,23 @@
  *
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
-import { User } from './user/user-struct';
-import { Struct } from './struct';
+import { User } from './user-struct';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export class FanboardInfo implements Struct<FanboardInfo> {
-	public totalCommentAuthorCount: number = 0;
-	public isNewComment: boolean = false;
-	public latestCommentAuthors: User[] = [];
+@Serializable()
+export class FanboardInfo {
 
-	constructor() {
-	}
+	constructor(
 
-	toJSON(): any {
-		const obj: any = {};
+		@JsonProperty('total_comment_author_count')
+		public totalCommentAuthorCount: number,
 
-		obj['total_comment_author_count'] = this.totalCommentAuthorCount;
-		obj['is_new_comment'] = this.isNewComment;
-		obj['latest_comment_authors'] = this.latestCommentAuthors;
+		@JsonProperty('is_new_comment')
+		public isNewComment: boolean,
 
-		return obj;
-	}
+		@JsonProperty('latest_comment_authors')
+		public latestCommentAuthors: User[]
 
-	readRawData(data: any): void {
-		if ( data['total_comment_author_count'] ) {
-			this.totalCommentAuthorCount = data['total_comment_author_count'];
-		}
+	) {}
 
-		if ( data['is_new_comment'] ) {
-			this.isNewComment = data['is_new_comment'];
-		}
-
-		if ( data['latest_comment_authors'] ) {
-			for ( const author of data['latest_comment_authors'] ) {
-				const user = User.deserialize(author);
-				this.latestCommentAuthors.push(user);
-			}
-		}
-	}
-
-	static deserialize(data: any): FanboardInfo {
-		const info = new FanboardInfo();
-		info.readRawData(data);
-		return info;
-	}
 }

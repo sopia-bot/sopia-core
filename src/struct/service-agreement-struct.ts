@@ -5,76 +5,40 @@
  * Copyright (c) Tree Some. Licensed under the MIT License.
  */
 
-import { Struct } from './struct';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export class ServiceAgreement implements Struct<ServiceAgreement> {
-	public serviceTerms: boolean = false;
-	public personalInfoCol: boolean = false;
-	public personalInfoExp: boolean = false;
-	public deviceAccess: boolean = false;
-	public marketing: boolean = false;
-	public voiceInfoExp: any; // unknown type
-	public birthGenderNicknameCol: boolean = false; 
-	public overFourteenCol: boolean = false;
-	public legalRepresentativeInfoCol: boolean = false;
+@Serializable()
+export class ServiceAgreement {
 
-	constructor() {}
+	constructor(
 
-	toJSON(): any {
-		const obj: any = {};
+		@JsonProperty('service_terms')
+		public serviceTerms: boolean,
 
-		obj['service_terms'] = this.serviceTerms;
-		obj['personal_info_col'] = this.personalInfoCol;
-		obj['personal_info_exp'] = this.personalInfoExp;
-		obj['device_access'] = this.deviceAccess;
-		obj['marketing'] = this.marketing;
-		obj['voice_info_exp'] = this.voiceInfoExp;
-		obj['birth_gender_nickname_col'] = this.birthGenderNicknameCol;
-		obj['over_fourteen_col'] = this.overFourteenCol;
-		obj['legal_representative_info_col'] = this.legalRepresentativeInfoCol;
+		@JsonProperty('personal_info_col')
+		public personalInfoCol: boolean,
 
-		return obj;
-	}
+		@JsonProperty('personal_info_exp')
+		public personalInfoExp: boolean,
 
-	readRawData(data: any): void {
-		
-		if ( data['service_terms'] ) {
-			this.serviceTerms = data['service_terms'];
-		}
+		@JsonProperty('device_access')
+		public deviceAccess: boolean,
 
-		if ( data['personal_info_col'] ) {
-			this.personalInfoCol = data['personal_info_col'];
-		}
+		@JsonProperty('marketing')
+		public marketing: boolean,
 
-		if ( data['personal_info_exp'] ) {
-			this.personalInfoExp = data['personal_info_exp'];
-		}
+		@JsonProperty('voice_info_exp')
+		public voiceInfoExp: boolean,
 
-		if ( data['device_access'] ) {
-			this.deviceAccess = data['device_access'];
-		}
+		@JsonProperty('birth_gender_nickname_col')
+		public birthGenderNicknameCol: boolean,
 
-		if ( data['voice_info_exp'] ) {
-			this.voiceInfoExp = data['voice_info_exp'];
-		}
+		@JsonProperty('over_fourteen_col')
+		public overFourteenCol: boolean,
 
-		if ( data['birth_gender_nickname_col'] ) {
-			this.birthGenderNicknameCol = data['birth_gender_nickname_col'];
-		}
+		@JsonProperty('legal_representative_info_col')
+		public legalRepresentativeInfoCol: boolean
 
-		if ( data['over_fourteen_col'] ) {
-			this.overFourteenCol = data['over_fourteen_col'];
-		}
+	) {}
 
-		if ( data['legal_representative_info_col'] ) {
-			this.legalRepresentativeInfoCol = data['legal_representative_info_col'];
-		}
-
-	}
-
-	static deserialize(data: any): ServiceAgreement {
-		const serviceAgreement = new ServiceAgreement();
-		serviceAgreement.readRawData(data);
-		return serviceAgreement;
-	}
 }

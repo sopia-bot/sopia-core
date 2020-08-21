@@ -10,8 +10,10 @@ import { SOPIA } from './sopia';
 import { Country, CountryNumber  } from './enum/country';
 import { LoginType } from './enum/login-type';
 
-import { User } from './struct/user/user-struct';
-import { StaticStickers } from './struct/sticker/static-stickers-struct';
+import { deserialize } from 'typescript-json-serializer';
+
+import { User } from './struct/user-struct';
+import { StaticStickers } from './struct/sticker-struct';
 
 import { ApiLogin } from './api/api-login';
 
@@ -86,7 +88,7 @@ export class Client extends SOPIA {
 	async initSticker() {
 		const res = await axios.get(`https://static.spooncast.net/${this.country}/stickers/index.json`);
 		if ( res.data ) {
-			this.stickers = StaticStickers.deserialize(res.data);
+			this.stickers = deserialize<StaticStickers>(res.data, StaticStickers);
 		}
 		return this.stickers;
 	}
@@ -98,10 +100,10 @@ export class Client extends SOPIA {
 
 		const api = new ApiLogin(sns_type, sns_id, password, this.country || Country.KOREA);
 		const res = await api.send();
-		const user = User.deserialize(res.results[0]);
+		const user = deserialize<User>(res.results[0], User);
 
 		this.user = user;
-		this.user.token = this.token;
+		this.user.token = this.token!;
 		return user;
 	}
 
