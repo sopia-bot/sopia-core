@@ -88,7 +88,7 @@ export class UserManager {
 	}
 
 	async userInfo(user: (User|number)): Promise<User> {
-		const apiUserInfo = new ApiManager(new ApiUsersInfo(user), User.deserialize);
+		const apiUserInfo = new ApiManager(new ApiUsersInfo(user), User.deserialize, this.Token);
 		const res = await apiUserInfo.send();
 
 		return res.data[0];

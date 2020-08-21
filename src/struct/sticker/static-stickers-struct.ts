@@ -37,7 +37,7 @@ export class StaticStickers implements Struct<StaticStickers> {
 	}
 
 	readRawData(data: any): void {
-		
+
 		if ( typeof data['version'] !== 'undefined' ) {
 			this.version = data['version'];
 		}

@@ -106,16 +106,17 @@ export class Client extends SOPIA {
 	}
 
 	async loginToken(user: (User|number), token: string): Promise<User> {
+		this.token = token;
+
 		const u = await this.userManager.userInfo(user);
 		this.user = u;
 		this.user.token = this.token;
-		this.token = token;
 
 		return this.user;
 	}
 
 	snsLoginURL(sns_type: string): string {
-		// parse the localStorage.getItem('SPOONCAST_requestBySnsLogin')
+		// should parsing localStorage.getItem('SPOONCAST_requestBySnsLogin')
 		return `https://www.spooncast.net/${this.country}/oauth/authorize?sns_type=${sns_type}&is_jwt=true&is_agree=0&ts=${new Date().getTime()}`;
 	}
 }
