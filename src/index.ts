@@ -73,6 +73,7 @@ export * from './api/noti/api-noti-all-confirm';
 export * from './api/noti/api-noti-unconfirmed';
 
 export * from './api/talks/api-talks-popular';
+export * from './api/talks/api-talks-top';
 
 export * from './struct/api-struct';
 export * from './struct/sticker-struct';

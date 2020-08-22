@@ -6,7 +6,6 @@
  */
 
 import { ApiTalks } from '../api-talks';
-import { Category } from '../../enum/category';
 
 export class ApiTalksPopular extends ApiTalks {
 	constructor(page_size: number = 6) {

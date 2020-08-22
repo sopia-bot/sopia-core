@@ -12,6 +12,7 @@ import { Play } from '../struct/play-struct';
 import { ApiManager } from './api-manager';
 import { ApiTalks } from '../api/api-talks';
 import { ApiTalksPopular } from '../api/talks/api-talks-popular';
+import { ApiTalksTop } from '../api/talks/api-talks-top';
 
 export class TalkManager {
 
@@ -39,6 +40,13 @@ export class TalkManager {
 		const res = await apiTalksPopular.send();
 
 		return res;
+	}
+
+	async talkTop(): Promise<Play[]> /* for next, previous request */ {
+		const apiTalksTop = new ApiManager<Play>(new ApiTalksTop(), Play, this.Token);
+		const res = await apiTalksTop.send();
+
+		return res.data;
 	}
 
 }
