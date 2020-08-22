@@ -11,6 +11,7 @@ import { Play } from '../struct/play-struct';
 
 import { ApiManager } from './api-manager';
 import { ApiTalks } from '../api/api-talks';
+import { ApiTalksPopular } from '../api/talks/api-talks-popular';
 
 export class TalkManager {
 
@@ -27,8 +28,15 @@ export class TalkManager {
 	}
 
 	async talkList(): Promise<ApiManager<Play>> /* for next, previous request */ {
-		const apiCasts = new ApiManager<Play>(new ApiTalks(''), Play);
-		const res = await apiCasts.send();
+		const apiTalksList = new ApiManager<Play>(new ApiTalks(''), Play, this.Token);
+		const res = await apiTalksList.send();
+
+		return res;
+	}
+
+	async talkPopular(page_size: number = 6): Promise<ApiManager<Play>> /* for next, previous request */ {
+		const apiTalksPopular = new ApiManager<Play>(new ApiTalksPopular(page_size), Play, this.Token);
+		const res = await apiTalksPopular.send();
 
 		return res;
 	}
