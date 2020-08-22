@@ -80,14 +80,14 @@ export class UserManager {
 	}
 
 	async userUnfollow(user: (User|number)): Promise<User> {
-		const apiUserUnfollow = new ApiManager<User>(new ApiUsersUnfollow(user), User);
+		const apiUserUnfollow = new ApiManager<User>(new ApiUsersUnfollow(user), User, this.Token);
 		const res = await apiUserUnfollow.send();
 
 		return res.data[0];
 	}
 
 	async userInfo(user: (User|number)): Promise<User> {
-		const apiUserInfo = new ApiManager<User>(new ApiUsersInfo(user), User);
+		const apiUserInfo = new ApiManager<User>(new ApiUsersInfo(user), User, this.Token);
 		const res = await apiUserInfo.send();
 
 		return res.data[0];
@@ -115,14 +115,14 @@ export class UserManager {
 	}
 
 	async userReport(user: (User|number), type: ReportType): Promise<ApiManager<void>> {
-		const apiUserReport = new ApiManager<void>(new ApiUsersReport(user, type));
+		const apiUserReport = new ApiManager<void>(new ApiUsersReport(user, type), undefined, this.Token);
 		const res = await apiUserReport.send();
 
 		return res;
 	}
 
 	async userBudget(): Promise<Budget> {
-		const apiUserBudget = new ApiManager<Budget>(new ApiUsersBudget(), Budget);
+		const apiUserBudget = new ApiManager<Budget>(new ApiUsersBudget(), Budget, this.Token);
 		const res = await apiUserBudget.send();
 
 		return res.data[0];

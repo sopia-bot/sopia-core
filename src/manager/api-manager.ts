@@ -18,7 +18,6 @@ export class ApiManager<T extends (object|void)> {
 		private Data?: new (...args: any[]) => T,
 		private token?: string
 	) {
-			console.log('Token', this.token);
 		if ( this.token ) {
 			this.request.token = this.token;
 		}
