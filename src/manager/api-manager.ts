@@ -30,7 +30,6 @@ export class ApiManager<T extends (object|void)> {
 			if ( this.Data ) {
 				const d = [];
 				for ( const result of this.response.results ) {
-					console.log(result, this.Data);
 					d.push(deserialize<T>(result, this.Data));
 				}
 				this.data = d;

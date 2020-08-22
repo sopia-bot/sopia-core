@@ -17,6 +17,7 @@ export * from './api/api-login';
 export * from './api/api-ranks';
 export * from './api/api-search';
 export * from './api/api-notifications';
+export * from './api/api-talks';
 
 export * from './api/users/api-users-info';
 export * from './api/users/api-users-follow';
@@ -106,3 +107,4 @@ export * from './manager/socket-manager';
 export * from './manager/event-manager';
 export * from './manager/search-manager';
 export * from './manager/noti-manager';
+export * from './manager/talk-manager';

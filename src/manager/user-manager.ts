@@ -60,8 +60,6 @@ export class UserManager {
 		const apiUserFollow = new ApiManager<User>(new ApiUsersFollow(user), User, this.Token);
 		const res = await apiUserFollow.send();
 
-		console.log(res);
-
 		return res.data[0];
 	}
 

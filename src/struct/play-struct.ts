@@ -72,7 +72,28 @@ export class Play {
 		public textCommentCount: number,
 
 		@JsonProperty('is_live_call')
-		public isLiveCall: boolean
+		public isLiveCall: boolean,
+
+		@JsonProperty('text')
+		public text: string,
+
+		@JsonProperty('banner_img_url')
+		public bannerImgUrl: string,
+
+		@JsonProperty('voice_comment_count')
+		public voiceCommentCount: number,
+
+		@JsonProperty('is_event')
+		public isEvent: boolean,
+
+		@JsonProperty('is_private')
+		public isPrivate: boolean,
+
+		@JsonProperty('expired')
+		public expired: any, // unknown type.
+
+		@JsonProperty('is_composited')
+		public isComposited: boolean
 
 	) {}
 
