@@ -7,7 +7,6 @@
 
 import { ApiRequest } from '../api/api-request';
 import { ApiResult } from '../struct/api-struct';
-import { Serializer, ObjectMapper } from 'json-proxy-mapper';
 import { deserialize } from 'typescript-json-serializer';
 
 export class ApiManager<T extends (object|void)> {

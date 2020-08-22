@@ -11,7 +11,7 @@ import { PushSettings } from './push-settings-struct';
 import { Budget } from './budget-struct';
 import { Grants } from './grants-struct';
 import { ServiceAgreement } from './service-agreement-struct';
-import { Play } from './play-struct';
+import { PlayType } from './play-struct'; // for circular dependency
 import { FanboardInfo } from './fanboard-info-struct';
 import { Country } from '../enum/country';
 
@@ -22,7 +22,7 @@ export class User {
 
 		@JsonProperty('id')
 		public id: number,
-		
+
 		@JsonProperty('tag')
 		public tag: string,
 
@@ -78,7 +78,7 @@ export class User {
 		public fanboardInfo: FanboardInfo,
 
 		@JsonProperty('current_live')
-		public currentLive: Play,
+		public currentLive: PlayType,
 
 		@JsonProperty('country')
 		public country: Country,
@@ -111,6 +111,8 @@ export class User {
 
 }
 
+export type UserType = User;
+
 
 
 @Serializable()
@@ -135,7 +137,7 @@ export class UserVoice {
 
 @Serializable()
 export class UserSponsor {
-	
+
 	constructor(
 
 		@JsonProperty('to_user')

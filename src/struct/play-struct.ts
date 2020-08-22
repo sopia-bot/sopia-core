@@ -77,3 +77,5 @@ export class Play {
 	) {}
 
 }
+
+export type PlayType = Play;
