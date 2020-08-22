@@ -13,6 +13,7 @@ import { ApiManager } from './api-manager';
 import { ApiTalks } from '../api/api-talks';
 import { ApiTalksPopular } from '../api/talks/api-talks-popular';
 import { ApiTalksTop } from '../api/talks/api-talks-top';
+import { ApiTalksInfo } from '../api/talks/api-talks-info';
 
 export class TalkManager {
 
@@ -47,6 +48,17 @@ export class TalkManager {
 		const res = await apiTalksTop.send();
 
 		return res.data;
+	}
+
+	async talkInfo(talk: (Play|number)): Promise<Play> {
+		const apiTalksInfo = new ApiManager<Play>(new ApiTalksInfo(talk), Play, this.Token);
+		const res = await apiTalksInfo.send();
+
+		if ( res.data.length < 1 ) {
+			throw Error('No have live info');
+		}
+
+		return res.data[0];
 	}
 
 }

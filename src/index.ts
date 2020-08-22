@@ -74,6 +74,7 @@ export * from './api/noti/api-noti-unconfirmed';
 
 export * from './api/talks/api-talks-popular';
 export * from './api/talks/api-talks-top';
+export * from './api/talks/api-talks-info';
 
 export * from './struct/api-struct';
 export * from './struct/sticker-struct';
