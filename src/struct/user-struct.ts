@@ -107,6 +107,18 @@ export class User {
 		@JsonProperty('is_password_notice')
 		public isPasswordNotice: boolean
 
+		@JsonProperty('is_changed_username')
+		public isChangedUsername: boolean,
+
+		@JsonProperty('is_public_cast_storage')
+		public isPublicCastStorage: boolean,
+
+		@JsonProperty('is_public_like')
+		public is_public_like: boolean,
+
+		@JsonProperty('phone_number')
+		public phoneNumber: string
+
 	) {}
 
 }
