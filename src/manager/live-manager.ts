@@ -36,6 +36,7 @@ import { ApiLivesMembers } from '../api/lives/api-lives-members';
 import { ApiLivesShared } from '../api/lives/api-lives-shared';
 import { ApiLivesPresent } from '../api/lives/api-lives-present';
 import { ApiLivesReport } from '../api/lives/api-lives-report';
+import { ApiLivesCallRequest } from '../api/lives/api-lives-call-request';
 
 
 export class LiveManager {
@@ -90,6 +91,13 @@ export class LiveManager {
 	async liveCall(live: (Play|number)): Promise<Play> {
 		const apiLivesCall = new ApiManager<Play>(new ApiLivesCall(live), Play);
 		const res = await apiLivesCall.send();
+
+		return res.data[0];
+	}
+
+	async liveCallRequest(live: (Play|number)): Promise<User> {
+		const apiLivesCallRequest = new ApiManager<User>(new ApiLivesCallRequest(live), User);
+		const res = await apiLivesCallRequest.send();
 
 		return res.data[0];
 	}

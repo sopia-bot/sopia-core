@@ -105,7 +105,7 @@ export class User {
 		public serviceAgreement: ServiceAgreement,
 
 		@JsonProperty('is_password_notice')
-		public isPasswordNotice: boolean
+		public isPasswordNotice: boolean,
 
 		@JsonProperty('is_changed_username')
 		public isChangedUsername: boolean,

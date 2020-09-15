@@ -20,9 +20,8 @@ export class SocketManager extends WsManager {
 		super();
 		if ( typeof live === 'number' ) {
 			live = deserialize<Play>({ id: live }, Play);
-		} else {
-			this.live = live;
 		}
+		this.live = live;
 		this.client = client;
 	}
 
