@@ -28,6 +28,7 @@ import { ApiUsersBudget } from '../api/users/api-users-budget';
 import { ApiUsersToday } from '../api/users/api-users-today';
 import { ApiUsersTopfan } from '../api/users/api-users-topfan';
 import { ApiUsersReport } from '../api/users/api-users-report';
+import { ApiUsersUsername } from '../api/users/api-users-username';
 
 export class UserManager {
 	constructor(
@@ -40,6 +41,13 @@ export class UserManager {
 
 	get Token() {
 		return this.client.token;
+	}
+
+	async userName(name: string): Promise<boolean> {
+		const apiUserUsername = new ApiManager(new ApiUsersUsername(name), undefined, this.Token);
+		const res = await apiUserUsername.send();
+
+		return res.data[0].is_exist as boolean;
 	}
 
 	async userCast(user: (User|number), type: CastType = CastType.UPLOAD_CAST): Promise<Play[]> {
