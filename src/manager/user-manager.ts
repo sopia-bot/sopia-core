@@ -30,6 +30,7 @@ import { ApiUsersTopfan } from '../api/users/api-users-topfan';
 import { ApiUsersReport } from '../api/users/api-users-report';
 import { ApiUsersUsername } from '../api/users/api-users-username';
 import { ApiUsersUsernameCheck } from '../api/users/api-users-username-check';
+import { ApiUsersUpdate } from '../api/users/api-users-update';
 
 export class UserManager {
 	constructor(
@@ -147,5 +148,12 @@ export class UserManager {
 		const res = await apiUserToday.send();
 
 		return res.data;
+	}
+
+	async userUpdate(user: (User|any)): Promise<User> {
+		const apiUserUpdate = new ApiManager<User>(new ApiUsersUpdate(user), User, this.Token);
+		const res = await apiUserUpdate.send();
+
+		return res.data[0];
 	}
 }
