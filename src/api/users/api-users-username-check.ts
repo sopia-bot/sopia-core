@@ -8,11 +8,10 @@
 import { ApiUsers } from '../api-users';
 import { User } from '../../struct/user-struct';
 
-export class ApiUsersUsername extends ApiUsers {
+export class ApiUsersUsernameCheck extends ApiUsers {
 	constructor(username: string) {
 		super('username');
-		this.method = 'POST';
-		this.data = {
+		this.params = {
 			username,
 		};
 	}

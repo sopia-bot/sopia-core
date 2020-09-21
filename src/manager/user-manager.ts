@@ -29,6 +29,7 @@ import { ApiUsersToday } from '../api/users/api-users-today';
 import { ApiUsersTopfan } from '../api/users/api-users-topfan';
 import { ApiUsersReport } from '../api/users/api-users-report';
 import { ApiUsersUsername } from '../api/users/api-users-username';
+import { ApiUsersUsernameCheck } from '../api/users/api-users-username-check';
 
 export class UserManager {
 	constructor(
@@ -43,11 +44,18 @@ export class UserManager {
 		return this.client.token;
 	}
 
-	async userName(name: string): Promise<boolean> {
-		const apiUserUsername = new ApiManager(new ApiUsersUsername(name), undefined, this.Token);
+	async userName(name: string): Promise<ApiManager<void>> {
+		const apiUserUsername = new ApiManager<void>(new ApiUsersUsername(name), undefined, this.Token);
 		const res = await apiUserUsername.send();
 
-		return res.data[0].is_exist as boolean;
+		return res;
+	}
+
+	async userNameCheck(name: string): Promise<boolean> {
+		const apiUserUsernameCheck = new ApiManager(new ApiUsersUsernameCheck(name), undefined, this.Token);
+		const res = await apiUserUsernameCheck.send();
+
+		return res.data[0].is_exist;
 	}
 
 	async userCast(user: (User|number), type: CastType = CastType.UPLOAD_CAST): Promise<Play[]> {
