@@ -16,7 +16,9 @@ import { User } from './struct/user-struct';
 import { StaticStickers } from './struct/sticker-struct';
 
 import { ApiLogin } from './api/api-login';
+import { ApiSignout } from './api/api-signout';
 
+import { ApiManager } from './manager/api-manager';
 import { UserManager } from './manager/user-manager';
 import { LiveManager } from './manager/live-manager';
 import { CastManager } from './manager/cast-manager';
@@ -118,6 +120,13 @@ export class Client extends SOPIA {
 		this.user.token = this.token;
 
 		return this.user;
+	}
+
+	async signout(): Promise<ApiManager<void>> {
+		const apiSignout = new ApiManager<void>(new ApiSignout(), undefined, this.Token);
+		const res = await apiSignout.send();
+
+		return res;
 	}
 
 	snsLoginURL(sns_type: string): string {
