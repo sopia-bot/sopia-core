@@ -17,7 +17,7 @@ export interface SpoonAPI {
 	socket: string;
 	sticerApiUrl: string;
 	auth?: string;
-};
+}
 
 export class SOPIA {
 	public country: Country = Country.KOREA;
@@ -40,11 +40,5 @@ export class SOPIA {
 
 	get userAgent() {
 		return 'Web';
-	}
-}
-
-export namespace SOPIA {
-	export enum S {
-		H = 0,
 	}
 }

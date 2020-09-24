@@ -17,6 +17,6 @@ export class ApiLivesPresent extends ApiLivesInfo {
 		this.data = {
 			amount: sticker.price,
 			sticker: sticker.name,
-		}
+		};
 	}
 }

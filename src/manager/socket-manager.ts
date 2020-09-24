@@ -32,7 +32,7 @@ export class SocketManager extends WsManager {
 			live_id: this.live.id,
 			type: LiveType.LIVE_RPT,
 			useragent: this.client.userAgent,
-		}
+		};
 
 		if ( this.client.user ) {
 			msg['user_id'] = this.client.user.id;
@@ -76,12 +76,12 @@ export class SocketManager extends WsManager {
 						type: LiveType.LIVE_REQ,
 						useragent: this.client.userAgent,
 					});
-					this.once(LiveEvent.LIVE_JOIN, (d: any) => {
-						if ( d.result ) {
-							if ( d.result.detail === 'success' ) {
-								this.healthInterval = <any>setInterval(() => {
+					this.once(LiveEvent.LIVE_JOIN, (dd: any) => {
+						if ( dd.result ) {
+							if ( dd.result.detail === 'success' ) {
+								this.healthInterval = setInterval(() => {
 									this.health();
-								}, 10 * 1000 /* 10sec */);
+								}, 10 * 1000 /* 10sec */) as any;
 								resolve(true);
 							}
 						}
@@ -101,9 +101,9 @@ export class SocketManager extends WsManager {
 				this.once(LiveEvent.LIVE_JOIN, (d: any) => {
 					if ( d.result ) {
 						if ( d.result.detail === 'success' ) {
-							this.healthInterval = <any>setInterval(() => {
+							this.healthInterval = setInterval(() => {
 								this.health();
-							}, 10 * 1000 /* 10sec */);
+							}, 10 * 1000 /* 10sec */) as any;
 							resolve(true);
 						}
 					}

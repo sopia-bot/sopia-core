@@ -18,6 +18,7 @@ export class EventManager {
 	private _events: EventList = {};
 
 	constructor() {
+		// empty
 	}
 
 	private pushEvent(key: string, evt: EventObject): void {

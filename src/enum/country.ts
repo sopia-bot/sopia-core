@@ -12,7 +12,7 @@ export enum Country {
 	VIETNAM   = 'vn',
 	ARAB      = 'ar',
 	USA       = 'us'
-};
+}
 
 export interface KeyValue {
 	[key: string]: string;
@@ -260,4 +260,4 @@ export const CountryNumber: KeyValue = {
 	'ZM': '260',
 	'ZW': '263',
 
-}
+};

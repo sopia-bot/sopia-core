@@ -7,8 +7,8 @@
 
 import { SpoonSocketEvent } from './struct/socket-event-struct';
 import { WebSocketEvent } from './struct/websocket-struct';
+import * as WebSocket from 'ws';
 
-const WebSocket = require('ws');
 export class WsClientNode extends WebSocket {
 	constructor(url: string) {
 		super(url, {

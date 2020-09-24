@@ -34,7 +34,7 @@ export class WsManager extends EventManager {
 				}
 				this.ws.onmessage = (msg: MessageEvent) => {
 					this.receiver(msg);
-				}
+				};
 				this.ws.onerror = console.error;
 				this.ws.onclose = () => {
 					console.log('Socket close');

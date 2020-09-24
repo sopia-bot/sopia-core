@@ -41,19 +41,25 @@ export class ApiManager<T extends (object|void)> {
 
 	async send(): Promise<ApiManager<T>> {
 		const res = await this.request.send();
-		res !== null && this.deserializeResult(res);
+		if ( res !== null ) {
+			this.deserializeResult(res);
+		}
 		return this;
 	}
 
 	async next(): Promise<ApiManager<T>> {
 		const res = await this.request.next();
-		res !== null && this.deserializeResult(res);
+		if ( res !== null ) {
+			this.deserializeResult(res);
+		}
 		return this;
 	}
 
 	async prev(): Promise<ApiManager<T>> {
 		const res = await this.request.prev();
-		res !== null && this.deserializeResult(res);
+		if ( res !== null ) {
+			this.deserializeResult(res);
+		}
 		return this;
 	}
 }

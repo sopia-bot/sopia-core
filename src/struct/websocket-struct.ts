@@ -9,6 +9,9 @@ import { Play } from './play-struct';
 import { User } from './user-struct';
 import { SpoonSocketEvent } from './socket-event-struct';
 
+export type EventArgument = MessageEvent|Event|SpoonSocketEvent;
+export type EventCallbackFunc = (data?: EventArgument) => void;
+
 export interface WebSocketResult {
 	code: number;
 	detail: string;
@@ -28,5 +31,5 @@ export interface WebSocketEventData {
 }
 
 export interface WebSocketEvent {
-	[key: string]: { (data?: (MessageEvent|Event|SpoonSocketEvent)): void }[];
+	[key: string]: EventCallbackFunc[];
 }

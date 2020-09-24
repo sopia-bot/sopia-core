@@ -69,7 +69,7 @@ export class ApiRequest extends SOPIA {
 			return `${this.api.api}${this.Url}/${this.subUrl.length ? this.subUrl.join('/') + '/' : ''}`;
 		}
 
-		return `https://${this.country}-api.${this.spoonUrl}/${this.Url}/${this.subUrl.length ? this.subUrl.join('/') + '/' : ''}`
+		return `https://${this.country}-api.${this.spoonUrl}/${this.Url}/${this.subUrl.length ? this.subUrl.join('/') + '/' : ''}`;
 	}
 
 	set reqUrl(url: string) {
@@ -82,7 +82,7 @@ export class ApiRequest extends SOPIA {
 
 	set token(t: string) {
 		if ( typeof this.Option.headers !== 'object' ) {
-			this.Option.headers = {}
+			this.Option.headers = {};
 		}
 		this.Option.headers.authorization = `Bearer ${t}`;
 	}
