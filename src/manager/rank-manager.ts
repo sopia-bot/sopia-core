@@ -7,6 +7,7 @@
 import { Client } from '../client';
 import { DateType } from '../enum/rank-type';
 import { Rank } from '../struct/rank-struct';
+import { Manager } from '../struct/manager-struct';
 
 import { ApiManager } from './api-manager';
 import { ApiRanksFan } from '../api/ranks/api-ranks-fan';
@@ -14,43 +15,31 @@ import { ApiRanksLiveBJ } from '../api/ranks/api-ranks-livebj';
 import { ApiRanksCastBJ } from '../api/ranks/api-ranks-castbj';
 import { ApiRanksCast } from '../api/ranks/api-ranks-cast';
 
-export class RankManager {
-	constructor(
-		private client: Client
-	) {}
-
-	get Client() {
-		return this.client;
-	}
-
-	get Token() {
-		return this.client.token;
+export class RankManager extends Manager {
+	constructor(client: Client) {
+		super(client);
 	}
 
 	async fanRank(date_type?: DateType): Promise<Rank[]> {
-		const apiRanksFan = new ApiManager<Rank>(new ApiRanksFan(date_type), Rank);
-		const res = await apiRanksFan.send();
+		const res = await this.ApiReq<Rank>(Rank, ApiRanksFan, date_type);
 
 		return res.data;
 	}
 
 	async liveBJRank(date_type?: DateType): Promise<Rank[]> {
-		const apiRanksLiveBJ = new ApiManager<Rank>(new ApiRanksLiveBJ(date_type), Rank);
-		const res = await apiRanksLiveBJ.send();
+		const res = await this.ApiReq<Rank>(Rank, ApiRanksLiveBJ, date_type);
 
 		return res.data;
 	}
 
 	async castBJRank(date_type?: DateType): Promise<Rank[]> {
-		const apiRanksCastBJ = new ApiManager<Rank>(new ApiRanksCastBJ(date_type), Rank);
-		const res = await apiRanksCastBJ.send();
+		const res = await this.ApiReq<Rank>(Rank, ApiRanksCastBJ, date_type);
 
 		return res.data;
 	}
 
 	async castRank(date_type?: DateType): Promise<Rank[]> {
-		const apiRanksCast = new ApiManager<Rank>(new ApiRanksCast(date_type), Rank);
-		const res = await apiRanksCast.send();
+		const res = await this.ApiReq<Rank>(Rank, ApiRanksCast, date_type);
 
 		return res.data;
 	}

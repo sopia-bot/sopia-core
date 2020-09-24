@@ -8,35 +8,26 @@ import { Client } from '../client';
 import { ContentType } from '../enum/search';
 import { User } from '../struct/user-struct';
 import { Play } from '../struct/play-struct';
+import { Manager } from '../struct/manager-struct';
 
 import { ApiManager } from './api-manager';
 import { ApiSearchUser } from '../api/search/api-search-user';
 import { ApiSearchContent } from '../api/search/api-search-content';
 
-export class SearchManager {
-	constructor(
-		private client: Client
-	) {}
-
-	get Client() {
-		return this.client;
+export class SearchManager extends Manager {
+	constructor(client: Client) {
+		super(client);
 	}
 
-	get Token() {
-		return this.client.token;
+	async searchUser(keyword: string): Promise<ApiManager<User>> {
+		const res = await this.ApiReq<User>(User, ApiSearchUser, keyword);
+
+		return res;
 	}
 
-	async searchUser(keyword: string): Promise<User[]> {
-		const apiSearchUser = new ApiManager<User>(new ApiSearchUser(keyword), User);
-		const res = await apiSearchUser.send();
+	async searchContent(keyword: string, content_type: ContentType = ContentType.LIVE): Promise<ApiManager<Play>> {
+		const res = await this.ApiReq<User>(Play, ApiSearchContent, keyword, content_type);
 
-		return res.data;
-	}
-
-	async searchContent(keyword: string, content_type: ContentType = ContentType.LIVE): Promise<Play[]> {
-		const apiSearchContent = new ApiManager<Play>(new ApiSearchContent(keyword, content_type), Play);
-		const res = await apiSearchContent.send();
-
-		return res.data;
+		return res;
 	}
 }

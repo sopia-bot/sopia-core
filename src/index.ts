@@ -90,6 +90,7 @@ export * from './struct/grants-struct';
 export * from './struct/push-settings-struct';
 export * from './struct/service-agreement-struct';
 export * from './struct/tier-struct';
+export * from './struct/manager-struct';
 
 export * from './enum/cast-type';
 export * from './enum/login-type';

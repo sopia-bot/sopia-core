@@ -8,40 +8,33 @@
 import { Client } from '../client';
 
 import { Notification, NotiUnconfirmed } from '../struct/notification-struct';
+import { Manager } from '../struct/manager-struct';
 
 import { ApiManager } from './api-manager';
 import { ApiNotifications } from '../api/api-notifications';
 import { ApiNotiUnconfirmed } from '../api/noti/api-noti-unconfirmed';
 import { ApiNotiAllConfirm } from '../api/noti/api-noti-all-confirm';
 
-export class NotiManager  {
-	constructor(
-		private client: Client
-	) {}
-
-	get Client() {
-		return this.client;
-	}
-
-	get Token() {
-		return this.client.token;
+export class NotiManager extends Manager {
+	constructor(client: Client) {
+		super(client);
 	}
 
 	async getNotifications(): Promise<Notification> {
-		const notifications = new ApiManager<Notification>(new ApiNotifications(), Notification);
-		const res = await notifications.send();
+		const res = await this.ApiReq<Notification>(Notification, ApiNotifications);
+
 		return res.data;
 	}
 
 	async notiUnconfirmed(): Promise<NotiUnconfirmed> {
-		const unconfirmed = new ApiManager<NotiUnconfirmed>(new ApiNotiUnconfirmed(), NotiUnconfirmed);
-		const res = await unconfirmed.send();
+		const res = await this.ApiReq<NotiUnconfirmed>(NotiUnconfirmed, ApiNotiUnconfirmed);
+
 		return res.data;
 	}
 
 	async notiAllConfirm(): Promise<Notification> {
-		const confirm = new ApiManager<Notification>(new ApiNotiAllConfirm(), Notification);
-		const res = await confirm.send();
+		const res = await this.ApiReq<Notification>(Notification, ApiNotiAllConfirm);
+
 		return res.data;
 	}
 }

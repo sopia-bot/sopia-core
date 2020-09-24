@@ -11,6 +11,7 @@ import { Play } from '../struct/play-struct';
 import { Budget } from '../struct/budget-struct';
 import { User, UserSponsor } from '../struct/user-struct';
 import { Sticker } from '../struct/sticker-struct';
+import { Manager } from '../struct/manager-struct';
 
 import { Category } from '../enum/category';
 import { ReportType } from '../enum/report';
@@ -39,22 +40,13 @@ import { ApiLivesReport } from '../api/lives/api-lives-report';
 import { ApiLivesCallRequest } from '../api/lives/api-lives-call-request';
 
 
-export class LiveManager {
-	constructor(
-		private client: Client
-	) {}
-
-	get Client() {
-		return this.client;
-	}
-
-	get Token() {
-		return this.client.token;
+export class LiveManager extends Manager {
+	constructor(client: Client) {
+		super(client);
 	}
 
 	async liveInfo(live: (Play|number)): Promise<Play> {
-		const apiLivesInfo = new ApiManager<Play>(new ApiLivesInfo(live), Play);
-		const res = await apiLivesInfo.send();
+		const res = await this.ApiReq<Play>(Play, ApiLivesInfo, live);
 
 		if ( res.data.length < 1 ) {
 			throw Error('No have live info');
@@ -64,8 +56,7 @@ export class LiveManager {
 	}
 
 	async liveAccept(live: (Play|number)): Promise<Play> {
-		const apiLivesAccept = new ApiManager<Play>(new ApiLivesAccept(live), Play, this.Token);
-		const res = await apiLivesAccept.send();
+		const res = await this.ApiReq<Play>(Play, ApiLivesAccept, live);
 
 		if ( res.response.status_code !== 200 ) {
 			throw Error(res.response.detail);
@@ -75,133 +66,115 @@ export class LiveManager {
 	}
 
 	async liveAccess(live: (Play|number)): Promise<Play> {
-		const apiLivesAccess = new ApiManager<Play>(new ApiLivesAccess(live), Play, this.Token);
-		const res = await apiLivesAccess.send();
+		const res = await this.ApiReq<Play>(Play, ApiLivesAccess, live);
 
 		return res.data[0];
 	}
 
 	async liveBlock(live: (Play|number), user: User): Promise<Play> {
-		const apiLivesBlock = new ApiManager<Play>(new ApiLivesBlock(live, user), Play, this.Token);
-		const res = await apiLivesBlock.send();
+		const res = await this.ApiReq<Play>(Play, ApiLivesBlock, live, user);
 
 		return res.data[0];
 	}
 
 	async liveCall(live: (Play|number)): Promise<Play> {
-		const apiLivesCall = new ApiManager<Play>(new ApiLivesCall(live), Play);
-		const res = await apiLivesCall.send();
+		const res = await this.ApiReq<Play>(Play, ApiLivesCall, live);
 
 		return res.data[0];
 	}
 
 	async liveCallRequest(live: (Play|number)): Promise<User> {
-		const apiLivesCallRequest = new ApiManager<User>(new ApiLivesCallRequest(live), User);
-		const res = await apiLivesCallRequest.send();
+		const res = await this.ApiReq<User>(User, ApiLivesCallRequest, live);
 
 		return res.data[0];
 	}
 
 	async liveLike(live: (Play|number)): Promise<Play> {
-		const apiLivesLike = new ApiManager<Play>(new ApiLivesLike(live), Play, this.Token);
-		const res = await apiLivesLike.send();
+		const res = await this.ApiReq<Play>(Play, ApiLivesLike, live);
 
 		return res.data[0];
 	}
 
 	async liveManager(live: (Play|number), users: User[]): Promise<Play> {
-		const apiLivesManager = new ApiManager<Play>(new ApiLivesManager(live, users), Play, this.Token);
-		const res = await apiLivesManager.send();
+		const res = await this.ApiReq<Play>(Play, ApiLivesManager, live, users);
 
 		return res.data[0];
 	}
 
 	async livePresent(live: (Play|number), sticker: Sticker): Promise<Budget> {
-		const apiLivesPresent = new ApiManager<Budget>(new ApiLivesPresent(live, sticker), Budget, this.Token);
-		const res = await apiLivesPresent.send();
+		const res = await this.ApiReq<Budget>(Budget, ApiLivesPresent, live, sticker);
 
 		return res.data[0];
 	}
 
 	async liveReport(live: (Play|number), type: ReportType): Promise<ApiManager<void>> {
-		const apiLivesReport = new ApiManager<void>(new ApiLivesReport(live, type), undefined, this.Token);
-		const res = await apiLivesReport.send();
+		const res = await this.ApiReq<void>(undefined, ApiLivesReport, live, type);
 
 		return res;
 	}
 
 	async liveSponsor(live: (Play|number)): Promise<ApiManager<UserSponsor>> /* for next, previous request */ {
-		const apiLivesSponsor = new ApiManager<UserSponsor>(new ApiLivesSponsor(live), UserSponsor, this.Token);
-		const res = await apiLivesSponsor.send();
+		const res = await this.ApiReq<UserSponsor>(UserSponsor, ApiLivesSponsor, live);
 
 		return res;
 	}
 
 	async livePlay(live: (Play|number)): Promise<Play> {
-		const apiLivesPlay = new ApiManager<Play>(new ApiLivesPlay(live), Play);
-		const res = await apiLivesPlay.send();
-		return res. data;
+		const res = await this.ApiReq<Play>(Play, ApiLivesPlay, live);
+
+		return res.data[0];
 	}
 
 	async liveCheck(live: (Play|number)): Promise<any> /* No have class for data deserialize */ {
-		const apiLivesCheck = new ApiManager<void>(new ApiLivesCheck(live), undefined, this.Token);
-		const res = await apiLivesCheck.send();
+		const res = await this.ApiReq<void>(undefined, ApiLivesCheck, live);
 
 		return res.data;
 	}
 
 	async liveMembers(live: (Play|number)): Promise<ApiManager<User>> /* for next, previous request */ {
-		const apiLivesMembers = new ApiManager<User>(new ApiLivesMembers(live), User);
-		const res = await apiLivesMembers.send();
+		const res = await this.ApiReq<User>(User, ApiLivesMembers, live);
 
 		return res.data;
 	}
 
 	async liveShared(live: (Play|number)): Promise<Play> {
-		const apiLivesShared = new ApiManager<Play>(new ApiLivesShared(live), Play);
-		const res = await apiLivesShared.send();
+		const res = await this.ApiReq<Play>(Play, ApiLivesShared, live);
 
 		return res.data[0];
 	}
 
 	async liveDiscovered(page_size: number = 6, is_adult: boolean = false): Promise<ApiManager<Play>> /* for next, previous request */ {
-		const apiLivesDiscovered = new ApiManager<Play>(new ApiLivesDiscovered(page_size, is_adult), Play);
-		const res = await apiLivesDiscovered.send();
+		const res = await this.ApiReq<Play>(Play, ApiLivesDiscovered, page_size, is_adult);
 
 		return res;
 	}
 
 	async liveSubscribed(page_size: number = 6, is_adult: boolean = false): Promise<ApiManager<Play>> /* for next, previous request */ {
-		const apiLivesSubscribed = new ApiManager<Play>(new ApiLivesSubscribed(page_size, is_adult), Play);
-		const res = await apiLivesSubscribed.send();
+		const res = await this.ApiReq<Play>(Play, ApiLivesSubscribed, page_size, is_adult);
 
 		return res;
 	}
 
 	async livePopular(page_size: number = 6, is_adult: boolean = false, category?: Category): Promise<ApiManager<Play>> /* for next, previous request */ {
-		const apiLivesPopular = new ApiManager<Play>(new ApiLivesPopular(page_size, is_adult, category), Play);
-		const res = await apiLivesPopular.send();
+		const res = await this.ApiReq<Play>(Play, ApiLivesPopular, page_size, is_adult, category);
 
-		return res;
+		return res.data;
 	}
 
 	async liveNewDJ(): Promise<ApiManager<Play>> /* for next, previous request */ {
-		const apiLivesNewDJ = new ApiManager<Play>(new ApiLivesNewDJ(), Play);
-		const res = await apiLivesNewDJ.send();
+		const res = await this.ApiReq<Play>(Play, ApiLivesNewDJ);
 
 		return res;
 	}
 
 	async liveCategories(): Promise<any[]> /* No have class for data deserialize */ {
-		const apiLivesCategories = new ApiManager<void>(new ApiLivesCategories());
-		const res = await apiLivesCategories.send();
+		const res = await this.ApiReq<void>(undefined, ApiLivesCategories);
 
 		return res.data;
 	}
 
 	async liveBanner(): Promise<Play[]> /* fixed 5 live items */ {
-		const apiLivesBanner = new ApiManager<Play>(new ApiLivesBanner(), Play);
-		const res = await apiLivesBanner.send();
+		const res = await this.ApiReq<Play>(Play, ApiLivesBanner);
 
 		return res.data;
 	}
