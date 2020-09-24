@@ -25,6 +25,10 @@ export class SocketManager extends WsManager {
 		this.client = client;
 	}
 
+	get Live() {
+		return this.live;
+	}
+
 	private health(): void {
 		const msg: any = {
 			appversion: this.client.appVersion,
