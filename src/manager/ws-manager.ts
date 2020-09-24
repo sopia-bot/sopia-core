@@ -50,6 +50,11 @@ export class WsManager extends EventManager {
 
 	send ( data: any ): void {
 		const sendData: any = data;
+		if ( sendData.token ) {
+			if ( !sendData.token.match(/^Bearer/) ) {
+				sendData.token = 'Bearer ' + sendData.token;
+			}
+		}
 		this.ws.send(JSON.stringify(sendData));
 	}
 }
