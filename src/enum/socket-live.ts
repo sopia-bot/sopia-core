@@ -30,3 +30,8 @@ export enum LiveType {
 	LIVE_REQ = 'live_req',
 	LIVE_RPT = 'live_rpt',
 }
+
+export enum LiveChatState {
+	ENABLE = 'enable',
+	DISABLE = 'disable',
+}

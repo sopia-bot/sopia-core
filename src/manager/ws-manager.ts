@@ -55,6 +55,7 @@ export class WsManager extends EventManager {
 				sendData.token = 'Bearer ' + sendData.token;
 			}
 		}
+		console.log('Send', sendData);
 		this.ws.send(JSON.stringify(sendData));
 	}
 }

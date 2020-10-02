@@ -15,6 +15,7 @@ import { Manager } from '../struct/manager-struct';
 
 import { Category } from '../enum/category';
 import { ReportType } from '../enum/report';
+import { LiveChatState, LiveType } from '../enum/socket-live';
 
 import { ApiManager } from './api-manager';
 import { ApiLivesInfo } from '../api/lives/api-lives-info';
@@ -190,6 +191,35 @@ export class LiveManager extends Manager {
 		);
 
 		return socket;
+	}
+
+	liveUserChatBan(live: (Play|number), target: (User|number), state: LiveChatState): void {
+		if ( live instanceof Play ) {
+			live = live.id;
+		}
+
+		if ( target instanceof User ) {
+			target = target.id;
+		}
+
+		const socket = this.client.liveSocketMap.get(live);
+		if ( socket ) {
+			socket.send({
+				type: LiveType.LIVE_REQ,
+				detail: {
+					command: 'chat',
+					state,
+					target: target.toString(),
+				},
+				live_id: live.toString(),
+				useragent: this.client.userAgent,
+				appversion: this.client.appVersion,
+				event: 'live_command',
+				user_id: this.client.user.id.toString(),
+			});
+		} else {
+			throw Error('Can not find live socket from id ' + live);
+		}
 	}
 
 	private liveSocket(live: (Play|number)): SocketManager {
