@@ -9,11 +9,10 @@ import { ApiSearch } from '../api-search';
 import { ContentType } from '../../enum/search';
 
 export class ApiSearchContent extends ApiSearch {
-	constructor(keyword: string, content_type: ContentType = ContentType.LIVE) {
-		super('content');
+	constructor(keyword: string, content_type: ContentType = ContentType.USER) {
+		super(content_type);
 		this.params = {
-			keyword,
-			content_type,
+			q: keyword,
 		};
 	}
 }

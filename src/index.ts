@@ -53,6 +53,7 @@ export * from './api/lives/api-lives-members';
 export * from './api/lives/api-lives-shared';
 export * from './api/lives/api-lives-present';
 export * from './api/lives/api-lives-report';
+export * from './api/lives/api-lives-freeze';
 
 export * from './api/casts/api-casts-main';
 export * from './api/casts/api-casts-today';
@@ -65,7 +66,6 @@ export * from './api/ranks/api-ranks-livebj';
 export * from './api/ranks/api-ranks-castbj';
 export * from './api/ranks/api-ranks-cast';
 
-export * from './api/search/api-search-user';
 export * from './api/search/api-search-content';
 
 export * from './api/noti/api-noti-all';

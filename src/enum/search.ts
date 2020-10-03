@@ -7,7 +7,9 @@
 
 export enum ContentType {
 
+	USER = 'user',
 	LIVE = 'live',
 	CAST = 'cast',
+	TALK = 'talk',
 
 }

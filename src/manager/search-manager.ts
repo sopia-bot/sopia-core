@@ -11,7 +11,6 @@ import { Play } from '../struct/play-struct';
 import { Manager } from '../struct/manager-struct';
 
 import { ApiManager } from './api-manager';
-import { ApiSearchUser } from '../api/search/api-search-user';
 import { ApiSearchContent } from '../api/search/api-search-content';
 
 export class SearchManager extends Manager {
@@ -19,14 +18,13 @@ export class SearchManager extends Manager {
 		super(client);
 	}
 
-	async searchUser(keyword: string): Promise<ApiManager<User>> {
-		const res = await this.ApiReq<User>(User, ApiSearchUser, keyword);
-
-		return res;
-	}
-
-	async searchContent(keyword: string, content_type: ContentType = ContentType.LIVE): Promise<ApiManager<Play>> {
-		const res = await this.ApiReq<User>(Play, ApiSearchContent, keyword, content_type);
+	async search(keyword: string, content_type: ContentType = ContentType.USER): Promise<ApiManager<User|Play>> {
+		let res;
+		if ( content_type === ContentType.USER ) {
+			res = await this.ApiReq<User>(User, ApiSearchContent, keyword, content_type);
+		} else {
+			res = await this.ApiReq<Play>(Play, ApiSearchContent, keyword, content_type);
+		}
 
 		return res;
 	}
