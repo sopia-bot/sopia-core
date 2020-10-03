@@ -23,8 +23,12 @@ export enum LiveEvent {
 	LIVE_FAILOVER = 'live_failover',
 	LIVE_RANK = 'live_rank',
 	LIVE_RANKLIST = 'live_ranklist',
+	LIVE_COMMAND = 'live_command',
+	LIVE_FORCE_CLOSE = 'live_force_close',
+	LIVE_PLAY = 'live_play',
 
 }
+
 
 export enum LiveType {
 	LIVE_REQ = 'live_req',
