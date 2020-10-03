@@ -39,6 +39,7 @@ import { ApiLivesShared } from '../api/lives/api-lives-shared';
 import { ApiLivesPresent } from '../api/lives/api-lives-present';
 import { ApiLivesReport } from '../api/lives/api-lives-report';
 import { ApiLivesCallRequest } from '../api/lives/api-lives-call-request';
+import { ApiLivesFreeze } from '../api/lives/api-lives-freeze';
 
 
 export class LiveManager extends Manager {
@@ -112,6 +113,12 @@ export class LiveManager extends Manager {
 		const res = await this.ApiReq<void>(undefined, ApiLivesReport, live, type);
 
 		return res;
+	}
+
+	async liveFreeze(live: (Play|number), freeze: boolean): Promise<ApiManager<Play>> {
+		const res = await this.ApiReq<Play>(Play, ApiLivesFreeze, live, freeze);
+
+		return res.data[0];
 	}
 
 	async liveSponsor(live: (Play|number)): Promise<ApiManager<UserSponsor>> /* for next, previous request */ {
