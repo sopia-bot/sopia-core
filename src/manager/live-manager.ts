@@ -166,7 +166,7 @@ export class LiveManager extends Manager {
 	async livePopular(page_size: number = 6, is_adult: boolean = false, category?: Category): Promise<ApiManager<Play>> /* for next, previous request */ {
 		const res = await this.ApiReq<Play>(Play, ApiLivesPopular, page_size, is_adult, category);
 
-		return res.data;
+		return res;
 	}
 
 	async liveNewDJ(): Promise<ApiManager<Play>> /* for next, previous request */ {
