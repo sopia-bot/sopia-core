@@ -67,6 +67,8 @@ export * from './api/ranks/api-ranks-castbj';
 export * from './api/ranks/api-ranks-cast';
 
 export * from './api/search/api-search-content';
+export * from './api/search/api-search-user';
+export * from './api/search/api-search-tag';
 
 export * from './api/noti/api-noti-all';
 export * from './api/noti/api-noti-all-confirm';
