@@ -39,9 +39,9 @@ export class WsManager extends EventManager {
 				this.ws.onclose = () => {
 					console.log('Socket close');
 				};
-				this.ws.once('open', () => {
+				this.ws.onopen = () => {
 					resolve(true);
-				});
+				};
 			} catch(err) {
 				reject(err);
 			}
@@ -55,7 +55,6 @@ export class WsManager extends EventManager {
 				sendData.token = 'Bearer ' + sendData.token;
 			}
 		}
-		console.log('Send', sendData);
 		this.ws.send(JSON.stringify(sendData));
 	}
 }
