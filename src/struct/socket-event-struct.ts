@@ -23,7 +23,9 @@ export class LiveCommandDetail {
 		@JsonProperty('user')
 		public user: User
 
-	);
+	) {
+	}
+
 }
 
 @Serializable()
