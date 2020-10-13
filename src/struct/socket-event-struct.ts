@@ -10,6 +10,23 @@ import { WebSocketEvent, WebSocketEventData, WebSocketRankOrder, WebSocketResult
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
+export class LiveCommandDetail {
+
+	constructor(
+
+		@JsonProperty('command')
+		public command: string,
+
+		@JsonProperty('state')
+		public state: string,
+
+		@JsonProperty('user')
+		public user: User
+
+	);
+}
+
+@Serializable()
 export class SpoonSocketEvent {
 
 	constructor(
@@ -22,6 +39,9 @@ export class SpoonSocketEvent {
 
 		@JsonProperty('data')
 		public data: WebSocketEventData,
+
+		@JsonProperty('detail')
+		public detail: LiveCommandDetail,
 
 		@JsonProperty('rooms')
 		public rooms: number,
