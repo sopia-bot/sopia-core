@@ -26,6 +26,7 @@ export enum LiveEvent {
 	LIVE_COMMAND = 'live_command',
 	LIVE_FORCE_CLOSE = 'live_force_close',
 	LIVE_PLAY = 'live_play',
+	LIVE_EVENT_ALL = 'live_event_all',
 
 }
 

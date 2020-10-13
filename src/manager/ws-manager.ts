@@ -8,6 +8,7 @@ import { SpoonSocketEvent } from '../struct/socket-event-struct';
 import { WebSocketEvent, WebSocketEventData, WebSocketRankOrder, WebSocketResult } from '../struct/websocket-struct';
 import { EventManager } from './event-manager';
 import { deserialize } from 'typescript-json-serializer';
+import { LiveEvent } from '../enum/socket-live';
 
 export class WsManager extends EventManager {
 	protected ws!: any;
@@ -15,6 +16,7 @@ export class WsManager extends EventManager {
 	private receiver( msg: MessageEvent ): void {
 		const data = deserialize<SpoonSocketEvent>(JSON.parse(msg.data), SpoonSocketEvent);
 		this.emit(data.event, data);
+		this.emit(LiveEvent.LIVE_EVENT_ALL, data);
 	}
 
 	constructor(
