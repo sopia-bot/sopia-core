@@ -73,7 +73,7 @@ export class LiveManager extends Manager {
 		return res.data[0];
 	}
 
-	async liveBlock(live: (Play|number), user: User): Promise<Play> {
+	async liveBlock(live: (Play|number), user: (User|number)): Promise<Play> {
 		const res = await this.ApiReq<Play>(Play, ApiLivesBlock, live, user);
 
 		return res.data[0];

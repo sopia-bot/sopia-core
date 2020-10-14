@@ -10,11 +10,16 @@ import { Play } from '../../struct/play-struct';
 import { User } from '../../struct/user-struct';
 
 export class ApiLivesBlock extends ApiLivesInfo {
-	constructor(live: (Play|number), userInfo: User) {
+	constructor(live: (Play|number), userInfo: (User|number)) {
 		super(live);
 		this.addSubUrl('block');
+		let id = userInfo;
+		if ( id instanceof User ) {
+			id = id.id;
+		}
+
 		this.data = {
-			block_user_id: userInfo.id,
+			block_user_id: id,
 		};
 		this.method = 'post';
 	}
