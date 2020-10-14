@@ -62,7 +62,7 @@ export class User {
 		@JsonProperty('is_vip')
 		public isVip: boolean,
 
-		@JsonProperty('top_fans')
+		@JsonProperty({ name: 'top_fans', type: User })
 		public topFans: User[],
 
 		@JsonProperty('date_joined')

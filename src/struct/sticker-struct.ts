@@ -7,48 +7,6 @@
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
-export class StickerCategory {
-
-	constructor(
-
-		@JsonProperty('id')
-		public id: number,
-
-		@JsonProperty('name')
-		public name: string,
-
-		@JsonProperty('title')
-		public title: string,
-
-		@JsonProperty('is_used')
-		public isUsed: boolean,
-
-		@JsonProperty('stickers')
-		public stickers: Sticker[]
-
-	) {}
-
-}
-
-@Serializable()
-export class StaticStickers {
-
-	constructor(
-
-		@JsonProperty('version')
-		public version: number,
-
-		@JsonProperty('updated')
-		public updated: Date,
-
-		@JsonProperty('categories')
-		public categories: StickerCategory[]
-
-	) {}
-
-}
-
-@Serializable()
 export class Sticker {
 
 	constructor(
@@ -120,5 +78,60 @@ export class Sticker {
 		public category: string
 
 	) {}
+
+}
+
+@Serializable()
+export class StickerCategory {
+
+	constructor(
+
+		@JsonProperty('id')
+		public id: number,
+
+		@JsonProperty('name')
+		public name: string,
+
+		@JsonProperty('title')
+		public title: string,
+
+		@JsonProperty('is_used')
+		public isUsed: boolean,
+
+		@JsonProperty({ name: 'stickers', type: Sticker })
+		public stickers: Sticker[]
+
+	) {}
+
+}
+
+@Serializable()
+export class StaticStickers {
+
+	constructor(
+
+		@JsonProperty('version')
+		public version: number,
+
+		@JsonProperty('updated')
+		public updated: Date,
+
+		@JsonProperty({ name: 'categories', type: StickerCategory })
+		public categories: StickerCategory[]
+
+	) {}
+
+	public search(key: string, force: boolean = false) {
+		for ( const category of this.categories ) {
+			if ( !force && !category.isUsed ) {
+				continue;
+			}
+			for ( const sticker of category.stickers ) {
+				if ( sticker.name === key ) {
+					return sticker;
+				}
+			}
+		}
+	}
 
 }

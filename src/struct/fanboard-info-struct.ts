@@ -18,7 +18,7 @@ export class FanboardInfo {
 		@JsonProperty('is_new_comment')
 		public isNewComment: boolean,
 
-		@JsonProperty('latest_comment_authors')
+		@JsonProperty({ name: 'latest_comment_authors', type: User })
 		public latestCommentAuthors: User[]
 
 	) {}
