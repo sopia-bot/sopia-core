@@ -41,6 +41,7 @@ export class Client extends SOPIA {
 	public stickers!: StaticStickers;
 	public user!: User;
 	public liveSocketMap: Map<number, SocketManager>;
+	public signature: Map<number, StaticStickers>;
 
 	constructor(public deviceUUID: string, country?: Country) {
 		super(country);
@@ -54,6 +55,7 @@ export class Client extends SOPIA {
 		this.talkManager = new TalkManager(this);
 
 		this.liveSocketMap = new Map();
+		this.signature = new Map();
 
 		this.initSticker();
 		this.initApiInfo();
@@ -96,6 +98,52 @@ export class Client extends SOPIA {
 			this.stickers = deserialize<StaticStickers>(res.data, StaticStickers);
 		}
 		return this.stickers;
+	}
+
+	async initSignatureSticker(user: (User|number)) {
+		if ( user instanceof User ) {
+			user = user.id;
+		}
+		try {
+			const res = await axios.get(`https://static.spooncast.net/${this.country}/stickers/signature/${user}/index.json`);
+			if ( res.data ) {
+				this.signature.set(user, deserialize<StaticStickers>(res.data, StaticStickers));
+			}
+		} catch(err) {
+			return;
+		}
+		return this.signature.get(user);
+	}
+
+	findSticker(key: string, user?: (User|number), force: boolean = false) {
+		if ( user instanceof User ) {
+			user = user.id;
+		}
+		const signature = this.signature.get(user as number);
+		if ( signature ) {
+			for ( const category of signature.categories ) {
+				if ( !force && !category.isUsed ) {
+					continue;
+				}
+				for ( const sticker of category.stickers ) {
+					if ( sticker.name === key ) {
+						return sticker;
+					}
+				}
+			}
+		}
+		if ( this.stickers ) {
+			for ( const category of this.stickers.categories ) {
+				if ( !force && !category.isUsed ) {
+					continue;
+				}
+				for ( const sticker of category.stickers ) {
+					if ( sticker.name === key ) {
+						return sticker;
+					}
+				}
+			}
+		}
 	}
 
 	async login(sns_id: (number|string), password: string, sns_type: LoginType): Promise<User> {

@@ -121,17 +121,4 @@ export class StaticStickers {
 
 	) {}
 
-	public search(key: string, force: boolean = false) {
-		for ( const category of this.categories ) {
-			if ( !force && !category.isUsed ) {
-				continue;
-			}
-			for ( const sticker of category.stickers ) {
-				if ( sticker.name === key ) {
-					return sticker;
-				}
-			}
-		}
-	}
-
 }
