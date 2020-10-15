@@ -85,7 +85,6 @@ export * from './struct/user-struct';
 export * from './struct/rank-struct';
 export * from './struct/fanboard-info-struct';
 export * from './struct/socket-event-struct';
-export * from './struct/websocket-struct';
 export * from './struct/notification-struct';
 export * from './struct/budget-struct';
 export * from './struct/grants-struct';

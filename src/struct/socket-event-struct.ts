@@ -6,8 +6,64 @@
  */
 import { Play } from './play-struct';
 import { User } from './user-struct';
-import { WebSocketEvent, WebSocketEventData, WebSocketRankOrder, WebSocketResult } from './websocket-struct';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
+
+@Serializable()
+export class WebSocketResult {
+
+	constructor(
+
+		@JsonProperty('code')
+		public code: number,
+
+		@JsonProperty('detail')
+		public detail: string
+
+	) {
+	}
+
+}
+
+@Serializable()
+export class WebSocketRankOrder {
+
+	constructor(
+
+		@JsonProperty('now')
+		public now: string,
+
+		@JsonProperty('prev')
+		public prev: string,
+
+		@JsonProperty('incrby')
+		public incrby: number,
+
+		@JsonProperty('effect')
+		public effect: string
+
+	) {
+	}
+
+}
+
+@Serializable()
+export class WebSocketEventData {
+
+	constructor(
+
+		@JsonProperty('message')
+		public message: string,
+
+		@JsonProperty('live')
+		public live: Play,
+
+		@JsonProperty('author')
+		public author: User
+
+	) {
+	}
+
+}
 
 @Serializable()
 export class LiveCommandDetail {
@@ -74,4 +130,11 @@ export class SpoonSocketEvent {
 
 	) {}
 
+}
+
+export type EventArgument = MessageEvent|Event|SpoonSocketEvent;
+export type EventCallbackFunc = (data?: EventArgument) => void;
+
+export interface WebSocketEvent {
+	[key: string]: EventCallbackFunc[];
 }

@@ -5,8 +5,7 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 
-import { SpoonSocketEvent } from './struct/socket-event-struct';
-import { WebSocketEvent } from './struct/websocket-struct';
+import { SpoonSocketEvent, WebSocketEvent } from './struct/socket-event-struct';
 import * as WebSocket from 'ws';
 
 export class WsClientNode extends WebSocket {

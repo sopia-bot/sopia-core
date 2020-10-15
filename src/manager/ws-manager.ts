@@ -4,8 +4,7 @@
  *
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
-import { SpoonSocketEvent } from '../struct/socket-event-struct';
-import { WebSocketEvent, WebSocketEventData, WebSocketRankOrder, WebSocketResult } from '../struct/websocket-struct';
+import { SpoonSocketEvent, WebSocketEvent, WebSocketEventData, WebSocketRankOrder, WebSocketResult } from '../struct/socket-event-struct';
 import { EventManager } from './event-manager';
 import { deserialize } from 'typescript-json-serializer';
 import { LiveEvent } from '../enum/socket-live';
