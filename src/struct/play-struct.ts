@@ -131,6 +131,48 @@ export class Play {
 		@JsonProperty('is_editors')
 		public isEditors: boolean,
 
+		@JsonProperty('protocol')
+		public protocol: string,
+
+		@JsonProperty('msg_interval')
+		public msgInterval: number,
+
+		@JsonProperty('donation')
+		public donation: number,
+
+		@JsonProperty('is_join_now')
+		public isJoinNow: boolean,
+
+		@JsonProperty('is_save')
+		public isSave: boolean,
+
+		@JsonProperty('closed')
+		public closed: Date,
+
+		@JsonProperty('close_status')
+		public closeStatus: number,
+
+		@JsonProperty('stream_name')
+		public streamName: string,
+
+		@JsonProperty('is_beginner')
+		public isBeginner: boolean,
+
+		@JsonProperty('is_call')
+		public isCall: boolean,
+
+		@JsonProperty('is_freeze')
+		public isFreeze: boolean,
+
+		@JsonProperty('is_mute')
+		public isMute: boolean,
+
+		@JsonProperty('is_like')
+		public isLike: boolean,
+
+		@JsonProperty('status')
+		public status: number,
+
 		@JsonProperty('categories')
 		public categories: string[]
 
