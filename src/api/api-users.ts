@@ -6,10 +6,17 @@
  */
 
 import { ApiRequest } from './api-request';
+import { User } from '../struct/user-struct';
+
+type ApiUsersType = (string|User|number);
 
 export class ApiUsers extends ApiRequest {
-	constructor(api: string) {
+	constructor(api: ApiUsersType) {
 		super('users');
-		this.addSubUrl(api);
+
+		if ( api instanceof User ) {
+			api = api.id;
+		}
+		this.addSubUrl(api as string);
 	}
 }

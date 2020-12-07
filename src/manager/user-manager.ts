@@ -32,6 +32,8 @@ import { ApiUsersReport } from '../api/users/api-users-report';
 import { ApiUsersUsername } from '../api/users/api-users-username';
 import { ApiUsersUsernameCheck } from '../api/users/api-users-username-check';
 import { ApiUsersUpdate } from '../api/users/api-users-update';
+import { ApiUsersBlock } from '../api/users/api-users-block';
+import { ApiUsersUnblock } from '../api/users/api-users-unblock';
 
 export class UserManager extends Manager {
 	constructor(client: Client) {
@@ -132,5 +134,17 @@ export class UserManager extends Manager {
 		const res = await this.ApiReq<User>(User, ApiUsersUpdate, user);
 
 		return res.data[0];
+	}
+
+	async userBlock(user: (User|number)): Promise<ApiManager<void>> {
+		const res = await this.ApiReq<void>(undefined, ApiUsersBlock, user);
+
+		return res;
+	}
+
+	async userUnblock(user: (User|number)): Promise<ApiManager<void>> {
+		const res = await this.ApiReq<void>(undefined, ApiUsersUnblock, user);
+
+		return res;
 	}
 }
