@@ -114,10 +114,16 @@ export class User {
 		public isPublicCastStorage: boolean,
 
 		@JsonProperty('is_public_like')
-		public is_public_like: boolean,
+		public isPublicLike: boolean,
 
 		@JsonProperty('phone_number')
 		public phoneNumber: string,
+
+		@JsonProperty('regular_score')
+		public regularScore: number,
+
+		@JsonProperty('is_fixedmng')
+		public isFixedManager: boolean,
 
 		@JsonProperty('guest_status')
 		public guestStatus: number
