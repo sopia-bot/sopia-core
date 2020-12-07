@@ -117,7 +117,10 @@ export class User {
 		public is_public_like: boolean,
 
 		@JsonProperty('phone_number')
-		public phoneNumber: string
+		public phoneNumber: string,
+
+		@JsonProperty('guest_status')
+		public guestStatus: number
 
 	) {}
 

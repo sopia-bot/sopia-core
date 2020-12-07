@@ -10,6 +10,21 @@ import { Tier } from './tier-struct';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
+export class LiveCall {
+
+	constructor(
+
+		@JsonProperty({ name: 'guests', type: User })
+		public guests: User[],
+
+		@JsonProperty('status')
+		public status: number
+
+	) {}
+
+};
+
+@Serializable()
 export class Play {
 
 	constructor(
@@ -56,6 +71,12 @@ export class Play {
 		@JsonProperty('is_donated')
 		public isDonated: boolean,
 
+		@JsonProperty('is_adult')
+		public isAdult: boolean,
+
+		@JsonProperty('is_vip')
+		public isVip: boolean,
+
 		@JsonProperty('created')
 		public created: Date,
 
@@ -93,7 +114,25 @@ export class Play {
 		public expired: any, // unknown type.
 
 		@JsonProperty('is_composited')
-		public isComposited: boolean
+		public isComposited: boolean,
+
+		@JsonProperty('live_call')
+		public liveCall: LiveCall,
+
+		@JsonProperty('os_type')
+		public osType: any, // unknown type.
+
+		@JsonProperty('is_verified')
+		public isVerified: boolean,
+
+		@JsonProperty('room_token')
+		public roomToken: any, // unknown type.
+
+		@JsonProperty('is_editors')
+		public isEditors: boolean,
+
+		@JsonProperty('categories')
+		public categories: string[]
 
 	) {}
 
