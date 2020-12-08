@@ -65,6 +65,9 @@ export class Play extends Struct {
 		@JsonProperty('member_count')
 		public memberCount: number,
 
+		@JsonProperty('total_member_count')
+		public totalMemberCount: number,
+
 		@JsonProperty('spoon_count')
 		public spoonCount: number,
 
