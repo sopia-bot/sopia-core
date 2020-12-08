@@ -35,7 +35,7 @@ export class SOPIA {
 	}
 
 	get appVersion() {
-		return '5.5.1';
+		return '5.8.17';
 	}
 
 	get userAgent() {
