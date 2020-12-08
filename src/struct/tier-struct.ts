@@ -7,9 +7,10 @@
 
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 import { Play } from './play-struct';
+import { Struct } from './struct';
 
 @Serializable()
-export class Tier {
+export class Tier extends Struct {
 
 	constructor(
 
@@ -19,7 +20,9 @@ export class Tier {
 		@JsonProperty('title')
 		public title: string,
 
-	) {}
+	) {
+		super();
+	}
 
 }
 

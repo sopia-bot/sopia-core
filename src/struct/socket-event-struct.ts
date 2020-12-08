@@ -7,9 +7,10 @@
 import { Play } from './play-struct';
 import { User } from './user-struct';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
+import { Struct } from './struct';
 
 @Serializable()
-export class WebSocketResult {
+export class WebSocketResult extends Struct {
 
 	constructor(
 
@@ -20,12 +21,13 @@ export class WebSocketResult {
 		public detail: string
 
 	) {
+		super();
 	}
 
 }
 
 @Serializable()
-export class WebSocketRankOrder {
+export class WebSocketRankOrder extends Struct {
 
 	constructor(
 
@@ -42,12 +44,13 @@ export class WebSocketRankOrder {
 		public effect: string
 
 	) {
+		super();
 	}
 
 }
 
 @Serializable()
-export class WebSocketEventData {
+export class WebSocketEventData extends Struct {
 
 	constructor(
 
@@ -61,12 +64,13 @@ export class WebSocketEventData {
 		public author: User
 
 	) {
+		super();
 	}
 
 }
 
 @Serializable()
-export class LiveCommandDetail {
+export class LiveCommandDetail extends Struct {
 
 	constructor(
 
@@ -80,12 +84,13 @@ export class LiveCommandDetail {
 		public user: User
 
 	) {
+		super();
 	}
 
 }
 
 @Serializable()
-export class SpoonSocketEvent {
+export class SpoonSocketEvent extends Struct {
 
 	constructor(
 
@@ -128,7 +133,9 @@ export class SpoonSocketEvent {
 		@JsonProperty('user_id')
 		public userId: number
 
-	) {}
+	) {
+		super();
+	}
 
 }
 

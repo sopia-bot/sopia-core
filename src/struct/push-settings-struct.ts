@@ -6,9 +6,10 @@
  */
 
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
+import { Struct } from './struct';
 
 @Serializable()
-export class PushSettings {
+export class PushSettings extends Struct {
 
 	constructor(
 
@@ -30,6 +31,8 @@ export class PushSettings {
 		@JsonProperty('event_or_marketing')
 		public eventOrMarketing: boolean,
 
-	) {}
+	) {
+		super();
+	}
 
 }

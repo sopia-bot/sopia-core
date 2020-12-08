@@ -6,9 +6,10 @@
  */
 import { User } from './user-struct';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
+import { Struct } from './struct';
 
 @Serializable()
-export class FanboardInfo {
+export class FanboardInfo extends Struct {
 
 	constructor(
 
@@ -21,6 +22,8 @@ export class FanboardInfo {
 		@JsonProperty({ name: 'latest_comment_authors', type: User })
 		public latestCommentAuthors: User[]
 
-	) {}
+	) {
+		super();
+	}
 
 }

@@ -5,9 +5,10 @@
  * Copyright (c) Tree Some. Licensed under the MIT License.
  */
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
+import { Struct } from './struct';
 
 @Serializable()
-export class Sticker {
+export class Sticker extends Struct {
 
 	constructor(
 
@@ -77,12 +78,14 @@ export class Sticker {
 		@JsonProperty('cateogry')
 		public category: string
 
-	) {}
+	) {
+		super();
+	}
 
 }
 
 @Serializable()
-export class StickerCategory {
+export class StickerCategory extends Struct {
 
 	constructor(
 
@@ -101,12 +104,14 @@ export class StickerCategory {
 		@JsonProperty({ name: 'stickers', type: Sticker })
 		public stickers: Sticker[]
 
-	) {}
+	) {
+		super();
+	}
 
 }
 
 @Serializable()
-export class StaticStickers {
+export class StaticStickers extends Struct {
 
 	constructor(
 
@@ -119,6 +124,8 @@ export class StaticStickers {
 		@JsonProperty({ name: 'categories', type: StickerCategory })
 		public categories: StickerCategory[]
 
-	) {}
+	) {
+		super();
+	}
 
 }

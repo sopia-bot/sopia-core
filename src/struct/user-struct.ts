@@ -14,9 +14,10 @@ import { ServiceAgreement } from './service-agreement-struct';
 import { PlayType } from './play-struct'; // for circular dependency
 import { FanboardInfo } from './fanboard-info-struct';
 import { Country } from '../enum/country';
+import { Struct } from './struct';
 
 @Serializable()
-export class User {
+export class User extends Struct {
 
 	constructor(
 
@@ -128,7 +129,9 @@ export class User {
 		@JsonProperty('guest_status')
 		public guestStatus: number
 
-	) {}
+	) {
+		super();
+	}
 
 }
 
@@ -137,7 +140,7 @@ export type UserType = User;
 
 
 @Serializable()
-export class UserVoice {
+export class UserVoice extends Struct {
 
 	constructor(
 
@@ -150,14 +153,16 @@ export class UserVoice {
 		@JsonProperty('is_like')
 		public isLike: boolean
 
-	) {}
+	) {
+		super();
+	}
 
 }
 
 
 
 @Serializable()
-export class UserSponsor {
+export class UserSponsor extends Struct {
 
 	constructor(
 
@@ -167,13 +172,15 @@ export class UserSponsor {
 		@JsonProperty('amount')
 		public amount: number
 
-	) {}
+	) {
+		super();
+	}
 }
 
 
 
 @Serializable()
-export class UserTopfan {
+export class UserTopfan extends Struct {
 
 	constructor(
 
@@ -183,13 +190,15 @@ export class UserTopfan {
 		@JsonProperty('user')
 		public user: User
 
-	) {}
+	) {
+		super();
+	}
 }
 
 
 
 @Serializable()
-export class UserFanmessages {
+export class UserFanmessages extends Struct {
 
 	constructor(
 
@@ -214,6 +223,8 @@ export class UserFanmessages {
 		@JsonProperty('created')
 		public created: Date
 
-	) {}
+	) {
+		super();
+	}
 
 }

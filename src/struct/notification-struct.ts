@@ -8,9 +8,10 @@
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 import { NotiType } from '../enum/notification';
 import { User, UserFanmessages } from './user-struct';
+import { Struct } from './struct';
 
 @Serializable()
-export class NotiData {
+export class NotiData extends Struct {
 
 	constructor(
 
@@ -23,24 +24,28 @@ export class NotiData {
 		@JsonProperty('fancomment')
 		public fancomment: UserFanmessages
 
-	) {}
+	) {
+		super();
+	}
 
 }
 
 @Serializable()
-export class NotiUnconfirmed {
+export class NotiUnconfirmed extends Struct {
 
 	constructor(
 
 		@JsonProperty('count')
 		public count: boolean
 
-	) {}
+	) {
+		super();
+	}
 
 }
 
 @Serializable()
-export class Notification {
+export class Notification extends Struct {
 
 	constructor(
 
@@ -65,6 +70,8 @@ export class Notification {
 		@JsonProperty('created')
 		public created: Date
 
-	) {}
+	) {
+		super();
+	}
 
 }

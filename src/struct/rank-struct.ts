@@ -8,9 +8,10 @@
 import { User } from './user-struct';
 import { Play } from './play-struct';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
+import { Struct } from './struct';
 
 @Serializable()
-export class Rank {
+export class Rank extends Struct {
 
 	constructor(
 
@@ -29,6 +30,8 @@ export class Rank {
 		@JsonProperty('cast')
 		public cast: Play
 
-	) {}
+	) {
+		super();
+	}
 
 }

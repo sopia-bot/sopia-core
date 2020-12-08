@@ -4,9 +4,14 @@
  *
  * Copyright (c) Tree Some. Licensed under the MIT License.
  */
+import { serialize, deserialize } from 'typescript-json-serializer';
 
-export abstract class Struct<C> {
-	abstract toJSON(): any;
-	abstract readRawData(data: any): void;
-	//static deserialize(data: any): any;
+export class Struct {
+	static deserialize(data: any) {
+		return deserialize(data, this);
+	}
+
+	public serialize(): any {
+		return serialize(this, true);
+	}
 }

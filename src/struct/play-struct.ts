@@ -8,9 +8,10 @@
 import { User } from './user-struct';
 import { Tier } from './tier-struct';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
+import { Struct } from './struct';
 
 @Serializable()
-export class LiveCall {
+export class LiveCall extends Struct {
 
 	constructor(
 
@@ -20,12 +21,14 @@ export class LiveCall {
 		@JsonProperty('status')
 		public status: number
 
-	) {}
+	) {
+		super();
+	}
 
 };
 
 @Serializable()
-export class Play {
+export class Play extends Struct {
 
 	constructor(
 
@@ -176,7 +179,9 @@ export class Play {
 		@JsonProperty('categories')
 		public categories: string[]
 
-	) {}
+	) {
+		super();
+	}
 
 }
 

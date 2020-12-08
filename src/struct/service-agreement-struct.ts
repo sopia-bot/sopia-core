@@ -6,9 +6,10 @@
  */
 
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
+import { Struct } from './struct';
 
 @Serializable()
-export class ServiceAgreement {
+export class ServiceAgreement extends Struct {
 
 	constructor(
 
@@ -39,6 +40,8 @@ export class ServiceAgreement {
 		@JsonProperty('legal_representative_info_col')
 		public legalRepresentativeInfoCol: boolean
 
-	) {}
+	) {
+		super();
+	}
 
 }
