@@ -34,6 +34,7 @@ export enum LiveEvent {
 export enum LiveType {
 	LIVE_REQ = 'live_req',
 	LIVE_RPT = 'live_rpt',
+	LIVE_RSP = 'live_rsp',
 }
 
 export enum LiveChatState {
