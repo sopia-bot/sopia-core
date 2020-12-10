@@ -84,7 +84,7 @@ export class Play extends Struct {
 		public isVip: boolean,
 
 		@JsonProperty('created')
-		public created: Date,
+		public created: (Date|null),
 
 		@JsonProperty('url_hls')
 		public urlHls: string,
@@ -153,7 +153,7 @@ export class Play extends Struct {
 		public isSave: boolean,
 
 		@JsonProperty('closed')
-		public closed: Date,
+		public closed: (Date|null),
 
 		@JsonProperty('close_status')
 		public closeStatus: number,

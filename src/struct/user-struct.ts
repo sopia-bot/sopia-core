@@ -67,7 +67,7 @@ export class User extends Struct {
 		public topFans: User[],
 
 		@JsonProperty('date_joined')
-		public dateJoined: Date,
+		public dateJoined: (Date|null),
 
 		@JsonProperty('is_choice')
 		public isChoice: boolean,
@@ -221,7 +221,7 @@ export class UserFanmessages extends Struct {
 		public isBlind: boolean,
 
 		@JsonProperty('created')
-		public created: Date
+		public created: (Date|null)
 
 	) {
 		super();

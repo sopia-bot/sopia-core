@@ -68,7 +68,7 @@ export class Notification extends Struct {
 		public status: number,
 
 		@JsonProperty('created')
-		public created: Date
+		public created: (Date|null)
 
 	) {
 		super();

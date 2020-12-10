@@ -67,13 +67,13 @@ export class Sticker extends Struct {
 		public isUsed: boolean,
 
 		@JsonProperty('start_date')
-		public startDate: Date,
+		public startDate: (Date|null),
 
 		@JsonProperty('end_date')
-		public endDate: Date,
+		public endDate: (Date|null),
 
 		@JsonProperty('updated')
-		public updated: Date,
+		public updated: (Date|null),
 
 		@JsonProperty('cateogry')
 		public category: string
@@ -119,7 +119,7 @@ export class StaticStickers extends Struct {
 		public version: number,
 
 		@JsonProperty('updated')
-		public updated: Date,
+		public updated: (Date|null),
 
 		@JsonProperty({ name: 'categories', type: StickerCategory })
 		public categories: StickerCategory[]
