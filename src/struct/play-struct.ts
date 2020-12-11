@@ -8,14 +8,18 @@
 import { User } from './user-struct';
 import { Tier } from './tier-struct';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
-import { Struct } from './struct';
+import { Struct, Arr2Proxy } from './struct';
 
 @Serializable()
 export class LiveCall extends Struct {
 
 	constructor(
 
-		@JsonProperty({ name: 'guests', type: User })
+		@JsonProperty({
+			name: 'guests',
+			type: User,
+			onDeserialize: (v: any[]) => Arr2Proxy(v, User),
+		})
 		public guests: User[],
 
 		@JsonProperty('status')

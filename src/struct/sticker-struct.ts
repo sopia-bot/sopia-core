@@ -5,7 +5,7 @@
  * Copyright (c) Tree Some. Licensed under the MIT License.
  */
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
-import { Struct } from './struct';
+import { Struct, Arr2Proxy } from './struct';
 
 @Serializable()
 export class Sticker extends Struct {
@@ -101,7 +101,11 @@ export class StickerCategory extends Struct {
 		@JsonProperty('is_used')
 		public isUsed: boolean,
 
-		@JsonProperty({ name: 'stickers', type: Sticker })
+		@JsonProperty({
+			name: 'stickers',
+			type: Sticker,
+			onDeserialize: (v: any[]) => Arr2Proxy(v, Sticker),
+		})
 		public stickers: Sticker[]
 
 	) {
@@ -121,7 +125,11 @@ export class StaticStickers extends Struct {
 		@JsonProperty('updated')
 		public updated: (Date|null),
 
-		@JsonProperty({ name: 'categories', type: StickerCategory })
+		@JsonProperty({
+			name: 'categories',
+			type: StickerCategory,
+			onDeserialize: (v: any[]) => Arr2Proxy(v, StickerCategory),
+		})
 		public categories: StickerCategory[]
 
 	) {

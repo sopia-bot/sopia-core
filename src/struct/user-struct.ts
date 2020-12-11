@@ -6,7 +6,7 @@
  */
 
 import { Tier } from './tier-struct';
-import { Serializable, JsonProperty } from 'typescript-json-serializer';
+import { Serializable, JsonProperty, deserialize } from 'typescript-json-serializer';
 import { PushSettings } from './push-settings-struct';
 import { Budget } from './budget-struct';
 import { Grants } from './grants-struct';
@@ -14,7 +14,7 @@ import { ServiceAgreement } from './service-agreement-struct';
 import { PlayType } from './play-struct'; // for circular dependency
 import { FanboardInfo } from './fanboard-info-struct';
 import { Country } from '../enum/country';
-import { Struct } from './struct';
+import { Struct, Arr2Proxy } from './struct';
 
 @Serializable()
 export class User extends Struct {
@@ -63,7 +63,11 @@ export class User extends Struct {
 		@JsonProperty('is_vip')
 		public isVip: boolean,
 
-		@JsonProperty({ name: 'top_fans', type: User })
+		@JsonProperty({
+			name: 'top_fans',
+			type: User,
+			onDeserialize: (value: any[]) => Arr2Proxy(value, User, (d: any) => d.user),
+		})
 		public topFans: User[],
 
 		@JsonProperty('date_joined')

@@ -13,9 +13,20 @@ const snakeToCamel = (str: string) => str.replace(
                     .replace('_', '')
 );
 
+export const Arr2Proxy = (data: any[], struct: any, filter?: (d: any) => any): any[] => {
+	const arr: any[] = [];
+	data.forEach((d: any) => {
+		if ( typeof filter === 'function' ) {
+			d = filter(d);
+		}
+		arr.push(deserialize(d, struct));
+	});
+	return arr;
+};
+
 export class Struct {
 	static deserialize(data: any) {
-		return deserialize(data, this);
+		return deserialize<any>(data, this);
 	}
 
 	public serialize(): any {
