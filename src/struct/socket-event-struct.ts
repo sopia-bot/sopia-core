@@ -61,7 +61,28 @@ export class WebSocketEventData extends Struct {
 		public live: Play,
 
 		@JsonProperty('author')
-		public author: User
+		public author: User,
+
+		@JsonProperty('amount')
+		public amount: number,
+
+		@JsonProperty('combo')
+		public combo: number,
+
+		@JsonProperty('donation_audio')
+		public donationAudio: string,
+
+		@JsonProperty('donation_msg')
+		public donationMsg: string,
+
+		@JsonProperty('item_template_id')
+		public itemTemplateId: number,
+
+		@JsonProperty('sticker')
+		public sticker: string,
+
+		@JsonProperty('sticker_type')
+		public stickerType: number
 
 	) {
 		super();
@@ -131,7 +152,10 @@ export class SpoonSocketEvent extends Struct {
 		public token: string,
 
 		@JsonProperty('user_id')
-		public userId: number
+		public userId: number,
+
+		@JsonProperty('trigger')
+		public trigger: string
 
 	) {
 		super();
