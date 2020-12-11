@@ -17,7 +17,7 @@ export class SocketManager extends WsManager {
 	private healthInterval!: any;
 
 	constructor(live: (Play|number), client: Client) {
-		super();
+		super(client.wstype);
 		if ( typeof live === 'number' ) {
 			live = deserialize<Play>({ id: live }, Play);
 		}
@@ -33,9 +33,10 @@ export class SocketManager extends WsManager {
 		const msg: any = {
 			appversion: this.client.appVersion,
 			event: LiveEvent.LIVE_HEALTH,
-			live_id: this.live.id,
+			live_id: this.live.id.toString(),
 			type: LiveType.LIVE_RPT,
 			useragent: this.client.userAgent,
+			user_id: this.client.user.id,
 		};
 
 		if ( this.client.user ) {
@@ -74,7 +75,6 @@ export class SocketManager extends WsManager {
 						live_id: this.live.id.toString(),
 						appversion: this.client.appVersion,
 						retry: 0,
-						reconnect: false,
 						token: this.client.token,
 						event: LiveEvent.LIVE_JOIN,
 						type: LiveType.LIVE_REQ,
@@ -85,7 +85,7 @@ export class SocketManager extends WsManager {
 							if ( dd.result.detail === 'success' ) {
 								this.healthInterval = setInterval(() => {
 									this.health();
-								}, 10 * 1000 /* 10sec */) as any;
+								}, 300 * 1000 /* 5min */) as any;
 								resolve(true);
 							}
 						}
@@ -97,7 +97,6 @@ export class SocketManager extends WsManager {
 					live_id: this.live.id.toString(),
 					appversion: this.client.appVersion,
 					retry: 0,
-					reconnect: false,
 					event: LiveEvent.LIVE_JOIN,
 					type: LiveType.LIVE_REQ,
 					useragent: this.client.userAgent,
@@ -107,7 +106,7 @@ export class SocketManager extends WsManager {
 						if ( d.result.detail === 'success' ) {
 							this.healthInterval = setInterval(() => {
 								this.health();
-							}, 10 * 1000 /* 10sec */) as any;
+							}, 300 * 1000 /* 5min */) as any;
 							resolve(true);
 						}
 					}

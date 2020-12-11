@@ -8,6 +8,7 @@ import { SpoonSocketEvent, WebSocketEvent, WebSocketEventData, WebSocketRankOrde
 import { EventManager } from './event-manager';
 import { deserialize } from 'typescript-json-serializer';
 import { LiveEvent } from '../enum/socket-live';
+import { WSType } from '../client';
 
 export class WsManager extends EventManager {
 	protected ws!: any;
@@ -18,15 +19,14 @@ export class WsManager extends EventManager {
 		this.emit(LiveEvent.LIVE_EVENT_ALL, data);
 	}
 
-	constructor(
-	) {
+	constructor(private engine: WSType) {
 		super();
 	}
 
 	async connect ( url: string, option?: any ): Promise<boolean> {
 		return new Promise((resolve, reject) => {
 			try {
-				if ( typeof window !== 'undefined' ) {
+				if ( (this.engine === WSType.SYSTEM && typeof window !== 'undefined') || (this.engine === WSType.WEB) ) {
 					const { WsClientBrowser } = require('../websocket-browser');
 					this.ws = new WsClientBrowser(url, option);
 				} else {

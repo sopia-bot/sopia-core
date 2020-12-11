@@ -30,6 +30,12 @@ import { TalkManager } from './manager/talk-manager';
 
 import axios from 'axios';
 
+export enum WSType {
+	SYSTEM = 'system',
+	WEB = 'web',
+	NODE = 'node',
+};
+
 export class Client extends SOPIA {
 	public userManager: UserManager;
 	public liveManager: LiveManager;
@@ -42,6 +48,7 @@ export class Client extends SOPIA {
 	public user!: User;
 	public liveSocketMap: Map<number, SocketManager>;
 	public signature: Map<number, StaticStickers>;
+	public wstype: WSType = WSType.SYSTEM;
 
 	constructor(public deviceUUID: string, country?: Country) {
 		super(country);
