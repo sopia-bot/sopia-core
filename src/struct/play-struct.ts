@@ -72,6 +72,9 @@ export class Play extends Struct {
 		@JsonProperty('total_member_count')
 		public totalMemberCount: number,
 
+		@JsonProperty('total_spoon_count')
+		public totalSpoonCount: number,
+
 		@JsonProperty('spoon_count')
 		public spoonCount: number,
 
@@ -84,6 +87,13 @@ export class Play extends Struct {
 		@JsonProperty('is_adult')
 		public isAdult: boolean,
 
+		@JsonProperty({
+			name: 'top_fans',
+			type: User,
+			onDeserialize: (value: any[]) => Arr2Proxy(value, User, (d: any) => d.user),
+		})
+		public topFans: User[],
+
 		@JsonProperty('is_vip')
 		public isVip: boolean,
 
@@ -92,6 +102,12 @@ export class Play extends Struct {
 
 		@JsonProperty('url_hls')
 		public urlHls: string,
+
+		@JsonProperty('url')
+		public url: string,
+
+		@JsonProperty('welcome_message')
+		public welcomeMessage: string,
 
 		@JsonProperty('engine_name')
 		public engineName: string,
@@ -127,10 +143,13 @@ export class Play extends Struct {
 		public isComposited: boolean,
 
 		@JsonProperty('live_call')
-		public liveCall: LiveCall,
+		public liveCall: (LiveCall|null),
 
 		@JsonProperty('os_type')
 		public osType: any, // unknown type.
+
+		@JsonProperty('manager_ids')
+		public managerIds: number[],
 
 		@JsonProperty('is_verified')
 		public isVerified: boolean,
@@ -157,7 +176,7 @@ export class Play extends Struct {
 		public isSave: boolean,
 
 		@JsonProperty('closed')
-		public closed: (Date|null),
+		public closed: (Date|null|string),
 
 		@JsonProperty('close_status')
 		public closeStatus: number,
