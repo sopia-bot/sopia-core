@@ -212,3 +212,108 @@ export class Play extends Struct {
 }
 
 export type PlayType = Play;
+
+
+@Serializable()
+export class VoteItem extends Struct {
+
+	constructor(
+
+		@JsonProperty('item_order')
+		public itemOrder: number,
+
+		@JsonProperty('name')
+		public name: string,
+
+		@JsonProperty('count')
+		public count: number
+
+	) {
+		super();
+	}
+
+}
+
+@Serializable()
+export class Vote extends Struct {
+
+	constructor(
+
+		@JsonProperty('id')
+		public id: number,
+
+		@JsonProperty({
+			name: 'items',
+			type: VoteItem,
+			onDeserialize: (v: any[]) => Arr2Proxy(v, VoteItem),
+		})
+		public items: VoteItem[],
+
+		@JsonProperty('title')
+		public title: string,
+
+		@JsonProperty('my_choice')
+		public myChoice: (number|null),
+
+		@JsonProperty('poll_count')
+		public pollCount: number
+
+	) {
+		super();
+	}
+
+}
+
+@Serializable()
+export class VoteResponse extends Struct {
+
+	constructor(
+
+		@JsonProperty('choice')
+		public choice: number,
+
+		@JsonProperty('poll_id')
+		public pollId: number,
+
+		@JsonProperty('total_count')
+		public totalCount: number
+
+	) {
+		super();
+	}
+
+}
+
+@Serializable()
+export class PlayContent extends Struct {
+
+	constructor(
+
+		@JsonProperty('play_id')
+		public playId: number,
+
+		@JsonProperty('play_type')
+		public playType: string
+
+	) {
+		super();
+	}
+
+}
+
+@Serializable()
+export class PlayStatus extends Struct {
+
+	constructor(
+
+		@JsonProperty('in_progress')
+		public inProgress: boolean,
+
+		@JsonProperty('play_content')
+		public playContent: PlayContent
+
+	) {
+		super();
+	}
+
+}

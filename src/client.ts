@@ -27,6 +27,7 @@ import { SearchManager } from './manager/search-manager';
 import { NotiManager } from './manager/noti-manager';
 import { SocketManager } from './manager/socket-manager';
 import { TalkManager } from './manager/talk-manager';
+import { PlayManager } from './manager/play-manager';
 
 import axios from 'axios';
 
@@ -44,6 +45,8 @@ export class Client extends SOPIA {
 	public searchManager: SearchManager;
 	public notiManager: NotiManager;
 	public talkManager: TalkManager;
+	public playManager: PlayManager;
+
 	public stickers!: StaticStickers;
 	public user!: User;
 	public liveSocketMap: Map<number, SocketManager>;
@@ -60,6 +63,7 @@ export class Client extends SOPIA {
 		this.searchManager = new SearchManager(this);
 		this.notiManager = new NotiManager(this);
 		this.talkManager = new TalkManager(this);
+		this.playManager = new PlayManager(this);
 
 		this.liveSocketMap = new Map();
 		this.signature = new Map();

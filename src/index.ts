@@ -18,6 +18,7 @@ export * from './api/api-ranks';
 export * from './api/api-search';
 export * from './api/api-notifications';
 export * from './api/api-talks';
+export * from './api/api-play';
 
 export * from './api/users/api-users-info';
 export * from './api/users/api-users-follow';
@@ -80,6 +81,13 @@ export * from './api/noti/api-noti-unconfirmed';
 export * from './api/talks/api-talks-popular';
 export * from './api/talks/api-talks-top';
 export * from './api/talks/api-talks-info';
+
+export * from './api/play/api-play-status';
+export * from './api/play/api-play-vote';
+export * from './api/play/api-play-vote-info';
+export * from './api/play/api-play-vote-create';
+export * from './api/play/api-play-vote-do';
+export * from './api/play/api-play-vote-close';
 
 export * from './struct/api-struct';
 export * from './struct/sticker-struct';
