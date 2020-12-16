@@ -163,6 +163,7 @@ export class Client extends SOPIA {
 		await this.initToken(sns_id, password, sns_type);
 
 		const api = new ApiLogin(sns_type, sns_id, password, this.country || Country.KOREA);
+		api.token = this.token as string;
 		const res = await api.send();
 		const user = deserialize<User>(res.results[0], User);
 

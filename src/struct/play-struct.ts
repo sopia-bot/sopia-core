@@ -9,6 +9,7 @@ import { User } from './user-struct';
 import { Tier } from './tier-struct';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 import { Struct, Arr2Proxy } from './struct';
+import { MailMessageStat } from '../enum/play';
 
 @Serializable()
 export class LiveCall extends Struct {
@@ -316,4 +317,60 @@ export class PlayStatus extends Struct {
 		super();
 	}
 
+}
+
+@Serializable()
+export class Mailbox extends Struct {
+
+	constructor(
+
+		@JsonProperty('id')
+		public id: number,
+
+		@JsonProperty('title')
+		public title: string,
+
+		@JsonProperty('total_count')
+		public total_count: number,
+
+		@JsonProperty('is_publish')
+		public isPublish: boolean
+
+	) {
+		super();
+	}
+}
+
+@Serializable()
+export class MailboxMessage extends Struct {
+
+	constructor(
+
+		@JsonProperty('id')
+		public id: number,
+
+		@JsonProperty('created')
+		public created: Date,
+
+		@JsonProperty('is_anonymous')
+		public isAnonymous: boolean,
+
+		@JsonProperty('mailbox_id')
+		public mailboxId: number,
+
+		@JsonProperty('message')
+		public message: string,
+
+		@JsonProperty('nickname')
+		public nickname: string,
+
+		@JsonProperty('profile_url')
+		public profile_url: string,
+
+		@JsonProperty('status')
+		public status: MailMessageStat
+
+	) {
+		super();
+	}
 }

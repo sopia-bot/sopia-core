@@ -88,6 +88,15 @@ export * from './api/play/api-play-vote-info';
 export * from './api/play/api-play-vote-create';
 export * from './api/play/api-play-vote-do';
 export * from './api/play/api-play-vote-close';
+export * from './api/play/api-play-mailbox';
+export * from './api/play/api-play-mailbox-info';
+export * from './api/play/api-play-mailbox-create';
+export * from './api/play/api-play-mailbox-messages';
+export * from './api/play/api-play-mailbox-messages-write';
+export * from './api/play/api-play-mailbox-current';
+export * from './api/play/api-play-mailbox-remove';
+export * from './api/play/api-play-mailbox-report';
+export * from './api/play/api-play-mailbox-close';
 
 export * from './struct/api-struct';
 export * from './struct/sticker-struct';
