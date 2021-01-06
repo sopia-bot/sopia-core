@@ -6,12 +6,12 @@
  */
 import { serialize, deserialize } from 'typescript-json-serializer';
 
-const snakeToCamel = (str: string) => str.replace(
+const snakeToCamel = (str: string) => typeof str === 'string' ? str.replace(
     /([-_][a-z])/g,
     (group) => group.toUpperCase()
                     .replace('-', '')
                     .replace('_', '')
-);
+) : '';
 
 export const Arr2Proxy = (data: any[], struct: any, filter?: (d: any) => any): any[] => {
 	const arr: any[] = [];
