@@ -103,7 +103,6 @@ export class ApiRequest extends SOPIA {
 				this.Option.url = this.reqUrl;
 			}
 
-			console.log(this.Option);
 			const res = await axios(this.Option);
 			data = res.data;
 

@@ -34,6 +34,7 @@ import { ApiUsersUsernameCheck } from '../api/users/api-users-username-check';
 import { ApiUsersUpdate } from '../api/users/api-users-update';
 import { ApiUsersBlock } from '../api/users/api-users-block';
 import { ApiUsersUnblock } from '../api/users/api-users-unblock';
+import { ApiUsersLive } from '../api/users/api-users-live';
 
 export class UserManager extends Manager {
 	constructor(client: Client) {
@@ -146,5 +147,11 @@ export class UserManager extends Manager {
 		const res = await this.ApiReq<void>(undefined, ApiUsersUnblock, user);
 
 		return res;
+	}
+
+	async userLive(user: (User|number)): Promise<any> /* don't have support class this data structor */  {
+		const res = await this.ApiReq<void>(undefined, ApiUsersLive, user);
+
+		return res.data[0];
 	}
 }

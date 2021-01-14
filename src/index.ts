@@ -36,6 +36,7 @@ export * from './api/users/api-users-report';
 export * from './api/users/api-users-update';
 export * from './api/users/api-users-block';
 export * from './api/users/api-users-unblock';
+export * from './api/users/api-users-live';
 
 export * from './api/lives/api-lives-info';
 export * from './api/lives/api-lives-discovered';
