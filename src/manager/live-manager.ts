@@ -41,6 +41,7 @@ import { ApiLivesPresent } from '../api/lives/api-lives-present';
 import { ApiLivesReport } from '../api/lives/api-lives-report';
 import { ApiLivesCallRequest } from '../api/lives/api-lives-call-request';
 import { ApiLivesFreeze } from '../api/lives/api-lives-freeze';
+import { ApiLivesClose } from '../api/lives/api-lives-close';
 import { ApiCommonsCastUrl } from '../api/commons/api-commons-cast-url';
 
 
@@ -200,6 +201,12 @@ export class LiveManager extends Manager {
 		const res = await this.ApiReq<void>(Play, ApiLives, '', data);
 
 		return res.data[0];
+	}
+
+	async liveClose(live: (Play|number), is_save: boolean = false): Promise<ApiManager<void>> {
+		const res = await this.ApiReq<void>(Play, ApiLivesClose, live, is_save);
+
+		return res;
 	}
 
 	async liveJoin(live: (Play|number)): Promise<SocketManager> {

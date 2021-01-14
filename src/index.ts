@@ -60,6 +60,7 @@ export * from './api/lives/api-lives-shared';
 export * from './api/lives/api-lives-present';
 export * from './api/lives/api-lives-report';
 export * from './api/lives/api-lives-freeze';
+export * from './api/lives/api-lives-close';
 
 export * from './api/casts/api-casts-main';
 export * from './api/casts/api-casts-today';
