@@ -6,10 +6,18 @@
  */
 
 import { ApiRequest } from './api-request';
+import { CreateLiveData } from '../struct/play-struct';
 
 export class ApiLives extends ApiRequest {
-	constructor(api: string) {
+	constructor(api: string, data?: CreateLiveData) {
 		super('lives');
+
+		if ( data ) {
+			this.method = 'POST';
+			this.data = data;
+			return;
+		}
+
 		this.addSubUrl(api);
 	}
 }

@@ -7,7 +7,7 @@
 import { Client } from '../client';
 
 import { SocketManager } from './socket-manager';
-import { Play } from '../struct/play-struct';
+import { Play, CreateLiveData } from '../struct/play-struct';
 import { Budget } from '../struct/budget-struct';
 import { User, UserSponsor } from '../struct/user-struct';
 import { Sticker } from '../struct/sticker-struct';
@@ -18,6 +18,7 @@ import { ReportType } from '../enum/report';
 import { LiveChatState, LiveType } from '../enum/socket-live';
 
 import { ApiManager } from './api-manager';
+import { ApiLives } from '../api/api-lives';
 import { ApiLivesInfo } from '../api/lives/api-lives-info';
 import { ApiLivesDiscovered } from '../api/lives/api-lives-discovered';
 import { ApiLivesAccept } from '../api/lives/api-lives-accept';
@@ -191,6 +192,12 @@ export class LiveManager extends Manager {
 	// The API is common, but it is written here because it is related to live generation.
 	async liveCastUrl(): Promise<any> {
 		const res = await this.ApiReq<void>(undefined, ApiCommonsCastUrl);
+
+		return res.data[0];
+	}
+
+	async liveCreate(data: CreateLiveData): Promise<Play> {
+		const res = await this.ApiReq<void>(Play, ApiLives, '', data);
 
 		return res.data[0];
 	}

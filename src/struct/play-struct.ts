@@ -204,7 +204,14 @@ export class Play extends Struct {
 		public status: number,
 
 		@JsonProperty('categories')
-		public categories: string[]
+		public categories: string[],
+
+		@JsonProperty('access_key')
+		public accessKey: string,
+
+		@JsonProperty('host_address')
+		public hostAddress: any,
+
 
 	) {
 		super();
@@ -373,4 +380,48 @@ export class MailboxMessage extends Struct {
 	) {
 		super();
 	}
+}
+
+@Serializable()
+export class CreateLiveData extends Struct {
+
+	constructor(
+
+		@JsonProperty('categories')
+		public categories: string[],
+
+		@JsonProperty('donation')
+		public donation: number,
+
+		@JsonProperty('engine')
+		public engine: any,
+
+		@JsonProperty('img_key')
+		public imgKey: string,
+
+		@JsonProperty('invite_member_ids')
+		public inviteMemberIds: number[],
+
+		@JsonProperty('is_adult')
+		public isAdult: boolean,
+
+		@JsonProperty('is_save')
+		public isSave: boolean,
+
+		@JsonProperty('tags')
+		public tags: any[],
+
+		@JsonProperty('title')
+		public title: string,
+
+		@JsonProperty('type')
+		public type: number,
+
+		@JsonProperty('welcome_message')
+		public welcomeMessage: string
+
+	) {
+		super();
+	}
+
 }
