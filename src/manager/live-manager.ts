@@ -40,6 +40,7 @@ import { ApiLivesPresent } from '../api/lives/api-lives-present';
 import { ApiLivesReport } from '../api/lives/api-lives-report';
 import { ApiLivesCallRequest } from '../api/lives/api-lives-call-request';
 import { ApiLivesFreeze } from '../api/lives/api-lives-freeze';
+import { ApiCommonsCastUrl } from '../api/commons/api-commons-cast-url';
 
 
 export class LiveManager extends Manager {
@@ -185,6 +186,13 @@ export class LiveManager extends Manager {
 		const res = await this.ApiReq<Play>(Play, ApiLivesBanner);
 
 		return res.data;
+	}
+
+	// The API is common, but it is written here because it is related to live generation.
+	async liveCastUrl(): Promise<any> {
+		const res = await this.ApiReq<void>(undefined, ApiCommonsCastUrl);
+
+		return res.data[0];
 	}
 
 	async liveJoin(live: (Play|number)): Promise<SocketManager> {

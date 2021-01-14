@@ -19,6 +19,7 @@ export * from './api/api-search';
 export * from './api/api-notifications';
 export * from './api/api-talks';
 export * from './api/api-play';
+export * from './api/api-commons';
 
 export * from './api/users/api-users-info';
 export * from './api/users/api-users-follow';
@@ -98,6 +99,9 @@ export * from './api/play/api-play-mailbox-current';
 export * from './api/play/api-play-mailbox-remove';
 export * from './api/play/api-play-mailbox-report';
 export * from './api/play/api-play-mailbox-close';
+
+export * from './api/commons/api-commons-cast';
+export * from './api/commons/api-commons-cast-url';
 
 export * from './struct/api-struct';
 export * from './struct/sticker-struct';
