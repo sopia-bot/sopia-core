@@ -15,8 +15,13 @@ export interface SpoonAPI {
 	studioApi: string;
 	cdn: string;
 	socket: string;
-	sticerApiUrl: string;
+	stickerApiUrl: string;
 	auth?: string;
+	signatureStickerApiUrl: string;
+	singApi: string;
+	singSocket: string;
+	studioApi: string;
+	textDonationUrl: string;
 }
 
 export class SOPIA {
