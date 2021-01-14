@@ -20,7 +20,6 @@ export interface SpoonAPI {
 	signatureStickerApiUrl: string;
 	singApi: string;
 	singSocket: string;
-	studioApi: string;
 	textDonationUrl: string;
 }
 
