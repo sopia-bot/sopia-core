@@ -91,7 +91,7 @@ export class SocketManager extends WsManager {
 									const data = evt.data;
 									if ( data ) {
 										const live = data.live;
-										if ( live ) {
+										if ( live && evt.event !== LiveEvent.LIVE_MESSAGE ) {
 											this.live = live;
 										}
 									}
@@ -121,7 +121,7 @@ export class SocketManager extends WsManager {
 								const data = evt.data;
 								if ( data ) {
 									const live = data.live;
-									if ( live ) {
+									if ( live && evt.event !== LiveEvent.LIVE_MESSAGE ) {
 										this.live = live;
 									}
 								}
