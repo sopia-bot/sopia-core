@@ -37,7 +37,7 @@ export class EventManager {
 		this._events[key].unshift(evt);
 	}
 
-	on (key: string, func: (data?: any[]) => void): void {
+	on (key: string, func: (data?: any) => void): void {
 		this.pushEvent(
 			key,
 			{
@@ -47,7 +47,7 @@ export class EventManager {
 		);
 	}
 
-	once (key: string, func: (data?: any[]) => void): void {
+	once (key: string, func: (data?: any) => void): void {
 		this.pushEvent(
 			key,
 			{
@@ -57,7 +57,7 @@ export class EventManager {
 		);
 	}
 
-	addEventListener(key: string, func: (data?: any[]) => void): void {
+	addEventListener(key: string, func: (data?: any) => void): void {
 		this.on(key, func);
 	}
 

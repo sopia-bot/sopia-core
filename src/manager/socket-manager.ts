@@ -10,6 +10,7 @@ import { Client } from '../client';
 import { LiveEvent, LiveType } from '../enum/socket-live';
 import { Play } from '../struct/play-struct';
 import { deserialize } from 'typescript-json-serializer';
+import { SpoonSocketEvent } from '../struct/socket-event-struct';
 
 export class SocketManager extends WsManager {
 	private live!: Play;
@@ -86,6 +87,15 @@ export class SocketManager extends WsManager {
 								this.healthInterval = setInterval(() => {
 									this.health();
 								}, 300 * 1000 /* 5min */) as any;
+								this.on(LiveEvent.LIVE_EVENT_ALL, (evt: SpoonSocketEvent) => {
+									const data = evt.data;
+									if ( data ) {
+										const live = data.live;
+										if ( live ) {
+											this.live = live;
+										}
+									}
+								});
 								resolve(true);
 							}
 						}
@@ -107,6 +117,15 @@ export class SocketManager extends WsManager {
 							this.healthInterval = setInterval(() => {
 								this.health();
 							}, 300 * 1000 /* 5min */) as any;
+							this.on(LiveEvent.LIVE_EVENT_ALL, (evt: SpoonSocketEvent) => {
+								const data = evt.data;
+								if ( data ) {
+									const live = data.live;
+									if ( live ) {
+										this.live = live;
+									}
+								}
+							});
 							resolve(true);
 						}
 					}
