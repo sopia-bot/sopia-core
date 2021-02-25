@@ -26,6 +26,7 @@ export interface SpoonAPI {
 export class SOPIA {
 	public country: Country = Country.KOREA;
 	public token?: string;
+	public refToken?: string;
 	public api!: SpoonAPI;
 
 	constructor(country?: Country) {

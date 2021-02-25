@@ -98,6 +98,23 @@ export class Client extends SOPIA {
 
 		if ( res.data && res.data.data ) {
 			this.token = res.data.data.jwt;
+			this.refToken = res.data.data.refresh_token;
+		}
+
+		return this.token;
+	}
+
+	async refreshToken() {
+		const reqUrl = `${this.api.auth}tokens/`;
+
+		const res = await axios.put(reqUrl, {
+			'device_unique_id': this.deviceUUID,
+			'refresh_token': this.refToken,
+			'user_id': this.user.id,
+		}, { headers: { authorization: 'Bearer ' + this.token } });
+
+		if ( res.data && res.data.data ) {
+			this.token = res.data.data.jwt;
 		}
 
 		return this.token;
@@ -168,16 +185,17 @@ export class Client extends SOPIA {
 		const user = deserialize<User>(res.results[0], User);
 
 		this.user = user;
-		this.user.token = this.token!;
+		this.user.token = this.token as string;
 		return user;
 	}
 
-	async loginToken(user: (User|number), token: string): Promise<User> {
+	async loginToken(user: (User|number), token: string, refreshToken: string): Promise<User> {
 		this.token = token;
+		this.refToken = refreshToken;
 
 		const u = await this.userManager.userInfo(user);
 		this.user = u;
-		this.user.token = this.token;
+		this.user.token = this.token as string;
 
 		return this.user;
 	}
