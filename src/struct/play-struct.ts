@@ -156,7 +156,7 @@ export class Play extends Struct {
 		public isVerified: boolean,
 
 		@JsonProperty('room_token')
-		public roomToken: any, // unknown type.
+		public roomToken: string,
 
 		@JsonProperty('is_editors')
 		public isEditors: boolean,
