@@ -11,7 +11,7 @@ import { ReportType } from '../enum/report';
 
 import { Play } from '../struct/play-struct';
 import { Budget } from '../struct/budget-struct';
-import { User, UserFanmessages, UserVoice, UserTopfan } from '../struct/user-struct';
+import { User, UserFanmessages, UserVoice, UserTopfan, UserKomcaSong } from '../struct/user-struct';
 import { Manager } from '../struct/manager-struct';
 
 import { ApiManager } from './api-manager';
@@ -35,6 +35,7 @@ import { ApiUsersUpdate } from '../api/users/api-users-update';
 import { ApiUsersBlock } from '../api/users/api-users-block';
 import { ApiUsersUnblock } from '../api/users/api-users-unblock';
 import { ApiUsersLive } from '../api/users/api-users-live';
+import { ApiUsersKomca } from '../api/users/api-users-komca';
 
 export class UserManager extends Manager {
 	constructor(client: Client) {
@@ -153,5 +154,11 @@ export class UserManager extends Manager {
 		const res = await this.ApiReq<void>(undefined, ApiUsersLive, user);
 
 		return res.data[0];
+	}
+
+	async userKomca(songs: UserKomcaSong[]): Promise<ApiManager<void>> {
+		const res = await this.ApiReq<void>(undefined, ApiUsersKomca, songs);
+
+		return res;
 	}
 }

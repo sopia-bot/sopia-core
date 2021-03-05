@@ -232,3 +232,26 @@ export class UserFanmessages extends Struct {
 	}
 
 }
+
+@Serializable()
+export class UserKomcaSong extends Struct {
+
+	constructor(
+		
+		@JsonProperty('title')
+		public title: string,
+
+		@JsonProperty('singer')
+		public singer: string,
+
+		@JsonProperty('album')
+		public album: string,
+
+		@JsonProperty('code')
+		public code: string
+
+	) {
+		super();
+	}
+
+}
