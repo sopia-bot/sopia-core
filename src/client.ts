@@ -67,9 +67,11 @@ export class Client extends SOPIA {
 
 		this.liveSocketMap = new Map();
 		this.signature = new Map();
+	}
 
-		this.initSticker();
-		this.initApiInfo();
+	async init() {
+		await this.initSticker();
+		await this.initApiInfo();
 	}
 
 	async initApiInfo() {
@@ -104,18 +106,23 @@ export class Client extends SOPIA {
 		return this.token;
 	}
 
-	async refreshToken() {
+	async refreshToken(userId?: (number|string), token?: string, refToken?: string) {
 		const reqUrl = `${this.api.auth}tokens/`;
 
+		try {
 		const res = await axios.put(reqUrl, {
 			'device_unique_id': this.deviceUUID,
-			'refresh_token': this.refToken,
-			'user_id': this.user.id,
-		}, { headers: { authorization: 'Bearer ' + this.token } });
-
+			'refresh_token': refToken || this.refToken,
+			'user_id': userId || this.user.id,
+		}, { headers: { authorization: 'Bearer ' + (token || this.token) } });
 		if ( res.data && res.data.data ) {
 			this.token = res.data.data.jwt;
+			this.refToken = refToken || this.refToken;
 		}
+		} catch(err) {
+			console.log(err.toJSON());
+		}
+
 
 		return this.token;
 	}
@@ -175,8 +182,7 @@ export class Client extends SOPIA {
 	}
 
 	async login(sns_id: (number|string), password: string, sns_type: LoginType): Promise<User> {
-		await this.initSticker();
-		await this.initApiInfo();
+		await this.init();
 		await this.initToken(sns_id, password, sns_type);
 
 		const api = new ApiLogin(sns_type, sns_id, password, this.country || Country.KOREA);
@@ -190,6 +196,7 @@ export class Client extends SOPIA {
 	}
 
 	async loginToken(user: (User|number), token: string, refreshToken: string): Promise<User> {
+		await this.init();
 		this.token = token;
 		this.refToken = refreshToken;
 
