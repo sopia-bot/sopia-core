@@ -131,7 +131,13 @@ export class User extends Struct {
 		public isFixedManager: boolean,
 
 		@JsonProperty('guest_status')
-		public guestStatus: number
+		public guestStatus: number,
+
+		@JsonProperty('email')
+		public email: string,
+
+		@JsonProperty('sns_type')
+		public snsType: string
 
 	) {
 		super();
@@ -237,7 +243,7 @@ export class UserFanmessages extends Struct {
 export class UserKomcaSong extends Struct {
 
 	constructor(
-		
+
 		@JsonProperty('title')
 		public title: string,
 
