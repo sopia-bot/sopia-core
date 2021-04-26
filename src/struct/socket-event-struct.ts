@@ -91,6 +91,20 @@ export class WebSocketEventData extends Struct {
 }
 
 @Serializable()
+export class LiveUpdateComponent extends Struct {
+
+	constructor(
+
+		@JsonProperty('message')
+		public message: { value: string }
+
+	) {
+		super();
+	}
+
+}
+
+@Serializable()
 export class LiveCommandDetail extends Struct {
 
 	constructor(
@@ -123,6 +137,15 @@ export class SpoonSocketEvent extends Struct {
 
 		@JsonProperty('data')
 		public data: WebSocketEventData,
+
+		@JsonProperty('items')
+		public items: any[],
+
+		@JsonProperty('use_item')
+		public useItem: any[],
+
+		@JsonProperty('update_component')
+		public updateComponent: LiveUpdateComponent,
 
 		@JsonProperty('detail')
 		public detail: LiveCommandDetail,
