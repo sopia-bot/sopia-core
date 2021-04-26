@@ -16,6 +16,7 @@ export class SocketManager extends WsManager {
 	private live!: Play;
 	private client!: Client;
 	private healthInterval!: any;
+	private liveToken!: string;
 
 	constructor(live: (Play|number), client: Client) {
 		super(client.wstype);
@@ -58,7 +59,8 @@ export class SocketManager extends WsManager {
 		});
 	}
 
-	async join (): Promise<boolean> {
+	async join (jwt: string): Promise<boolean> {
+		this.liveToken = jwt;
 		return new Promise(async (resolve, reject) => {
 			await this.connect(this.client.api.socket + this.live.id);
 
@@ -76,7 +78,7 @@ export class SocketManager extends WsManager {
 						live_id: this.live.id.toString(),
 						appversion: this.client.appVersion,
 						retry: 0,
-						token: this.client.token,
+						token: this.liveToken,
 						event: LiveEvent.LIVE_JOIN,
 						type: LiveType.LIVE_REQ,
 						useragent: this.client.userAgent,

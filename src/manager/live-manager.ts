@@ -42,6 +42,7 @@ import { ApiLivesReport } from '../api/lives/api-lives-report';
 import { ApiLivesCallRequest } from '../api/lives/api-lives-call-request';
 import { ApiLivesFreeze } from '../api/lives/api-lives-freeze';
 import { ApiLivesClose } from '../api/lives/api-lives-close';
+import { ApiLivesToken } from '../api/lives/api-lives-token';
 import { ApiCommonsCastUrl } from '../api/commons/api-commons-cast-url';
 
 
@@ -70,8 +71,8 @@ export class LiveManager extends Manager {
 		return res.data[0];
 	}
 
-	async liveAccess(live: (Play|number)): Promise<Play> {
-		const res = await this.ApiReq<Play>(Play, ApiLivesAccess, live);
+	async liveAccess(live: (Play|number), jwt: string): Promise<Play> {
+		const res = await this.ApiReq<Play>(Play, ApiLivesAccess, live, jwt);
 
 		return res.data[0];
 	}
@@ -209,10 +210,17 @@ export class LiveManager extends Manager {
 		return res;
 	}
 
+	async liveToken(live: (Play|number), device_unique_id: string): Promise<any> {
+		const res = await this.ApiReq<void>(undefined, ApiLivesToken, live, device_unique_id);
+
+		return res.data[0];
+	}
+
 	async liveJoin(live: (Play|number)): Promise<SocketManager> {
 		const socket = this.liveSocket(live);
-		await this.liveAccess(live);
-		await socket.join();
+		const { jwt } = await this.liveToken(live, this.client.deviceUUID);
+		await this.liveAccess(live, jwt);
+		await socket.join(jwt);
 
 		this.client.liveSocketMap.set(
 			(live instanceof Play) ? live.id : live,
