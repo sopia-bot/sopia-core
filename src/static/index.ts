@@ -5,6 +5,4 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-export * from './api/';
-export * from './spoon/';
-export * from './static/';
+export * from './stickers';

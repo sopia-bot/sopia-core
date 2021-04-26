@@ -1,6 +1,6 @@
 {
 	"name": "sopia-core",
-	"version": "1.6.1",
+	"version": "2.0.0",
 	"description": "Spoon radio core API",
 	"main": "dist/index.js",
 	"scripts": {
@@ -32,8 +32,7 @@
 	},
 	"license": "ISC",
 	"dependencies": {
-		"axios": "^0.19.2",
-		"typescript-json-serializer": "^2.3.3",
+		"axios": "^0.21.1",
 		"ws": "^7.3.0"
 	}
 }
