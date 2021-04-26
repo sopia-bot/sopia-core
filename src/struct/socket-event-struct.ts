@@ -82,7 +82,10 @@ export class WebSocketEventData extends Struct {
 		public sticker: string,
 
 		@JsonProperty('sticker_type')
-		public stickerType: number
+		public stickerType: number,
+
+		@JsonProperty('user')
+		public user: User
 
 	) {
 		super();
