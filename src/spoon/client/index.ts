@@ -34,10 +34,6 @@ export class ApiClient extends SPOON {
 
 		const res = await req.send();
 
-		if ( res.status_code !== 200 ) {
-			console.log('Error', res);
-		}
-
 		return req;
 	}
 
@@ -101,6 +97,8 @@ export class StickerClient extends ApiClient {
 
 export class LoginClient extends StickerClient {
 
+	public logonUser!: LogonUser;
+
 	constructor(deviceUUID: string) {
 		super(deviceUUID);
 	}
@@ -137,8 +135,8 @@ export class LoginClient extends StickerClient {
 				country: this.country,
 			},
 		});
-		const user = req.res.results[0];
-		return user;
+		this.logonUser = req.res.results[0];
+		return this.logonUser;
 	}
 
 	/*
