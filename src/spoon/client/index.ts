@@ -19,15 +19,23 @@ export class ApiClient extends SPOON {
 		super(deviceUUID);
 	}
 
-	async ApiReq<T extends object, R>(api: any, config?: R): Promise<ApiRequest<T, R>> {
+	async ApiReq<T extends object, R>(api: any, id?: (number|R), config?: R): Promise<ApiRequest<T, R>> {
+		if ( typeof id === 'number' ) {
+			// empty
+		} else {
+			config = id as R;
+			id = 0;
+		}
+
 		const req = new ApiRequest<T, R>(this, config || {} as R);
 		req.url = api.url;
 		req.method = api.method;
+		req.id = id as number;
 
 		const res = await req.send();
 
 		if ( res.status_code !== 200 ) {
-			throw res;
+			console.log('Error', res);
 		}
 
 		return req;

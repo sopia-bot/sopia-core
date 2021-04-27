@@ -5,7 +5,7 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { CurrentLive } from '../../live/';
+import { CurrentLive } from '../../contents/';
 import { Tier } from '../../spoon/';
 
 export interface UserSearchProfile {

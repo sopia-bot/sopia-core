@@ -35,3 +35,4 @@ export interface ApiUrls {
 export * from './request/';
 export * from './auth/';
 export * from './lives/';
+export * from './users/';

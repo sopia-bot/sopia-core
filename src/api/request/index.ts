@@ -10,6 +10,7 @@ import axios, { AxiosRequestConfig, Method } from 'axios';
 export class ApiRequest<T extends object, Req extends AxiosRequestConfig> {
 	private _url: string = '';
 	private _result!: ApiResult<T>;
+	private _id: number = 0;
 
 	constructor(private _client: any, private _options: Req) {
 		if ( !this._options.headers ) {
@@ -48,6 +49,14 @@ export class ApiRequest<T extends object, Req extends AxiosRequestConfig> {
 		this._options = val;
 	}
 
+	get id(): number {
+		return this._id;
+	}
+
+	set id(val: number) {
+		this._id = val;
+	}
+
 	set url(val: string) {
 		this._url = val;
 	}
@@ -57,7 +66,7 @@ export class ApiRequest<T extends object, Req extends AxiosRequestConfig> {
 	}
 
 	private get _reqUrl() {
-		return `${this._client.urls.api}${this._url.replace(/^\//, '')}`;
+		return `${this._client.urls.api}${this._url.replace(/^\//, '').replace('0000', this.id.toString())}`;
 	}
 
 	private async _req<T>(config: T) {

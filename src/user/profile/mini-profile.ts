@@ -6,6 +6,7 @@
  */
 
 import { UserSearchProfile } from '.';
+import { Country } from '../../spoon/';
 
 
 export interface UserMiniProfile extends UserSearchProfile {

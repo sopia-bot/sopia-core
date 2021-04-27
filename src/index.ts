@@ -9,3 +9,4 @@ export * from './api/';
 export * from './spoon/';
 export * from './static/';
 export * from './contents/';
+export * from './user/';
