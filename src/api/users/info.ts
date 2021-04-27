@@ -17,3 +17,14 @@ export namespace ApiUsersInfo {
 	}
 
 }
+
+export namespace ApiUsersMiniProfile {
+
+	export const url = '/users/0000/mini_profile';
+	export const method = 'GET';
+
+	export interface Request extends RequestConfig {
+
+	}
+
+}
