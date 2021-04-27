@@ -52,3 +52,4 @@ export interface User extends UserMiniProfile {
 }
 
 export * from './profile/';
+export * from './live';
