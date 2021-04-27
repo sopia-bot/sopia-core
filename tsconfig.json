@@ -5,6 +5,7 @@
 		"removeComments": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
+		"esModuleInterop": true,
 		"pretty": true,
 		"strict": true,
 		"outDir": "dist",
