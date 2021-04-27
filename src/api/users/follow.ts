@@ -17,3 +17,25 @@ export namespace ApiUsersFollow {
 	}
 
 }
+
+export namespace ApiUsersUnFollow {
+
+	export const url = '/users/0000/unfollow/';
+	export const method = 'POST';
+
+	export interface Request extends RequestConfig {
+
+	}
+
+}
+
+export namespace ApiUsersFollowings {
+
+	export const url = '/users/0000/followings/';
+	export const method = 'GET';
+
+	export interface Request extends RequestConfig {
+
+	}
+
+}
