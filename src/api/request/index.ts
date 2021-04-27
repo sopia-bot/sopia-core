@@ -52,6 +52,10 @@ export class ApiRequest<T extends object, Req extends AxiosRequestConfig> {
 		this._url = val;
 	}
 
+	get res(): ApiResult<T> {
+		return this._result;
+	}
+
 	private get _reqUrl() {
 		return `${this._client.urls.api}${this._url.replace(/^\//, '')}`;
 	}

@@ -10,9 +10,9 @@ import { UserMiniProfile } from '../user/';
 export interface Contents {
 
 	'id': number;
-	
+
 	'title': string;
-	
+
 	'author': UserMiniProfile;
 
 	'img_url': string;

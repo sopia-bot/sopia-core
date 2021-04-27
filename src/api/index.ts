@@ -5,6 +5,8 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
+import { Method } from 'axios';
+
 export interface ApiResult<T extends object> {
 	detail: string;
 	next: string;
@@ -32,3 +34,4 @@ export interface ApiUrls {
 
 export * from './request/';
 export * from './auth/';
+export * from './lives/';

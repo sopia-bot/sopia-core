@@ -9,7 +9,7 @@ import { LoginType, Country, CountryNumber } from '../';
 import { StaticStickers } from '../../static/';
 import { SPOON } from '../';
 import { LogonUser } from '../../user/';
-import { ApiRequest, ApiLogin } from '../../api';
+import { ApiRequest, ApiResult, ApiLogin } from '../../api';
 
 import axios, { Method } from 'axios';
 
@@ -19,11 +19,10 @@ export class ApiClient extends SPOON {
 		super(deviceUUID);
 	}
 
-	async ApiReq<T extends object, R>(url: string, method: Method, config: R): Promise<T[]> {
-		const req = new ApiRequest<T, R>(this, config);
-		req.method = method;
-		req.config = config;
-		req.url = url;
+	async ApiReq<T extends object, R>(api: any, config?: R): Promise<ApiRequest<T, R>> {
+		const req = new ApiRequest<T, R>(this, config || {} as R);
+		req.url = api.url;
+		req.method = api.method;
 
 		const res = await req.send();
 
@@ -31,7 +30,7 @@ export class ApiClient extends SPOON {
 			throw res;
 		}
 
-		return res.results;
+		return req;
 	}
 
 }
@@ -122,7 +121,7 @@ export class LoginClient extends StickerClient {
 	async login(sns_id: (number|string), password: string, sns_type: LoginType): Promise<LogonUser> {
 		await this.initToken(sns_id, password, sns_type);
 
-		const res = await this.ApiReq<LogonUser, ApiLogin.Request>(ApiLogin.URL, ApiLogin.METHOD, {
+		const req = await this.ApiReq<LogonUser, ApiLogin.Request>(ApiLogin, {
 			'data': {
 				sns_type,
 				sns_id,
@@ -130,7 +129,7 @@ export class LoginClient extends StickerClient {
 				country: this.country,
 			},
 		});
-		const user = res[0];
+		const user = req.res.results[0];
 		return user;
 	}
 

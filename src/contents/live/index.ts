@@ -36,7 +36,7 @@ export interface Live extends Contents {
 	'total_member_count': number;
 
 	'url_hls': string;
-	
+
 }
 
 export * from './current-live';

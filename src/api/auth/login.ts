@@ -5,16 +5,15 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { AxiosRequestConfig } from 'axios';
 import { LoginType, Country } from '../../spoon/';
-import { ApiResult } from '../';
+import { ApiResult, RequestConfig } from '../';
 
 export namespace ApiLogin {
 
-	export const URL = '/signin/';
-	export const METHOD = 'POST';
+	export const url = '/signin/';
+	export const method = 'POST';
 
-	export interface Request extends AxiosRequestConfig {
+	export interface Request extends RequestConfig {
 
 		'data': {
 
