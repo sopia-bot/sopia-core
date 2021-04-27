@@ -12,6 +12,12 @@ import {
 } from '../spoon/';
 import { UserMiniProfile } from '.';
 
+export interface UserNameExist {
+
+	'is_exist': boolean;
+
+}
+
 export interface User extends UserMiniProfile {
 
 	'email': string;

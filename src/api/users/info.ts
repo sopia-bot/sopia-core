@@ -28,3 +28,20 @@ export namespace ApiUsersMiniProfile {
 	}
 
 }
+
+export namespace ApiUsersUsername {
+
+	export const url = '/users/username/';
+	export const method = 'GET';
+
+	export interface Request extends RequestConfig {
+
+		'params': {
+
+			'username': string;
+
+		};
+
+	}
+
+}
