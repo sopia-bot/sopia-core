@@ -64,7 +64,6 @@ export class ApiRequest<T extends object, Req extends AxiosRequestConfig> {
 		this._options.url = url;
 
 		try {
-			console.log(this._options);
 			const res = await this._req<Req>(this._options);
 
 			if ( res.data ) {

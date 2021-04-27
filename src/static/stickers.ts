@@ -7,49 +7,49 @@
 
 export interface Sticker {
 
-	readonly name: string;
+	readonly 'name': string;
 
-	readonly title: string;
+	readonly 'title': string;
 
-	readonly description: string;
+	readonly 'description': string;
 
-	readonly isCashout: number;
+	readonly 'isCashout': number;
 
-	readonly display: number;
+	readonly 'display': number;
 
-	readonly type: number;
+	readonly 'type': number;
 
-	readonly price: number;
+	readonly 'price': number;
 
-	readonly color: string;
+	readonly 'color': string;
 
-	readonly color_web: string;
+	readonly 'color_web': string;
 
-	readonly tag: string;
+	readonly 'tag': string;
 
-	readonly image_thumbnail: string;
+	readonly 'image_thumbnail': string;
 
-	readonly image_thumbnail_web: string;
+	readonly 'image_thumbnail_web': string;
 
-	readonly image_urls: string[];
+	readonly 'image_urls': string[];
 
-	readonly image_url_web: string;
+	readonly 'image_url_web': string;
 
-	readonly lottie_url: string;
+	readonly 'lottie_url': string;
 
-	readonly lottie_combo_url: string;
+	readonly 'lottie_combo_url': string;
 
-	readonly order: number;
+	readonly 'order': number;
 
-	readonly isUsed: boolean;
+	readonly 'is_used': boolean;
 
-	readonly start_date: (Date|null);
+	readonly 'start_date': string;
 
-	readonly end_date: (Date|null);
+	readonly 'end_date': string;
 
-	readonly updated: (Date|null);
+	readonly 'updated': string;
 
-	readonly category: string;
+	readonly 'category': string;
 
 }
 
@@ -71,7 +71,7 @@ export interface StaticStickers {
 
 	readonly 'version': number;
 
-	readonly 'updated': Date|null;
+	readonly 'updated': string;
 
 	readonly 'categories': StickerCategory[];
 

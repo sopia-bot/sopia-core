@@ -6,12 +6,12 @@
  */
 
 export interface ApiResult<T extends object> {
-	detail?: string;
-	next?: string;
-	previous?: string;
-	results?: T[];
-	status_code?: (string | number);
-	data?: T;
+	detail: string;
+	next: string;
+	previous: string;
+	results: T[];
+	status_code: (string | number);
+	data: T;
 }
 
 export interface ApiUrls {
@@ -30,5 +30,5 @@ export interface ApiUrls {
 	auth?: string;
 }
 
-export * from './client/';
+export * from './request/';
 export * from './auth/';

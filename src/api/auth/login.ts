@@ -30,7 +30,4 @@ export namespace ApiLogin {
 
 	}
 
-	export interface Response {
-	}
-
 }
