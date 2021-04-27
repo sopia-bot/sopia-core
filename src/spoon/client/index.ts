@@ -19,7 +19,7 @@ export class ApiClient extends SPOON {
 		super(deviceUUID);
 	}
 
-	async ApiReq<T extends object, R>(api: any, id?: (number|R), config?: R): Promise<ApiRequest<T, R>> {
+	async ApiReq<T extends any, R>(api: any, id?: (number|R), config?: R): Promise<ApiRequest<T, R>> {
 		if ( typeof id === 'number' ) {
 			// empty
 		} else {

@@ -7,7 +7,7 @@
 
 import { Method } from 'axios';
 
-export interface ApiResult<T extends object> {
+export interface ApiResult<T extends any> {
 	detail: string;
 	next: string;
 	previous: string;

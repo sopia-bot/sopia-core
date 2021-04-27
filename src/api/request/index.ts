@@ -7,7 +7,7 @@
 import { ApiResult } from '../';
 import axios, { AxiosRequestConfig, Method } from 'axios';
 
-export class ApiRequest<T extends object, Req extends AxiosRequestConfig> {
+export class ApiRequest<T extends any, Req extends AxiosRequestConfig> {
 	private _url: string = '';
 	private _result!: ApiResult<T>;
 	private _id: number = 0;
