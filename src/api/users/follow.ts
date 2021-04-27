@@ -39,3 +39,14 @@ export namespace ApiUsersFollowings {
 	}
 
 }
+
+export namespace ApiUsersFollowers {
+
+	export const url = '/users/0000/followers/';
+	export const method = 'GET';
+
+	export interface Request extends RequestConfig {
+
+	}
+
+}
