@@ -9,7 +9,7 @@ import { ApiResult, RequestConfig } from '../';
 
 export namespace ApiUsersInfo {
 
-	export const url = '/users/0000';
+	export const url = '/users/0000/';
 	export const method = 'GET';
 
 	export interface Request extends RequestConfig {
