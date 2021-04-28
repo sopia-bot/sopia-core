@@ -36,3 +36,18 @@ export namespace ApiTastesGenderChoice {
 	}
 
 }
+
+export namespace ApiTastesSetGenderChoice {
+
+	export const url = '/tastes/gender/choice/';
+	export const method = 'POST';
+
+	export interface Request extends RequestConfig {
+
+		'data': {
+			'taste_data_ids': number[];
+		};
+
+	}
+
+}

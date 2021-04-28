@@ -36,3 +36,18 @@ export namespace ApiTastesLiveCategoryChoice {
 	}
 
 }
+
+export namespace ApiTastesSetLiveCategoryChoice {
+
+	export const url = '/tastes/live-category/choice/';
+	export const method = 'POST';
+
+	export interface Request extends RequestConfig {
+
+		'data': {
+			'taste_data_ids': number[];
+		};
+
+	}
+
+}
