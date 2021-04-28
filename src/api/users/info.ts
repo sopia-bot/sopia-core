@@ -18,6 +18,25 @@ export namespace ApiUsersInfo {
 
 }
 
+export namespace ApiSetUsersInfo {
+
+	export const url = '/users/0000/';
+	export const method = 'PUT';
+
+	export interface Request extends RequestConfig {
+
+		'data': {
+
+			'date_of_birth'?: string;
+
+			'gender'?: number;
+
+		};
+
+	}
+
+}
+
 export namespace ApiUsersMiniProfile {
 
 	export const url = '/users/0000/mini_profile';
@@ -37,6 +56,23 @@ export namespace ApiUsersUsername {
 	export interface Request extends RequestConfig {
 
 		'params': {
+
+			'username': string;
+
+		};
+
+	}
+
+}
+
+export namespace ApiUsersSetUsername {
+
+	export const url = '/users/username/';
+	export const method = 'POST';
+
+	export interface Request extends RequestConfig {
+
+		'data': {
 
 			'username': string;
 

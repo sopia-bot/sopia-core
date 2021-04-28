@@ -5,8 +5,5 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { AxiosRequestConfig } from 'axios';
-
-export interface RequestConfig extends AxiosRequestConfig {
-}
 export * from './login';
+export * from './password';

@@ -5,7 +5,10 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { Method } from 'axios';
+import { Method, AxiosRequestConfig } from 'axios';
+
+export interface RequestConfig extends AxiosRequestConfig {
+}
 
 export interface ApiResult<T extends any> {
 	detail: string;
