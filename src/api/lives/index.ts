@@ -5,4 +5,16 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
+import { RequestConfig } from '../';
+
+export interface ApiLivesRequestConfig extends RequestConfig {
+
+	'headers': {
+
+		'x-live-authorization': string;
+
+	};
+
+}
+
 export * from './banner';

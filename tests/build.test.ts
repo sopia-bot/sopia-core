@@ -23,7 +23,6 @@ import {
 	User,
 	UserMiniProfile,
 	UserNameExist,
-	Live,
 	UserLive,
 	StaticStickers,
 	FanMessages,
@@ -209,7 +208,7 @@ describe('📌  Web Api Test', () => {
 
 	});
 
-	describe('🔯  User UnFollow', async () => {
+	describe('📌  User UnFollow', async () => {
 
 		it('UnFollow Test Account', async () => {
 			const req = await sopia.ApiReq<User, ApiUsersUnFollow.Request>(ApiUsersUnFollow, targetId);
@@ -233,7 +232,7 @@ describe('📌  Web Api Test', () => {
 
 	});
 
-	describe('🔯  User Block & Unblock', () => {
+	describe('📌  User Block & Unblock', () => {
 
 		it('Block Test Account', async () => {
 			const req = await sopia.ApiReq<void, ApiUsersBlock.Request>(ApiUsersBlock, targetId);
