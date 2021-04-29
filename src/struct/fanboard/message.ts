@@ -6,20 +6,26 @@
  */
 import { User } from '../user/';
 
-export interface FanboardMessages {
-
-	readonly messageId: number;
+export interface FanMessages {
 
 	readonly author: User;
 
-	readonly toUser: null;
-
 	readonly contents: string;
 
-	readonly messageCount: number;
-
-	readonly isBlind: boolean;
-
 	readonly created: string;
+
+	readonly extra: any; // unknown type
+
+	readonly id: number;
+
+	readonly is_blind: boolean;
+
+	readonly message_count: number;
+
+	readonly path: string;
+
+	readonly referer: string;
+
+	readonly to_user: any; // unknown type maybe User type
 
 }

@@ -30,6 +30,7 @@ export class ApiClient extends SPOON {
 		const req = new ApiRequest<T, R>(this, config || {} as R);
 		req.url = api.url;
 		req.method = api.method;
+		req.debug = !!api.debug;
 		req.id = id as number;
 
 		const res = await req.send();

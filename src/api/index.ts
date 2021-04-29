@@ -39,3 +39,4 @@ export * from './request/';
 export * from './auth/';
 export * from './lives/';
 export * from './users/';
+export * from './fancomments/';
