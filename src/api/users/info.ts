@@ -81,3 +81,42 @@ export namespace ApiUsersSetUsername {
 	}
 
 }
+
+export namespace ApiUsersVoice {
+
+	export const url = '/users/0000/voice';
+	export const method = 'GET';
+
+	export interface Request extends RequestConfig {
+
+	}
+
+}
+
+export namespace ApiUsersCasts {
+
+	export const url = '/users/0000/casts';
+	export const method = 'GET';
+
+	export interface Request extends RequestConfig {
+
+		'params'?: {
+
+			'type': number;
+
+		}
+
+	}
+
+}
+
+export namespace ApiUsersFanmessages {
+
+	export const url = '/users/0000/fanmessages';
+	export const method = 'GET';
+
+	export interface Request extends RequestConfig {
+
+	}
+
+}
