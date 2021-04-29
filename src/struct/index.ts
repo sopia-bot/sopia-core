@@ -1,11 +1,11 @@
 /*
  * index.ts
- * Created on Tue Apr 27 2021
+ * Created on Thu Apr 29 2021
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { UserMiniProfile } from '../user/';
+import { UserMiniProfile } from './user/';
 
 export interface Contents {
 
@@ -28,3 +28,5 @@ export interface Contents {
 }
 
 export * from './live/';
+export * from './user/';
+export * from './fanboard/';

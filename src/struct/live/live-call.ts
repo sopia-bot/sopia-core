@@ -4,7 +4,7 @@
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
-import { User } from '../../user/';
+import { User } from '../';
 
 export interface LiveCall {
 

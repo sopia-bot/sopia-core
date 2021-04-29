@@ -9,7 +9,7 @@ import {
 	Country,
 	PushSettings,
 	ServiceAgreement
-} from '../spoon/';
+} from '../../spoon/';
 import { UserMiniProfile } from '.';
 
 export interface UserNameExist {
@@ -57,5 +57,5 @@ export interface User extends UserMiniProfile {
 
 }
 
-export * from './profile/';
+export * from './profile';
 export * from './live';

@@ -7,7 +7,7 @@
 
 import { ApiResult, RequestConfig } from '../';
 
-export namespace ApiLogin {
+export namespace ApiSetPassword {
 
 	export const url = '/accounts/password/';
 	export const method = 'PUT';

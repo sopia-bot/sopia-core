@@ -8,7 +8,7 @@
 import { LoginType, Country, CountryNumber } from '../';
 import { StaticStickers } from '../../static/';
 import { SPOON } from '../';
-import { LogonUser } from '../../user/';
+import { LogonUser } from '../../struct/';
 import { ApiRequest, ApiResult, ApiLogin } from '../../api';
 
 import axios, { Method } from 'axios';
