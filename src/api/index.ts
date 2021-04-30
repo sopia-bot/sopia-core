@@ -40,3 +40,4 @@ export * from './auth/';
 export * from './lives/';
 export * from './users/';
 export * from './fancomments/';
+export * from './play/';

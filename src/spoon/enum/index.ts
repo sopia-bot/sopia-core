@@ -7,3 +7,5 @@
 
 export * from './country';
 export * from './login-type';
+export * from './report-type';
+export * from './play';

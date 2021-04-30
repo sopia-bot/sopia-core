@@ -30,3 +30,4 @@ export interface Contents {
 export * from './live/';
 export * from './user/';
 export * from './fanboard/';
+export * from './play/';
