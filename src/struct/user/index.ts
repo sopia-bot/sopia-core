@@ -34,6 +34,12 @@ export interface User extends UserMiniProfile {
 
 	'token': string;
 
+	'is_dj': boolean;
+
+	'regular_score': number;
+
+	'is_fixedmng': boolean;
+
 	// deprecated
 	'fanboard_info': FanboardInfo;
 
@@ -45,12 +51,6 @@ export interface User extends UserMiniProfile {
 
 	// deprecated
 	'is_password_notice': boolean;
-
-	// deprecated
-	'regular_score': number;
-
-	// deprecated
-	'is_fixedmng': boolean;
 
 	// deprecated
 	'guest_status': number;

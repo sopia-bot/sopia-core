@@ -9,3 +9,5 @@ export * from './api/';
 export * from './spoon/';
 export * from './static/';
 export * from './struct/';
+export * from './socket/';
+export * from './utils/';

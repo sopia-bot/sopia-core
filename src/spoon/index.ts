@@ -31,19 +31,19 @@ export class SPOON {
 		this._token = val;
 	}
 
-	get appVersion(): string {
+	get AppVersion(): string {
 		return this._av;
 	}
 
-	set appVersion(val: string) {
+	set AppVersion(val: string) {
 		this._av = val;
 	}
 
-	get userAgent() {
+	get UserAgent() {
 		return this._ua;
 	}
 
-	set userAgent(val: string) {
+	set UserAgent(val: string) {
 		this._ua = val;
 	}
 

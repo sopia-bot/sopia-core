@@ -27,6 +27,8 @@ export interface Poll {
 
 	'poll_count': number;
 
+	'total_count': number;
+
 }
 
 export interface VoteResponse {
