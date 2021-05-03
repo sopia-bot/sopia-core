@@ -8,8 +8,13 @@
 import { LoginType, Country, CountryNumber } from '../';
 import { StaticStickers } from '../../static/';
 import { SPOON } from '../';
-import { LogonUser } from '../../struct/';
-import { ApiRequest, ApiResult, ApiLogin } from '../../api';
+import { LogonUser, ProfileUrlInfo } from '../../struct/';
+import {
+	ApiRequest,
+	ApiResult,
+	ApiLogin,
+	ApiGetProfileImgUrl
+} from '../../api';
 
 import axios, { Method } from 'axios';
 
@@ -36,6 +41,22 @@ export class ApiClient extends SPOON {
 		const res = await req.send();
 
 		return req;
+	}
+
+	async profileImgUpload(data: Buffer): Promise<string> {
+		const req = await this.ApiReq<ProfileUrlInfo, ApiGetProfileImgUrl.Request>(ApiGetProfileImgUrl);
+		const [{ image }] = req.res.results;
+
+		const res = await axios({
+			url: image.url,
+			method: 'PUT',
+			headers: {
+				'Content-Type': image.content_type,
+			},
+			data,
+		});
+
+		return image.key;
 	}
 
 }

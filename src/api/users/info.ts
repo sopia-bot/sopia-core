@@ -31,6 +31,8 @@ export namespace ApiSetUsersInfo {
 
 			'gender'?: number;
 
+			'profile_key'?: string;
+
 		};
 
 	}

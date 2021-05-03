@@ -41,3 +41,4 @@ export * from './lives/';
 export * from './users/';
 export * from './fancomments/';
 export * from './play/';
+export * from './commons/';

@@ -27,6 +27,24 @@ export interface Contents {
 
 }
 
+export interface UrlInfo {
+
+	url: string;
+
+	key: string;
+
+	content_type: string;
+
+}
+
+export interface ProfileUrlInfo {
+
+	voice: UrlInfo;
+
+	image: UrlInfo;
+
+}
+
 export * from './live/';
 export * from './user/';
 export * from './fanboard/';
