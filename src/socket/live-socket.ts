@@ -8,7 +8,6 @@
 import {
 	WebSocketManager,
 	WSType,
-	SocketLiveHealth,
 	LiveType,
 	LiveEvent
 } from '.';
@@ -21,8 +20,9 @@ export class LiveSocket extends WebSocketManager {
 	private _liveToken!: string;
 	private _healthInterval!: any;
 	private _intervalMsec: number = 300000; // 5min
+	private _client: SpoonClient;
 
-	constructor(live: Live, client: SpoonClient, wstype?: WSType = WSType.SYSTEM) {
+	constructor(live: Live, client: SpoonClient, wstype: WSType = WSType.SYSTEM) {
 		super(wstype);
 		this._live = live;
 		this._client = client;
@@ -35,7 +35,7 @@ export class LiveSocket extends WebSocketManager {
 			live_id: this.Live.id.toString(),
 			type: LiveType.LIVE_RPT,
 			useragent: this.Client.UserAgent,
-			user_id: this.Client.user.id,
+			user_id: this.Client.logonUser.id,
 		});
 	}
 
@@ -47,12 +47,12 @@ export class LiveSocket extends WebSocketManager {
 		return this._liveToken;
 	}
 
-	get Client(): SpoonClient {
-		return this._client;
+	set RoomToken(val: string) {
+		this._liveToken = val;
 	}
 
-	private set RoomToken(val: string): void {
-		this._liveToken = val;
+	get Client(): SpoonClient {
+		return this._client;
 	}
 
 	public message(message: string): void {
@@ -71,11 +71,11 @@ export class LiveSocket extends WebSocketManager {
 		return new Promise(async (resolve, reject) => {
 			await this.connect(this.Client.urls.socket + this._live.id);
 
-			if ( this.client.user ) {
+			if ( this.Client.logonUser ) {
 				this.send({
 					live_id: this.Live.id.toString(),
 					appversion: this.Client.AppVersion,
-					user_id: this.Client.user.id,
+					user_id: this.Client.logonUser.id,
 					event: LiveEvent.LIVE_STATE,
 					type: LiveType.LIVE_REQ,
 					useragent: this.Client.UserAgent,
@@ -94,7 +94,7 @@ export class LiveSocket extends WebSocketManager {
 						if ( dd.result ) {
 							if ( dd.result.detail === 'success' ) {
 								this._healthInterval = setInterval(this.health, this._intervalMsec) as any;
-								this.on(LiveEvent.LIVE_EVENT_ALL, (evt: SpoonSocketEvent) => {
+								this.on(LiveEvent.LIVE_EVENT_ALL, (evt: any) => {
 									const data = evt.data;
 									if ( data ) {
 										const live = data.live;
@@ -111,25 +111,23 @@ export class LiveSocket extends WebSocketManager {
 				});
 			} else {
 				this.send({
-					live_id: this.live.id.toString(),
-					appversion: this.client.appVersion,
+					live_id: this.Live.id.toString(),
+					appversion: this.Client.AppVersion,
 					retry: 0,
 					event: LiveEvent.LIVE_JOIN,
 					type: LiveType.LIVE_REQ,
-					useragent: this.client.userAgent,
+					useragent: this.Client.UserAgent,
 				});
 				this.once(LiveEvent.LIVE_JOIN, (d: any) => {
 					if ( d.result ) {
 						if ( d.result.detail === 'success' ) {
-							this.healthInterval = setInterval(() => {
-								this.health();
-							}, 300 * 1000 /* 5min */) as any;
-							this.on(LiveEvent.LIVE_EVENT_ALL, (evt: SpoonSocketEvent) => {
+							this._healthInterval = setInterval(this.health, this._intervalMsec) as any;
+							this.on(LiveEvent.LIVE_EVENT_ALL, (evt: any) => {
 								const data = evt.data;
 								if ( data ) {
 									const live = data.live;
 									if ( live && evt.event !== LiveEvent.LIVE_MESSAGE ) {
-										this.live = live;
+										this._live = live;
 									}
 								}
 							});

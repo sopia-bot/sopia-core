@@ -6,7 +6,7 @@
  */
 import { User, Live, Poll, Mailbox, MailboxMessage } from '../../struct/';
 
-export interface LiveSocket {
+export interface LiveSocketStruct {
 
 	'event': string;
 
@@ -24,7 +24,7 @@ export interface LiveSocket {
 
 }
 
-export interface LiveStateSocket extends LiveSocket {
+export interface LiveStateSocket extends LiveSocketStruct {
 
 	'user_id': number;
 
@@ -42,7 +42,7 @@ export interface LiveStateSocket extends LiveSocket {
 
 }
 
-export interface LiveLazyUpdateSocket extends LiveSocket {
+export interface LiveLazyUpdateSocket extends LiveSocketStruct {
 
 	'data': {
 
@@ -52,7 +52,7 @@ export interface LiveLazyUpdateSocket extends LiveSocket {
 
 }
 
-export interface LiveRankSocket extends LiveSocket {
+export interface LiveRankSocket extends LiveSocketStruct {
 
 	'order': {
 
@@ -68,7 +68,7 @@ export interface LiveRankSocket extends LiveSocket {
 
 }
 
-export interface LiveJoinSocket extends LiveSocket {
+export interface LiveJoinSocket extends LiveSocketStruct {
 
 	'data': {
 
@@ -80,7 +80,7 @@ export interface LiveJoinSocket extends LiveSocket {
 
 }
 
-export interface LiveUpdateSocket extends LiveSocket {
+export interface LiveUpdateSocket extends LiveSocketStruct {
 
 	'data': {
 
@@ -92,7 +92,7 @@ export interface LiveUpdateSocket extends LiveSocket {
 
 }
 
-export interface LiveMessageSocket extends LiveSocket {
+export interface LiveMessageSocket extends LiveSocketStruct {
 
 	'data': {
 
@@ -118,7 +118,7 @@ export interface LiveMessageSocket extends LiveSocket {
 
 }
 
-export interface LiveLikeSocket extends LiveSocket {
+export interface LiveLikeSocket extends LiveSocketStruct {
 
 	'data': {
 
@@ -130,7 +130,7 @@ export interface LiveLikeSocket extends LiveSocket {
 
 }
 
-export interface LivePresentSocket extends LiveSocket {
+export interface LivePresentSocket extends LiveSocketStruct {
 
 	'data': {
 
@@ -156,7 +156,7 @@ export interface LivePresentSocket extends LiveSocket {
 
 }
 
-export interface LivePlaySocket extends LiveSocket {
+export interface LivePlaySocket extends LiveSocketStruct {
 
 	'emit_type': string;
 
