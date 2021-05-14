@@ -5,9 +5,14 @@
  * Copyright (c) Tree-Some. Licensed under the MIT License.
  */
 
-import { LoginType, Country, CountryNumber } from '../';
+import {
+	LoginType,
+	Country,
+	CountryNumber,
+	SPOON,
+	ApiWrapperClient
+} from '../';
 import { StaticStickers } from '../../static/';
-import { SPOON } from '../';
 import { LogonUser, ProfileUrlInfo } from '../../struct/';
 import {
 	ApiRequest,
@@ -20,8 +25,11 @@ import axios, { Method } from 'axios';
 
 export class ApiClient extends SPOON {
 
+	public api: ApiWrapperClient;
+
 	constructor(deviceUUID: string) {
 		super(deviceUUID);
+		this.api = new ApiWrapperClient(this);
 	}
 
 	async ApiReq<T extends any, R>(api: any, id?: (number|R), config?: R): Promise<ApiRequest<T, R>> {

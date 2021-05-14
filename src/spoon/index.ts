@@ -60,6 +60,7 @@ export class SPOON {
 
 }
 
+export * from './api-wrapper/';
 export * from './enum/';
 export * from './client/';
 export * from './etc/';
