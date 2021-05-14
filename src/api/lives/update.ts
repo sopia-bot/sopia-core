@@ -6,6 +6,7 @@
  */
 
 import { ApiLivesRequestConfig } from '../';
+import { Live } from '../../struct/';
 
 export namespace ApiLivesSetManager {
 
@@ -19,6 +20,11 @@ export namespace ApiLivesSetManager {
 			'manager_ids': number[];
 
 		};
+
+	}
+
+	// TODO: Unknown response type
+	export interface Response {
 
 	}
 
@@ -36,6 +42,11 @@ export namespace ApiLivesBlock {
 			'block_user_id': number;
 
 		};
+
+	}
+
+	// TODO: Unknown response type
+	export interface Response {
 
 	}
 
@@ -60,6 +71,11 @@ export namespace ApiLivesPresent {
 
 	}
 
+	// TODO: Unknown response type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiLivesClose {
@@ -74,6 +90,11 @@ export namespace ApiLivesClose {
 			'is_save': boolean;
 
 		};
+
+	}
+
+	// TODO: Unknown response type
+	export interface Response {
 
 	}
 
@@ -121,6 +142,10 @@ export namespace ApiLivesUpdate {
 			'is_mute': boolean;
 
 		};
+
+	}
+
+	export interface Response extends Live {
 
 	}
 

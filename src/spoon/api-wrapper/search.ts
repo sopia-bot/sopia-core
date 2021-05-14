@@ -22,8 +22,8 @@ export class SearchApiWrapper {
 		return this._client;
 	}
 
-	private async content<T>(content_type: 'live'|'cast'|'talk', keyword: string): Promise<ApiRequest<T, API.ApiSearchContent.Request>> {
-		const req = await this.client.ApiReq<T, API.ApiSearchContent.Request>(API.ApiSearchContent, {
+	private async content(content_type: 'live'|'cast'|'talk', keyword: string): Promise<ApiRequest<API.ApiSearchContent.Request, API.ApiSearchContent.Response>> {
+		const req = await this.client.ApiReq<API.ApiSearchContent.Request, API.ApiSearchContent.Response>(API.ApiSearchContent, {
 			'params': {
 				keyword,
 				content_type,
@@ -32,8 +32,8 @@ export class SearchApiWrapper {
 		return req;
 	}
 
-	public async user(keyword: string): Promise<ApiRequest<User, API.ApiSearchUser.Request>> {
-		const req = await this.client.ApiReq<User, API.ApiSearchUser.Request>(API.ApiSearchUser, {
+	public async user(keyword: string): Promise<ApiRequest<API.ApiSearchUser.Request, API.ApiSearchUser.Response>> {
+		const req = await this.client.ApiReq<API.ApiSearchUser.Request, API.ApiSearchUser.Response>(API.ApiSearchUser, {
 			'params': {
 				keyword,
 			},
@@ -41,12 +41,12 @@ export class SearchApiWrapper {
 		return req;
 	}
 
-	public async live(keyword: string): Promise<ApiRequest<Live, API.ApiSearchContent.Request>> {
-		return await this.content<Live>('live', keyword);
+	public async live(keyword: string): Promise<ApiRequest<API.ApiSearchContent.Request, API.ApiSearchContent.Response>> {
+		return await this.content('live', keyword);
 	}
 
-	public async cast(keyword: string): Promise<ApiRequest<Cast, API.ApiSearchContent.Request>> {
-		return await this.content<Cast>('cast', keyword);
+	public async cast(keyword: string): Promise<ApiRequest<API.ApiSearchContent.Request, API.ApiSearchContent.Response>> {
+		return await this.content('cast', keyword);
 	}
 
 }

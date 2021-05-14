@@ -25,6 +25,11 @@ export namespace ApiPlayMailboxCreate {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiPlayGetMailbox {
@@ -33,6 +38,11 @@ export namespace ApiPlayGetMailbox {
 	export const method = 'GET';
 
 	export interface Request extends ApiLivesRequestConfig {
+
+	}
+
+	// TODO: Unknown response data type
+	export interface Response {
 
 	}
 
@@ -56,6 +66,11 @@ export namespace ApiPlayMailboxCurrent {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiPlayMailboxClose {
@@ -64,6 +79,11 @@ export namespace ApiPlayMailboxClose {
 	export const method = 'PUT';
 
 	export interface Request extends ApiLivesRequestConfig {
+
+	}
+
+	// TODO: Unknown response data type
+	export interface Response {
 
 	}
 
@@ -86,6 +106,11 @@ export namespace ApiPlayMailboxReportMessage {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiPlayMailboxRemoveMessage {
@@ -103,6 +128,11 @@ export namespace ApiPlayMailboxRemoveMessage {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiPlayMailboxGetMessages {
@@ -111,6 +141,11 @@ export namespace ApiPlayMailboxGetMessages {
 	export const method = 'GET';
 
 	export interface Request extends ApiLivesRequestConfig {
+
+	}
+
+	// TODO: Unknown response data type
+	export interface Response {
 
 	}
 
@@ -130,6 +165,11 @@ export namespace ApiPlayMailboxWriteMessage {
 			'message': string;
 
 		};
+
+	}
+
+	// TODO: Unknown response data type
+	export interface Response {
 
 	}
 

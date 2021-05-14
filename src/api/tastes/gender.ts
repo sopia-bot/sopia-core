@@ -20,6 +20,11 @@ export namespace ApiTastesGender {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiTastesGenderChoice {
@@ -35,6 +40,11 @@ export namespace ApiTastesGenderChoice {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiTastesSetGenderChoice {
@@ -47,6 +57,11 @@ export namespace ApiTastesSetGenderChoice {
 		'data': {
 			'taste_data_ids': number[];
 		};
+
+	}
+
+	// TODO: Unknown response data type
+	export interface Response {
 
 	}
 

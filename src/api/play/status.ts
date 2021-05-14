@@ -22,4 +22,9 @@ export namespace ApiPlayStatus {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }

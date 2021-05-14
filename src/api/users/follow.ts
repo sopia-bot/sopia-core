@@ -6,6 +6,7 @@
  */
 
 import { ApiResult, RequestConfig } from '../';
+import { User } from '../../struct/';
 
 export namespace ApiUsersFollow {
 
@@ -13,6 +14,10 @@ export namespace ApiUsersFollow {
 	export const method = 'POST';
 
 	export interface Request extends RequestConfig {
+
+	}
+
+	export interface Response extends User {
 
 	}
 
@@ -27,6 +32,10 @@ export namespace ApiUsersUnFollow {
 
 	}
 
+	export interface Response extends User {
+
+	}
+
 }
 
 export namespace ApiUsersFollowings {
@@ -38,6 +47,10 @@ export namespace ApiUsersFollowings {
 
 	}
 
+	export interface Response extends User {
+
+	}
+
 }
 
 export namespace ApiUsersFollowers {
@@ -46,6 +59,10 @@ export namespace ApiUsersFollowers {
 	export const method = 'GET';
 
 	export interface Request extends RequestConfig {
+
+	}
+
+	export interface Response extends User {
 
 	}
 

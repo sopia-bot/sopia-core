@@ -16,4 +16,9 @@ export namespace ApiUsersLive {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }

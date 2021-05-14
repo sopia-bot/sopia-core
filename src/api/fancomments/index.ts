@@ -6,6 +6,7 @@
  */
 
 import { ApiResult, RequestConfig } from '../';
+import { FanMessages } from '../../';
 
 export namespace ApiModifyFancomments {
 
@@ -24,6 +25,11 @@ export namespace ApiModifyFancomments {
 
 	}
 
+	// none response
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiRemoveFancomments {
@@ -32,6 +38,11 @@ export namespace ApiRemoveFancomments {
 	export const method = 'DELETE';
 
 	export interface Request extends RequestConfig {
+
+	}
+
+	// none response
+	export interface Response {
 
 	}
 
@@ -46,6 +57,11 @@ export namespace ApiBlindFancomments {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiGetFancommentsMessages {
@@ -54,6 +70,10 @@ export namespace ApiGetFancommentsMessages {
 	export const method = 'GET';
 
 	export interface Request extends RequestConfig {
+
+	}
+
+	export interface Response extends FanMessages {
 
 	}
 
@@ -71,6 +91,10 @@ export namespace ApiFancommentsWriteMessages {
 			'contents': string;
 
 		};
+
+	}
+
+	export interface Response extends FanMessages {
 
 	}
 
@@ -95,6 +119,11 @@ export namespace ApiFancommentsModifyMessages {
 
 	}
 
+	// none response
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiFancommentsRemoveMessages {
@@ -111,6 +140,11 @@ export namespace ApiFancommentsRemoveMessages {
 			'is_parent': boolean;
 
 		};
+
+	}
+
+	// none response
+	export interface Response {
 
 	}
 

@@ -20,6 +20,11 @@ export namespace ApiTastesAgeGroup {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiTastesAgeGroupChoice {
@@ -35,6 +40,11 @@ export namespace ApiTastesAgeGroupChoice {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiTastesSetAgeGroupChoice {
@@ -47,6 +57,11 @@ export namespace ApiTastesSetAgeGroupChoice {
 		'data': {
 			'taste_data_ids': number[];
 		};
+
+	}
+
+	// TODO: Unknown response data type
+	export interface Response {
 
 	}
 

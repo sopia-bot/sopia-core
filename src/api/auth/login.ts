@@ -6,6 +6,7 @@
  */
 
 import { LoginType, Country } from '../../spoon/';
+import { LogonUser } from '../../struct/';
 import { ApiResult, RequestConfig } from '../';
 
 export namespace ApiLogin {
@@ -26,6 +27,10 @@ export namespace ApiLogin {
 			'country': Country;
 
 		};
+
+	}
+
+	export interface Response extends LogonUser {
 
 	}
 

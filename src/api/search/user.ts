@@ -6,6 +6,7 @@
  */
 
 import { ApiResult, RequestConfig } from '../';
+import { User } from '../../struct/';
 
 export namespace ApiSearchUser {
 
@@ -21,5 +22,11 @@ export namespace ApiSearchUser {
 		};
 
 	}
+
+	// TODO: Unknown response data type
+	export interface Response extends User {
+
+	}
+
 
 }

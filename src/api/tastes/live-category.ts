@@ -20,6 +20,11 @@ export namespace ApiTastesLiveCategory {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiTastesLiveCategoryChoice {
@@ -35,6 +40,11 @@ export namespace ApiTastesLiveCategoryChoice {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiTastesSetLiveCategoryChoice {
@@ -47,6 +57,11 @@ export namespace ApiTastesSetLiveCategoryChoice {
 		'data': {
 			'taste_data_ids': number[];
 		};
+
+	}
+
+	// TODO: Unknown response data type
+	export interface Response {
 
 	}
 

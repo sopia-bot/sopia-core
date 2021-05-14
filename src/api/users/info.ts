@@ -6,6 +6,7 @@
  */
 
 import { ApiResult, RequestConfig } from '../';
+import { User, UserMiniProfile } from '../../struct/';
 
 export namespace ApiUsersInfo {
 
@@ -13,6 +14,10 @@ export namespace ApiUsersInfo {
 	export const method = 'GET';
 
 	export interface Request extends RequestConfig {
+
+	}
+
+	export interface Response extends User {
 
 	}
 
@@ -37,6 +42,10 @@ export namespace ApiSetUsersInfo {
 
 	}
 
+	export interface Response extends User {
+
+	}
+
 }
 
 export namespace ApiUsersMiniProfile {
@@ -45,6 +54,10 @@ export namespace ApiUsersMiniProfile {
 	export const method = 'GET';
 
 	export interface Request extends RequestConfig {
+
+	}
+
+	export interface Response extends UserMiniProfile {
 
 	}
 
@@ -65,6 +78,10 @@ export namespace ApiUsersUsername {
 
 	}
 
+	export interface Response extends User {
+
+	}
+
 }
 
 export namespace ApiUsersSetUsername {
@@ -82,6 +99,11 @@ export namespace ApiUsersSetUsername {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiUsersVoice {
@@ -90,6 +112,11 @@ export namespace ApiUsersVoice {
 	export const method = 'GET';
 
 	export interface Request extends RequestConfig {
+
+	}
+
+	// TODO: Unknown response data type
+	export interface Response {
 
 	}
 
@@ -110,6 +137,11 @@ export namespace ApiUsersCasts {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiUsersFanmessages {
@@ -118,6 +150,11 @@ export namespace ApiUsersFanmessages {
 	export const method = 'GET';
 
 	export interface Request extends RequestConfig {
+
+	}
+
+	// TODO: Unknown response data type
+	export interface Response {
 
 	}
 
@@ -135,6 +172,11 @@ export namespace ApiUsersWriteFanmessages {
 			'contents': string;
 
 		};
+
+	}
+
+	// TODO: Unknown response data type
+	export interface Response {
 
 	}
 

@@ -22,4 +22,9 @@ export namespace ApiSetPassword {
 
 	}
 
+	// unknown response
+	export interface Response {
+
+	}
+
 }

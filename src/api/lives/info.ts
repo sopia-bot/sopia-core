@@ -6,6 +6,7 @@
  */
 
 import { RequestConfig, ApiLivesRequestConfig } from '../';
+import { Live, User } from '../../struct/';
 
 export namespace ApiLivesInfo {
 
@@ -13,6 +14,10 @@ export namespace ApiLivesInfo {
 	export const method = 'GET';
 
 	export interface Request extends ApiLivesRequestConfig {
+
+	}
+
+	export interface Response extends Live {
 
 	}
 
@@ -27,6 +32,10 @@ export namespace ApiLivesListeners {
 
 	}
 
+	export interface Response extends User {
+
+	}
+
 }
 
 export namespace ApiLivesListenersFans {
@@ -36,6 +45,10 @@ export namespace ApiLivesListenersFans {
 
 	export interface Request extends ApiLivesRequestConfig {
 
+	}
+
+	export interface Response extends User {
+		
 	}
 
 }
@@ -49,6 +62,12 @@ export namespace ApiLivesSponsor {
 
 	}
 
+	/* TODO: */
+	/* 아마도 count: number, author: User 형식으로 있을 것 같음 */
+	export interface Response extends User {
+
+	}
+
 }
 
 export namespace ApiLivesLike {
@@ -57,6 +76,10 @@ export namespace ApiLivesLike {
 	export const method = 'GET';
 
 	export interface Request extends ApiLivesRequestConfig {
+
+	}
+
+	export interface Response extends User {
 
 	}
 
@@ -77,6 +100,14 @@ export namespace ApiLivesToken {
 
 	}
 
+	export interface Response {
+
+		'jwt': string;
+		
+		'items': any[]; // unknown type
+
+	}
+
 }
 
 export namespace ApiLivesAccess {
@@ -85,6 +116,10 @@ export namespace ApiLivesAccess {
 	export const method = 'GET';
 
 	export interface Request extends ApiLivesRequestConfig {
+
+	}
+
+	export interface Response extends Live {
 
 	}
 

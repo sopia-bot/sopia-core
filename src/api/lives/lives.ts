@@ -6,7 +6,7 @@
  */
 
 import { ApiResult, RequestConfig } from '../';
-import { Category } from '../../';
+import { Category, Live } from '../../';
 
 export namespace ApiLivesBanner {
 
@@ -14,6 +14,10 @@ export namespace ApiLivesBanner {
 	export const method = 'GET';
 
 	export interface Request extends RequestConfig {
+
+	}
+
+	export interface Response extends Live {
 
 	}
 
@@ -38,6 +42,10 @@ export namespace ApiLivesPopular {
 
 	}
 
+	export interface Response extends Live {
+
+	}
+
 }
 
 export namespace ApiLivesSubcribed {
@@ -54,6 +62,10 @@ export namespace ApiLivesSubcribed {
 			'is_adult': boolean;
 
 		};
+
+	}
+
+	export interface Response extends Live {
 
 	}
 

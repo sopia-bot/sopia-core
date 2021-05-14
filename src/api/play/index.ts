@@ -6,5 +6,5 @@
  */
 
 export * from './mailbox';
-export * from './vote';
 export * from './status';
+export * from './poll';

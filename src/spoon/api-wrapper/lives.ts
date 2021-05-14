@@ -23,7 +23,7 @@ export class LiveApiWrapper {
 	}
 
 	public async banner(): Promise<Live[]> {
-		const req = await this.client.ApiReq<Live, API.ApiLivesBanner.Request>(API.ApiLivesBanner);
+		const req = await this.client.ApiReq<API.ApiLivesBanner.Request, API.ApiLivesBanner.Response>(API.ApiLivesBanner);
 		return req.res.results;
 	}
 

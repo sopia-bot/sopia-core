@@ -16,6 +16,11 @@ export namespace ApiUsersBlock {
 
 	}
 
+	// none response
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiUsersUnBlock {
@@ -24,6 +29,11 @@ export namespace ApiUsersUnBlock {
 	export const method = 'POST';
 
 	export interface Request extends RequestConfig {
+
+	}
+
+	// none response
+	export interface Response {
 
 	}
 

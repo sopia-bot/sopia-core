@@ -17,6 +17,11 @@ export namespace ApiPlayGetPoll {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiPlayPollCreate {
@@ -38,6 +43,11 @@ export namespace ApiPlayPollCreate {
 
 	}
 
+	// TODO: Unknown response data type
+	export interface Response {
+
+	}
+
 }
 
 export namespace ApiPlayPollClose {
@@ -46,6 +56,11 @@ export namespace ApiPlayPollClose {
 	export const method = 'PUT';
 
 	export interface Request extends ApiLivesRequestConfig {
+
+	}
+
+	// TODO: Unknown response data type
+	export interface Response {
 
 	}
 
@@ -63,6 +78,11 @@ export namespace ApiPlayPollVote {
 			'choice': number;
 
 		};
+
+	}
+
+	// TODO: Unknown response data type
+	export interface Response {
 
 	}
 

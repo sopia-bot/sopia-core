@@ -6,6 +6,7 @@
  */
 
 import { ApiResult, RequestConfig } from '../';
+import { ProfileUrlInfo } from '../../struct/';
 
 export namespace ApiGetProfileImgUrl {
 
@@ -13,6 +14,10 @@ export namespace ApiGetProfileImgUrl {
 	export const method = 'GET';
 
 	export interface Request extends RequestConfig {
+
+	}
+
+	export interface Response extends ProfileUrlInfo {
 
 	}
 

@@ -6,6 +6,7 @@
  */
 
 import { ApiResult, RequestConfig } from '../';
+import { Live, Cast } from '../../struct/';
 
 export namespace ApiSearchContent {
 
@@ -23,5 +24,11 @@ export namespace ApiSearchContent {
 		};
 
 	}
+
+	// TODO: Unknown response data type
+	export interface Response extends Live,Cast {
+
+	}
+
 
 }

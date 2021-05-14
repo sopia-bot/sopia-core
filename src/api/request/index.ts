@@ -7,13 +7,13 @@
 import { ApiResult } from '../';
 import axios, { AxiosRequestConfig, Method } from 'axios';
 
-export class ApiRequest<T extends any, Req extends AxiosRequestConfig> {
+export class ApiRequest<Request extends AxiosRequestConfig, Response extends any> {
 	private _url: string = '';
-	private _result!: ApiResult<T>;
+	private _result!: ApiResult<Response>;
 	private _id: number = 0;
 	private _debug: boolean = false;
 
-	constructor(private _client: any, private _options: Req) {
+	constructor(private _client: any, private _options: Request) {
 		if ( !this._options.headers ) {
 			this._options.headers = {};
 		}
@@ -40,15 +40,15 @@ export class ApiRequest<T extends any, Req extends AxiosRequestConfig> {
 		return this._options.headers;
 	}
 
-	get data(): T {
+	get data() {
 		return this._options.data;
 	}
 
-	get config(): Req {
+	get config(): Request {
 		return this._options;
 	}
 
-	set config(val: Req) {
+	set config(val: Request) {
 		this._options = val;
 	}
 
@@ -72,7 +72,7 @@ export class ApiRequest<T extends any, Req extends AxiosRequestConfig> {
 		this._debug = val;
 	}
 
-	get res(): ApiResult<T> {
+	get res(): ApiResult<Response> {
 		return this._result;
 	}
 
@@ -80,22 +80,22 @@ export class ApiRequest<T extends any, Req extends AxiosRequestConfig> {
 		return `${this._client.urls.api}${this._url.replace(/^\//, '').replace('0000', this.id.toString())}`;
 	}
 
-	private async _req<T>(config: T) {
+	private async _req<Request>(config: Request) {
 		return await axios(config);
 	}
 
-	public async send(url: string = this._reqUrl): Promise<ApiResult<T>> {
+	public async send(url: string = this._reqUrl): Promise<ApiResult<Response>> {
 		this._options.url = url;
 
 		try {
-			const res = await this._req<Req>(this._options);
+			const res = await this._req<Request>(this._options);
 
 			if ( res.data ) {
 				if ( this.debug ) {
 					console.error(this._options);
 					console.error(res.data);
 				}
-				this._result = res.data as ApiResult<T>;
+				this._result = res.data as ApiResult<Response>;
 			}
 		} catch(err) {
 			if ( this.debug ) {
@@ -107,11 +107,11 @@ export class ApiRequest<T extends any, Req extends AxiosRequestConfig> {
 		return this._result;
 	}
 
-	public async next(): Promise<ApiResult<T>> {
+	public async next(): Promise<ApiResult<Response>> {
 		return await this.send(this._result.next);
 	}
 
-	public async previous(): Promise<ApiResult<T>> {
+	public async previous(): Promise<ApiResult<Response>> {
 		return await this.send(this._result.previous);
 	}
 
