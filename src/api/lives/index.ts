@@ -17,4 +17,6 @@ export interface ApiLivesRequestConfig extends RequestConfig {
 
 }
 
-export * from './banner';
+export * from './lives';
+export * from './info';
+export * from './update';

@@ -6,6 +6,7 @@
  */
 
 import { ApiResult, RequestConfig } from '../';
+import { Category } from '../../';
 
 export namespace ApiLivesBanner {
 
@@ -13,6 +14,27 @@ export namespace ApiLivesBanner {
 	export const method = 'GET';
 
 	export interface Request extends RequestConfig {
+
+	}
+
+}
+
+export namespace ApiLivesPopular {
+
+	export const url = '/lives/popular/';
+	export const method = 'GET';
+
+	export interface Request extends RequestConfig {
+
+		'params': {
+
+			'page_size': number;
+
+			'is_adult': boolean;
+
+			'category': Category;
+
+		};
 
 	}
 
