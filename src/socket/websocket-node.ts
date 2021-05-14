@@ -5,7 +5,7 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import * as WebSocket from 'ws';
+import WebSocket from 'ws';
 
 export class WsClientNode extends WebSocket {
 
