@@ -1,5 +1,5 @@
 /*
- * banner.ts
+ * lives.ts
  * Created on Tue Apr 27 2021
  *
  * Copyright (c) raravel. Licensed under the MIT License.
@@ -33,6 +33,25 @@ export namespace ApiLivesPopular {
 			'is_adult': boolean;
 
 			'category': Category;
+
+		};
+
+	}
+
+}
+
+export namespace ApiLivesSubcribed {
+
+	export const url = '/lives/subcribed/';
+	export const method = 'GET';
+
+	export interface Request extends RequestConfig {
+
+		'params': {
+
+			'page_size': number;
+
+			'is_adult': boolean;
 
 		};
 
