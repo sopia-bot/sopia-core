@@ -12,3 +12,18 @@ export enum MailMessageStat {
 	READ = 2,
 
 }
+
+export enum Category {
+
+	CHAT = 'chat',
+	DAILY = 'daily',
+	MUSIC = 'music',
+	HEALING = 'healing',
+	ASMR = 'asmr',
+	WORRIES = 'worries',
+	LOVE = 'love',
+	INTEREST = 'interest',
+	HUMOR = 'humor',
+	VOICEACTING = 'voiceacting',
+
+}
