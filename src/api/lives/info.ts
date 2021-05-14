@@ -7,6 +7,17 @@
 
 import { RequestConfig, ApiLivesRequestConfig } from '../';
 
+export namespace ApiLivesInfo {
+
+	export const url = '/lives/0000/';
+	export const method = 'GET';
+
+	export interface Request extends ApiLivesRequestConfig {
+
+	}
+
+}
+
 export namespace ApiLivesListeners {
 
 	export const url = '/lives/0000/listeners/';
