@@ -6,7 +6,12 @@
  */
 
 import { ApiResult, RequestConfig } from '../';
-import { User, UserMiniProfile } from '../../struct/';
+import {
+	User,
+	UserMiniProfile,
+	UserNameExist,
+	FanMessages
+} from '../../struct/';
 
 export namespace ApiUsersInfo {
 
@@ -78,7 +83,7 @@ export namespace ApiUsersUsername {
 
 	}
 
-	export interface Response extends User {
+	export interface Response extends UserNameExist {
 
 	}
 
@@ -99,8 +104,7 @@ export namespace ApiUsersSetUsername {
 
 	}
 
-	// TODO: Unknown response data type
-	export interface Response {
+	export interface Response extends UserNameExist {
 
 	}
 
@@ -153,8 +157,7 @@ export namespace ApiUsersFanmessages {
 
 	}
 
-	// TODO: Unknown response data type
-	export interface Response {
+	export interface Response extends FanMessages {
 
 	}
 
@@ -175,8 +178,7 @@ export namespace ApiUsersWriteFanmessages {
 
 	}
 
-	// TODO: Unknown response data type
-	export interface Response {
+	export interface Response extends FanMessages {
 
 	}
 
