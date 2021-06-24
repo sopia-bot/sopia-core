@@ -6,9 +6,17 @@
  */
 
 import { ApiClient } from '../';
-import { ApiRequest } from '../../api/';
+import {
+	ApiRequest,
+	ApiSearchContent,
+	ApiSearchUser,
+} from '../../api/';
 import { Live, User, Cast } from '../../struct/';
 import * as API from '../../api/search/';
+
+export type ApiSearchReq<T, R> = Promise<ApiRequest<T, R>>;
+export type ApiContentReq<R> = ApiSearchReq<ApiSearchContent.Request, R>;
+export type ContentResponse = ApiSearchContent.LiveResponse | ApiSearchContent.CastResponse;
 
 export class SearchApiWrapper {
 
@@ -22,8 +30,8 @@ export class SearchApiWrapper {
 		return this._client;
 	}
 
-	private async content(content_type: 'live'|'cast'|'talk', keyword: string): Promise<ApiRequest<API.ApiSearchContent.Request, API.ApiSearchContent.Response>> {
-		const req = await this.client.ApiReq<API.ApiSearchContent.Request, API.ApiSearchContent.Response>(API.ApiSearchContent, {
+	private async content(content_type: 'live'|'cast'|'talk', keyword: string): ApiContentReq<ContentResponse> {
+		const req = await this.client.ApiReq<ApiSearchContent.Request, ContentResponse>(ApiSearchContent, {
 			'params': {
 				keyword,
 				content_type,
@@ -32,8 +40,8 @@ export class SearchApiWrapper {
 		return req;
 	}
 
-	public async user(keyword: string): Promise<ApiRequest<API.ApiSearchUser.Request, API.ApiSearchUser.Response>> {
-		const req = await this.client.ApiReq<API.ApiSearchUser.Request, API.ApiSearchUser.Response>(API.ApiSearchUser, {
+	public async user(keyword: string): ApiSearchReq<ApiSearchUser.Request, ApiSearchUser.Response> {
+		const req = await this.client.ApiReq<ApiSearchUser.Request, ApiSearchUser.Response>(ApiSearchUser, {
 			'params': {
 				keyword,
 			},
@@ -41,12 +49,12 @@ export class SearchApiWrapper {
 		return req;
 	}
 
-	public async live(keyword: string): Promise<ApiRequest<API.ApiSearchContent.Request, API.ApiSearchContent.Response>> {
-		return await this.content('live', keyword);
+	public async live(keyword: string): ApiContentReq<ApiSearchContent.LiveResponse> {
+		return await this.content('live', keyword) as ApiRequest<ApiSearchContent.Request, ApiSearchContent.LiveResponse>;
 	}
 
-	public async cast(keyword: string): Promise<ApiRequest<API.ApiSearchContent.Request, API.ApiSearchContent.Response>> {
-		return await this.content('cast', keyword);
+	public async cast(keyword: string): ApiContentReq<ApiSearchContent.CastResponse> {
+		return await this.content('cast', keyword) as ApiRequest<ApiSearchContent.Request, ApiSearchContent.CastResponse>;
 	}
 
 }
