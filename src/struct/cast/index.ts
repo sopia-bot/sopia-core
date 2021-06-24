@@ -6,41 +6,49 @@
  */
 
 import { Contents } from '../';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export interface Cast extends Contents {
+@Serializable()
+export class Cast extends Contents {
 
-	'category': string;
+	@JsonProperty() public category!: string;
 
-	'voice_url': string;
+	@JsonProperty() public voice_url!: string;
 
-	'play_count': number;
+	@JsonProperty() public play_count!: number;
 
-	'spoon_count': number;
+	@JsonProperty() public spoon_count!: number;
 
-	'reporters': any[]; // unknown type
+	@JsonProperty() public reporters!: any[]; // unknown type
 
-	'duration': number;
+	@JsonProperty() public duration!: number;
 
-	'text_comment_count': number;
+	@JsonProperty() public text_comment_count!: number;
 
-	'is_like': boolean;
+	@JsonProperty() public is_like!: boolean;
 
+	constructor() {
+
+		super();
+
+	}
 }
 
-export interface CastInfo {
+@Serializable()
+export class CastInfo {
 
-	'state_date': string;
+	@JsonProperty() public state_date!: string;
 
-	'cast': Cast;
+	@JsonProperty() public cast!: Cast;
 
-	'score': number;
+	@JsonProperty() public score!: number;
 
-	'updown': string;
+	@JsonProperty() public updown!: string;
 
-	'cast_count': number;
+	@JsonProperty() public cast_count!: number;
 
-	'start_date': number;
+	@JsonProperty() public start_date!: number;
 
-	'end_date': number;
+	@JsonProperty() public end_date!: number;
 
 }

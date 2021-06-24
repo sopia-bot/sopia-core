@@ -5,13 +5,15 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 import { User } from '../user/';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export interface FanboardInfo {
+@Serializable()
+export class FanboardInfo {
 
-	readonly 'totalCommentAuthorCount': number;
+	@JsonProperty() public totalCommentAuthorCount!: number;
 
-	readonly 'isNewComment': boolean;
+	@JsonProperty() public isNewComment!: boolean;
 
-	readonly 'latest_comment_authors': User[];
+	@JsonProperty() public latest_comment_authors!: User[];
 
 }

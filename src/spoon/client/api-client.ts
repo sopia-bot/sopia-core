@@ -7,7 +7,6 @@
 
 import {
 	SPOON,
-	ApiWrapperClient
 } from '../';
 import {
 	ApiRequest,
@@ -20,11 +19,8 @@ import axios from 'axios';
 
 export class ApiClient extends SPOON {
 
-	public api: ApiWrapperClient;
-
 	constructor(deviceUUID: string) {
 		super(deviceUUID);
-		this.api = new ApiWrapperClient(this);
 	}
 
 	async ApiReq<Req, Res extends any>(api: any, id?: (number|Req), config?: Req): Promise<ApiRequest<Req, Res>> {
@@ -35,7 +31,7 @@ export class ApiClient extends SPOON {
 			id = 0;
 		}
 
-		const req = new ApiRequest<Req, Res>(this, config || {} as Req);
+		const req = new ApiRequest<Req, Res>(this, api, config || {} as Req);
 		req.url = api.url;
 		req.method = api.method;
 		req.debug = !!api.debug;

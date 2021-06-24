@@ -7,6 +7,7 @@
 
 import { ApiLivesRequestConfig } from '../';
 import { ReportType } from '../../spoon/';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 export namespace ApiPlayMailboxCreate {
 
@@ -26,7 +27,8 @@ export namespace ApiPlayMailboxCreate {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -42,7 +44,8 @@ export namespace ApiPlayGetMailbox {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -67,7 +70,8 @@ export namespace ApiPlayMailboxCurrent {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -83,7 +87,8 @@ export namespace ApiPlayMailboxClose {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -107,7 +112,8 @@ export namespace ApiPlayMailboxReportMessage {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -129,7 +135,8 @@ export namespace ApiPlayMailboxRemoveMessage {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -145,7 +152,8 @@ export namespace ApiPlayMailboxGetMessages {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -169,7 +177,8 @@ export namespace ApiPlayMailboxWriteMessage {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 

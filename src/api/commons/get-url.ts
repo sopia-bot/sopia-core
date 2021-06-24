@@ -5,8 +5,9 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { ApiResult, RequestConfig } from '../';
+import { RequestConfig } from '../';
 import { ProfileUrlInfo } from '../../struct/';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 export namespace ApiGetProfileImgUrl {
 
@@ -17,7 +18,14 @@ export namespace ApiGetProfileImgUrl {
 
 	}
 
-	export interface Response extends ProfileUrlInfo {
+	@Serializable()
+	export class Response extends ProfileUrlInfo {
+
+		constructor() {
+
+			super();
+
+		}
 
 	}
 

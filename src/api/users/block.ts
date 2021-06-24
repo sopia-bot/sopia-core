@@ -6,6 +6,7 @@
  */
 
 import { ApiResult, RequestConfig } from '../';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 export namespace ApiUsersBlock {
 
@@ -17,7 +18,8 @@ export namespace ApiUsersBlock {
 	}
 
 	// none response
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -33,7 +35,8 @@ export namespace ApiUsersUnBlock {
 	}
 
 	// none response
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 

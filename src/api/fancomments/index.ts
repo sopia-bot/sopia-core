@@ -5,8 +5,9 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { ApiResult, RequestConfig } from '../';
-import { FanMessages } from '../../';
+import { RequestConfig } from '../';
+import { FanMessages } from '../../struct/';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 export namespace ApiModifyFancomments {
 
@@ -26,7 +27,8 @@ export namespace ApiModifyFancomments {
 	}
 
 	// none response
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -42,7 +44,8 @@ export namespace ApiRemoveFancomments {
 	}
 
 	// none response
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -58,7 +61,8 @@ export namespace ApiBlindFancomments {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -73,7 +77,14 @@ export namespace ApiGetFancommentsMessages {
 
 	}
 
-	export interface Response extends FanMessages {
+	@Serializable()
+	export class Response extends FanMessages {
+
+		constructor() {
+
+			super();
+
+		}
 
 	}
 
@@ -94,7 +105,14 @@ export namespace ApiFancommentsWriteMessages {
 
 	}
 
-	export interface Response extends FanMessages {
+	@Serializable()
+	export class Response extends FanMessages {
+
+		constructor() {
+
+			super();
+
+		}
 
 	}
 
@@ -120,7 +138,8 @@ export namespace ApiFancommentsModifyMessages {
 	}
 
 	// none response
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -144,7 +163,8 @@ export namespace ApiFancommentsRemoveMessages {
 	}
 
 	// none response
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 

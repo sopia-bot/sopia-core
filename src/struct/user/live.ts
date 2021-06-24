@@ -4,11 +4,13 @@
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export interface UserLive {
+@Serializable()
+export class UserLive {
 
-	'is_live': boolean;
+	@JsonProperty() is_live!: boolean;
 
-	'current_live_id': number;
+	@JsonProperty() current_live_id!: number;
 
 }

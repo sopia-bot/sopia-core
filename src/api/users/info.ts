@@ -12,6 +12,7 @@ import {
 	UserNameExist,
 	FanMessages
 } from '../../struct/';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 export namespace ApiUsersInfo {
 
@@ -22,7 +23,14 @@ export namespace ApiUsersInfo {
 
 	}
 
-	export interface Response extends User {
+	@Serializable()
+	export class Response extends User {
+
+		constructor() {
+
+			super();
+
+		}
 
 	}
 
@@ -47,7 +55,14 @@ export namespace ApiSetUsersInfo {
 
 	}
 
-	export interface Response extends User {
+	@Serializable()
+	export class Response extends User {
+
+		constructor() {
+
+			super();
+
+		}
 
 	}
 
@@ -62,7 +77,14 @@ export namespace ApiUsersMiniProfile {
 
 	}
 
-	export interface Response extends UserMiniProfile {
+	@Serializable()
+	export class Response extends UserMiniProfile {
+
+		constructor() {
+
+			super();
+
+		}
 
 	}
 

@@ -5,8 +5,14 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { ApiResult, RequestConfig } from '../';
-import { Category, Live } from '../../';
+import { RequestConfig } from '../';
+import { Category } from '../../';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
+
+import * as A from '../';
+console.log(__filename, A);
+
+class Live {}
 
 export namespace ApiLivesBanner {
 
@@ -17,7 +23,14 @@ export namespace ApiLivesBanner {
 
 	}
 
-	export interface Response extends Live {
+	@Serializable()
+	export class Response extends Live {
+
+		constructor() {
+
+			super();
+
+		}
 
 	}
 
@@ -42,7 +55,14 @@ export namespace ApiLivesPopular {
 
 	}
 
-	export interface Response extends Live {
+	@Serializable()
+	export class Response extends Live {
+
+		constructor() {
+
+			super();
+
+		}
 
 	}
 
@@ -65,7 +85,14 @@ export namespace ApiLivesSubcribed {
 
 	}
 
-	export interface Response extends Live {
+	@Serializable()
+	export class Response extends Live {
+
+		constructor() {
+
+			super();
+
+		}
 
 	}
 

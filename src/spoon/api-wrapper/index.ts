@@ -4,12 +4,15 @@
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
+/*
 import { ApiClient } from '../';
 import { LiveApiWrapper } from './lives';
 import { SearchApiWrapper } from './search';
+*/
 
 export class ApiWrapperClient {
 
+	/*
 	public live: LiveApiWrapper;
 	public search: SearchApiWrapper;
 
@@ -17,5 +20,6 @@ export class ApiWrapperClient {
 		this.live = new LiveApiWrapper(this._client);
 		this.search = new SearchApiWrapper(this._client);
 	}
+	*/
 
 }

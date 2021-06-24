@@ -4,9 +4,11 @@
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export interface CurrentLive {
+@Serializable()
+export class CurrentLive {
 
-	readonly 'id': number;
-	
+	@JsonProperty() public id!: number;
+
 }

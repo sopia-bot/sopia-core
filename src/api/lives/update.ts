@@ -7,6 +7,7 @@
 
 import { ApiLivesRequestConfig } from '../';
 import { Live } from '../../struct/';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 export namespace ApiLivesSetManager {
 
@@ -24,7 +25,8 @@ export namespace ApiLivesSetManager {
 	}
 
 	// TODO: Unknown response type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -46,7 +48,8 @@ export namespace ApiLivesBlock {
 	}
 
 	// TODO: Unknown response type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -72,7 +75,8 @@ export namespace ApiLivesPresent {
 	}
 
 	// TODO: Unknown response type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -94,7 +98,8 @@ export namespace ApiLivesClose {
 	}
 
 	// TODO: Unknown response type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -145,7 +150,14 @@ export namespace ApiLivesUpdate {
 
 	}
 
-	export interface Response extends Live {
+	@Serializable()
+	export class Response extends Live {
+
+		constructor() {
+
+			super();
+
+		}
 
 	}
 

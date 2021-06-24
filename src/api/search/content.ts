@@ -7,6 +7,7 @@
 
 import { ApiResult, RequestConfig } from '../';
 import { Live, Cast } from '../../struct/';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 export namespace ApiSearchContent {
 
@@ -25,10 +26,34 @@ export namespace ApiSearchContent {
 
 	}
 
-	// TODO: Unknown response data type
-	export interface Response extends Live,Cast {
+	@Serializable()
+	export class LiveResponse extends Live {
+
+		constructor() {
+
+			super();
+
+		}
 
 	}
 
+	@Serializable()
+	export class CastResponse extends Cast {
+
+		constructor() {
+
+			super();
+
+		}
+
+	}
+
+	export const key = 'params.content_type';
+	export function R(type: 'live'|'cast'|'talk') {
+		switch( type ) {
+			case 'live': return LiveResponse;
+			case 'cast': return CastResponse;
+		}
+	}
 
 }

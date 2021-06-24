@@ -6,42 +6,46 @@
  */
 
 import { UserMiniProfile } from './user/';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export interface Contents {
+@Serializable()
+export class Contents {
 
-	'id': number;
+	@JsonProperty() public id!: number;
 
-	'title': string;
+	@JsonProperty() public title!: string;
 
-	'author': UserMiniProfile;
+	@JsonProperty() public author!: UserMiniProfile;
 
-	'img_url': string;
+	@JsonProperty() public img_url!: string;
 
-	'tags': string[];
+	@JsonProperty() public tags!: string[];
 
-	'like_count': number;
+	@JsonProperty() public like_count!: number;
 
-	'created': string;
+	@JsonProperty() public created!: string;
 
-	'type': number; //unknown value
-
-}
-
-export interface UrlInfo {
-
-	url: string;
-
-	key: string;
-
-	content_type: string;
+	@JsonProperty() public type!: number; //unknown value
 
 }
 
-export interface ProfileUrlInfo {
+@Serializable()
+export class UrlInfo {
 
-	voice: UrlInfo;
+	@JsonProperty() public url!: string;
 
-	image: UrlInfo;
+	@JsonProperty() public key!: string;
+
+	@JsonProperty() public content_type!: string;
+
+}
+
+@Serializable()
+export class ProfileUrlInfo {
+
+	@JsonProperty() public voice!: UrlInfo;
+
+	@JsonProperty() public image!: UrlInfo;
 
 }
 

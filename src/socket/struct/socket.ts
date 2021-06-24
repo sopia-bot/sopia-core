@@ -5,56 +5,71 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 import { User, Live, Poll, Mailbox, MailboxMessage } from '../../struct/';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export interface LiveSocketStruct {
+@Serializable()
+export class LiveSocketStruct {
 
-	'event': string;
+	@JsonProperty() public event: string;
 
-	'type': string;
+	@JsonProperty() public type: string;
 
-	'appversion': string;
+	@JsonProperty() public appversion: string;
 
-	'useragent': string;
+	@JsonProperty() public useragent: string;
 
-	'live_id': number;
+	@JsonProperty() public live_id: number;
 
-	'rooms': number;
+	@JsonProperty() public rooms: number;
 
-	'trigger': string;
-
-}
-
-export interface LiveStateSocket extends LiveSocketStruct {
-
-	'user_id': number;
-
-	'state': string;
-
-	'close_status': number;
-
-	'is_mute': boolean;
-
-	'is_freeze': boolean;
-
-	'is_call': boolean;
-
-	'is_chat': string;
+	@JsonProperty() public trigger: string;
 
 }
 
-export interface LiveLazyUpdateSocket extends LiveSocketStruct {
+@Serializable()
+export class LiveStateSocket extends LiveSocketStruct {
 
-	'data': {
+	@JsonProperty() public user_id: number;
+
+	@JsonProperty() public state: string;
+
+	@JsonProperty() public close_status: number;
+
+	@JsonProperty() public is_mute: boolean;
+
+	@JsonProperty() public is_freeze: boolean;
+
+	@JsonProperty() public is_call: boolean;
+
+	@JsonProperty() public is_chat: string;
+
+	constructor() {
+
+		super();
+
+	}
+}
+
+@Serializable()
+export class LiveLazyUpdateSocket extends LiveSocketStruct {
+
+	@JsonProperty() public data: {
 
 		'live': Live;
 
 	};
 
+	constructor() {
+
+		super();
+
+	}
 }
 
-export interface LiveRankSocket extends LiveSocketStruct {
+@Serializable()
+export class LiveRankSocket extends LiveSocketStruct {
 
-	'order': {
+	@JsonProperty() public order: {
 
 		'now': string;
 
@@ -66,11 +81,17 @@ export interface LiveRankSocket extends LiveSocketStruct {
 
 	};
 
+	constructor() {
+
+		super();
+
+	}
 }
 
-export interface LiveJoinSocket extends LiveSocketStruct {
+@Serializable()
+export class LiveJoinSocket extends LiveSocketStruct {
 
-	'data': {
+	@JsonProperty() public data: {
 
 		'author': User;
 
@@ -78,11 +99,17 @@ export interface LiveJoinSocket extends LiveSocketStruct {
 
 	};
 
+	constructor() {
+
+		super();
+
+	}
 }
 
-export interface LiveUpdateSocket extends LiveSocketStruct {
+@Serializable()
+export class LiveUpdateSocket extends LiveSocketStruct {
 
-	'data': {
+	@JsonProperty() public data: {
 
 		'author': User;
 
@@ -90,11 +117,17 @@ export interface LiveUpdateSocket extends LiveSocketStruct {
 
 	};
 
+	constructor() {
+
+		super();
+
+	}
 }
 
-export interface LiveMessageSocket extends LiveSocketStruct {
+@Serializable()
+export class LiveMessageSocket extends LiveSocketStruct {
 
-	'data': {
+	@JsonProperty() public data: {
 
 		'live': Live;
 
@@ -102,11 +135,11 @@ export interface LiveMessageSocket extends LiveSocketStruct {
 
 	};
 
-	'items': any[]; //unknown type
+	@JsonProperty() public items: any[]; //unknown type
 
-	'use_item': any[]; //unknown type
+	@JsonProperty() public use_item: any[]; //unknown type
 
-	'update_component': {
+	@JsonProperty() public update_component: {
 
 		'message': {
 
@@ -116,11 +149,17 @@ export interface LiveMessageSocket extends LiveSocketStruct {
 
 	};
 
+	constructor() {
+
+		super();
+
+	}
 }
 
-export interface LiveLikeSocket extends LiveSocketStruct {
+@Serializable()
+export class LiveLikeSocket extends LiveSocketStruct {
 
-	'data': {
+	@JsonProperty() public data: {
 
 		'live': Live;
 
@@ -128,11 +167,17 @@ export interface LiveLikeSocket extends LiveSocketStruct {
 
 	};
 
+	constructor() {
+
+		super();
+
+	}
 }
 
-export interface LivePresentSocket extends LiveSocketStruct {
+@Serializable()
+export class LivePresentSocket extends LiveSocketStruct {
 
-	'data': {
+	@JsonProperty() public data: {
 
 		'amount': number;
 
@@ -154,16 +199,61 @@ export interface LivePresentSocket extends LiveSocketStruct {
 
 	};
 
+	constructor() {
+
+		super();
+
+	}
 }
 
-export interface LivePlaySocket extends LiveSocketStruct {
+@Serializable()
+export class LivePlaySocket extends LiveSocketStruct {
 
-	'emit_type': string;
+	@JsonProperty() public emit_type: string;
 
-	'play_type': string;
+	@JsonProperty() public play_type: string;
 
-	'poll': Poll;
+	@JsonProperty() public poll: Poll;
 
-	'mailbox': Mailbox|MailboxMessage;
+	@JsonProperty() public mailbox: Mailbox|MailboxMessage;
 
+	constructor() {
+
+		super();
+
+	}
+}
+
+@Serializable()
+export class LiveRankListSocket extends LiveSocketStruct {
+
+	@JsonProperty() public user_id: string;
+
+	@JsonProperty() public command: string;
+
+	@JsonProperty() public orders: {
+
+		rank: number;
+
+		total_member_count: number;
+
+		img_url: string;
+
+		like_count: number;
+
+		title: string;
+
+		author: User;
+
+		id: number;
+
+		member_count: number;
+
+	}[];
+
+	constructor() {
+
+		super();
+
+	}
 }

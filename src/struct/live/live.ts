@@ -6,75 +6,88 @@
  */
 import { User, Contents, LiveCall } from '../../';
 import { Tier } from '../../spoon/';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export interface LiveInfo extends Contents {
+@Serializable()
+export class LiveInfo extends Contents {
 
-	'categories': string[];
+	@JsonProperty() public categories!: string[];
 
-	'engine_name': string;
+	@JsonProperty() public engine_name!: string;
 
-	'is_adult': boolean;
+	@JsonProperty() public is_adult!: boolean;
 
-	'is_editors': boolean;
+	@JsonProperty() public is_editors!: boolean;
 
-	'is_live_call': boolean;
+	@JsonProperty() public is_live_call!: boolean;
 
-	'is_verified': boolean;
+	@JsonProperty() public is_verified!: boolean;
 
-	'is_vip': boolean;
+	@JsonProperty() public is_vip!: boolean;
 
-	'live_call': LiveCall;
+	@JsonProperty() public live_call!: LiveCall;
 
-	'member_count': number;
+	@JsonProperty() public member_count!: number;
 
-	'os_type': any; //unknown type
+	@JsonProperty() public os_type!: any; //unknown type
 
-	'room_token': string;
+	@JsonProperty() public room_token!: string;
 
-	'tier': Tier;
+	@JsonProperty() public tier!: Tier;
 
-	'total_member_count': number;
+	@JsonProperty() public total_member_count!: number;
 
-	'url_hls': string;
+	@JsonProperty() public url_hls!: string;
 
+	constructor() {
+
+		super();
+
+	}
 }
 
-export interface Live extends LiveInfo {
+@Serializable()
+export class Live extends LiveInfo {
 
-	'welcome_message': string;
+	@JsonProperty() public welcome_message!: string;
 
-	'top_fans': { user: User }[];
+	@JsonProperty() public top_fans!: { user!: User }[];
 
-	'url': string;
+	@JsonProperty() public url!: string;
 
-	'stream_name': string;
+	@JsonProperty() public stream_name!: string;
 
-	'manager_ids': number[];
+	@JsonProperty() public manager_ids!: number[];
 
-	'is_like': boolean;
+	@JsonProperty() public is_like!: boolean;
 
-	'is_freeze': boolean;
+	@JsonProperty() public is_freeze!: boolean;
 
-	'is_mute': boolean;
+	@JsonProperty() public is_mute!: boolean;
 
-	'is_beginner': boolean;
+	@JsonProperty() public is_beginner!: boolean;
 
-	'is_call': boolean;
+	@JsonProperty() public is_call!: boolean;
 
-	'closed': string;
+	@JsonProperty() public closed!: string;
 
-	'close_status': number;
+	@JsonProperty() public close_status!: number;
 
-	'is_save': boolean;
+	@JsonProperty() public is_save!: boolean;
 
-	'is_join_now': boolean;
+	@JsonProperty() public is_join_now!: boolean;
 
-	'protocol': string;
+	@JsonProperty() public protocol!: string;
 
-	'msg_interval': number;
+	@JsonProperty() public msg_interval!: number;
 
-	'donation': number;
+	@JsonProperty() public donation!: number;
 
-	'close_air_time': string;
+	@JsonProperty() public close_air_time!: string;
 
+	constructor() {
+
+		super();
+
+	}
 }

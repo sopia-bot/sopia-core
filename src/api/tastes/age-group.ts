@@ -6,6 +6,7 @@
  */
 
 import { ApiResult, RequestConfig } from '../';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 export namespace ApiTastesAgeGroup {
 
@@ -21,7 +22,8 @@ export namespace ApiTastesAgeGroup {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -41,7 +43,8 @@ export namespace ApiTastesAgeGroupChoice {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -61,7 +64,8 @@ export namespace ApiTastesSetAgeGroupChoice {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 

@@ -4,39 +4,43 @@
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export interface PollItem {
+@Serializable()
+export class PollItem {
 
-	'item_order': number;
+	@JsonProperty() public item_order!: number;
 
-	'name': string;
+	@JsonProperty() public name!: string;
 
-	'count': number;
-
-}
-
-export interface Poll {
-
-	'id': number;
-
-	'items': PollItem[];
-
-	'title': string;
-
-	'my_choice': number;
-
-	'poll_count': number;
-
-	'total_count': number;
+	@JsonProperty() public count!: number;
 
 }
 
-export interface VoteResponse {
+@Serializable()
+export class Poll {
 
-	'choice': number;
+	@JsonProperty() public id!: number;
 
-	'poll_id': number;
+	@JsonProperty() public items!: PollItem[];
 
-	'total_count': number;
+	@JsonProperty() public title!: string;
+
+	@JsonProperty() public my_choice!: number;
+
+	@JsonProperty() public poll_count!: number;
+
+	@JsonProperty() public total_count!: number;
+
+}
+
+@Serializable()
+export class VoteResponse {
+
+	@JsonProperty() public choice!: number;
+
+	@JsonProperty() public poll_id!: number;
+
+	@JsonProperty() public total_count!: number;
 
 }

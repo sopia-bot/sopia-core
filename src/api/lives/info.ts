@@ -6,7 +6,10 @@
  */
 
 import { RequestConfig, ApiLivesRequestConfig } from '../';
-import { Live, User } from '../../struct/';
+import * as A from '../../struct/';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
+
+console.log('User', A);
 
 export namespace ApiLivesInfo {
 
@@ -17,7 +20,7 @@ export namespace ApiLivesInfo {
 
 	}
 
-	export interface Response extends Live {
+	export interface Response {
 
 	}
 
@@ -32,7 +35,12 @@ export namespace ApiLivesListeners {
 
 	}
 
-	export interface Response extends User {
+	@Serializable()
+	export class Response {
+
+		constructor() {
+
+		}
 
 	}
 
@@ -47,8 +55,13 @@ export namespace ApiLivesListenersFans {
 
 	}
 
-	export interface Response extends User {
-		
+	@Serializable()
+	export class Response {
+
+		constructor() {
+
+		}
+
 	}
 
 }
@@ -64,7 +77,12 @@ export namespace ApiLivesSponsor {
 
 	/* TODO: */
 	/* 아마도 count: number, author: User 형식으로 있을 것 같음 */
-	export interface Response extends User {
+	@Serializable()
+	export class Response {
+
+		constructor() {
+
+		}
 
 	}
 
@@ -79,7 +97,12 @@ export namespace ApiLivesLike {
 
 	}
 
-	export interface Response extends User {
+	@Serializable()
+	export class Response {
+
+		constructor() {
+
+		}
 
 	}
 
@@ -103,7 +126,7 @@ export namespace ApiLivesToken {
 	export interface Response {
 
 		'jwt': string;
-		
+
 		'items': any[]; // unknown type
 
 	}
@@ -119,7 +142,7 @@ export namespace ApiLivesAccess {
 
 	}
 
-	export interface Response extends Live {
+	export interface Response {
 
 	}
 

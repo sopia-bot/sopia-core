@@ -147,7 +147,7 @@ describe('📌  Web Api Test', () => {
 			});
 
 			it('Modify Fan Message', async () => {
-				const req = await sopia.ApiReq<ApiModifyFancomments.Request, ApiModifyFancomments.Request>(ApiModifyFancomments, msg_parent_id, {
+				const req = await sopia.ApiReq<ApiModifyFancomments.Request, ApiModifyFancomments.Response>(ApiModifyFancomments, msg_parent_id, {
 					'data': {
 						'contents': 'ModifiedMessage',
 						'is_parent': true,

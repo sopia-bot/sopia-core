@@ -5,11 +5,16 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 import { User } from '../';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export interface LiveCall {
+import * as A from '../';
+console.log(__filename, A);
 
-	'guests': User[];
+@Serializable()
+export class LiveCall {
 
-	'status': number;
+	@JsonProperty() public guests!: User[];
+
+	@JsonProperty() public status!: number;
 
 }

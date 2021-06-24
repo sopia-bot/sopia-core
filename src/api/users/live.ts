@@ -6,6 +6,7 @@
  */
 
 import { ApiResult, RequestConfig } from '../';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 export namespace ApiUsersLive {
 
@@ -17,7 +18,8 @@ export namespace ApiUsersLive {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 

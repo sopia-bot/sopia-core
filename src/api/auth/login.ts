@@ -6,8 +6,11 @@
  */
 
 import { LoginType, Country } from '../../spoon/';
-import { LogonUser } from '../../struct/';
+import { LogonUser, User } from '../../struct/';
 import { ApiResult, RequestConfig } from '../';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
+
+console.log(LogonUser);
 
 export namespace ApiLogin {
 
@@ -30,7 +33,14 @@ export namespace ApiLogin {
 
 	}
 
-	export interface Response extends LogonUser {
+	@Serializable()
+	export class Response extends LogonUser {
+
+		constructor() {
+
+			super();
+
+		}
 
 	}
 

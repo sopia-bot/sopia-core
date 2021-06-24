@@ -6,6 +6,7 @@
  */
 import { ApiResult } from '../';
 import axios, { AxiosRequestConfig, Method } from 'axios';
+import { deserialize } from 'typescript-json-serializer';
 
 export class ApiRequest<Request extends AxiosRequestConfig, Response extends any> {
 	private _url: string = '';
@@ -13,7 +14,7 @@ export class ApiRequest<Request extends AxiosRequestConfig, Response extends any
 	private _id: number = 0;
 	private _debug: boolean = false;
 
-	constructor(private _client: any, private _options: Request) {
+	constructor(private _client: any, private _api: any, private _options: Request) {
 		if ( !this._options.headers ) {
 			this._options.headers = {};
 		}
@@ -22,6 +23,10 @@ export class ApiRequest<Request extends AxiosRequestConfig, Response extends any
 		this.headers['user-agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36';
 		this.headers['origin'] = 'https://www.spooncast.net';
 		this.headers['referer'] = 'https://www.spooncast.net/';
+	}
+
+	get api(): any {
+		return this._api;
 	}
 
 	get method(): Method {
@@ -95,6 +100,13 @@ export class ApiRequest<Request extends AxiosRequestConfig, Response extends any
 					console.error(this._options);
 					console.error(res.data);
 				}
+
+				if ( Array.isArray(res.data.results) ) {
+					res.data.results.forEach((result: any, idx: number) => {
+						res.data.results[idx] = deserialize<Response>(result, this.api.Response);
+					});
+				}
+
 				this._result = res.data as ApiResult<Response>;
 			}
 		} catch(err) {

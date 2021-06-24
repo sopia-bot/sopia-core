@@ -5,27 +5,29 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 import { User } from '../user/';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export interface FanMessages {
+@Serializable()
+export class FanMessages {
 
-	readonly author: User;
+	@JsonProperty() public author!: User;
 
-	readonly contents: string;
+	@JsonProperty() public contents!: string;
 
-	readonly created: string;
+	@JsonProperty() public created!: string;
 
-	readonly extra: any; // unknown type
+	@JsonProperty() public extra!: any; // unknown type
 
-	readonly id: number;
+	@JsonProperty() public id!: number;
 
-	readonly is_blind: boolean;
+	@JsonProperty() public is_blind!: boolean;
 
-	readonly message_count: number;
+	@JsonProperty() public message_count!: number;
 
-	readonly path: string;
+	@JsonProperty() public path!: string;
 
-	readonly referer: string;
+	@JsonProperty() public referer!: string;
 
-	readonly to_user: any; // unknown type maybe User type
+	@JsonProperty() public to_user!: any; // unknown type maybe User type
 
 }

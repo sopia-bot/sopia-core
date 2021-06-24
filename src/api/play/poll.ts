@@ -7,6 +7,7 @@
 
 import { ApiLivesRequestConfig } from '../';
 import { PollItem } from '../../struct/';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 export namespace ApiPlayGetPoll {
 
@@ -18,7 +19,8 @@ export namespace ApiPlayGetPoll {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -44,7 +46,8 @@ export namespace ApiPlayPollCreate {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -60,7 +63,8 @@ export namespace ApiPlayPollClose {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -82,7 +86,8 @@ export namespace ApiPlayPollVote {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 

@@ -5,7 +5,8 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { ApiResult, RequestConfig } from '../';
+import { RequestConfig } from '../';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 export namespace ApiSetPassword {
 
@@ -23,7 +24,8 @@ export namespace ApiSetPassword {
 	}
 
 	// unknown response
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 

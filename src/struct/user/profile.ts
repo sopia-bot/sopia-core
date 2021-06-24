@@ -9,73 +9,137 @@ import {
 	Grants,
 	Budget,
 	Country,
+	PushSettings,
+	ServiceAgreement,
 	Tier
 } from '../../spoon/';
-import { User, CurrentLive } from '../';
+import { CurrentLive, FanboardInfo } from '../';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export interface UserSearchProfile {
+import * as A from '../';
+console.log(__filename, A);
 
-	'current_live': CurrentLive;
+@Serializable()
+export class UserSearchProfile {
 
-	'current_live_id': number;
+	@JsonProperty() current_live!: CurrentLive;
 
-	'id': number;
+	@JsonProperty() current_live_id!: number;
 
-	'is_active': boolean;
+	@JsonProperty() id!: number;
 
-	'is_live': boolean;
+	@JsonProperty() is_active!: boolean;
 
-	'is_verified': boolean;
+	@JsonProperty() is_live!: boolean;
 
-	'is_vip': boolean;
+	@JsonProperty() is_verified!: boolean;
 
-	'nickname': string;
+	@JsonProperty() is_vip!: boolean;
 
-	'profile_url': string;
+	@JsonProperty() nickname!: string;
 
-	'status': number; // live on 1 is not 0
+	@JsonProperty() profile_url!: string;
 
-	'tag': string;
+	@JsonProperty() status!: number; // live on 1 is not 0
 
-	'tier': Tier;
+	@JsonProperty() tag!: string;
 
-}
-
-export interface LogonUser extends User {
-
-	'date_of_birth': string;
-
-	'grants': Grants;
-
-	'is_changed_username': boolean;
-
-	'budget': Budget;
-
-	'phone_number': string;
-
-	'is_choice': boolean;
-}
-
-
-export interface UserMiniProfile extends UserSearchProfile {
-
-	'country': Country;
-
-	'date_joined': string;
-
-	'description': string;
-
-	'follow_status': number;
-
-	'follower_count': number;
-
-	'following_count': number;
-
-	'gender': number;
-
-	'is_staff': boolean;
-
-	'top_impressions': number[];
+	@JsonProperty() tier!: Tier;
 
 }
 
+@Serializable()
+export class UserMiniProfile extends UserSearchProfile {
+
+	@JsonProperty() country!: Country;
+
+	@JsonProperty() date_joined!: string;
+
+	@JsonProperty() description!: string;
+
+	@JsonProperty() follow_status!: number;
+
+	@JsonProperty() follower_count!: number;
+
+	@JsonProperty() following_count!: number;
+
+	@JsonProperty() gender!: number;
+
+	@JsonProperty() is_staff!: boolean;
+
+	@JsonProperty() top_impressions!: number[];
+
+	constructor() {
+
+		super();
+
+	}
+}
+
+@Serializable()
+export class User extends UserMiniProfile {
+
+	@JsonProperty() email!: string;
+
+	@JsonProperty() is_public_cast_storage!: boolean;
+
+	@JsonProperty() is_public_like!: boolean;
+
+	@JsonProperty() sns_type!: string;
+
+	@JsonProperty() top_fans!: User[];
+
+	@JsonProperty() is_exist!: boolean;
+
+	@JsonProperty() token!: string;
+
+	@JsonProperty() is_dj!: boolean;
+
+	@JsonProperty() regular_score!: number;
+
+	@JsonProperty() is_fixedmng!: boolean;
+
+	// deprecated
+	@JsonProperty() fanboard_info!: FanboardInfo;
+
+	// deprecated
+	@JsonProperty() push_settings!: PushSettings;
+
+	// deprecated
+	@JsonProperty() service_agreement!: ServiceAgreement;
+
+	// deprecated
+	@JsonProperty() is_password_notice!: boolean;
+
+	// deprecated
+	@JsonProperty() guest_status!: number;
+
+	constructor() {
+
+		super();
+
+	}
+}
+
+@Serializable()
+export class LogonUser extends User {
+
+	@JsonProperty() date_of_birth!: string;
+
+	@JsonProperty() grants!: Grants;
+
+	@JsonProperty() is_changed_username!: boolean;
+
+	@JsonProperty() budget!: Budget;
+
+	@JsonProperty() phone_number!: string;
+
+	@JsonProperty() is_choice!: boolean;
+
+	constructor() {
+
+		super();
+
+	}
+
+}

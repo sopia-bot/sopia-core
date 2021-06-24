@@ -6,35 +6,38 @@
  */
 
 import { MailMessageStat } from '../../spoon/';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-export interface Mailbox {
+@Serializable()
+export class Mailbox {
 
-	'id': number;
+	@JsonProperty() public id!: number;
 
-	'title': string;
+	@JsonProperty() public title!: string;
 
-	'total_count': number;
+	@JsonProperty() public total_count!: number;
 
-	'is_publish': boolean;
+	@JsonProperty() public is_publish!: boolean;
 
 }
 
-export interface MailboxMessage {
+@Serializable()
+export class MailboxMessage {
 
-	'id': number;
+	@JsonProperty() public id!: number;
 
-	'created': string;
+	@JsonProperty() public created!: string;
 
-	'is_anonymous': boolean;
+	@JsonProperty() public is_anonymous!: boolean;
 
-	'mailbox_id': number;
+	@JsonProperty() public mailbox_id!: number;
 
-	'message': string;
+	@JsonProperty() public message!: string;
 
-	'nickname': string;
+	@JsonProperty() public nickname!: string;
 
-	'profile_url': string;
+	@JsonProperty() public profile_url!: string;
 
-	'status': MailMessageStat;
+	@JsonProperty() public status!: MailMessageStat;
 
 }
