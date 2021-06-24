@@ -5,11 +5,11 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { Contents } from '../';
+import { ContentsInfo } from '../';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
-export class Cast extends Contents {
+export class Cast extends ContentsInfo {
 
 	@JsonProperty() public category!: string;
 

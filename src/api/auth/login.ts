@@ -10,8 +10,6 @@ import { LogonUser, User } from '../../struct/';
 import { ApiResult, RequestConfig } from '../';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-console.log(LogonUser);
-
 export namespace ApiLogin {
 
 	export const url = '/signin/';

@@ -6,13 +6,9 @@
  */
 
 import { RequestConfig } from '../';
-import { Category } from '../../';
+import { Live } from '../../struct/';
+import { Category } from '../../spoon/enum/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
-
-import * as A from '../';
-console.log(__filename, A);
-
-class Live {}
 
 export namespace ApiLivesBanner {
 

@@ -4,12 +4,12 @@
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
-import { User, Contents, LiveCall } from '../../';
+import { User, ContentsInfo, LiveCall } from '../';
 import { Tier } from '../../spoon/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
-export class LiveInfo extends Contents {
+export class LiveInfo extends ContentsInfo {
 
 	@JsonProperty() public categories!: string[];
 
@@ -51,7 +51,7 @@ export class Live extends LiveInfo {
 
 	@JsonProperty() public welcome_message!: string;
 
-	@JsonProperty() public top_fans!: { user!: User }[];
+	@JsonProperty() public top_fans!: { user: User }[];
 
 	@JsonProperty() public url!: string;
 

@@ -7,9 +7,6 @@
 import { User } from '../';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-import * as A from '../';
-console.log(__filename, A);
-
 @Serializable()
 export class LiveCall {
 

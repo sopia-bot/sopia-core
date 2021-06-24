@@ -10,38 +10,38 @@ import { Serializable, JsonProperty } from 'typescript-json-serializer';
 @Serializable()
 export class LiveSocketStruct {
 
-	@JsonProperty() public event: string;
+	@JsonProperty() public event!: string;
 
-	@JsonProperty() public type: string;
+	@JsonProperty() public type!: string;
 
-	@JsonProperty() public appversion: string;
+	@JsonProperty() public appversion!: string;
 
-	@JsonProperty() public useragent: string;
+	@JsonProperty() public useragent!: string;
 
-	@JsonProperty() public live_id: number;
+	@JsonProperty() public live_id!: number;
 
-	@JsonProperty() public rooms: number;
+	@JsonProperty() public rooms!: number;
 
-	@JsonProperty() public trigger: string;
+	@JsonProperty() public trigger!: string;
 
 }
 
 @Serializable()
 export class LiveStateSocket extends LiveSocketStruct {
 
-	@JsonProperty() public user_id: number;
+	@JsonProperty() public user_id!: number;
 
-	@JsonProperty() public state: string;
+	@JsonProperty() public state!: string;
 
-	@JsonProperty() public close_status: number;
+	@JsonProperty() public close_status!: number;
 
-	@JsonProperty() public is_mute: boolean;
+	@JsonProperty() public is_mute!: boolean;
 
-	@JsonProperty() public is_freeze: boolean;
+	@JsonProperty() public is_freeze!: boolean;
 
-	@JsonProperty() public is_call: boolean;
+	@JsonProperty() public is_call!: boolean;
 
-	@JsonProperty() public is_chat: string;
+	@JsonProperty() public is_chat!: string;
 
 	constructor() {
 
@@ -53,7 +53,7 @@ export class LiveStateSocket extends LiveSocketStruct {
 @Serializable()
 export class LiveLazyUpdateSocket extends LiveSocketStruct {
 
-	@JsonProperty() public data: {
+	@JsonProperty() public data!: {
 
 		'live': Live;
 
@@ -69,7 +69,7 @@ export class LiveLazyUpdateSocket extends LiveSocketStruct {
 @Serializable()
 export class LiveRankSocket extends LiveSocketStruct {
 
-	@JsonProperty() public order: {
+	@JsonProperty() public order!: {
 
 		'now': string;
 
@@ -91,7 +91,7 @@ export class LiveRankSocket extends LiveSocketStruct {
 @Serializable()
 export class LiveJoinSocket extends LiveSocketStruct {
 
-	@JsonProperty() public data: {
+	@JsonProperty() public data!: {
 
 		'author': User;
 
@@ -109,7 +109,7 @@ export class LiveJoinSocket extends LiveSocketStruct {
 @Serializable()
 export class LiveUpdateSocket extends LiveSocketStruct {
 
-	@JsonProperty() public data: {
+	@JsonProperty() public data!: {
 
 		'author': User;
 
@@ -127,7 +127,7 @@ export class LiveUpdateSocket extends LiveSocketStruct {
 @Serializable()
 export class LiveMessageSocket extends LiveSocketStruct {
 
-	@JsonProperty() public data: {
+	@JsonProperty() public data!: {
 
 		'live': Live;
 
@@ -135,11 +135,11 @@ export class LiveMessageSocket extends LiveSocketStruct {
 
 	};
 
-	@JsonProperty() public items: any[]; //unknown type
+	@JsonProperty() public items!: any[]; //unknown type
 
-	@JsonProperty() public use_item: any[]; //unknown type
+	@JsonProperty() public use_item!: any[]; //unknown type
 
-	@JsonProperty() public update_component: {
+	@JsonProperty() public update_component!: {
 
 		'message': {
 
@@ -159,7 +159,7 @@ export class LiveMessageSocket extends LiveSocketStruct {
 @Serializable()
 export class LiveLikeSocket extends LiveSocketStruct {
 
-	@JsonProperty() public data: {
+	@JsonProperty() public data!: {
 
 		'live': Live;
 
@@ -177,7 +177,7 @@ export class LiveLikeSocket extends LiveSocketStruct {
 @Serializable()
 export class LivePresentSocket extends LiveSocketStruct {
 
-	@JsonProperty() public data: {
+	@JsonProperty() public data!: {
 
 		'amount': number;
 
@@ -209,13 +209,13 @@ export class LivePresentSocket extends LiveSocketStruct {
 @Serializable()
 export class LivePlaySocket extends LiveSocketStruct {
 
-	@JsonProperty() public emit_type: string;
+	@JsonProperty() public emit_type!: string;
 
-	@JsonProperty() public play_type: string;
+	@JsonProperty() public play_type!: string;
 
-	@JsonProperty() public poll: Poll;
+	@JsonProperty() public poll!: Poll;
 
-	@JsonProperty() public mailbox: Mailbox|MailboxMessage;
+	@JsonProperty() public mailbox!: Mailbox|MailboxMessage;
 
 	constructor() {
 
@@ -227,11 +227,11 @@ export class LivePlaySocket extends LiveSocketStruct {
 @Serializable()
 export class LiveRankListSocket extends LiveSocketStruct {
 
-	@JsonProperty() public user_id: string;
+	@JsonProperty() public user_id!: string;
 
-	@JsonProperty() public command: string;
+	@JsonProperty() public command!: string;
 
-	@JsonProperty() public orders: {
+	@JsonProperty() public orders!: {
 
 		rank: number;
 

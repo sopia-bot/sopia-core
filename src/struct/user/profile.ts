@@ -16,9 +16,6 @@ import {
 import { CurrentLive, FanboardInfo } from '../';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-import * as A from '../';
-console.log(__filename, A);
-
 @Serializable()
 export class UserSearchProfile {
 
@@ -141,5 +138,12 @@ export class LogonUser extends User {
 		super();
 
 	}
+
+}
+
+@Serializable()
+export class UserNameExist {
+
+	@JsonProperty() is_exist!: boolean;
 
 }

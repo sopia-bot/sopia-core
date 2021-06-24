@@ -9,8 +9,6 @@ import { RequestConfig, ApiLivesRequestConfig } from '../';
 import * as A from '../../struct/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-console.log('User', A);
-
 export namespace ApiLivesInfo {
 
 	export const url = '/lives/0000/';
@@ -20,7 +18,8 @@ export namespace ApiLivesInfo {
 
 	}
 
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -123,7 +122,8 @@ export namespace ApiLivesToken {
 
 	}
 
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 		'jwt': string;
 
@@ -142,7 +142,8 @@ export namespace ApiLivesAccess {
 
 	}
 
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 

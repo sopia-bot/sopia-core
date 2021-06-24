@@ -14,8 +14,7 @@ export namespace ApiUsersFollow {
 	export const url = '/users/0000/follow/';
 	export const method = 'POST';
 
-	@Serializable()
-	export class Request extends RequestConfig {
+	export interface Request extends RequestConfig {
 
 	}
 
@@ -31,8 +30,7 @@ export namespace ApiUsersUnFollow {
 	export const url = '/users/0000/unfollow/';
 	export const method = 'POST';
 
-	@Serializable()
-	export class Request extends RequestConfig {
+	export interface Request extends RequestConfig {
 
 	}
 
@@ -48,8 +46,7 @@ export namespace ApiUsersFollowings {
 	export const url = '/users/0000/followings/';
 	export const method = 'GET';
 
-	@Serializable()
-	export class Request extends RequestConfig {
+	export interface Request extends RequestConfig {
 
 	}
 
@@ -65,8 +62,7 @@ export namespace ApiUsersFollowers {
 	export const url = '/users/0000/followers/';
 	export const method = 'GET';
 
-	@Serializable()
-	export class Request extends RequestConfig {
+	export interface Request extends RequestConfig {
 
 	}
 

@@ -7,10 +7,7 @@
 
 import { ApiResult, RequestConfig } from '../';
 import { User } from '../../struct/';
-import * as T from '../../spoon/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
-
-console.log(T);
 
 export namespace ApiSearchUser {
 

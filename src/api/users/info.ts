@@ -105,7 +105,8 @@ export namespace ApiUsersUsername {
 
 	}
 
-	export interface Response extends UserNameExist {
+	@Serializable()
+	export class Response extends UserNameExist {
 
 	}
 
@@ -126,7 +127,8 @@ export namespace ApiUsersSetUsername {
 
 	}
 
-	export interface Response extends UserNameExist {
+	@Serializable()
+	export class Response extends UserNameExist {
 
 	}
 
@@ -142,7 +144,8 @@ export namespace ApiUsersVoice {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -164,7 +167,8 @@ export namespace ApiUsersCasts {
 	}
 
 	// TODO: Unknown response data type
-	export interface Response {
+	@Serializable()
+	export class Response {
 
 	}
 
@@ -179,7 +183,8 @@ export namespace ApiUsersFanmessages {
 
 	}
 
-	export interface Response extends FanMessages {
+	@Serializable()
+	export class Response extends FanMessages {
 
 	}
 
@@ -200,7 +205,8 @@ export namespace ApiUsersWriteFanmessages {
 
 	}
 
-	export interface Response extends FanMessages {
+	@Serializable()
+	export class Response extends FanMessages {
 
 	}
 
