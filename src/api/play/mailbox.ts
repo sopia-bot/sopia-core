@@ -6,7 +6,7 @@
  */
 
 import { ApiLivesRequestConfig } from '../';
-import { ReportType } from '../../spoon/';
+import { ReportType } from '../../enum/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 export namespace ApiPlayMailboxCreate {

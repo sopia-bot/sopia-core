@@ -7,7 +7,7 @@
 
 import { RequestConfig } from '../';
 import { Live } from '../../struct/';
-import { Category } from '../../spoon/enum/';
+import { Category } from '../../enum/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 export namespace ApiLivesBanner {

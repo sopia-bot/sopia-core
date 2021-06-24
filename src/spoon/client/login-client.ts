@@ -11,7 +11,7 @@ import {
 	LoginType,
 	Country,
 	CountryNumber,
-} from '../';
+} from '../../enum/';
 import axios from 'axios';
 
 export class LoginClient extends StickerClient {

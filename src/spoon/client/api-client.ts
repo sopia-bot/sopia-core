@@ -5,9 +5,7 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import {
-	SPOON,
-} from '../';
+import { SPOON } from '../main';
 import {
 	ApiRequest,
 	ApiGetProfileImgUrl

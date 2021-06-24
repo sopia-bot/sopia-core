@@ -12,7 +12,7 @@ import {
 	PushSettings,
 	ServiceAgreement,
 	Tier
-} from '../../spoon/';
+} from '../../enum/';
 import { CurrentLive, FanboardInfo } from '../';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 

@@ -11,3 +11,4 @@ export * from './static/';
 export * from './struct/';
 export * from './socket/';
 export * from './utils/';
+export * from './enum/';

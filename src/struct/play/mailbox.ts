@@ -5,7 +5,7 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { MailMessageStat } from '../../spoon/';
+import { MailMessageStat } from '../../enum/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()

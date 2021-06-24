@@ -5,7 +5,7 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { LoginType, Country } from '../../spoon/';
+import { LoginType, Country } from '../../enum/';
 import { LogonUser, User } from '../../struct/';
 import { ApiResult, RequestConfig } from '../';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
