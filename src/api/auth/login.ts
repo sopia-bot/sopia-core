@@ -5,8 +5,8 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { LoginType, Country } from '../../enum/';
-import { LogonUser, User } from '../../struct/';
+import { SnsType, Country } from '../../enum/';
+import { LogonUser } from '../../struct/';
 import { ApiResult, RequestConfig } from '../';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
@@ -19,7 +19,7 @@ export namespace ApiLogin {
 
 		'data': {
 
-			'sns_type': LoginType;
+			'sns_type': SnsType;
 
 			'sns_id': (number|string);
 

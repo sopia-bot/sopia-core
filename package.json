@@ -5,6 +5,7 @@
 	"main": "dist/index.js",
 	"scripts": {
 		"test:all": "./node_modules/.bin/mocha -r ts-node/register ./tests/*.test.ts  --trace-warnings",
+		"test:api": "mocha -r ts-node/register ./tests/api.test.ts --trace-warnings",
 		"test:common": "./node_modules/.bin/mocha -r ts-node/register ./tests/common.test.ts  --trace-warnings",
 		"test:upload": "./node_modules/.bin/mocha -r ts-node/register ./tests/upload.test.ts  --trace-warnings",
 		"lint": "tslint -p .",
