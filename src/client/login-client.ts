@@ -4,14 +4,14 @@
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
-import { LogonUser } from '../../struct/';
+import { LogonUser } from '../struct/';
+import { ApiLogin } from '../api/';
 import { StickerClient } from './sticker-client';
-import { ApiLogin } from '../../api';
 import {
 	LoginType,
 	Country,
 	CountryNumber,
-} from '../../enum/';
+} from '../enum/';
 import axios from 'axios';
 
 export class LoginClient extends StickerClient {

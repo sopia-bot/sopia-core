@@ -5,13 +5,13 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { SPOON } from '../main';
+import { SPOON } from './main-client';
 import {
 	ApiRequest,
 	ApiGetProfileImgUrl
-} from '../../api';
+} from '../api';
 
-import { ProfileUrlInfo } from '../../struct/';
+import { ProfileUrlInfo } from '../struct/';
 
 import axios from 'axios';
 

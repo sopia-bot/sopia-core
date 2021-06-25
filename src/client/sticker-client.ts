@@ -5,7 +5,7 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { StaticStickers } from '../../static/';
+import { StaticStickers } from '../static/';
 import { ApiClient } from './api-client';
 
 import axios from 'axios';

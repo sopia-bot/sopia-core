@@ -4,11 +4,11 @@
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
-import { LiveSocket } from '../../socket/';
+import { LiveSocket } from '../socket/';
 import {
 	ApiLivesToken,
 	ApiLivesAccess
-} from '../../api/';
+} from '../api/';
 import { ApiClient } from './api-client';
 
 export class LiveClient {
