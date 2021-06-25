@@ -7,6 +7,7 @@
 import { Country, CountryNumber, SnsType } from '../../enum/';
 import { LogonUser } from '../../struct/';
 import { ApiClient, ApiLogin, ApiUrls } from '../../api/';
+import { StickerClient } from '../../sticker/';
 
 import axios from 'axios';
 
@@ -21,14 +22,18 @@ export class SpoonClient {
 	public userAgent: UserAgent = 'Web';
 	public appVersion: string = '';
 	public logonUser!: LogonUser;
+
 	public api: ApiClient;
+	public sticker: StickerClient;
 
 	constructor(public deviceUUID: string) {
 		this.api = new ApiClient(this);
+		this.sticker = new StickerClient(this);
 	}
 
 	async init() {
 		await this.initUrlsInfo();
+		await this.sticker.initSticker();
 	}
 
 	async initUrlsInfo() {
