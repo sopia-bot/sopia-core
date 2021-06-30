@@ -14,6 +14,7 @@ import {
 	UsersApiWrapper,
 	FancommentsApiWrapper,
 	AuthApiWrapper,
+	PlayApiWrapper,
 } from '../wrapper/';
 
 
@@ -27,12 +28,14 @@ export class ApiClient {
 	public users: UsersApiWrapper;
 	public fancomments: FancommentsApiWrapper;
 	public auth: AuthApiWrapper;
+	public play: PlayApiWrapper;
 
 	constructor(private _client: SpoonClient) {
 		this.lives = new LivesApiWrapper(this._client);
 		this.users = new UsersApiWrapper(this._client);
 		this.fancomments = new FancommentsApiWrapper(this._client);
 		this.auth = new AuthApiWrapper(this._client);
+		this.play = new PlayApiWrapper(this._client);
 		this.request = this.request.bind(this);
 	}
 
