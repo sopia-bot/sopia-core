@@ -71,7 +71,7 @@ export class SpoonClient {
 	async login(sns_id: (number|string), password: string, sns_type: SnsType): Promise<LogonUser> {
 		await this.initToken(sns_id, password, sns_type);
 
-		const req = await this.api.request<ApiLogin.Request, ApiLogin.Response>(ApiLogin, {
+		const req = await this.api.auth.login({
 			'data': {
 				sns_type,
 				sns_id,

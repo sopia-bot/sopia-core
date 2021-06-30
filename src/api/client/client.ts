@@ -13,6 +13,7 @@ import {
 	LivesApiWrapper,
 	UsersApiWrapper,
 	FancommentsApiWrapper,
+	AuthApiWrapper,
 } from '../wrapper/';
 
 
@@ -25,11 +26,13 @@ export class ApiClient {
 	public lives: LivesApiWrapper;
 	public users: UsersApiWrapper;
 	public fancomments: FancommentsApiWrapper;
+	public auth: AuthApiWrapper;
 
 	constructor(private _client: SpoonClient) {
 		this.lives = new LivesApiWrapper(this._client);
 		this.users = new UsersApiWrapper(this._client);
 		this.fancomments = new FancommentsApiWrapper(this._client);
+		this.auth = new AuthApiWrapper(this._client);
 		this.request = this.request.bind(this);
 	}
 
