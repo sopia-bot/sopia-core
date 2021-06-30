@@ -8,6 +8,7 @@ import { ApiResult, ApiResponse } from '.';
 import axios, { AxiosRequestConfig, Method } from 'axios';
 import { deserialize } from 'typescript-json-serializer';
 
+export type HttpRequestWrapper<Req, Res> = Promise<HttpRequest<Req, Res>>;
 export class HttpRequest<Request extends AxiosRequestConfig, Response extends any> {
 
 	public url: string = '';
@@ -65,10 +66,14 @@ export class HttpRequest<Request extends AxiosRequestConfig, Response extends an
 				this.res = res.data as ApiResult<Response>;
 			}
 		} catch(err) {
-			if ( this.debug ) {
-				console.error(err.response);
+			if ( err.response ) {
+				if ( this.debug ) {
+					console.error(err.response);
+				}
+				this.res = err.response.data as ApiResult<any>;
+			} else {
+				throw err;
 			}
-			this.res = err.response.data as ApiResult<any>;
 		}
 
 		return this.res;

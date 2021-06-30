@@ -5,7 +5,7 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { UserMiniProfile } from '.';
+import { UserMiniProfile } from './user';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()

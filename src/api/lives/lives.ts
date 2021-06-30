@@ -6,7 +6,7 @@
  */
 
 import { RequestConfig } from '../';
-import { Live } from '../../struct/';
+import { Live, ContentsInfo } from '../../struct/';
 import { Category } from '../../enum/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
@@ -20,7 +20,7 @@ export namespace ApiLivesBanner {
 	}
 
 	@Serializable()
-	export class Response extends Live {
+	export class Response extends ContentsInfo {
 
 		constructor() {
 
@@ -53,12 +53,6 @@ export namespace ApiLivesPopular {
 
 	@Serializable()
 	export class Response extends Live {
-
-		constructor() {
-
-			super();
-
-		}
 
 	}
 
