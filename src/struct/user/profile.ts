@@ -13,7 +13,8 @@ import {
 	ServiceAgreement,
 	Tier
 } from '../../enum/';
-import { CurrentLive, FanboardInfo } from '../';
+import { FanboardInfo } from '../fanboard/info';
+import { CurrentLive } from '../live/current-live';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()

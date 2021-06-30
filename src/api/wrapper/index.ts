@@ -6,3 +6,4 @@
  */
 
 export * from './lives';
+export * from './users';
