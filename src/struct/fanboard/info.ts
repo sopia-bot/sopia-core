@@ -5,10 +5,11 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 import { User } from '../user/';
+import { SpoonSession } from '../session';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
-export class FanboardInfo {
+export class FanboardInfo extends SpoonSession {
 
 	@JsonProperty() public totalCommentAuthorCount!: number;
 

@@ -5,11 +5,12 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
+import { SpoonSession } from './session';
 import { UserMiniProfile } from './user';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
-export class ContentsInfo {
+export class ContentsInfo extends SpoonSession {
 
 	@JsonProperty() public id!: number;
 
@@ -30,7 +31,7 @@ export class ContentsInfo {
 }
 
 @Serializable()
-export class UrlInfo {
+export class UrlInfo extends SpoonSession {
 
 	@JsonProperty() public url!: string;
 
@@ -41,7 +42,7 @@ export class UrlInfo {
 }
 
 @Serializable()
-export class ProfileUrlInfo {
+export class ProfileUrlInfo extends SpoonSession {
 
 	@JsonProperty() public voice!: UrlInfo;
 

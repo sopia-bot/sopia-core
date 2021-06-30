@@ -6,7 +6,8 @@
  */
 
 import { RequestConfig, ApiLivesRequestConfig } from '../';
-import * as A from '../../struct/';
+import { SpoonClient } from '../../spoon/';
+import { Live, User, UserSearchProfile } from '../../struct/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 export namespace ApiLivesInfo {
@@ -19,7 +20,7 @@ export namespace ApiLivesInfo {
 	}
 
 	@Serializable()
-	export class Response {
+	export class Response extends Live {
 
 	}
 
@@ -35,11 +36,7 @@ export namespace ApiLivesListeners {
 	}
 
 	@Serializable()
-	export class Response {
-
-		constructor() {
-
-		}
+	export class Response extends User {
 
 	}
 
@@ -55,11 +52,7 @@ export namespace ApiLivesListenersFans {
 	}
 
 	@Serializable()
-	export class Response {
-
-		constructor() {
-
-		}
+	export class Response extends User {
 
 	}
 
@@ -74,14 +67,14 @@ export namespace ApiLivesSponsor {
 
 	}
 
-	/* TODO: */
-	/* 아마도 count: number, author: User 형식으로 있을 것 같음 */
 	@Serializable()
 	export class Response {
 
-		constructor() {
+		@JsonProperty() private _client!: SpoonClient;
 
-		}
+		@JsonProperty() public amount!: number;
+
+		@JsonProperty() public to_user!: UserSearchProfile;
 
 	}
 
@@ -97,11 +90,7 @@ export namespace ApiLivesLike {
 	}
 
 	@Serializable()
-	export class Response {
-
-		constructor() {
-
-		}
+	export class Response extends UserSearchProfile {
 
 	}
 
@@ -143,7 +132,7 @@ export namespace ApiLivesAccess {
 	}
 
 	@Serializable()
-	export class Response {
+	export class Response extends Live {
 
 	}
 

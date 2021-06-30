@@ -5,6 +5,7 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
+export * from './session';
 export * from './info';
 export * from './live/';
 export * from './user/';

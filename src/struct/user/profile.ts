@@ -15,10 +15,11 @@ import {
 } from '../../enum/';
 import { FanboardInfo } from '../fanboard/info';
 import { CurrentLive } from '../live/current-live';
+import { SpoonSession } from '../session';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
-export class UserSearchProfile {
+export class UserSearchProfile extends SpoonSession {
 
 	@JsonProperty() current_live!: CurrentLive;
 
@@ -143,7 +144,7 @@ export class LogonUser extends User {
 }
 
 @Serializable()
-export class UserNameExist {
+export class UserNameExist extends SpoonSession {
 
 	@JsonProperty() is_exist!: boolean;
 

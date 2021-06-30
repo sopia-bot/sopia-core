@@ -24,7 +24,7 @@ import axios from 'axios';
 
 export class ApiClient {
 
-	private API_DEBUG: boolean = false;
+	private API_DEBUG: boolean = true;
 
 	public lives: LivesApiWrapper;
 	public users: UsersApiWrapper;
@@ -57,7 +57,7 @@ export class ApiClient {
 			id = 0;
 		}
 
-		const req = new HttpRequest<Req, Res>(api, config || {} as Req);
+		const req = new HttpRequest<Req, Res>(this._client, api, config || {} as Req);
 
 		req.url = this.createRequestUrl(api, id);
 		req.method = api.method;
@@ -73,7 +73,7 @@ export class ApiClient {
 		const req = await this.request<ApiGetProfileImgUrl.Request, ApiGetProfileImgUrl.Response>(ApiGetProfileImgUrl);
 		const [{ image }] = req.res.results;
 
-		const res = await HttpRequest.Run({
+		const res = await HttpRequest.Run(this._client, {
 			url: image.url,
 			method: 'PUT',
 			headers: {

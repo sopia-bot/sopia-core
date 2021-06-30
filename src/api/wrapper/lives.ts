@@ -58,7 +58,7 @@ export class LivesApiWrapper {
 	}
 
 	async listeners(live: LiveId): HttpRequestWrapper<ApiLivesListeners.Request, ApiLivesListeners.Response> {
-		return await this.request<ApiLivesListeners.Request, ApiLivesInfo.Response>(ApiLivesListeners, this._liveId(live));
+		return await this.request<ApiLivesListeners.Request, ApiLivesListeners.Response>(ApiLivesListeners, this._liveId(live));
 	}
 
 	async listenersFans(live: LiveId): HttpRequestWrapper<ApiLivesListenersFans.Request, ApiLivesListenersFans.Response> {

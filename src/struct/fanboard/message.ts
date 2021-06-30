@@ -4,11 +4,12 @@
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
+import { SpoonSession } from '../session';
 import { User } from '../user/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
-export class FanMessages {
+export class FanMessages extends SpoonSession {
 
 	@JsonProperty() public author!: User;
 

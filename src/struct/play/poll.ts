@@ -4,10 +4,11 @@
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
+import { SpoonSession } from '../session';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
-export class PollItem {
+export class PollItem extends SpoonSession {
 
 	@JsonProperty() public item_order!: number;
 
@@ -18,7 +19,7 @@ export class PollItem {
 }
 
 @Serializable()
-export class Poll {
+export class Poll extends SpoonSession {
 
 	@JsonProperty() public id!: number;
 
@@ -35,7 +36,7 @@ export class Poll {
 }
 
 @Serializable()
-export class VoteResponse {
+export class VoteResponse extends SpoonSession {
 
 	@JsonProperty() public choice!: number;
 

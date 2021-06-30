@@ -4,11 +4,12 @@
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
-import { User } from '../';
+import { SpoonSession } from '../session';
+import { User } from '../user/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
-export class LiveCall {
+export class LiveCall extends SpoonSession {
 
 	@JsonProperty() public guests!: User[];
 

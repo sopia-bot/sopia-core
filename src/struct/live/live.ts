@@ -4,7 +4,7 @@
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
-import { User, ContentsInfo, LiveCall } from '../';
+import { User, ContentsInfo, LiveCall, SpoonSession } from '../';
 import { Tier } from '../../enum/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 

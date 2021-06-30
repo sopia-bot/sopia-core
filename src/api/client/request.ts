@@ -6,16 +6,17 @@
  */
 import { ApiResult, ApiResponse } from '.';
 import axios, { AxiosRequestConfig, Method } from 'axios';
+import { SpoonClient } from '../../spoon/';
 import { deserialize } from 'typescript-json-serializer';
 
 export type HttpRequestWrapper<Req, Res> = Promise<HttpRequest<Req, Res>>;
 export class HttpRequest<Request extends AxiosRequestConfig, Response extends any> {
 
 	public url: string = '';
-	public debug: boolean = false;
+	public debug: boolean = false; // This is not use.
 	public res!: ApiResult<Response>;
 
-	constructor(private _api: any, public options: Request) {
+	constructor(private _client: SpoonClient, private _api: any, public options: Request) {
 		if ( !this.options.headers ) {
 			this.options.headers = {};
 		}
@@ -59,6 +60,7 @@ export class HttpRequest<Request extends AxiosRequestConfig, Response extends an
 
 				if ( this._api && Array.isArray(res.data.results) ) {
 					res.data.results.forEach((result: any, idx: number) => {
+						result['_client'] = this._client;
 						res.data.results[idx] = deserialize<Response>(result, this._api.Response);
 					});
 				}
@@ -87,8 +89,8 @@ export class HttpRequest<Request extends AxiosRequestConfig, Response extends an
 		return await this.send(this.res.previous);
 	}
 
-	static async Run<T extends any>(options: AxiosRequestConfig): Promise<T> {
-		const instance = new HttpRequest<any, any>(null, options);
+	static async Run<T extends any>(client: SpoonClient, options: AxiosRequestConfig): Promise<T> {
+		const instance = new HttpRequest<any, any>(client, null, options);
 		return await instance.send() as T;
 	}
 

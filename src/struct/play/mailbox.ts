@@ -5,11 +5,12 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
+import { SpoonSession } from '../session';
 import { MailMessageStat } from '../../enum/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
-export class Mailbox {
+export class Mailbox extends SpoonSession {
 
 	@JsonProperty() public id!: number;
 
@@ -22,7 +23,7 @@ export class Mailbox {
 }
 
 @Serializable()
-export class MailboxMessage {
+export class MailboxMessage extends SpoonSession {
 
 	@JsonProperty() public id!: number;
 
