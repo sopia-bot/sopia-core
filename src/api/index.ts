@@ -13,3 +13,4 @@ export * from './fancomments/';
 export * from './play/';
 export * from './commons/';
 export * from './search/';
+export * from './tastes/';

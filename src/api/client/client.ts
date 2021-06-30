@@ -16,6 +16,7 @@ import {
 	AuthApiWrapper,
 	PlayApiWrapper,
 	SearchApiWrapper,
+	TastesApiWrapper,
 } from '../wrapper/';
 
 
@@ -31,6 +32,7 @@ export class ApiClient {
 	public auth: AuthApiWrapper;
 	public play: PlayApiWrapper;
 	public search: SearchApiWrapper;
+	public tastes: TastesApiWrapper;
 
 	constructor(private _client: SpoonClient) {
 		this.lives = new LivesApiWrapper(this._client);
@@ -39,6 +41,7 @@ export class ApiClient {
 		this.auth = new AuthApiWrapper(this._client);
 		this.play = new PlayApiWrapper(this._client);
 		this.search = new SearchApiWrapper(this._client);
+		this.tastes = new TastesApiWrapper(this._client);
 		this.request = this.request.bind(this);
 	}
 
