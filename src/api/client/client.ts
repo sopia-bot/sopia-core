@@ -9,7 +9,11 @@ import { SpoonClient } from '../../spoon/';
 import { ProfileUrlInfo } from '../../struct/';
 import { ApiGetProfileImgUrl, ApiResult } from '../';
 import { HttpRequest } from './request';
-import { LivesApiWrapper, UsersApiWrapper } from '../wrapper/';
+import {
+	LivesApiWrapper,
+	UsersApiWrapper,
+	FancommentsApiWrapper,
+} from '../wrapper/';
 
 
 import axios from 'axios';
@@ -20,10 +24,12 @@ export class ApiClient {
 
 	public lives: LivesApiWrapper;
 	public users: UsersApiWrapper;
+	public fancomments: FancommentsApiWrapper;
 
 	constructor(private _client: SpoonClient) {
 		this.lives = new LivesApiWrapper(this._client);
 		this.users = new UsersApiWrapper(this._client);
+		this.fancomments = new FancommentsApiWrapper(this._client);
 		this.request = this.request.bind(this);
 	}
 

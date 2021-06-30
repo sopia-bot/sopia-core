@@ -107,7 +107,6 @@ describe('📌  Web Api Test', () => {
 
 		});
 
-		/*
 		describe('🔯  Fan Message Test', () => {
 
 			let msg_parent_id = 0;
@@ -124,7 +123,7 @@ describe('📌  Web Api Test', () => {
 			});
 
 			it('Modify Fan Message', async () => {
-				const req = await sopia.ApiReq<ApiModifyFancomments.Request, ApiModifyFancomments.Response>(ApiModifyFancomments, msg_parent_id, {
+				const req = await sopia.api.fancomments.modify(msg_parent_id, {
 					'data': {
 						'contents': 'ModifiedMessage',
 						'is_parent': true,
@@ -134,7 +133,7 @@ describe('📌  Web Api Test', () => {
 			});
 
 			it('Write Sub Fan Message', async () => {
-				const req = await sopia.ApiReq<ApiFancommentsWriteMessages.Request, ApiFancommentsWriteMessages.Response>(ApiFancommentsWriteMessages, msg_parent_id, {
+				const req = await sopia.api.fancomments.writeMessages(msg_parent_id, {
 					'data': {
 						'contents': 'WriteSubMessage',
 					},
@@ -144,7 +143,7 @@ describe('📌  Web Api Test', () => {
 			});
 
 			it('Modify Sub Fan Message', async () => {
-				const req = await sopia.ApiReq<ApiFancommentsModifyMessages.Request, ApiFancommentsModifyMessages.Response>(ApiFancommentsModifyMessages, msg_parent_id, {
+				const req = await sopia.api.fancomments.modifyMessages(msg_parent_id, {
 					'data': {
 						'contents': 'ModifiedSubMessage',
 						'fanmsg_id': msg_sub_id,
@@ -155,19 +154,19 @@ describe('📌  Web Api Test', () => {
 			});
 
 			it('Get Fan Messages', async () => {
-				const req = await sopia.ApiReq<ApiUsersFanmessages.Request, ApiUsersFanmessages.Response>(ApiUsersFanmessages, targetId);
-				const msg = req.res.results.find(r => r.id === msg_parent_id) as ApiUsersFanmessages.Response;
+				const req = await sopia.api.users.fanmessages(targetId);
+				const msg: any = req.res.results.find(r => r.id === msg_parent_id);
 				assert.equal(msg.contents, 'ModifiedMessage');
 			});
 
 			it('Get Fan Comment Messages', async () => {
-				const req = await sopia.ApiReq<ApiGetFancommentsMessages.Request, ApiGetFancommentsMessages.Response>(ApiGetFancommentsMessages, msg_parent_id);
-				const msg = req.res.results.find(r => r.id === msg_sub_id) as ApiGetFancommentsMessages.Response;
+				const req = await sopia.api.fancomments.messages(msg_parent_id);
+				const msg: any = req.res.results.find(r => r.id === msg_sub_id);
 				assert.equal(msg.contents, 'ModifiedSubMessage');
 			});
 
 			it('Remove Fan Comment Message', async () => {
-				const req = await sopia.ApiReq<ApiFancommentsRemoveMessages.Request, ApiFancommentsRemoveMessages.Response>(ApiFancommentsRemoveMessages, msg_parent_id, {
+				const req = await sopia.api.fancomments.removeMessages(msg_parent_id, {
 					'params': {
 						'fanmsg_id': msg_sub_id,
 						'is_parent': false,
@@ -177,12 +176,11 @@ describe('📌  Web Api Test', () => {
 			});
 
 			it('Remove Fan Message', async () => {
-				const req = await sopia.ApiReq<ApiRemoveFancomments.Request, ApiRemoveFancomments.Response>(ApiRemoveFancomments, msg_parent_id);
+				const req = await sopia.api.fancomments.remove(msg_parent_id);
 				assert.equal(req.res.status_code, 200);
 			});
 
 		});
-		*/
 
 	});
 
