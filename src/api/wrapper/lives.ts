@@ -6,7 +6,7 @@
  */
 
 import { SpoonClient } from '../../spoon/';
-import { Live } from '../../struct/';
+import { CurrentLive, LiveInfo } from '../../struct/';
 import {
 	HttpRequestWrapper,
 	ApiLivesInfo,
@@ -26,7 +26,7 @@ import {
 	ApiLivesUpdate,
 } from '../';
 
-type LiveId = number|Live;
+type LiveId = number|LiveInfo|CurrentLive;
 
 export class LivesApiWrapper {
 
@@ -38,7 +38,7 @@ export class LivesApiWrapper {
 	}
 
 	private _liveId(l: LiveId): number {
-		return l instanceof Live ? l.id : l;
+		return typeof l === 'number' ? l : l.id;
 	}
 
 	async banner(): HttpRequestWrapper<ApiLivesBanner.Request, ApiLivesBanner.Response> {

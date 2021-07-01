@@ -39,11 +39,58 @@ export class LiveInfo extends ContentsInfo {
 
 	@JsonProperty() public url_hls!: string;
 
-	constructor() {
-
-		super();
-
+	async info() {
+		return await this._api.live.info(this);
 	}
+
+	async listeners() {
+		return await this._api.live.listeners(this);
+	}
+
+	async listenersFans() {
+		return await this._api.live.listenersFans(this);
+	}
+
+	async sponsor() {
+		return await this._api.live.sponsor(this);
+	}
+
+	async like(uuid: string) {
+		return await this._api.live.like(this, {
+			'data': {
+				'device_unique_id':uuid,
+			},
+		});
+	}
+
+	async access() {
+		return await this._api.live.access(this);
+	}
+
+	async setManager(manager_ids: number[]) {
+		return await this._api.live.setManager(this, {
+			'data': {
+				manager_ids,
+			},
+		});
+	}
+
+	async block(block_user_id: number) {
+		return await this._api.live.block(this, {
+			'data': {
+				block_user_id,
+			},
+		});
+	}
+
+	async close(is_save: boolean) {
+		return await this._api.live.close(this, {
+			'data': {
+				is_save,
+			},
+		});
+	}
+
 }
 
 @Serializable()
