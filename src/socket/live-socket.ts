@@ -66,61 +66,32 @@ export class LiveSocket extends WebSocketManager {
 		});
 	}
 
-	async join (jwt: string): Promise<boolean> {
+	public join (jwt: string): Promise<boolean> {
 		this.RoomToken = jwt;
 		return new Promise(async (resolve, reject) => {
 			await this.connect(this.Client.urls.socket + this._live.id);
 
-			if ( this.Client.logonUser ) {
-				this.send({
-					live_id: this.Live.id.toString(),
-					appversion: this.Client.appVersion,
-					user_id: this.Client.logonUser.id,
-					event: LiveEvent.LIVE_STATE,
-					type: LiveType.LIVE_REQ,
-					useragent: this.Client.userAgent,
-				});
-				this.once(LiveEvent.LIVE_STATE, (d: any) => {
-					this.send({
-						live_id: this.Live.id.toString(),
-						appversion: this.Client.appVersion,
-						retry: 0,
-						token: this.RoomToken,
-						event: LiveEvent.LIVE_JOIN,
-						type: LiveType.LIVE_REQ,
-						useragent: this.Client.userAgent,
-					});
-					this.once(LiveEvent.LIVE_JOIN, (dd: any) => {
-						if ( dd.result ) {
-							if ( dd.result.detail === 'success' ) {
-								this._healthInterval = setInterval(this.health, this._intervalMsec) as any;
-								this.on(LiveEvent.LIVE_EVENT_ALL, (evt: any) => {
-									const data = evt.data;
-									if ( data ) {
-										const live = data.live;
-										if ( live && evt.event !== LiveEvent.LIVE_MESSAGE ) {
-											this._live = live;
-										}
-									}
-								});
-								resolve(true);
-							}
-						}
-						reject(false);
-					});
-				});
-			} else {
+			this.send({
+				live_id: this.Live.id.toString(),
+				appversion: this.Client.appVersion,
+				user_id: this.Client.logonUser.id,
+				event: LiveEvent.LIVE_STATE,
+				type: LiveType.LIVE_REQ,
+				useragent: this.Client.userAgent,
+			});
+			this.once(LiveEvent.LIVE_STATE, (state: any) => {
 				this.send({
 					live_id: this.Live.id.toString(),
 					appversion: this.Client.appVersion,
 					retry: 0,
+					token: this.RoomToken,
 					event: LiveEvent.LIVE_JOIN,
 					type: LiveType.LIVE_REQ,
 					useragent: this.Client.userAgent,
 				});
-				this.once(LiveEvent.LIVE_JOIN, (d: any) => {
-					if ( d.result ) {
-						if ( d.result.detail === 'success' ) {
+				this.once(LiveEvent.LIVE_JOIN, (join: any) => {
+					if ( join.result ) {
+						if ( join.result.detail === 'success' ) {
 							this._healthInterval = setInterval(this.health, this._intervalMsec) as any;
 							this.on(LiveEvent.LIVE_EVENT_ALL, (evt: any) => {
 								const data = evt.data;
@@ -136,7 +107,7 @@ export class LiveSocket extends WebSocketManager {
 					}
 					reject(false);
 				});
-			}
+			});
 		});
 	}
 
