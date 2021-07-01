@@ -45,6 +45,62 @@ export class UserSearchProfile extends SpoonSession {
 
 	@JsonProperty() tier!: Tier;
 
+	async follow() {
+		return await this._api.users.follow(this);
+	}
+
+	async unfollow() {
+		return await this._api.users.unfollow(this);
+	}
+
+	async followings() {
+		return await this._api.users.followings(this);
+	}
+
+	async followers() {
+		return await this._api.users.followers(this);
+	}
+
+	async block() {
+		return await this._api.users.block(this);
+	}
+
+	async unblock() {
+		return await this._api.users.unblock(this);
+	}
+
+	async info() {
+		return await this._api.users.info(this);
+	}
+
+	async voice() {
+		return await this._api.users.voice(this);
+	}
+
+	async casts(type: number) {
+		return await this._api.users.casts(this, {
+			'params': {
+				type,
+			},
+		});
+	}
+
+	async fanmessages() {
+		return await this._api.users.fanmessages(this);
+	}
+
+	async writeFanmessages(contents: string) {
+		return await this._api.users.writeFanmessages(this, {
+			'data': {
+				contents,
+			},
+		});
+	}
+
+	async live() {
+		return await this._api.users.live(this);
+	}
+
 }
 
 @Serializable()

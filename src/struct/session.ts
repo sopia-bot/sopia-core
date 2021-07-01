@@ -13,4 +13,8 @@ export class SpoonSession {
 
 	@JsonProperty() private _client!: SpoonClient;
 
+	protected get _api() {
+		return this._client.api;
+	}
+
 }

@@ -77,7 +77,8 @@ describe('📌  Web Api Test', () => {
 			});
 
 			it('Check Followings', async () => {
-				const req = await sopia.api.users.followings(sopia.logonUser);
+				//const req = await sopia.api.users.followings(sopia.logonUser);
+				const req = await sopia.logonUser.followings();
 				const followings = req.res.results;
 				const user = followings.find((u: User) => u.id === targetId) as User;
 				assert.equal(user.id, targetId);

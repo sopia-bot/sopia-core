@@ -6,7 +6,7 @@
  */
 
 import { SpoonClient } from '../../spoon/';
-import { User } from '../../struct/';
+import { UserSearchProfile } from '../../struct/';
 import {
 	HttpRequestWrapper,
 	ApiUsersBlock,
@@ -27,7 +27,7 @@ import {
 	ApiUsersLive,
 } from '../';
 
-type UserId = number|User;
+type UserId = number|UserSearchProfile;
 
 export class UsersApiWrapper {
 
@@ -39,7 +39,7 @@ export class UsersApiWrapper {
 	}
 
 	private _userId(u: UserId): number {
-		return u instanceof User ? u.id : u;
+		return u instanceof UserSearchProfile ? u.id : u;
 	}
 
 	async block(user: UserId): HttpRequestWrapper<ApiUsersBlock.Request, ApiUsersBlock.Response> {
