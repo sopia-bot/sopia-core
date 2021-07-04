@@ -9,6 +9,7 @@ import { SpoonClient } from '../../spoon/';
 import { CurrentLive, LiveInfo } from '../../struct/';
 import {
 	HttpRequestWrapper,
+	ApiLivesRequestConfig,
 	ApiLivesInfo,
 	ApiLivesListeners,
 	ApiLivesListenersFans,
@@ -53,32 +54,32 @@ export class LivesApiWrapper {
 		return await this.request<ApiLivesSubcribed.Request, ApiLivesSubcribed.Response>(ApiLivesSubcribed);
 	}
 
-	async info(live: LiveId): HttpRequestWrapper<ApiLivesInfo.Request, ApiLivesInfo.Response> {
-		return await this.request<ApiLivesInfo.Request, ApiLivesInfo.Response>(ApiLivesInfo, this._liveId(live));
+	async info(live: LiveId, req?: ApiLivesRequestConfig): HttpRequestWrapper<ApiLivesInfo.Request, ApiLivesInfo.Response> {
+		return await this.request<ApiLivesInfo.Request, ApiLivesInfo.Response>(ApiLivesInfo, this._liveId(live), req);
 	}
 
-	async listeners(live: LiveId): HttpRequestWrapper<ApiLivesListeners.Request, ApiLivesListeners.Response> {
-		return await this.request<ApiLivesListeners.Request, ApiLivesListeners.Response>(ApiLivesListeners, this._liveId(live));
+	async listeners(live: LiveId, req?: ApiLivesRequestConfig): HttpRequestWrapper<ApiLivesListeners.Request, ApiLivesListeners.Response> {
+		return await this.request<ApiLivesListeners.Request, ApiLivesListeners.Response>(ApiLivesListeners, this._liveId(live), req);
 	}
 
-	async listenersFans(live: LiveId): HttpRequestWrapper<ApiLivesListenersFans.Request, ApiLivesListenersFans.Response> {
-		return await this.request<ApiLivesListenersFans.Request, ApiLivesListenersFans.Response>(ApiLivesListenersFans, this._liveId(live));
+	async listenersFans(live: LiveId, req?: ApiLivesRequestConfig): HttpRequestWrapper<ApiLivesListenersFans.Request, ApiLivesListenersFans.Response> {
+		return await this.request<ApiLivesListenersFans.Request, ApiLivesListenersFans.Response>(ApiLivesListenersFans, this._liveId(live), req);
 	}
 
-	async sponsor(live: LiveId): HttpRequestWrapper<ApiLivesSponsor.Request, ApiLivesSponsor.Response> {
-		return await this.request<ApiLivesSponsor.Request, ApiLivesSponsor.Response>(ApiLivesSponsor, this._liveId(live));
+	async sponsor(live: LiveId, req?: ApiLivesRequestConfig): HttpRequestWrapper<ApiLivesSponsor.Request, ApiLivesSponsor.Response> {
+		return await this.request<ApiLivesSponsor.Request, ApiLivesSponsor.Response>(ApiLivesSponsor, this._liveId(live), req);
 	}
 
-	async like(live: LiveId): HttpRequestWrapper<ApiLivesLike.Request, ApiLivesLike.Response> {
-		return await this.request<ApiLivesLike.Request, ApiLivesLike.Response>(ApiLivesLike, this._liveId(live));
+	async like(live: LiveId, req?: ApiLivesRequestConfig): HttpRequestWrapper<ApiLivesLike.Request, ApiLivesLike.Response> {
+		return await this.request<ApiLivesLike.Request, ApiLivesLike.Response>(ApiLivesLike, this._liveId(live), req);
 	}
 
 	async token(live: LiveId, req: ApiLivesToken.Request): HttpRequestWrapper<ApiLivesToken.Request, ApiLivesToken.Response> {
 		return await this.request<ApiLivesToken.Request, ApiLivesToken.Response>(ApiLivesToken, this._liveId(live), req);
 	}
 
-	async access(live: LiveId): HttpRequestWrapper<ApiLivesAccess.Request, ApiLivesAccess.Response> {
-		return await this.request<ApiLivesAccess.Request, ApiLivesAccess.Response>(ApiLivesAccess, this._liveId(live));
+	async access(live: LiveId, req?: ApiLivesRequestConfig): HttpRequestWrapper<ApiLivesAccess.Request, ApiLivesAccess.Response> {
+		return await this.request<ApiLivesAccess.Request, ApiLivesAccess.Response>(ApiLivesAccess, this._liveId(live), req);
 	}
 
 	async setManager(live: LiveId, req: ApiLivesSetManager.Request): HttpRequestWrapper<ApiLivesSetManager.Request, ApiLivesSetManager.Response> {

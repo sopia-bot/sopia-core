@@ -11,21 +11,22 @@ import {
 	LiveType,
 	LiveEvent
 } from '.';
-import { Live } from '../struct/';
+import { LiveInfo, CurrentLive } from '../struct/';
 import { SpoonClient } from '../spoon/';
+
+type LiveStruct = CurrentLive|LiveInfo;
 
 export class LiveSocket extends WebSocketManager {
 
-	private _live!: Live;
 	private _liveToken!: string;
 	private _healthInterval!: any;
 	private _intervalMsec: number = 300000; // 5min
-	private _client: SpoonClient;
 
-	constructor(live: Live, client: SpoonClient, wstype: WSType = WSType.SYSTEM) {
+	constructor(
+		private _live: LiveStruct,
+		private _client: SpoonClient,
+		wstype: WSType = WSType.SYSTEM) {
 		super(wstype);
-		this._live = live;
-		this._client = client;
 	}
 
 	private health(): void {
@@ -39,7 +40,7 @@ export class LiveSocket extends WebSocketManager {
 		});
 	}
 
-	get Live(): Live {
+	get Live(): LiveStruct {
 		return this._live;
 	}
 
@@ -83,8 +84,9 @@ export class LiveSocket extends WebSocketManager {
 				this.send({
 					live_id: this.Live.id.toString(),
 					appversion: this.Client.appVersion,
+					reconnect: false,
 					retry: 0,
-					token: this.RoomToken,
+					token: `Bearer ${this.RoomToken}`,
 					event: LiveEvent.LIVE_JOIN,
 					type: LiveType.LIVE_REQ,
 					useragent: this.Client.userAgent,
@@ -92,6 +94,7 @@ export class LiveSocket extends WebSocketManager {
 				this.once(LiveEvent.LIVE_JOIN, (join: any) => {
 					if ( join.result ) {
 						if ( join.result.detail === 'success' ) {
+							this.Client.liveMap.set(this.Live.id, this);
 							this._healthInterval = setInterval(this.health, this._intervalMsec) as any;
 							this.on(LiveEvent.LIVE_EVENT_ALL, (evt: any) => {
 								const data = evt.data;

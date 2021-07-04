@@ -5,9 +5,10 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 import { Country, CountryNumber, SnsType } from '../../enum/';
-import { LogonUser } from '../../struct/';
+import { LogonUser, Live } from '../../struct/';
 import { ApiClient, ApiLogin, ApiUrls } from '../../api/';
 import { StickerClient } from '../../sticker/';
+import { LiveSocket } from '../../socket/';
 
 import axios from 'axios';
 
@@ -25,6 +26,8 @@ export class SpoonClient {
 
 	public api: ApiClient;
 	public sticker: StickerClient;
+
+	public liveMap: Map<number, LiveSocket> = new Map();
 
 	constructor(public deviceUUID: string) {
 		this.api = new ApiClient(this);

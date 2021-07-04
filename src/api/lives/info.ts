@@ -114,9 +114,9 @@ export namespace ApiLivesToken {
 	@Serializable()
 	export class Response {
 
-		'jwt': string;
+		@JsonProperty() public jwt!: string;
 
-		'items': any[]; // unknown type
+		@JsonProperty() public items!: any[]; // unknown type
 
 	}
 

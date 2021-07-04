@@ -97,6 +97,15 @@ export class LiveJoinSocket extends LiveSocketStruct {
 
 		'live': Live;
 
+
+	};
+
+	@JsonProperty() public result!: {
+
+		code: number;
+
+		detail: string;
+
 	};
 
 	constructor() {

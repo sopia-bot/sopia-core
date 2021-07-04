@@ -61,7 +61,7 @@ export class WebSocketManager extends EventEmitter {
 					const { WsClientNode } = require('./websocket-node');
 					this.ws = new WsClientNode(url);
 				}
-				this.ws.onmessage = this.receiver;
+				this.ws.onmessage = this.receiver.bind(this);
 				this.ws.onerror = console.error;
 				this.ws.onclose = () => {};
 				this.ws.onopen = () => {

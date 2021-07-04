@@ -11,7 +11,7 @@ import { Serializable, JsonProperty } from 'typescript-json-serializer';
 @Serializable()
 export class SpoonSession {
 
-	@JsonProperty() private _client!: SpoonClient;
+	@JsonProperty() protected _client!: SpoonClient;
 
 	protected get _api() {
 		return this._client.api;
