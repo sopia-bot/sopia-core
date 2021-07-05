@@ -6,3 +6,4 @@ tslint.json
 .gitignore
 .npmignore
 yarn.lock
+package-lock.json
