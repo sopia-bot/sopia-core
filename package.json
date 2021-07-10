@@ -1,6 +1,6 @@
 {
 	"name": "sopia-core",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"description": "Spoon radio core API",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -11,7 +11,7 @@
 		"test:upload": "./node_modules/.bin/mocha -r ts-node/register ./tests/upload.test.ts  --trace-warnings",
 		"lint": "tslint -p .",
 		"build": "./node_modules/.bin/tsc",
-		"prepublishOnly": "npm run build"
+		"prepublishOnly": "rm -rf dist/ && npm run build"
 	},
 	"keywords": [],
 	"author": {
@@ -37,7 +37,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"axios": "^0.21.1",
-		"typescript-json-serializer": "^3.4.2",
+		"typescript-json-serializer": "^3.4.3",
 		"ws": "^7.3.0"
 	}
 }
