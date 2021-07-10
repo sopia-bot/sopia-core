@@ -38,7 +38,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"axios": "^0.21.1",
-		"typescript-json-serializer": "^3.4.3",
+		"typescript-json-serializer": "^3.4.4",
 		"ws": "^7.3.0"
 	}
 }
