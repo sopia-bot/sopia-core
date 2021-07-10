@@ -61,7 +61,9 @@ export class ApiClient {
 
 		req.url = this.createRequestUrl(api, id);
 		req.method = api.method;
-		req.headers['Authorization'] = 'Bearer ' + this._client.token;
+		if ( this._client.token ) {
+			req.headers['Authorization'] = 'Bearer ' + this._client.token;
+		}
 		req.debug = !!api.debug || this.API_DEBUG;
 
 		const res = await req.send();
