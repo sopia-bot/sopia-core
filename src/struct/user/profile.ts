@@ -154,6 +154,8 @@ export class User extends UserMiniProfile {
 
 	@JsonProperty() is_fixedmng!: boolean;
 
+	@JsonProperty() guest_status!: number;
+
 	// deprecated
 	@JsonProperty() fanboard_info!: FanboardInfo;
 
@@ -165,9 +167,6 @@ export class User extends UserMiniProfile {
 
 	// deprecated
 	@JsonProperty() is_password_notice!: boolean;
-
-	// deprecated
-	@JsonProperty() guest_status!: number;
 
 	constructor() {
 

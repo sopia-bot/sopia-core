@@ -13,6 +13,6 @@ export class LiveCall extends SpoonSession {
 
 	@JsonProperty() public guests!: User[];
 
-	@JsonProperty() public status!: number;
+	@JsonProperty() public version!: number;
 
 }
