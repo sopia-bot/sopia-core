@@ -1,6 +1,6 @@
 {
 	"name": "sopia-core",
-	"version": "2.0.3",
+	"version": "2.0.4",
 	"description": "Spoon radio core API",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -31,6 +31,7 @@
 		"chai": "^4.2.0",
 		"mocha": "^6.2.1",
 		"ts-node": "^8.4.1",
+		"tslib": "^2.3.0",
 		"tslint": "^6.1.3",
 		"typescript": "^3.6.3"
 	},
