@@ -24,7 +24,7 @@ import axios from 'axios';
 
 export class ApiClient {
 
-	private API_DEBUG: boolean = true;
+	private API_DEBUG: boolean = false;
 
 	public lives: LivesApiWrapper;
 	public users: UsersApiWrapper;
