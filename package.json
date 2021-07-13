@@ -1,6 +1,6 @@
 {
-	"name": "sopia-core",
-	"version": "2.0.7",
+	"name": "@sopia-bot/core",
+	"version": "2.1.0",
 	"description": "Spoon radio core API",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
 		"build": "./node_modules/.bin/tsc",
 		"prepublishOnly": "rm -rf dist/ && npm run build"
 	},
-	"keywords": [],
+	"keywords": [ "spooncast", "spoonradio", "bot", "api", "endpoint", "sopia", "스푼", "스푼라디오", "소피아" ],
 	"author": {
 		"name": "raravel",
 		"email": "youn@tree-some.dev"
