@@ -20,8 +20,6 @@ import {
 } from '../wrapper/';
 
 
-import axios from 'axios';
-
 export class ApiClient {
 
 	private API_DEBUG: boolean = false;

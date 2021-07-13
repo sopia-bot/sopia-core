@@ -93,6 +93,9 @@ export class HttpRequest<Request extends AxiosRequestConfig, Response extends an
 
 	static async Run<T extends any>(client: SpoonClient, options: AxiosRequestConfig): Promise<T> {
 		const instance = new HttpRequest<any, any>(client, null, options);
+		if ( options.url ) {
+			instance.url = options.url;
+		}
 		return await instance.send() as T;
 	}
 

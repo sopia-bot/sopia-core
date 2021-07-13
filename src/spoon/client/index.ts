@@ -6,11 +6,9 @@
  */
 import { Country, CountryNumber, SnsType } from '../../enum/';
 import { LogonUser, Live, UserSearchProfile } from '../../struct/';
-import { ApiClient, ApiLogin, ApiUrls } from '../../api/';
+import { ApiClient, ApiLogin, ApiUrls, HttpRequest } from '../../api/';
 import { StickerClient } from '../../sticker/';
 import { LiveSocket } from '../../socket/';
-
-import axios from 'axios';
 
 export type UserAgent = 'Web'|'Android'|'iOS';
 
@@ -40,8 +38,11 @@ export class SpoonClient {
 	}
 
 	async initUrlsInfo() {
-		const res = await axios.get(`https://www.spooncast.net/config/api/${this.country}.json?ts=${Date.now()}`);
-		this.urls = res.data;
+		const res = await HttpRequest.Run<ApiUrls>(this, {
+			url: `https://www.spooncast.net/config/api/${this.country}.json?ts=${Date.now()}`,
+			method: 'get',
+		});
+		this.urls = res;
 
 		if ( !this.urls.auth ) {
 			this.urls.auth = `https://${this.country}-auth.spooncast.net/`;
@@ -54,18 +55,22 @@ export class SpoonClient {
 		const code = CountryNumber[this.country.toUpperCase()];
 		const reqUrl = `${this.urls.auth}tokens/`;
 
-		const res = await axios.post(reqUrl, {
-			'device_unique_id': this.deviceUUID,
-			'auth_data': {
-				'act_type': sns_type,
-				'password': password,
-				'msisdn': Number(code + sns_id),
+		const res = await HttpRequest.Run<any>(this, {
+			url: reqUrl,
+			method: 'post',
+			data: {
+				device_unique_id: this.deviceUUID,
+				auth_data: {
+					act_type: sns_type,
+					password: password,
+					msisdn: Number(code + sns_id),
+				},
 			},
 		});
 
-		if ( res.data && res.data.data ) {
-			this.token = res.data.data.jwt;
-			this.refToken = res.data.data.refresh_token;
+		if ( res && res.data ) {
+			this.token = res.data.jwt;
+			this.refToken = res.data.refresh_token;
 		}
 
 		return this.token;
@@ -75,13 +80,20 @@ export class SpoonClient {
 		const reqUrl = `${this.api.auth}tokens/`;
 
 		try {
-			const res = await axios.put(reqUrl, {
-				'device_unique_id': this.deviceUUID,
-				'refresh_token': refToken || this.refToken,
-				'user_id': userId || this.logonUser.id,
-			}, { headers: { authorization: 'Bearer ' + (token || this.token) } });
-			if ( res.data && res.data.data ) {
-				this.token = res.data.data.jwt;
+			const res = await HttpRequest.Run<any>(this, {
+				url: reqUrl,
+				method: 'put',
+				headers: {
+					authorization: 'Bearer ' + (token || this.token)
+				},
+				data: {
+					device_unique_id: this.deviceUUID,
+					refresh_token: refToken || this.refToken,
+					user_id: userId || this.logonUser.id,
+				},
+			});
+			if ( res && res.data ) {
+				this.token = res.data.jwt;
 				this.refToken = refToken || this.refToken;
 			}
 		} catch(err) {
@@ -103,16 +115,17 @@ export class SpoonClient {
 			},
 		});
 		this.logonUser = req.res.results[0];
+		this.logonUser.token = this.token;
+		this.logonUser.refresh_token = this.refToken;
+
 		return this.logonUser;
 	}
 
-	async loginToken(user: (UserSearchProfile|number), token: string, refreshToken: string): Promise<LogonUser> {
-		this.token = token;
-		this.refToken = refreshToken;
-
+	async loginToken(user: (UserSearchProfile|number), token: string, refToken: string): Promise<LogonUser> {
 		const req = await this.api.users.info(user);
 		this.logonUser = req.res.results[0] as LogonUser;
-		this.logonUser.token = this.token as string;
+
+		await this.refreshToken(this.logonUser.id, token, refToken);
 
 		return this.logonUser;
 	}

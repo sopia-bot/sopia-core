@@ -7,8 +7,7 @@
 
 import { StaticStickers } from '../../static/';
 import { SpoonClient } from '../../spoon/';
-
-import axios from 'axios';
+import { HttpRequest } from '../../api/';
 
 export class StickerClient {
 	public stickers!: StaticStickers;
@@ -18,16 +17,22 @@ export class StickerClient {
 	}
 
 	async initSticker(): Promise<StaticStickers|void> {
-		const res = await axios.get(this._client.urls.stickerApiUrl);
-		this.stickers = res.data as StaticStickers;
+		this.stickers = await HttpRequest.Run<StaticStickers>(this._client, {
+			url: this._client.urls.stickerApiUrl,
+			method: 'get',
+		});
 		return this.stickers;
 	}
 
 	async initSignatureSticker(user: (number)): Promise<StaticStickers|void> {
 		try {
-			const res = await axios.get(this._client.urls.signatureStickerApiUrl.replace('0000', user.toString()));
-			if ( res.data ) {
-				this.signature.set(user, res.data);
+			const res = await HttpRequest.Run<StaticStickers>(this._client, {
+				url: this._client.urls.signatureStickerApiUrl.replace('0000', user.toString()),
+				method: 'get',
+			});
+
+			if ( res ) {
+				this.signature.set(user, res);
 			}
 		} catch(err) {
 			return;
