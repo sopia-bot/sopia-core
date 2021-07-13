@@ -146,8 +146,6 @@ export class User extends UserMiniProfile {
 
 	@JsonProperty() is_exist!: boolean;
 
-	@JsonProperty() token!: string;
-
 	@JsonProperty() is_dj!: boolean;
 
 	@JsonProperty() regular_score!: number;
@@ -158,15 +156,6 @@ export class User extends UserMiniProfile {
 
 	// deprecated
 	@JsonProperty() fanboard_info!: FanboardInfo;
-
-	// deprecated
-	@JsonProperty() push_settings!: PushSettings;
-
-	// deprecated
-	@JsonProperty() service_agreement!: ServiceAgreement;
-
-	// deprecated
-	@JsonProperty() is_password_notice!: boolean;
 
 	constructor() {
 
@@ -189,6 +178,16 @@ export class LogonUser extends User {
 	@JsonProperty() phone_number!: string;
 
 	@JsonProperty() is_choice!: boolean;
+
+	@JsonProperty() service_agreement!: ServiceAgreement;
+
+	@JsonProperty() push_settings!: PushSettings;
+
+	@JsonProperty() is_password_notice!: boolean;
+
+	@JsonProperty() token!: string;
+
+	@JsonProperty() refresh_token!: string;
 
 	constructor() {
 

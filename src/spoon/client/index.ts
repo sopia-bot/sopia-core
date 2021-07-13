@@ -5,7 +5,7 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 import { Country, CountryNumber, SnsType } from '../../enum/';
-import { LogonUser, Live } from '../../struct/';
+import { LogonUser, Live, UserSearchProfile } from '../../struct/';
 import { ApiClient, ApiLogin, ApiUrls } from '../../api/';
 import { StickerClient } from '../../sticker/';
 import { LiveSocket } from '../../socket/';
@@ -19,9 +19,9 @@ export class SpoonClient {
 	public country: Country = Country.KOREA;
 	public urls!: ApiUrls;
 	public token: string = '';
-	public refreshToken: string = '6.7.3';
+	public appVersion: string = '6.7.3';
 	public userAgent: UserAgent = 'Web';
-	public appVersion: string = '';
+	public refToken: string = '';
 	public logonUser!: LogonUser;
 
 	public api: ApiClient;
@@ -65,7 +65,27 @@ export class SpoonClient {
 
 		if ( res.data && res.data.data ) {
 			this.token = res.data.data.jwt;
-			this.refreshToken = res.data.data.refresh_token;
+			this.refToken = res.data.data.refresh_token;
+		}
+
+		return this.token;
+	}
+
+	async refreshToken(userId?: (number|string), token?: string, refToken?: string) {
+		const reqUrl = `${this.api.auth}tokens/`;
+
+		try {
+			const res = await axios.put(reqUrl, {
+				'device_unique_id': this.deviceUUID,
+				'refresh_token': refToken || this.refToken,
+				'user_id': userId || this.logonUser.id,
+			}, { headers: { authorization: 'Bearer ' + (token || this.token) } });
+			if ( res.data && res.data.data ) {
+				this.token = res.data.data.jwt;
+				this.refToken = refToken || this.refToken;
+			}
+		} catch(err) {
+			console.log(err.toJSON());
 		}
 
 		return this.token;
@@ -83,6 +103,17 @@ export class SpoonClient {
 			},
 		});
 		this.logonUser = req.res.results[0];
+		return this.logonUser;
+	}
+
+	async loginToken(user: (UserSearchProfile|number), token: string, refreshToken: string): Promise<LogonUser> {
+		this.token = token;
+		this.refToken = refreshToken;
+
+		const req = await this.api.users.info(user);
+		this.logonUser = req.res.results[0] as LogonUser;
+		this.logonUser.token = this.token as string;
+
 		return this.logonUser;
 	}
 
