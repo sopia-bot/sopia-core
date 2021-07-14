@@ -77,7 +77,7 @@ export class SpoonClient {
 	}
 
 	async refreshToken(userId?: (number|string), token?: string, refToken?: string) {
-		const reqUrl = `${this.api.auth}tokens/`;
+		const reqUrl = `${this.urls.auth}tokens/`;
 
 		try {
 			const res = await HttpRequest.Run<any>(this, {
