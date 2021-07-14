@@ -126,6 +126,8 @@ export class SpoonClient {
 		this.logonUser = req.res.results[0] as LogonUser;
 
 		await this.refreshToken(this.logonUser.id, token, refToken);
+		this.logonUser.token = this.token;
+		this.logonUser.refresh_token = this.refToken;
 
 		return this.logonUser;
 	}
