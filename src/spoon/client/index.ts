@@ -62,7 +62,7 @@ export class SpoonClient {
 				device_unique_id: this.deviceUUID,
 				auth_data: {
 					act_type: sns_type,
-					password: password,
+					password,
 					msisdn: Number(code + sns_id),
 				},
 			},

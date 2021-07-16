@@ -11,7 +11,7 @@ export enum WSType {
 	WEB = 'web',
 	NODE = 'node',
 
-};
+}
 
 export enum LiveEvent {
 

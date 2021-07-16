@@ -162,7 +162,7 @@ export namespace ApiUsersCasts {
 
 			'type': number;
 
-		}
+		};
 
 	}
 

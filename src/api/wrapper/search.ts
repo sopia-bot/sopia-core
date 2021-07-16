@@ -5,7 +5,7 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 
-import { SpoonClient } from '../../spoon/'
+import { SpoonClient } from '../../spoon/';
 import { Live, User, Cast } from '../../struct/';
 import {
 	HttpRequestWrapper,

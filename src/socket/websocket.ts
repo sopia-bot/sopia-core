@@ -63,7 +63,7 @@ export class WebSocketManager extends EventEmitter {
 				}
 				this.ws.onmessage = this.receiver.bind(this);
 				this.ws.onerror = console.error;
-				this.ws.onclose = () => {};
+				this.ws.onclose = () => { /* empty */ };
 				this.ws.onopen = () => {
 					resolve(true);
 				};

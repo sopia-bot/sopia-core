@@ -21,12 +21,6 @@ export namespace ApiGetProfileImgUrl {
 	@Serializable()
 	export class Response extends ProfileUrlInfo {
 
-		constructor() {
-
-			super();
-
-		}
-
 	}
 
 }

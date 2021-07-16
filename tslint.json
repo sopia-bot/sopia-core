@@ -29,7 +29,9 @@
 		"object-literal-shorthand": [true, {"method": "always"}],
 		"semicolon": true,
 		"no-string-literal": false,
-		"max-classes-per-file": [false, 1]
+		"max-classes-per-file": [false, 1],
+		"no-namespace": false,
+		"no-empty-interface": false
 	},
 	"rulesDirectory": []
 }
