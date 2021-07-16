@@ -125,6 +125,16 @@ export class SpoonClient {
 		const req = await this.api.users.info(user);
 		this.logonUser = req.res.results[0] as LogonUser;
 
+		const jwt = token.split('.');
+		const payload: any = JSON.parse(
+			Buffer.from(jwt[1], 'base64')
+				.toString('utf8')
+		);
+
+		if ( payload.did ) {
+			this.deviceUUID = payload.did;
+		}
+
 		try {
 			await this.refreshToken(this.logonUser.id, token, refToken);
 			this.logonUser.token = this.token;
