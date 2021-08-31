@@ -17,9 +17,12 @@ export namespace ApiUsersLive {
 
 	}
 
-	// TODO: Unknown response data type
 	@Serializable()
 	export class Response {
+
+		'is_live': boolean;
+
+		'current_live_id': number;
 
 	}
 
