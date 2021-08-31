@@ -105,20 +105,22 @@ export class LiveInfo extends ContentsInfo {
 	}
 	*/
 
-	async join(): Promise<LiveSocket> {
+	async join(live_token: string = ''): Promise<LiveSocket> {
 		const socket = new LiveSocket(this, this._client);
-		const req = await this._api.lives.token(this, {
-			'data': {
-				'device_unique_id': this._client.deviceUUID,
-			},
-		});
-		const token = req.res.results[0].jwt;
+		if ( live_token ) {
+			const req = await this._api.lives.token(this, {
+				'data': {
+					'device_unique_id': this._client.deviceUUID,
+				},
+			});
+		}
+		live_token = req.res.results[0].jwt;
 		await this._api.lives.info(this, {
 			'headers': {
 				'x-live-authorization': token,
 			}
 		});
-		if ( ! await socket.join(token) ) {
+		if ( ! await socket.join(live_token) ) {
 			throw Error('Can not join live to ' + this.id);
 		}
 		return socket;
