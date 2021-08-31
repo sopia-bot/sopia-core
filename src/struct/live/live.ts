@@ -107,7 +107,7 @@ export class LiveInfo extends ContentsInfo {
 
 	async join(live_token: string = ''): Promise<LiveSocket> {
 		const socket = new LiveSocket(this, this._client);
-		if ( live_token ) {
+		if ( !live_token ) {
 			const req = await this._api.lives.token(this, {
 				'data': {
 					'device_unique_id': this._client.deviceUUID,
