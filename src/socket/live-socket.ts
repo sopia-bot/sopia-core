@@ -114,4 +114,18 @@ export class LiveSocket extends WebSocketManager {
 		});
 	}
 
+	public destroy(): void {
+		this.send({
+			live_id: this.Live.id.toString(),
+			appversion: this.Client.appVersion,
+			event: LiveEvent.LIVE_HEALTH,
+			type: LiveType.LIVE_RPT,
+			useragent: this.Client.userAgent,
+		});
+		clearInterval(this._healthInterval);
+		this.ws.close();
+		this.destoryAllListener();
+		this.Client.liveMap.delete(this.Live.id);
+	}
+
 }
