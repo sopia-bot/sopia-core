@@ -17,7 +17,7 @@ export class SpoonClient {
 	public country: Country = Country.KOREA;
 	public urls!: ApiUrls;
 	public token: string = '';
-	public appVersion: string = '6.7.3';
+	public appVersion: string = '6.10.4';
 	public userAgent: UserAgent = 'Web';
 	public refToken: string = '';
 	public logonUser!: LogonUser;

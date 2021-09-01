@@ -113,7 +113,7 @@ export class LiveInfo extends ContentsInfo {
 					'device_unique_id': this._client.deviceUUID,
 				},
 			});
-			live_token = req.res.results[0].jwt;
+			live_token = req.res.results[0]?.jwt;
 		}
 		await this._api.lives.info(this, {
 			'headers': {

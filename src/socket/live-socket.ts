@@ -95,7 +95,7 @@ export class LiveSocket extends WebSocketManager {
 					if ( join.result ) {
 						if ( join.result.detail === 'success' ) {
 							this.Client.liveMap.set(this.Live.id, this);
-							this._healthInterval = setInterval(this.health, this._intervalMsec) as any;
+							this._healthInterval = setInterval(this.health.bind(this), this._intervalMsec) as any;
 							this.on(LiveEvent.LIVE_EVENT_ALL, (evt: any) => {
 								const data = evt.data;
 								if ( data ) {

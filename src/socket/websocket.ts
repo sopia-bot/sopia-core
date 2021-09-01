@@ -13,6 +13,7 @@ import { deserialize } from 'typescript-json-serializer';
 export class WebSocketManager extends EventEmitter {
 
 	protected ws!: any;
+	private debug: boolean = false;
 
 	constructor(private engine: WSType) {
 		super();
@@ -46,6 +47,9 @@ export class WebSocketManager extends EventEmitter {
 
 	private receiver( msg: MessageEvent ): void {
 		const data: any = JSON.parse(msg.data);
+		if ( this.debug ) {
+			console.log('[CLIENT] <- [SERVER]', msg.data);
+		}
 		const m = this.eventMapper(data);
 		this.emit(m.event, m);
 		this.emit(LiveEvent.LIVE_EVENT_ALL, m);
@@ -80,7 +84,11 @@ export class WebSocketManager extends EventEmitter {
 				sendData.token = 'Bearer ' + sendData.token;
 			}
 		}
-		this.ws.send(JSON.stringify(sendData));
+		const strData: string = JSON.stringify(sendData);
+		if ( this.debug ) {
+			console.log('[CLIENT] -> [SERVER]', strData);
+		}
+		this.ws.send(strData);
 	}
 
 }
