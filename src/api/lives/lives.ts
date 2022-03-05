@@ -58,7 +58,7 @@ export namespace ApiLivesPopular {
 
 }
 
-export namespace ApiLivesSubcribed {
+export namespace ApiLivesSubscribed {
 
 	export const url = '/lives/subscribed/';
 	export const method = 'GET';

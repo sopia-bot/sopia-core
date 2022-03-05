@@ -19,7 +19,7 @@ import {
 	ApiLivesAccess,
 	ApiLivesBanner,
 	ApiLivesPopular,
-	ApiLivesSubcribed,
+	ApiLivesSubscribed,
 	ApiLivesSetManager,
 	ApiLivesBlock,
 	ApiLivesPresent,
@@ -50,8 +50,8 @@ export class LivesApiWrapper {
 		return await this.request<ApiLivesPopular.Request, ApiLivesPopular.Response>(ApiLivesPopular);
 	}
 
-	async subcribed(): HttpRequestWrapper<ApiLivesSubcribed.Request, ApiLivesSubcribed.Response> {
-		return await this.request<ApiLivesSubcribed.Request, ApiLivesSubcribed.Response>(ApiLivesSubcribed);
+	async subscribed(): HttpRequestWrapper<ApiLivesSubscribed.Request, ApiLivesSubscribed.Response> {
+		return await this.request<ApiLivesSubscribed.Request, ApiLivesSubscribed.Response>(ApiLivesSubscribed);
 	}
 
 	async info(live: LiveId, req?: ApiLivesRequestConfig): HttpRequestWrapper<ApiLivesInfo.Request, ApiLivesInfo.Response> {
