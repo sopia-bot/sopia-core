@@ -60,7 +60,7 @@ export namespace ApiLivesPopular {
 
 export namespace ApiLivesSubcribed {
 
-	export const url = '/lives/subcribed/';
+	export const url = '/lives/subscribed/';
 	export const method = 'GET';
 
 	export interface Request extends RequestConfig {
