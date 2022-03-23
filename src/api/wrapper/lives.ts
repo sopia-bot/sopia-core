@@ -94,6 +94,10 @@ export class LivesApiWrapper {
 		return await this.request<ApiLivesClose.Request, ApiLivesClose.Response>(ApiLivesClose, this._liveId(live), req);
 	}
 
+	async present(live: LiveId, req: ApiLivesPresent.Request): HttpRequestWrapper<ApiLivesPresent.Request, ApiLivesPresent.Response> {
+		return await this.request<ApiLivesPresent.Request, ApiLivesPresent.Response>(ApiLivesPresent, this._liveId(live), req);
+	}
+
 	async update(live: LiveId, req: ApiLivesUpdate.Request): HttpRequestWrapper<ApiLivesUpdate.Request, ApiLivesUpdate.Response> {
 		return await this.request<ApiLivesUpdate.Request, ApiLivesUpdate.Response>(ApiLivesUpdate, this._liveId(live), req);
 	}
