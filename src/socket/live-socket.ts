@@ -21,6 +21,7 @@ export class LiveSocket extends WebSocketManager {
 	private _liveToken!: string;
 	private _healthInterval!: any;
 	private _intervalMsec: number = 300000; // 5min
+	private _maxLengthPerSend: number = 100;
 
 	constructor(
 		private _live: LiveStruct,
@@ -57,14 +58,48 @@ export class LiveSocket extends WebSocketManager {
 	}
 
 	public message(message: string): void {
-		this.send({
-			type: LiveType.LIVE_RPT,
-			event: LiveEvent.LIVE_MESSAGE,
-			appversion: this.Client.appVersion,
-			useragent: this.Client.userAgent,
-			token: this.Client.token,
-			message,
-		});
+		const send = (text: string) => {
+			if ( text.trim() === '' ) {
+				return;
+			}
+
+			this.send({
+				type: LiveType.LIVE_RPT,
+				event: LiveEvent.LIVE_MESSAGE,
+				appversion: this.Client.appVersion,
+				useragent: this.Client.userAgent,
+				token: this.Client.token,
+				message: text,
+			});
+		}
+		const splitted = message.split('\n');
+		let str = '';
+		while ( splitted.length ) {
+			if ( str.length + splitted[0].length > this._maxLengthPerSend ) {
+				send(str);
+				str = '';
+			}
+			str += splitted.shift();
+			if ( str.length > this._maxLengthPerSend ) {
+				const deserialize = (text: string) => {
+					const arr = text.split('');
+					const ret = [];
+					while ( arr.length ) {
+						ret.push(arr.splice(0, this._maxLengthPerSend).join(''));
+					}
+					return ret;
+				}
+
+				for ( const s of deserialize(str) ) {
+					send(s);
+				}
+				str = '';
+			}
+		}
+
+		if ( str ) {
+			send(str);
+		}
 	}
 
 	public join (jwt: string): Promise<boolean> {
