@@ -9,7 +9,12 @@ import {
 	WebSocketManager,
 	WSType,
 	LiveType,
-	LiveEvent
+	LiveEvent,
+	LiveStateSocket,
+	LiveJoinSocket,
+	LiveLikeSocket,
+	LiveUpdateSocket,
+	LiveEventStruct,
 } from '.';
 import { LiveInfo } from '../struct/';
 import { SpoonClient } from '../spoon/';
@@ -17,7 +22,7 @@ import { SpoonClient } from '../spoon/';
 export class LiveSocket extends WebSocketManager {
 
 	private _liveToken!: string;
-	private _healthInterval!: any;
+	private _healthInterval!: NodeJS.Timer;
 	private _intervalMsec: number = 300000; // 5min
 	private _maxLengthPerSend: number = 100;
 
@@ -113,7 +118,7 @@ export class LiveSocket extends WebSocketManager {
 				type: LiveType.LIVE_REQ,
 				useragent: this.Client.userAgent,
 			});
-			this.once(LiveEvent.LIVE_STATE, (state: any) => {
+			this.once(LiveEvent.LIVE_STATE, (state: LiveStateSocket) => {
 				this.send({
 					live_id: this.Live.id.toString(),
 					appversion: this.Client.appVersion,
@@ -124,12 +129,12 @@ export class LiveSocket extends WebSocketManager {
 					type: LiveType.LIVE_REQ,
 					useragent: this.Client.userAgent,
 				});
-				this.once(LiveEvent.LIVE_JOIN, (join: any) => {
+				this.once(LiveEvent.LIVE_JOIN, (join: LiveJoinSocket) => {
 					if ( join.result ) {
 						if ( join.result.detail === 'success' ) {
-							this.Client.liveMap.set(this.Live.id, this);
-							this._healthInterval = setInterval(this.health.bind(this), this._intervalMsec) as any;
-							this.on(LiveEvent.LIVE_EVENT_ALL, (evt: any) => {
+							this.Client.liveMap.set(this.Live.id, this.Live);
+							this._healthInterval = setInterval(this.health.bind(this), this._intervalMsec) as NodeJS.Timer;
+							this.on(LiveEvent.LIVE_EVENT_ALL, (evt: LiveLikeSocket|LiveJoinSocket|LiveUpdateSocket) => {
 								const data = evt.data;
 								if ( data ) {
 									const live = data.live;

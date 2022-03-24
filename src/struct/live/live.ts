@@ -14,6 +14,8 @@ import { ApiLivesRequestConfig } from '../../api/';
 @Serializable()
 export class LiveInfo extends ContentsInfo {
 
+	public socket!: LiveSocket;
+
 	@JsonProperty() public categories!: string[];
 
 	@JsonProperty() public engine_name!: string;
@@ -43,13 +45,12 @@ export class LiveInfo extends ContentsInfo {
 	@JsonProperty() public url_hls!: string;
 
 	private _req(obj: any = {}): ApiLivesRequestConfig {
-		const socket: LiveSocket = this._client.liveMap.get(this.id) as LiveSocket;
 		if ( !obj.headers ) {
 			obj.headers = {};
 		}
 
 		if ( !obj.headers['x-live-authorization'] ){
-			obj.headers['x-live-authorization'] = socket?.RoomToken || '';
+			obj.headers['x-live-authorization'] = this.socket?.RoomToken || '';
 		}
 		return obj as ApiLivesRequestConfig;
 	}
@@ -104,25 +105,25 @@ export class LiveInfo extends ContentsInfo {
 	}
 	*/
 
-	async join(live_token: string = ''): Promise<LiveSocket> {
-		const socket = new LiveSocket(this, this._client);
-		if ( !live_token ) {
+	async join(liveToken: string = ''): Promise<LiveSocket> {
+		this.socket = new LiveSocket(this, this._client);
+		if ( !liveToken ) {
 			const req = await this._api.lives.token(this, {
 				'data': {
 					'device_unique_id': this._client.deviceUUID,
 				},
 			});
-			live_token = req.res.results[0]?.jwt;
+			liveToken = req.res.results[0]?.jwt;
 		}
 		await this._api.lives.info(this, {
 			'headers': {
-				'x-live-authorization': live_token,
+				'x-live-authorization': liveToken,
 			}
 		});
-		if ( ! await socket.join(live_token) ) {
+		if ( ! await this.socket.join(liveToken) ) {
 			throw Error('Can not join live to ' + this.id);
 		}
-		return socket;
+		return this.socket;
 	}
 
 }

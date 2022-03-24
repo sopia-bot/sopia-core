@@ -19,7 +19,7 @@ export class WebSocketManager extends EventEmitter {
 		super();
 	}
 
-	private eventMapper(socket: EventStruct.LiveSocketStruct): any {
+	private eventMapper(socket: EventStruct.LiveEventStruct): EventStruct.LiveEventStruct {
 		switch ( socket.event ) {
 			case LiveEvent.LIVE_STATE:
 				return deserialize<EventStruct.LiveStateSocket>(socket, EventStruct.LiveStateSocket);
@@ -42,7 +42,7 @@ export class WebSocketManager extends EventEmitter {
 			case LiveEvent.LIVE_PLAY:
 				return deserialize<EventStruct.LivePlaySocket>(socket, EventStruct.LivePlaySocket);
 		}
-		return socket as any;
+		return socket;
 	}
 
 	private receiver( msg: MessageEvent ): void {

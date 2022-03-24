@@ -24,6 +24,8 @@ export class LiveSocketStruct {
 
 	@JsonProperty() public trigger!: string;
 
+	@JsonProperty() public data!: {};
+
 }
 
 @Serializable()
@@ -266,3 +268,10 @@ export class LiveRankListSocket extends LiveSocketStruct {
 
 	}
 }
+
+
+export type LiveEventStruct =
+	LiveStateSocket|LiveLazyUpdateSocket|LiveRankSocket|
+	LiveJoinSocket|LiveUpdateSocket|LiveMessageSocket|
+	LiveLikeSocket|LivePresentSocket|LivePlaySocket|
+	LiveRankListSocket;
