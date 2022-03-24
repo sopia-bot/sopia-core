@@ -14,14 +14,13 @@ import {
 	Tier
 } from '../../enum/';
 import { FanboardInfo } from '../fanboard/info';
-import { CurrentLive } from '../live/current-live';
-import { SpoonSession } from '../session';
+import { SpoonSession, LiveInfo } from '../';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
 export class UserSearchProfile extends SpoonSession {
 
-	@JsonProperty() current_live!: CurrentLive;
+	@JsonProperty() current_live!: LiveInfo;
 
 	@JsonProperty() current_live_id!: number;
 

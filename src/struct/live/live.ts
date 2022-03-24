@@ -4,9 +4,8 @@
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
-import { ContentsInfo, SpoonSession } from '../';
+import { ContentsInfo, User } from '../';
 import { LiveCall } from './live-call';
-import { User } from '../user/';
 import { Tier } from '../../enum/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 import { LiveSocket } from '../../socket/';

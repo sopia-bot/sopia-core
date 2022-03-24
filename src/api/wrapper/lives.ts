@@ -6,7 +6,7 @@
  */
 
 import { SpoonClient } from '../../spoon/';
-import { CurrentLive, LiveInfo } from '../../struct/';
+import { LiveInfo } from '../../struct/';
 import {
 	HttpRequestWrapper,
 	ApiLivesRequestConfig,
@@ -27,7 +27,7 @@ import {
 	ApiLivesUpdate,
 } from '../';
 
-type LiveId = number|LiveInfo|CurrentLive;
+type LiveId = number|LiveInfo;
 
 export class LivesApiWrapper {
 

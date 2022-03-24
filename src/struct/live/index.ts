@@ -6,5 +6,4 @@
  */
 
 export * from './live';
-export * from './current-live';
 export * from './live-call';

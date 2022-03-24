@@ -11,10 +11,8 @@ import {
 	LiveType,
 	LiveEvent
 } from '.';
-import { LiveInfo, CurrentLive } from '../struct/';
+import { LiveInfo } from '../struct/';
 import { SpoonClient } from '../spoon/';
-
-type LiveStruct = CurrentLive|LiveInfo;
 
 export class LiveSocket extends WebSocketManager {
 
@@ -24,7 +22,7 @@ export class LiveSocket extends WebSocketManager {
 	private _maxLengthPerSend: number = 100;
 
 	constructor(
-		private _live: LiveStruct,
+		private _live: LiveInfo,
 		private _client: SpoonClient,
 		wstype: WSType = WSType.SYSTEM) {
 		super(wstype);
@@ -41,7 +39,7 @@ export class LiveSocket extends WebSocketManager {
 		});
 	}
 
-	get Live(): LiveStruct {
+	get Live(): LiveInfo {
 		return this._live;
 	}
 
