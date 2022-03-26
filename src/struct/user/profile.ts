@@ -20,7 +20,7 @@ import { Serializable, JsonProperty } from 'typescript-json-serializer';
 @Serializable()
 export class UserSearchProfile extends SpoonSession {
 
-	@JsonProperty() current_live!: LiveInfo;
+	//@JsonProperty() current_live!: LiveInfo;
 
 	@JsonProperty() current_live_id!: number;
 
