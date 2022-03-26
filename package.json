@@ -1,6 +1,6 @@
 {
 	"name": "@sopia-bot/core",
-	"version": "2.1.11",
+	"version": "2.1.12",
 	"description": "Spoon radio core API",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -50,7 +50,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"axios": "^0.21.1",
-		"typescript-json-serializer": "^3.4.4",
+		"typescript-json-serializer": "^3.4.5",
 		"ws": "^7.3.0"
 	}
 }
