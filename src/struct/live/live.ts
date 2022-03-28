@@ -4,7 +4,8 @@
  *
  * Copyright (c) raravel. Licensed under the MIT License.
  */
-import { ContentsInfo, User } from '../';
+import { ContentsInfo } from '../info';
+import { User } from '../user/profile';
 import { LiveCall } from './live-call';
 import { Tier } from '../../enum/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';

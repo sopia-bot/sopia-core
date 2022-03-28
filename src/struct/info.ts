@@ -6,7 +6,7 @@
  */
 
 import { SpoonSession } from './session';
-import { UserMiniProfile } from './user';
+import { UserMiniProfile } from './user/profile';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()

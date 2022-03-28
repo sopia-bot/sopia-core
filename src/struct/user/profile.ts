@@ -14,13 +14,21 @@ import {
 	Tier
 } from '../../enum/';
 import { FanboardInfo } from '../fanboard/info';
-import { SpoonSession, LiveInfo } from '../';
-import { Serializable, JsonProperty } from 'typescript-json-serializer';
+import { SpoonSession } from '../';
+import { CurrentLive } from '../live/current-live';
+import { Serializable, JsonProperty, deserialize } from 'typescript-json-serializer';
 
 @Serializable()
 export class UserSearchProfile extends SpoonSession {
 
-	//@JsonProperty() current_live!: LiveInfo;
+	@JsonProperty({
+		name: 'current_live',
+		type: CurrentLive,
+		beforeDeserialize: (value: any, instance: any) => {
+			value['_client'] = instance._client;
+			return value;
+		},
+	}) current_live!: CurrentLive;
 
 	@JsonProperty() current_live_id!: number;
 
