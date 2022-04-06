@@ -28,9 +28,9 @@ export class LiveSocket extends WebSocketManager {
 
 	constructor(
 		private _live: LiveInfo,
-		private _client: SpoonClient,
+		_client: SpoonClient,
 		wstype: WSType = WSType.SYSTEM) {
-		super(wstype);
+		super(_client, wstype);
 	}
 
 	private health(): void {

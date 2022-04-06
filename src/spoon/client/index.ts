@@ -8,6 +8,7 @@ import { Country, CountryNumber, SnsType } from '../../enum/';
 import { LogonUser, LiveInfo, UserSearchProfile } from '../../struct/';
 import { ApiClient, ApiLogin, ApiUrls, HttpRequest } from '../../api/';
 import { StickerClient } from '../../sticker/';
+import { EventEmitter } from '../../utils/';
 
 export type UserAgent = 'Web'|'Android'|'iOS';
 
@@ -25,6 +26,7 @@ export class SpoonClient {
 	public sticker: StickerClient;
 
 	public liveMap: Map<number, LiveInfo> = new Map();
+	public hook: EventEmitter = new EventEmitter();
 
 	constructor(public deviceUUID: string) {
 		this.api = new ApiClient(this);

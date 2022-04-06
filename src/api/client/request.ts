@@ -50,6 +50,7 @@ export class HttpRequest<Request extends AxiosRequestConfig, Response extends an
 
 	public async send(url: string = this.url): ApiResponse<Response> {
 		this.options.url = url;
+		this._client.hook.emit('http:request', this);
 
 		try {
 			const res = await axios(this.options);
@@ -68,6 +69,7 @@ export class HttpRequest<Request extends AxiosRequestConfig, Response extends an
 				}
 
 				this.res = res.data as ApiResult<Response>;
+				this._client.hook.emit('http:response', this);
 			}
 		} catch(err) {
 			if ( err.response ) {

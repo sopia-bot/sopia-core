@@ -9,13 +9,14 @@ import { EventEmitter } from '../utils/';
 import { WSType, LiveEvent } from './enum/';
 import * as EventStruct from './struct/';
 import { deserialize } from 'typescript-json-serializer';
+import { SpoonClient } from '../spoon/';
 
 export class WebSocketManager extends EventEmitter {
 
 	protected ws!: any;
 	private debug: boolean = false;
 
-	constructor(private engine: WSType) {
+	constructor(protected _client: SpoonClient, private engine: WSType) {
 		super();
 	}
 
@@ -51,6 +52,7 @@ export class WebSocketManager extends EventEmitter {
 			console.log('[CLIENT] <- [SERVER]', msg.data);
 		}
 		const m = this.eventMapper(data);
+		this._client.hook.emit('ws:response', m);
 		this.emit(m.event, m);
 		this.emit(LiveEvent.LIVE_EVENT_ALL, m);
 	}
@@ -79,6 +81,7 @@ export class WebSocketManager extends EventEmitter {
 
 	send ( data: any ): void {
 		const sendData: any = data;
+		this._client.hook.emit('ws:request', data);
 		if ( sendData.token ) {
 			if ( !sendData.token.match(/^Bearer/) ) {
 				sendData.token = 'Bearer ' + sendData.token;
