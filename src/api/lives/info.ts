@@ -96,6 +96,22 @@ export namespace ApiLivesLike {
 
 }
 
+export namespace ApiLivesSetLike {
+
+	export const url = '/lives/0000/like/';
+	export const method = 'POST';
+
+	export interface Request extends ApiLivesRequestConfig {
+
+	}
+
+	@Serializable()
+	export class Response extends Live {
+
+	}
+
+}
+
 export namespace ApiLivesToken {
 
 	export const url = '/lives/0000/token/';

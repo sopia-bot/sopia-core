@@ -15,6 +15,7 @@ import {
 	ApiLivesListenersFans,
 	ApiLivesSponsor,
 	ApiLivesLike,
+	ApiLivesSetLike,
 	ApiLivesToken,
 	ApiLivesAccess,
 	ApiLivesBanner,
@@ -72,6 +73,10 @@ export class LivesApiWrapper {
 
 	async like(live: LiveId, req?: ApiLivesRequestConfig): HttpRequestWrapper<ApiLivesLike.Request, ApiLivesLike.Response> {
 		return await this.request<ApiLivesLike.Request, ApiLivesLike.Response>(ApiLivesLike, this._liveId(live), req);
+	}
+
+	async setLike(live: LiveId, req?: ApiLivesRequestConfig): HttpRequestWrapper<ApiLivesSetLike.Request, ApiLivesSetLike.Response> {
+		return await this.request<ApiLivesSetLike.Request, ApiLivesSetLike.Response>(ApiLivesSetLike, this._liveId(live), req);
 	}
 
 	async token(live: LiveId, req: ApiLivesToken.Request): HttpRequestWrapper<ApiLivesToken.Request, ApiLivesToken.Response> {
