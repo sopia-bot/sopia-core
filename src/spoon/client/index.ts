@@ -72,6 +72,8 @@ export class SpoonClient {
 		if ( res && res.data ) {
 			this.token = res.data.jwt;
 			this.refToken = res.data.refresh_token;
+		} else if ( res && res.error ) {
+			throw res;
 		}
 
 		return this.token;
