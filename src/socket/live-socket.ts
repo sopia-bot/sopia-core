@@ -72,7 +72,7 @@ export class LiveSocket extends WebSocketManager {
 				appversion: this.Client.appVersion,
 				useragent: this.Client.userAgent,
 				token: this.Client.token,
-				message: text,
+				message: text.replace(/"/g, '\\"'),
 			});
 		}
 		const splitted = message.split('\n');
