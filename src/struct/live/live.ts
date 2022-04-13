@@ -114,6 +114,9 @@ export class LiveInfo extends ContentsInfo {
 					'device_unique_id': this._client.deviceUUID,
 				},
 			});
+			if ( req.res.status_code !== 200 ) {
+				throw req;
+			}
 			liveToken = req.res.results[0]?.jwt;
 		}
 		await this._api.lives.info(this, {
