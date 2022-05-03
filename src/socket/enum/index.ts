@@ -35,6 +35,7 @@ export enum LiveEvent {
 	LIVE_FORCE_CLOSE = 'live_force_close',
 	LIVE_PLAY = 'live_play',
 	LIVE_LAZY_UPDATE = 'lazy_update',
+    LIVE_PRESENT_LIKE = 'live_present_like',
 	LIVE_EVENT_ALL = 'live_event_all',
 
 }

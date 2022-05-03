@@ -218,6 +218,68 @@ export class LivePresentSocket extends LiveSocketStruct {
 }
 
 @Serializable()
+export class LivePresentLikeSocket extends LiveSocketStruct {
+
+	@JsonProperty() public data!: {
+
+		'user': User;
+
+	};
+
+    // unknown property
+    @JsonProperty() public items!: any[];
+
+    @JsonProperty() public update_component!: {
+
+        'close_air_time': string|null;
+
+        'like': {
+
+            'amount': number;
+
+            'combo': number;
+
+            'sticker': string;
+
+            'value': number;
+
+        };
+
+        'listener': {
+
+            'value': number;
+
+        };
+
+        'message': string:null;
+
+        'spoon': {
+
+            'combo': number;
+
+            'value': number;
+
+        };
+
+        'total_listener': {
+
+            'value': number;
+
+        };
+
+    };
+
+    // unknown property
+    'use_items'!: any[];
+
+	constructor() {
+
+		super();
+
+	}
+}
+
+@Serializable()
 export class LivePlaySocket extends LiveSocketStruct {
 
 	@JsonProperty() public emit_type!: string;
@@ -274,4 +336,4 @@ export type LiveEventStruct =
 	LiveStateSocket|LiveLazyUpdateSocket|LiveRankSocket|
 	LiveJoinSocket|LiveUpdateSocket|LiveMessageSocket|
 	LiveLikeSocket|LivePresentSocket|LivePlaySocket|
-	LiveRankListSocket;
+	LiveRankListSocket|LivePresentLikeSocket;

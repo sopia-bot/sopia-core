@@ -42,6 +42,8 @@ export class WebSocketManager extends EventEmitter {
 				return deserialize<EventStruct.LiveUpdateSocket>(socket, EventStruct.LiveUpdateSocket);
 			case LiveEvent.LIVE_PLAY:
 				return deserialize<EventStruct.LivePlaySocket>(socket, EventStruct.LivePlaySocket);
+            case LiveEvent.LIVE_PRESENT_LIKE:
+                return deserialize<EventStruct.LivePresentLikeSocket>(socket, EventStruct.LivePresentLikeSocket);
 		}
 		return socket;
 	}
