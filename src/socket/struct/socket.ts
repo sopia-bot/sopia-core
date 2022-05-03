@@ -251,7 +251,7 @@ export class LivePresentLikeSocket extends LiveSocketStruct {
 
         };
 
-        'message': string:null;
+        'message': string|null;
 
         'spoon': {
 
