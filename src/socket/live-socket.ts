@@ -23,7 +23,7 @@ export class LiveSocket extends WebSocketManager {
 
 	private _liveToken!: string;
 	private _healthInterval!: NodeJS.Timer;
-	private _intervalMsec: number = 300000; // 5min
+	private _intervalMsec: number = 145000; // 2:25
 	private _maxLengthPerSend: number = 100;
 
 	constructor(
