@@ -26,6 +26,58 @@ export namespace ApiLivesInfo {
 
 }
 
+export namespace ApiLivesCreate {
+
+	export const url = '/lives/';
+	export const method = 'POST';
+
+	export interface Request extends RequestConfig {
+
+        'data': {
+
+            'is_adult': boolean;
+
+            'is_save': boolean;
+
+            'donation': number;
+
+            'title': string;
+
+            'type': number;
+
+            'welcome_message': string;
+
+            'invite_member_ids': number[];
+
+            'tags': string[],
+
+            'categories': string[],
+
+            'engine': {
+
+                'name': "sing"|"sori";
+
+                'host': string;
+
+            };
+
+            'is_live_call': boolean;
+
+            'device_unique_id': string,
+
+            'spoon_aim': any[]; // unknown value
+
+        };
+
+	}
+
+	@Serializable()
+	export class Response extends Live {
+
+	}
+
+}
+
 export namespace ApiLivesListeners {
 
 	export const url = '/lives/0000/listeners/';

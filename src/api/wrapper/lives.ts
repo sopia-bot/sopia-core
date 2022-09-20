@@ -26,6 +26,7 @@ import {
 	ApiLivesPresent,
 	ApiLivesClose,
 	ApiLivesUpdate,
+	ApiLivesCreate,
 } from '../';
 
 type LiveId = number|LiveInfo;
@@ -105,6 +106,10 @@ export class LivesApiWrapper {
 
 	async update(live: LiveId, req: ApiLivesUpdate.Request): HttpRequestWrapper<ApiLivesUpdate.Request, ApiLivesUpdate.Response> {
 		return await this.request<ApiLivesUpdate.Request, ApiLivesUpdate.Response>(ApiLivesUpdate, this._liveId(live), req);
+	}
+
+	async create(req: ApiLivesCreate.Request): HttpRequestWrapper<ApiLivesCreate.Request, ApiLivesCreate.Response> {
+		return await this.request<ApiLivesCreate.Request, ApiLivesCreate.Response>(ApiLivesCreate, req);
 	}
 
 }
