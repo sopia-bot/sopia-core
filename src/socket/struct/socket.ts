@@ -5,10 +5,12 @@
  * Copyright (c) raravel. Licensed under the MIT License.
  */
 import { User, Live, Poll, Mailbox, MailboxMessage } from '../../struct/';
-import { Serializable, JsonProperty } from 'typescript-json-serializer';
+import { Serializable, JsonProperty, serialize } from 'typescript-json-serializer';
 
 @Serializable()
 export class LiveSocketStruct {
+
+	public isSerializedStruct = true;
 
 	@JsonProperty() public event!: string;
 
@@ -25,6 +27,10 @@ export class LiveSocketStruct {
 	@JsonProperty() public trigger!: string;
 
 	@JsonProperty() public data!: {};
+
+	public toJSON() {
+		return serialize(this, false);
+	}
 
 }
 

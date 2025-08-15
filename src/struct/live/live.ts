@@ -11,11 +11,14 @@ import { Tier } from '../../enum/';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 import { LiveSocket } from '../../socket/';
 import { ApiLivesRequestConfig } from '../../api/';
+import { LiveEngine } from './engine';
 
 @Serializable()
 export class LiveInfo extends ContentsInfo {
 
 	public socket!: LiveSocket;
+
+	@JsonProperty() public access_key!: string;
 
 	@JsonProperty() public categories!: string[];
 
@@ -39,11 +42,15 @@ export class LiveInfo extends ContentsInfo {
 
 	@JsonProperty() public room_token!: string;
 
+	@JsonProperty() public jwt!: string;
+
 	@JsonProperty() public tier!: Tier;
 
 	@JsonProperty() public total_member_count!: number;
 
 	@JsonProperty() public url_hls!: string;
+
+	@JsonProperty() public host_address!: string;
 
 	private _req(obj: any = {}): ApiLivesRequestConfig {
 		if ( !obj.headers ) {
@@ -135,6 +142,8 @@ export class LiveInfo extends ContentsInfo {
 @Serializable()
 export class Live extends LiveInfo {
 
+	public liveEngine!: LiveEngine;
+
 	@JsonProperty() public welcome_message!: string;
 
 	@JsonProperty() public top_fans!: { user: User }[];
@@ -172,8 +181,13 @@ export class Live extends LiveInfo {
 	@JsonProperty() public close_air_time!: string;
 
 	constructor() {
-
 		super();
+	}
 
+	initLiveEngine() {
+		if ( !this._client.logonUser ) {
+			throw Error('dose_not_logon');
+		}
+		this.liveEngine = new LiveEngine(this._client, this);
 	}
 }

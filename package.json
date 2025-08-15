@@ -1,6 +1,6 @@
 {
 	"name": "@sopia-bot/core",
-	"version": "2.2.7",
+	"version": "2.4.1",
 	"description": "Spoon radio core API",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -10,7 +10,7 @@
 		"test:common": "./node_modules/.bin/mocha -r ts-node/register ./tests/common.test.ts  --trace-warnings",
 		"test:upload": "./node_modules/.bin/mocha -r ts-node/register ./tests/upload.test.ts  --trace-warnings",
 		"lint": "tslint -p .",
-		"build": "./node_modules/.bin/tsc",
+		"build": "tsc",
 		"prepublishOnly": "rm -rf dist/ && npm run build"
 	},
 	"keywords": [

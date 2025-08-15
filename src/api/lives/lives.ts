@@ -87,3 +87,35 @@ export namespace ApiLivesSubscribed {
 	}
 
 }
+
+export namespace ApiLivesMembership {
+
+	export const url = '/lives/membership/';
+	export const method = 'GET';
+
+	export interface Request extends RequestConfig {
+
+		'params': {
+
+			'page_size': number;
+
+			'is_adult': boolean;
+
+			'sort': number;
+
+		};
+
+	}
+
+	@Serializable()
+	export class Response extends Live {
+
+		constructor() {
+
+			super();
+
+		}
+
+	}
+
+}

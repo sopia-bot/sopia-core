@@ -24,7 +24,7 @@ export class LiveSocket extends WebSocketManager {
 	private _liveToken!: string;
 	private _healthInterval!: NodeJS.Timer;
 	private _intervalMsec: number = 145000; // 2:25
-	private _maxLengthPerSend: number = 100;
+	private _maxLengthPerSend: number = 200;
 
 	constructor(
 		private _live: LiveInfo,
@@ -110,31 +110,6 @@ export class LiveSocket extends WebSocketManager {
 		return new Promise(async (resolve, reject) => {
 			await this.connect(this.Client.urls.socket + this._live.id);
 
-			/**
-			 * 8.7.1-beta.1 버전에 추가된
-			 * ivs 엔진은 핸드셰이크 동작을 하지 않음.
-			 */
-			console.log(this.Live);
-			if ( this.Live.engine_name === 'ivs' ) {
-				this.once(LiveEvent.LIVE_JOIN, (state: LiveJoinSocket) => {
-					if ( state.result.code === 200 ) {
-						resolve(true);
-					} else {
-						reject(false);
-					}
-				});
-				this.send({
-					appversion: this.Client.appVersion,
-					event: LiveEvent.LIVE_JOIN,
-					live_id: this.Live.id,
-					reconnect: false,
-					retry: 0,
-					type: LiveType.LIVE_REQ,
-					useragent: this.Client.userAgent,
-				});
-				return;
-			}
-
 			this.send({
 				live_id: this.Live.id.toString(),
 				appversion: this.Client.appVersion,
@@ -160,9 +135,11 @@ export class LiveSocket extends WebSocketManager {
 							this.Client.liveMap.set(this.Live.id, this.Live);
 							//this._healthInterval = setInterval(this.health.bind(this), this._intervalMsec) as NodeJS.Timer;
 							this.on(LiveEvent.LIVE_EVENT_ALL, (evt: LiveLikeSocket|LiveJoinSocket|LiveUpdateSocket) => {
-                                if ( evt.event === LiveEvent.LIVE_HEALTH ) {
-                                    this.health();
-                                }
+								if (this.Live.engine_name !== 'ivs') {
+									if ( evt.event === LiveEvent.LIVE_HEALTH ) {
+										this.health();
+									}
+								}
 								const data = evt.data;
 								if ( data ) {
 									const live = data.live;
